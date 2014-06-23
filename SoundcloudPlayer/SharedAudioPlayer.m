@@ -59,7 +59,7 @@
             [itemsToPlay addObject:[self itemForDict:dict]];
         }
         self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
-        [self.audioPlayer addObserver:self forKeyPath:@"rate" options:0 context:nil];
+        [self.audioPlayer addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
     } else {
         for (NSDictionary *dict in collectionItems){
             [self.audioPlayer insertItem:[self itemForDict:dict] afterItem:nil];

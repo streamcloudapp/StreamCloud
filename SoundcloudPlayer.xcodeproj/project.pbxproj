@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
 		FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
+		FD3BED481958364200B2D49A /* CustomButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED471958364200B2D49A /* CustomButtonCell.m */; };
+		FD3BED491958364200B2D49A /* CustomButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED471958364200B2D49A /* CustomButtonCell.m */; };
 		FD7CD2901954396C002AC765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD28F1954396C002AC765 /* Cocoa.framework */; };
 		FD7CD29A1954396C002AC765 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2981954396C002AC765 /* InfoPlist.strings */; };
 		FD7CD29C1954396C002AC765 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7CD29B1954396C002AC765 /* main.m */; };
@@ -61,6 +63,8 @@
 /* Begin PBXFileReference section */
 		FD3BED41195833E800B2D49A /* StreamCloudStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamCloudStyles.h; path = SoundcloudPlayer/StreamCloudStyles.h; sourceTree = "<group>"; };
 		FD3BED42195833E800B2D49A /* StreamCloudStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamCloudStyles.m; path = SoundcloudPlayer/StreamCloudStyles.m; sourceTree = "<group>"; };
+		FD3BED461958364100B2D49A /* CustomButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButtonCell.h; sourceTree = "<group>"; };
+		FD3BED471958364200B2D49A /* CustomButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButtonCell.m; sourceTree = "<group>"; };
 		FD7CD28C1954396C002AC765 /* SoundcloudPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundcloudPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD7CD28F1954396C002AC765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FD7CD2921954396C002AC765 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -124,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD3BED451958355500B2D49A /* CustomButtons */ = {
+			isa = PBXGroup;
+			children = (
+				FD3BED461958364100B2D49A /* CustomButtonCell.h */,
+				FD3BED471958364200B2D49A /* CustomButtonCell.m */,
+			);
+			name = CustomButtons;
+			sourceTree = "<group>";
+		};
 		FD7CD2831954396C002AC765 = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +196,7 @@
 				FD7CD2A21954396C002AC765 /* AppDelegate.m */,
 				FD7ECBBE1955BE05005828CF /* SharedAudioPlayer.h */,
 				FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */,
+				FD3BED451958355500B2D49A /* CustomButtons */,
 				FD7CD2A41954396C002AC765 /* MainMenu.xib */,
 				FD7CD2A71954396C002AC765 /* Images.xcassets */,
 				FD7CD2961954396C002AC765 /* Supporting Files */,
@@ -330,6 +344,7 @@
 				FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD7ECBC01955BE05005828CF /* SharedAudioPlayer.m in Sources */,
 				FD7CD29C1954396C002AC765 /* main.m in Sources */,
+				FD3BED481958364200B2D49A /* CustomButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD3BED491958364200B2D49A /* CustomButtonCell.m in Sources */,
 				FD7ECBC11955BE05005828CF /* SharedAudioPlayer.m in Sources */,
 				FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD7CD2BA1954396C002AC765 /* SoundcloudPlayerTests.m in Sources */,

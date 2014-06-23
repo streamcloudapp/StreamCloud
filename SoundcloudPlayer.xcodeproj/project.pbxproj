@@ -45,14 +45,14 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		FD7ECBC21955EDE5005828CF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
 				FD7ECBD11955EEFF005828CF /* SoundCloudAPI.framework in CopyFiles */,
 				FD7ECBD21955EEFF005828CF /* OAuth2Client.framework in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 

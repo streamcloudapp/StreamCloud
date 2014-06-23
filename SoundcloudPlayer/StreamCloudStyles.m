@@ -471,4 +471,14 @@ static NSGradient* _orangeGradient = nil;
     return imageOfRepeatButton;
 }
 
++ (NSImage*)imageOfSoundCloudLogoWithFrame: (NSRect)frame;
+{
+    NSImage* imageOfSoundCloudLogo = [NSImage.alloc initWithSize: NSMakeSize(40, 18)];
+    [imageOfSoundCloudLogo lockFocus];
+    [StreamCloudStyles drawSoundCloudLogoWithFrame: frame];
+    [imageOfSoundCloudLogo unlockFocus];
+
+    return imageOfSoundCloudLogo;
+}
+
 @end

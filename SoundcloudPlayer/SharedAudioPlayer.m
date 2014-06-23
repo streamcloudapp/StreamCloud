@@ -7,12 +7,12 @@
 //
 
 #import "SharedAudioPlayer.h"
-
+#import <math.h>
 #define CLIENT_ID @"909c2edcdbd7b312b48a04a3f1e6b40c"
 
 @interface SharedAudioPlayer ()
 
-@property (nonatomic, strong) AVQueuePlayer *audioPlayer;
+@property (nonatomic) id audioPlayerCallback;
 
 @end
 
@@ -21,7 +21,9 @@
 - (id)init {
     self = [super init];
     if (self){
-        
+        self.itemsToPlay = [NSMutableArray array];
+        self.positionInPlaylist = 0;
+
     }
     return self;
 }
@@ -35,6 +37,8 @@
     return sharedPlayer;
 }
 
+# pragma mark - Public methods
+
 - (void)togglePlayPause {
     if ([_audioPlayer rate] != 0.0) {
         [self.audioPlayer pause];
@@ -45,27 +49,53 @@
 
 - (void)nextItem {
     [self.audioPlayer advanceToNextItem];
+    [self itemDidFinishPlaying:nil];
 }
 
 - (void)previousItem {
     
 }
 
+- (void)advanceToTime:(CMTime)time {
+    [self.audioPlayer seekToTime:time completionHandler:^(BOOL finished) {
+        NSLog(@"Finished %@",finished ? @"NO" : @"YES");
+    }];
+}
+
+- (NSDictionary *)currentItem {
+    return [self.itemsToPlay objectAtIndex:_positionInPlaylist];
+}
 - (void)insertItemsFromResponse:(NSDictionary *)response {
     NSArray *collectionItems = [response objectForKey:@"collection"];
     if (!_audioPlayer){
         NSMutableArray *itemsToPlay = [NSMutableArray array];
         for (NSDictionary *dict in collectionItems){
-            [itemsToPlay addObject:[self itemForDict:dict]];
+            [self.itemsToPlay addObject:dict];
+            AVPlayerItem *itemToPlay = [self itemForDict:dict];
+            [itemsToPlay addObject:itemToPlay];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:itemToPlay];
         }
         self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
         [self.audioPlayer addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
+        self.audioPlayerCallback = [self.audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1.0, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
+            if (!isnan(CMTimeGetSeconds(time))) {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedAudioPlayerUpdatedTimePlayed" object:[NSNumber numberWithFloat:CMTimeGetSeconds(time)]];
+            }
+        }];
+
+        [self.audioPlayer setActionAtItemEnd:AVPlayerActionAtItemEndAdvance];
     } else {
         for (NSDictionary *dict in collectionItems){
-            [self.audioPlayer insertItem:[self itemForDict:dict] afterItem:nil];
+            [self.itemsToPlay addObject:dict];
+            AVPlayerItem *itemToPlay = [self itemForDict:dict];
+            [self.audioPlayer insertItem:itemToPlay afterItem:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:itemToPlay];
+
         }
     }
 }
+
+# pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"rate"]) {
@@ -77,6 +107,18 @@
         }
     }
 }
+
+# pragma mark - NotificationHandling
+
+- (void)itemDidFinishPlaying:(NSNotification *)notification {
+    self.positionInPlaylist++;
+    if (self.positionInPlaylist == self.itemsToPlay.count-1) {
+        //TODO: Get new items!
+    }
+}
+
+
+# pragma mark - Creating AVPlayerItems
 
 - (AVPlayerItem *)itemForDict:(NSDictionary *)dict {
     if ([dict[@"type"] isEqualToString:@"track"] && [dict[@"origin"][@"streamable"] boolValue]) {

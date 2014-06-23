@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BCD81D31C48D4057B89AA34E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 447911DAA4764A358869B8CF /* libPods.a */; };
 		FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
 		FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
 		FD3BED481958364200B2D49A /* PlayPauseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED471958364200B2D49A /* PlayPauseButtonCell.m */; };
@@ -65,6 +66,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		447911DAA4764A358869B8CF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FD4EF443EA47F5BF7E3EE7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		FD3BED41195833E800B2D49A /* StreamCloudStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamCloudStyles.h; path = SoundcloudPlayer/StreamCloudStyles.h; sourceTree = "<group>"; };
 		FD3BED42195833E800B2D49A /* StreamCloudStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamCloudStyles.m; path = SoundcloudPlayer/StreamCloudStyles.m; sourceTree = "<group>"; };
 		FD3BED461958364100B2D49A /* PlayPauseButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayPauseButtonCell.h; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 				FD7CD2CE19543C2F002AC765 /* OAuth2Client.framework in Frameworks */,
 				FD7CD2CF19543C2F002AC765 /* SoundCloudAPI.framework in Frameworks */,
 				FD7CD2901954396C002AC765 /* Cocoa.framework in Frameworks */,
+				BCD81D31C48D4057B89AA34E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +164,7 @@
 				FD7CD2B31954396C002AC765 /* SoundcloudPlayerTests */,
 				FD7CD28E1954396C002AC765 /* Frameworks */,
 				FD7CD28D1954396C002AC765 /* Products */,
+				E8FD4EF443EA47F5BF7E3EE7 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +191,7 @@
 				FD7CD28F1954396C002AC765 /* Cocoa.framework */,
 				FD7CD2AE1954396C002AC765 /* XCTest.framework */,
 				FD7CD2911954396C002AC765 /* Other Frameworks */,
+				447911DAA4764A358869B8CF /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -253,10 +259,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD7CD2BD1954396C002AC765 /* Build configuration list for PBXNativeTarget "SoundcloudPlayer" */;
 			buildPhases = (
+				B8CF5FDFAAB44F67A9D5FBBF /* Check Pods Manifest.lock */,
 				FD7CD2881954396C002AC765 /* Sources */,
 				FD7CD2891954396C002AC765 /* Frameworks */,
 				FD7CD28A1954396C002AC765 /* Resources */,
 				FD7ECBC21955EDE5005828CF /* CopyFiles */,
+				1B410E901A2642138976E644 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,6 +354,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B410E901A2642138976E644 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8CF5FDFAAB44F67A9D5FBBF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FD7CD2881954396C002AC765 /* Sources */ = {
@@ -493,6 +534,7 @@
 		};
 		FD7CD2BE1954396C002AC765 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8FD4EF443EA47F5BF7E3EE7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SoundcloudPlayer/SoundcloudPlayer.entitlements;
@@ -511,7 +553,7 @@
 					"$(SRCROOT)/*/**",
 				);
 				INFOPLIST_FILE = "SoundcloudPlayer/SoundcloudPlayer-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -519,6 +561,7 @@
 		};
 		FD7CD2BF1954396C002AC765 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8FD4EF443EA47F5BF7E3EE7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SoundcloudPlayer/SoundcloudPlayer.entitlements;
@@ -537,7 +580,7 @@
 					"$(SRCROOT)/*/**",
 				);
 				INFOPLIST_FILE = "SoundcloudPlayer/SoundcloudPlayer-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

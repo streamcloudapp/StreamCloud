@@ -35,5 +35,6 @@
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;
 + (NSImage*)imageOfShuffleButtonWithFrame: (NSRect)frame active: (BOOL)active;
 + (NSImage*)imageOfRepeatButtonWithFrame: (NSRect)frame active: (BOOL)active;
++ (NSImage*)imageOfSoundCloudLogoWithFrame: (NSRect)frame;
 
 @end

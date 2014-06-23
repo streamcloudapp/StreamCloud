@@ -42,6 +42,8 @@
     NSImageView *imageView = [[NSImageView alloc] initWithFrame:titleViewFrame];
     [imageView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
     [titleBarView addSubview:imageView];
+    
+    [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
 }
 
 - (void)getAccountInfo {
@@ -125,6 +127,14 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return [[SharedAudioPlayer sharedPlayer] itemsToPlay].count;
+}
+
+# pragma mark - NSTableView Click Handling
+
+- (void)tableViewDoubleClick {
+    NSLog(@"i was clicked");
+    NSInteger clickedRow = [self.tableView clickedRow];
+    [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:clickedRow];
 }
 
 # pragma mark - Update UI 

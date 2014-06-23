@@ -20,6 +20,7 @@
 - (void)insertItemsFromResponse:(NSDictionary *)response;
 - (void)togglePlayPause;
 - (void)nextItem;
+- (void)jumpToItemAtIndex:(NSInteger)item;
 - (void)advanceToTime:(CMTime)time;
 - (NSDictionary *)currentItem;
 @end

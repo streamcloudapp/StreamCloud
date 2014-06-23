@@ -56,6 +56,9 @@
     
 }
 
+- (void)jumpToItemAtIndex:(NSInteger)item {
+    
+}
 - (void)advanceToTime:(CMTime)time {
     [self.audioPlayer seekToTime:time completionHandler:^(BOOL finished) {
         NSLog(@"Finished %@",finished ? @"NO" : @"YES");

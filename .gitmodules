@@ -1,0 +1,6 @@
+[submodule "OAuth2Client"]
+	path = OAuth2Client
+	url = https://github.com/nxtbgthng/OAuth2Client.git
+[submodule "CocoaSoundCloudAPI"]
+	path = CocoaSoundCloudAPI
+	url = https://github.com/soundcloud/CocoaSoundCloudAPI.git

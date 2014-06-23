@@ -1,5 +1,5 @@
 //
-//  CustomButtonCell.h
+//  NextButtonCell.h
 //  SoundcloudPlayer
 //
 //  Created by Philip Brechler on 23.06.14.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CustomButtonCell : NSButtonCell
+@interface NextButtonCell : NSButtonCell
 
 @end

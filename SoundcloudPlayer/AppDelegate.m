@@ -29,6 +29,7 @@
     } else {
         [self getAccountInfo];
     }
+    
 }
 
 - (void)getAccountInfo {

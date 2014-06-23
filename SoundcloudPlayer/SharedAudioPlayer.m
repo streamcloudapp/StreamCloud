@@ -21,7 +21,7 @@
 - (id)init {
     self = [super init];
     if (self){
-
+        
     }
     return self;
 }
@@ -59,10 +59,21 @@
             [itemsToPlay addObject:[self itemForDict:dict]];
         }
         self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
-        [self.audioPlayer play];
+        [self.audioPlayer addObserver:self forKeyPath:@"rate" options:0 context:nil];
     } else {
         for (NSDictionary *dict in collectionItems){
             [self.audioPlayer insertItem:[self itemForDict:dict] afterItem:nil];
+        }
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"rate"]) {
+        if ([self.audioPlayer rate]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayerIsPlaying" object:nil];
+        }
+        else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayerIsPausing" object:nil];
         }
     }
 }

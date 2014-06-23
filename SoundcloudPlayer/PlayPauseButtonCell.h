@@ -10,4 +10,6 @@
 
 @interface PlayPauseButtonCell : NSButtonCell
 
+@property (nonatomic) BOOL playing;
+
 @end

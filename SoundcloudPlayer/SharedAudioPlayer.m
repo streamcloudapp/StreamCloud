@@ -44,6 +44,7 @@
         [self.audioPlayer pause];
     } else {
         [self.audioPlayer play];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
     }
 }
 
@@ -68,6 +69,7 @@
     }
     self.positionInPlaylist = item;
     [self.audioPlayer play];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
 }
 
 - (void)advanceToTime:(CMTime)time {
@@ -126,6 +128,7 @@
 
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
     self.positionInPlaylist++;
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
     if (self.positionInPlaylist == self.itemsToPlay.count-1) {
         //TODO: Get new items!
     }

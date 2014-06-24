@@ -12,6 +12,7 @@
 #import "INAppStoreWindow.h"
 #import "StreamCloudStyles.h"
 #import "AFNetworking.h"
+#import "TrackCellView.h"
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -33,6 +34,8 @@
         [self getAccountInfo];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSlider) name:@"SharedAudioPlayerUpdatedTimePlayed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayingItem) name:@"SharedPlayerDidFinishObject" object:nil];
+    
     INAppStoreWindow *aWindow = (INAppStoreWindow*)[self window];
     aWindow.titleBarHeight = 28.0;
     
@@ -107,8 +110,8 @@
     NSDictionary *originDict = [itemForRow objectForKey:@"origin"];
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"MainColumn"]){
-        NSTableCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
-        [viewforRow.imageView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
+        TrackCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
+        [viewforRow.artworkView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
         BOOL useAvatar = YES;
         if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
             if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
@@ -117,7 +120,7 @@
                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
                 manager.responseSerializer = [AFImageResponseSerializer serializer];
                 [manager GET:[originDict objectForKey:@"artwork_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    [viewforRow.imageView setImage:responseObject];
+                    [viewforRow.artworkView setImage:responseObject];
                     
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -131,7 +134,7 @@
                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
                 manager.responseSerializer = [AFImageResponseSerializer serializer];
                 [manager GET:[userDict objectForKey:@"avatar_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    [viewforRow.imageView setImage:responseObject];
+                    [viewforRow.artworkView setImage:responseObject];
                     
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -139,8 +142,13 @@
                 }];
             }
         }
-        [viewforRow.textField setStringValue:[originDict objectForKey:@"title"]];
-        
+        [viewforRow.titleLabel setStringValue:[originDict objectForKey:@"title"]];
+        [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
+        if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
+            [viewforRow markAsPlaying:YES];
+        } else {
+            [viewforRow markAsPlaying:NO];
+        }
         return viewforRow;
     }
     return nil;
@@ -176,6 +184,22 @@
     [self.playerTimeSlider setDoubleValue:(timeGone/durationOfItem)*100];
 }
 
+- (void)updatePlayingItem {
+    [self.tableView enumerateAvailableRowViewsUsingBlock:^(NSTableRowView *rowView, NSInteger row) {
+        [rowView setBackgroundColor:[NSColor whiteColor]];
+        TrackCellView *cellForRow = [rowView viewAtColumn:0];
+        [cellForRow markAsPlaying:NO];
+    }];
+    NSDictionary *currentItem = [SharedAudioPlayer sharedPlayer].currentItem;
+    NSUInteger rowForItem = [[SharedAudioPlayer sharedPlayer].itemsToPlay indexOfObject:currentItem];
+    NSLog(@"Now playing song in row %lu",(unsigned long)rowForItem);
+    NSTableRowView *rowView = [self.tableView rowViewAtRow:rowForItem makeIfNecessary:NO];
+    [rowView setBackgroundColor:[StreamCloudStyles grayLight]];
+    TrackCellView *cellForRow = [self.tableView viewAtColumn:0 row:rowForItem makeIfNecessary:NO];
+    if (cellForRow){
+        [cellForRow markAsPlaying:YES];
+    }
+}
 # pragma mark - IBActions
 
 - (IBAction)playButtonAction:(id)sender {

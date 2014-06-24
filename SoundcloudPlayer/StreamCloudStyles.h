@@ -45,5 +45,6 @@
 + (NSImage*)imageOfSoundCloudLogoWithFrame: (NSRect)frame;
 + (NSImage*)imageOfPlayingIndicatorWithFrame: (NSRect)frame;
 + (NSImage*)imageOfMenuBarIconWithFrame: (NSRect)frame;
++ (NSImage*)imageOfImageOverlayGradientViewWithFrame: (NSRect)frame;
 
 @end

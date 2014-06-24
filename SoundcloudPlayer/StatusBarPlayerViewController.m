@@ -15,6 +15,7 @@
 
 - (void)awakeFromNib {
     [self.coverArtImageView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 320, 320)]];
+    [self.overlayImageView setImage:[StreamCloudStyles imageOfImageOverlayGradientViewWithFrame:NSMakeRect(0, 0, 320, 320)]];
     [self reloadImage];
 }
 

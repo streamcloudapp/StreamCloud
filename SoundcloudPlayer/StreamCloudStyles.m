@@ -574,6 +574,22 @@ static NSGradient* _orangeGradient = nil;
     }
 }
 
++ (void)drawImageOverlayGradientViewWithFrame: (NSRect)frame;
+{
+    //// Color Declarations
+    NSColor* imageOverlayGradientColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.8];
+    NSColor* imageOverlayGradientColor2 = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0];
+
+    //// Gradient Declarations
+    NSGradient* imageOverlayGradient = [NSGradient.alloc initWithColorsAndLocations: 
+        imageOverlayGradientColor, 0.0, 
+        imageOverlayGradientColor2, 0.49, nil];
+
+    //// Rectangle Drawing
+    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(frame), NSMinY(frame) + NSHeight(frame) - 320, 320, 320)];
+    [imageOverlayGradient drawInBezierPath: rectanglePath angle: 90];
+}
+
 #pragma mark Generated Images
 
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;
@@ -634,6 +650,16 @@ static NSGradient* _orangeGradient = nil;
     [imageOfMenuBarIcon unlockFocus];
 
     return imageOfMenuBarIcon;
+}
+
++ (NSImage*)imageOfImageOverlayGradientViewWithFrame: (NSRect)frame;
+{
+    NSImage* imageOfImageOverlayGradientView = [NSImage.alloc initWithSize: NSMakeSize(320, 320)];
+    [imageOfImageOverlayGradientView lockFocus];
+    [StreamCloudStyles drawImageOverlayGradientViewWithFrame: frame];
+    [imageOfImageOverlayGradientView unlockFocus];
+
+    return imageOfImageOverlayGradientView;
 }
 
 @end

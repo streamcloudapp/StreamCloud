@@ -19,13 +19,16 @@
 + (NSColor*)orangeDark;
 + (NSColor*)grayMedium;
 + (NSColor*)grayDark;
++ (NSColor*)fakeClearColor;
 + (NSColor*)grayLight;
 + (NSColor*)seperatorColor;
 + (NSColor*)artistLabelColor;
 + (NSColor*)durationLabelColor;
++ (NSColor*)blackCoverGradientColor;
 
 // Gradients
 + (NSGradient*)orangeGradient;
++ (NSGradient*)blackCoverGradient;
 
 // Drawing Methods
 + (void)drawPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;

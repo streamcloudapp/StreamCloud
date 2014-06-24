@@ -14,6 +14,7 @@
 #import "AFNetworking.h"
 #import "TrackCellView.h"
 #import "AppleMediaKeyController.h"
+
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -55,7 +56,12 @@
     [center addObserver:self selector:@selector(playButtonAction:) name:MediaKeyPlayPauseNotification object:nil];
     [center addObserver:self selector:@selector(nextButtonAction:) name:MediaKeyNextNotification object:nil];
     [center addObserver:self selector:@selector(previousButtonAction:) name:MediaKeyPreviousNotification object:nil];
+    
+    // Status Item
+    self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
+    self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
 }
+
 
 # pragma mark - SoundCloud API
 - (void)getAccountInfo {
@@ -178,7 +184,6 @@
     [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:clickedRow];
 }
 
-
 # pragma mark - Update UI 
 
 - (void)updateSlider {
@@ -191,6 +196,9 @@
 }
 
 - (void)updatePlayingItem {
+    
+    [self.statusBarPlayerViewController reloadImage];
+    
     [self.tableView enumerateAvailableRowViewsUsingBlock:^(NSTableRowView *rowView, NSInteger row) {
         [rowView setBackgroundColor:[NSColor whiteColor]];
         TrackCellView *cellForRow = [rowView viewAtColumn:0];

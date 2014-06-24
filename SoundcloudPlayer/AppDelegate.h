@@ -7,6 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AXStatusItemPopup.h"
+#import "StatusBarPlayerViewController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
@@ -15,4 +17,6 @@
 @property (nonatomic, strong) IBOutlet NSTextField *timeToGoLabel;
 @property (nonatomic, strong) IBOutlet NSTextField *timeGoneLabel;
 @property (nonatomic, strong) IBOutlet NSTableView *tableView;
+@property (nonatomic, strong) AXStatusItemPopup *statusItemPopup;
+@property (nonatomic, strong) StatusBarPlayerViewController *statusBarPlayerViewController;
 @end

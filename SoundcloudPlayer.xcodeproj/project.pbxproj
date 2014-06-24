@@ -51,6 +51,10 @@
 		FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
 		FD8F6AE01959A454004D4B61 /* ShuffleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6ADF1959A454004D4B61 /* ShuffleButtonCell.m */; };
 		FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */; };
+		FD8F6AE61959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AE51959AB8D004D4B61 /* StatusBarPlayerViewController.m */; };
+		FD8F6AE71959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AE51959AB8D004D4B61 /* StatusBarPlayerViewController.m */; };
+		FD8F6AE91959AC0C004D4B61 /* StatusBarPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD8F6AE81959AC0C004D4B61 /* StatusBarPlayerViewController.xib */; };
+		FD8F6AEA1959AC0C004D4B61 /* StatusBarPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD8F6AE81959AC0C004D4B61 /* StatusBarPlayerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +138,9 @@
 		FD8F6ADF1959A454004D4B61 /* ShuffleButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleButtonCell.m; sourceTree = "<group>"; };
 		FD8F6AE11959A483004D4B61 /* RepeatButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatButtonCell.h; sourceTree = "<group>"; };
 		FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatButtonCell.m; sourceTree = "<group>"; };
+		FD8F6AE41959AB8D004D4B61 /* StatusBarPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarPlayerViewController.h; sourceTree = "<group>"; };
+		FD8F6AE51959AB8D004D4B61 /* StatusBarPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarPlayerViewController.m; sourceTree = "<group>"; };
+		FD8F6AE81959AC0C004D4B61 /* StatusBarPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusBarPlayerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +281,8 @@
 				FD7CD2DC19548A93002AC765 /* SoundcloudPlayer.entitlements */,
 				FD7CD2A11954396C002AC765 /* AppDelegate.h */,
 				FD7CD2A21954396C002AC765 /* AppDelegate.m */,
+				FD8F6AE41959AB8D004D4B61 /* StatusBarPlayerViewController.h */,
+				FD8F6AE51959AB8D004D4B61 /* StatusBarPlayerViewController.m */,
 				FD7ECBBE1955BE05005828CF /* SharedAudioPlayer.h */,
 				FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */,
 				FD3BED6019598C8800B2D49A /* MediaKeys */,
@@ -281,6 +290,7 @@
 				FD3BED5219597B2300B2D49A /* Custom Table View Cell */,
 				FD3BED451958355500B2D49A /* CustomButtons */,
 				FD7CD2A41954396C002AC765 /* MainMenu.xib */,
+				FD8F6AE81959AC0C004D4B61 /* StatusBarPlayerViewController.xib */,
 				FD7CD2A71954396C002AC765 /* Images.xcassets */,
 				FD7CD2961954396C002AC765 /* Supporting Files */,
 			);
@@ -407,6 +417,7 @@
 				FD7CD2A81954396C002AC765 /* Images.xcassets in Resources */,
 				FD7CD2A01954396C002AC765 /* Credits.rtf in Resources */,
 				FD7CD2A61954396C002AC765 /* MainMenu.xib in Resources */,
+				FD8F6AE91959AC0C004D4B61 /* StatusBarPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD7CD2B81954396C002AC765 /* InfoPlist.strings in Resources */,
+				FD8F6AEA1959AC0C004D4B61 /* StatusBarPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +481,7 @@
 				FD7ECBC01955BE05005828CF /* SharedAudioPlayer.m in Sources */,
 				FD7CD29C1954396C002AC765 /* main.m in Sources */,
 				FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
+				FD8F6AE61959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */,
 				FD3BED481958364200B2D49A /* PlayPauseButtonCell.m in Sources */,
 				FD8F6AE01959A454004D4B61 /* ShuffleButtonCell.m in Sources */,
 			);
@@ -481,6 +494,7 @@
 				FD3BED511958389B00B2D49A /* PreviousButtonCell.m in Sources */,
 				FD3BED4D1958387300B2D49A /* NextButtonCell.m in Sources */,
 				FD3BED491958364200B2D49A /* PlayPauseButtonCell.m in Sources */,
+				FD8F6AE71959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */,
 				FD7ECBC11955BE05005828CF /* SharedAudioPlayer.m in Sources */,
 				FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD3BED5F1959883400B2D49A /* SeperatorView.m in Sources */,

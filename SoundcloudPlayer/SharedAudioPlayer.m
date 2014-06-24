@@ -79,7 +79,10 @@
 }
 
 - (NSDictionary *)currentItem {
-    return [self.itemsToPlay objectAtIndex:_positionInPlaylist];
+    if (self.itemsToPlay.count)
+        return [self.itemsToPlay objectAtIndex:_positionInPlaylist];
+    else
+        return nil;
 }
 - (void)insertItemsFromResponse:(NSDictionary *)response {
     NSArray *collectionItems = [response objectForKey:@"collection"];

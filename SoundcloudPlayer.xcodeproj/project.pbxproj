@@ -310,9 +310,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FD7CD28B1954396C002AC765 /* SoundcloudPlayer */ = {
+		FD7CD28B1954396C002AC765 /* StreamCloud */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD7CD2BD1954396C002AC765 /* Build configuration list for PBXNativeTarget "SoundcloudPlayer" */;
+			buildConfigurationList = FD7CD2BD1954396C002AC765 /* Build configuration list for PBXNativeTarget "StreamCloud" */;
 			buildPhases = (
 				B8CF5FDFAAB44F67A9D5FBBF /* Check Pods Manifest.lock */,
 				FD7CD2881954396C002AC765 /* Sources */,
@@ -325,7 +325,7 @@
 			);
 			dependencies = (
 			);
-			name = SoundcloudPlayer;
+			name = StreamCloud;
 			productName = SoundcloudPlayer;
 			productReference = FD7CD28C1954396C002AC765 /* SoundcloudPlayer.app */;
 			productType = "com.apple.product-type.application";
@@ -382,7 +382,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FD7CD28B1954396C002AC765 /* SoundcloudPlayer */,
+				FD7CD28B1954396C002AC765 /* StreamCloud */,
 				FD7CD2AC1954396C002AC765 /* SoundcloudPlayerTests */,
 			);
 		};
@@ -484,7 +484,7 @@
 /* Begin PBXTargetDependency section */
 		FD7CD2B21954396C002AC765 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FD7CD28B1954396C002AC765 /* SoundcloudPlayer */;
+			target = FD7CD28B1954396C002AC765 /* StreamCloud */;
 			targetProxy = FD7CD2B11954396C002AC765 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -703,7 +703,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FD7CD2BD1954396C002AC765 /* Build configuration list for PBXNativeTarget "SoundcloudPlayer" */ = {
+		FD7CD2BD1954396C002AC765 /* Build configuration list for PBXNativeTarget "StreamCloud" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD7CD2BE1954396C002AC765 /* Debug */,

@@ -49,6 +49,8 @@
 		FD8F6ADB1959996D004D4B61 /* OAuth2Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
 		FD8F6ADC195999B6004D4B61 /* SoundCloudAPI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; };
 		FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
+		FD8F6AE01959A454004D4B61 /* ShuffleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6ADF1959A454004D4B61 /* ShuffleButtonCell.m */; };
+		FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,10 @@
 		FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedAudioPlayer.m; sourceTree = "<group>"; };
 		FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundCloudAPI.framework; path = SoundcloudPlayer/SoundCloudAPI.framework; sourceTree = "<group>"; };
 		FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuth2Client.framework; path = SoundcloudPlayer/OAuth2Client.framework; sourceTree = "<group>"; };
+		FD8F6ADE1959A454004D4B61 /* ShuffleButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleButtonCell.h; sourceTree = "<group>"; };
+		FD8F6ADF1959A454004D4B61 /* ShuffleButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleButtonCell.m; sourceTree = "<group>"; };
+		FD8F6AE11959A483004D4B61 /* RepeatButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatButtonCell.h; sourceTree = "<group>"; };
+		FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatButtonCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +177,10 @@
 				FD3BED4B1958387300B2D49A /* NextButtonCell.m */,
 				FD3BED4E1958389B00B2D49A /* PreviousButtonCell.h */,
 				FD3BED4F1958389B00B2D49A /* PreviousButtonCell.m */,
+				FD8F6ADE1959A454004D4B61 /* ShuffleButtonCell.h */,
+				FD8F6ADF1959A454004D4B61 /* ShuffleButtonCell.m */,
+				FD8F6AE11959A483004D4B61 /* RepeatButtonCell.h */,
+				FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */,
 			);
 			name = CustomButtons;
 			sourceTree = "<group>";
@@ -451,6 +461,7 @@
 				FD3BED4C1958387300B2D49A /* NextButtonCell.m in Sources */,
 				FD7CD2A31954396C002AC765 /* AppDelegate.m in Sources */,
 				FD3BED5519597B4300B2D49A /* TrackCellView.m in Sources */,
+				FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */,
 				FD3BED5A195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
 				FD3BED5E1959883400B2D49A /* SeperatorView.m in Sources */,
 				FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */,
@@ -459,6 +470,7 @@
 				FD7CD29C1954396C002AC765 /* main.m in Sources */,
 				FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
 				FD3BED481958364200B2D49A /* PlayPauseButtonCell.m in Sources */,
+				FD8F6AE01959A454004D4B61 /* ShuffleButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

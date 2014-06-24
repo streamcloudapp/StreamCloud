@@ -62,6 +62,12 @@
     self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:[StreamCloudStyles imageOfMenuBarIconWithFrame:NSMakeRect(0, 0, 32, 21)]];
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+    if (!flag){
+        [self.window makeKeyAndOrderFront:self];
+    }
+    return YES;
+}
 
 # pragma mark - SoundCloud API
 - (void)getAccountInfo {

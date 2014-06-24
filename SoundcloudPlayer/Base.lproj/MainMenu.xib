@@ -819,7 +819,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6dT-Qa-uCR">
-                                <rect key="frame" x="113" y="16" width="47" height="17"/>
+                                <rect key="frame" x="107" y="15" width="47" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="--:--" id="o2X-P7-wd7">
                                     <font key="font" size="11" name="HelveticaNeue"/>
@@ -828,7 +828,7 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" id="b9W-DM-2Ce">
-                                <rect key="frame" x="164" y="14" width="117" height="20"/>
+                                <rect key="frame" x="158" y="14" width="117" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="M7S-Xp-lhR"/>
                                 <connections>
@@ -836,7 +836,7 @@
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Xzd-Aq-Y3F">
-                                <rect key="frame" x="285" y="16" width="48" height="17"/>
+                                <rect key="frame" x="279" y="15" width="48" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="--:--" id="vJC-q7-cOG">
                                     <font key="font" size="11" name="HelveticaNeue"/>

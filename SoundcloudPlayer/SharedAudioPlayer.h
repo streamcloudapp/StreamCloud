@@ -19,6 +19,7 @@
 + (SharedAudioPlayer *)sharedPlayer;
 - (void)insertItemsFromResponse:(NSDictionary *)response;
 - (void)togglePlayPause;
+- (void)previousItem;
 - (void)nextItem;
 - (void)jumpToItemAtIndex:(NSInteger)item;
 - (void)advanceToTime:(CMTime)time;

@@ -46,6 +46,12 @@
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
 }
 
+-(void)awakeFromNib {
+    NSRect frame = self.tableView.headerView.frame;
+    frame.size.height = 0;
+    self.tableView.headerView.frame = frame;
+}
+
 - (void)getAccountInfo {
     SCAccount *account = [SCSoundCloud account];
     
@@ -103,11 +109,28 @@
     if ([identifier isEqualToString:@"MainColumn"]){
         NSTableCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
         [viewforRow.imageView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
+        BOOL useAvatar = YES;
         if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
-            if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"] isEqualToString:@"<null>"]){
+            if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
+                                                              isEqualToString:@"<null>"]){
+                useAvatar = NO;
                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
                 manager.responseSerializer = [AFImageResponseSerializer serializer];
                 [manager GET:[originDict objectForKey:@"artwork_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [viewforRow.imageView setImage:responseObject];
+                    
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"Failed to get image %@",error);
+                }];
+            }
+        }
+        NSDictionary *userDict = [originDict objectForKey:@"user"];
+        if ([[userDict objectForKey:@"avatar_url"] isKindOfClass:[NSString class]] && useAvatar) {
+            if ([userDict objectForKey:@"avatar_url"] && ![[userDict objectForKey:@"avatar_url"] isEqualToString:@"<null>"]){
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                manager.responseSerializer = [AFImageResponseSerializer serializer];
+                [manager GET:[userDict objectForKey:@"avatar_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     [viewforRow.imageView setImage:responseObject];
                     
                     
@@ -121,6 +144,10 @@
         return viewforRow;
     }
     return nil;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
+    return NO;
 }
 
 # pragma mark - NSTableViewDataSource
@@ -137,6 +164,7 @@
     [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:clickedRow];
 }
 
+
 # pragma mark - Update UI 
 
 - (void)updateSlider {
@@ -152,6 +180,10 @@
 
 - (IBAction)playButtonAction:(id)sender {
     [[SharedAudioPlayer sharedPlayer] togglePlayPause];
+}
+
+- (IBAction)previousButtonAction:(id)sender {
+    [[SharedAudioPlayer sharedPlayer] previousItem];
 }
 
 - (IBAction)nextButtonAction:(id)sender {

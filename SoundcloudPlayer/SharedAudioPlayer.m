@@ -53,12 +53,23 @@
 }
 
 - (void)previousItem {
-    
+    if (self.positionInPlaylist >= 1) {
+        [self jumpToItemAtIndex:self.positionInPlaylist-1];
+    }
 }
 
 - (void)jumpToItemAtIndex:(NSInteger)item {
+    [self.audioPlayer pause];
+    [self.audioPlayer removeAllItems];
     
+    for (NSInteger i = item; i < self.itemsToPlay.count; i++){
+        NSDictionary *itemInList = [self.itemsToPlay objectAtIndex:i];
+        [self.audioPlayer insertItem:[self itemForDict:itemInList] afterItem:nil];
+    }
+    self.positionInPlaylist = item;
+    [self.audioPlayer play];
 }
+
 - (void)advanceToTime:(CMTime)time {
     [self.audioPlayer seekToTime:time completionHandler:^(BOOL finished) {
         NSLog(@"Finished %@",finished ? @"NO" : @"YES");

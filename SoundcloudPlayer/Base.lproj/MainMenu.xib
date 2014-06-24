@@ -680,7 +680,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="400" height="768"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" id="2dY-Lj-jPa">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" id="2dY-Lj-jPa">
                         <rect key="frame" x="0.0" y="67" width="402" height="702"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="jpA-t5-Wbq">
@@ -743,7 +743,7 @@
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="cNt-dZ-Cxh">
-                            <rect key="frame" x="0.0" y="1" width="0.0" height="16"/>
+                            <rect key="frame" x="-100" y="-100" width="0.0" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="D4X-ij-5jK">
@@ -781,6 +781,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="previousButtonAction:" target="Voe-Tx-rLC" id="y46-q2-3WR"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="hB1-4q-nEh">
                         <rect key="frame" x="96" y="24" width="16" height="16"/>

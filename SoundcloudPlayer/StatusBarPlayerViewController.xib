@@ -23,10 +23,6 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSAdvanced" id="Ttv-af-1dh"/>
                 </imageView>
-                <progressIndicator maxValue="100" style="bar" id="d22-NI-MLY">
-                    <rect key="frame" x="0.0" y="45" width="320" height="20"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                </progressIndicator>
                 <button id="gT7-2A-NmH">
                     <rect key="frame" x="144" y="9" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -100,6 +96,10 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <customView id="GCl-aP-c8g" customClass="ProgressIndicatorView">
+                    <rect key="frame" x="0.0" y="55" width="320" height="8"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
             </subviews>
         </customView>
     </objects>

@@ -21,6 +21,7 @@ static NSColor* _orangeDark = nil;
 static NSColor* _grayMedium = nil;
 static NSColor* _grayDark = nil;
 static NSColor* _grayLight = nil;
+static NSColor* _seperatorColor = nil;
 static NSColor* _artistLabelColor = nil;
 static NSColor* _durationLabelColor = nil;
 
@@ -39,6 +40,7 @@ static NSGradient* _orangeGradient = nil;
     _durationLabelColor = _grayMedium;
     _grayDark = [NSColor colorWithCalibratedRed: 0.2 green: 0.2 blue: 0.2 alpha: 1];
     _grayLight = [NSColor colorWithCalibratedRed: 0.91 green: 0.91 blue: 0.91 alpha: 1];
+    _seperatorColor = [NSColor colorWithCalibratedRed: 0.773 green: 0.773 blue: 0.773 alpha: 1];
 
     // Gradients Initialization
     _orangeGradient = [NSGradient.alloc initWithStartingColor: StreamCloudStyles.orangeDark endingColor: StreamCloudStyles.orangeLight];
@@ -53,6 +55,7 @@ static NSGradient* _orangeGradient = nil;
 + (NSColor*)grayMedium { return _grayMedium; }
 + (NSColor*)grayDark { return _grayDark; }
 + (NSColor*)grayLight { return _grayLight; }
++ (NSColor*)seperatorColor { return _seperatorColor; }
 + (NSColor*)artistLabelColor { return _artistLabelColor; }
 + (NSColor*)durationLabelColor { return _durationLabelColor; }
 
@@ -458,13 +461,41 @@ static NSGradient* _orangeGradient = nil;
 
 + (void)drawSeperatorViewWithFrame: (NSRect)frame;
 {
-    //// Color Declarations
-    NSColor* seperatorColor = [NSColor colorWithCalibratedRed: 0.773 green: 0.773 blue: 0.773 alpha: 1];
 
     //// Rectangle Drawing
     NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(frame), NSMinY(frame), NSWidth(frame), NSHeight(frame))];
-    [seperatorColor setFill];
+    [StreamCloudStyles.seperatorColor setFill];
     [rectanglePath fill];
+}
+
++ (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
+{
+    //// Color Declarations
+    NSColor* progressIndicatorTrackColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.5];
+
+    //// Variable Declarations
+    CGFloat progressWidth = 320 * percentShown / 100.0;
+
+    //// Group
+    {
+        //// Track Drawing
+        NSBezierPath* trackPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 320, 4)];
+        [progressIndicatorTrackColor setFill];
+        [trackPath fill];
+
+
+        //// Progress Drawing
+        CGFloat progressCornerRadius = 2;
+        NSRect progressRect = NSMakeRect(0, 0, progressWidth, 4);
+        NSRect progressInnerRect = NSInsetRect(progressRect, progressCornerRadius, progressCornerRadius);
+        NSBezierPath* progressPath = NSBezierPath.bezierPath;
+        [progressPath moveToPoint: NSMakePoint(NSMinX(progressRect), NSMinY(progressRect))];
+        [progressPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(progressInnerRect), NSMinY(progressInnerRect)) radius: progressCornerRadius startAngle: 270 endAngle: 360];
+        [progressPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(progressInnerRect), NSMaxY(progressInnerRect)) radius: progressCornerRadius startAngle: 0 endAngle: 90];
+        [progressPath lineToPoint: NSMakePoint(NSMinX(progressRect), NSMaxY(progressRect))];
+        [progressPath closePath];
+        [StreamCloudStyles.orangeGradient drawInBezierPath: progressPath angle: 90];
+    }
 }
 
 #pragma mark Generated Images

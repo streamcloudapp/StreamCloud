@@ -20,6 +20,7 @@
 + (NSColor*)grayMedium;
 + (NSColor*)grayDark;
 + (NSColor*)grayLight;
++ (NSColor*)seperatorColor;
 + (NSColor*)artistLabelColor;
 + (NSColor*)durationLabelColor;
 
@@ -35,6 +36,7 @@
 + (void)drawSoundCloudLogoWithFrame: (NSRect)frame;
 + (void)drawPlayingIndicatorWithFrame: (NSRect)frame;
 + (void)drawSeperatorViewWithFrame: (NSRect)frame;
++ (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
 
 // Generated Images
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;

@@ -98,7 +98,7 @@
 		FD3BED6119598C9700B2D49A /* singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
 		FD3BED6219598CBB00B2D49A /* AppleMediaKeyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleMediaKeyController.h; sourceTree = "<group>"; };
 		FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleMediaKeyController.m; sourceTree = "<group>"; };
-		FD7CD28C1954396C002AC765 /* SoundcloudPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundcloudPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD7CD28C1954396C002AC765 /* StreamCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StreamCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD7CD28F1954396C002AC765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FD7CD2921954396C002AC765 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		FD7CD2931954396C002AC765 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -231,7 +231,7 @@
 		FD7CD28D1954396C002AC765 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FD7CD28C1954396C002AC765 /* SoundcloudPlayer.app */,
+				FD7CD28C1954396C002AC765 /* StreamCloud.app */,
 				FD7CD2AD1954396C002AC765 /* SoundcloudPlayerTests.xctest */,
 			);
 			name = Products;
@@ -337,7 +337,7 @@
 			);
 			name = StreamCloud;
 			productName = SoundcloudPlayer;
-			productReference = FD7CD28C1954396C002AC765 /* SoundcloudPlayer.app */;
+			productReference = FD7CD28C1954396C002AC765 /* StreamCloud.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FD7CD2AC1954396C002AC765 /* SoundcloudPlayerTests */ = {

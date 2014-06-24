@@ -36,9 +36,9 @@ static NSGradient* _orangeGradient = nil;
     _orangeDark = [NSColor colorWithCalibratedRed: 1 green: 0.282 blue: 0 alpha: 1];
     _artistLabelColor = _orangeDark;
     _grayMedium = [NSColor colorWithCalibratedRed: 0.298 green: 0.318 blue: 0.329 alpha: 1];
+    _durationLabelColor = _grayMedium;
     _grayDark = [NSColor colorWithCalibratedRed: 0.2 green: 0.2 blue: 0.2 alpha: 1];
-    _durationLabelColor = _grayDark;
-    _grayLight = [NSColor colorWithCalibratedRed: 0.868 green: 0.869 blue: 0.868 alpha: 1];
+    _grayLight = [NSColor colorWithCalibratedRed: 0.91 green: 0.91 blue: 0.91 alpha: 1];
 
     // Gradients Initialization
     _orangeGradient = [NSGradient.alloc initWithStartingColor: StreamCloudStyles.orangeDark endingColor: StreamCloudStyles.orangeLight];
@@ -443,7 +443,7 @@ static NSGradient* _orangeGradient = nil;
         [bezier15Path curveToPoint: NSMakePoint(NSMinX(group) + 0.51372 * NSWidth(group), NSMinY(group) + 0.00000 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.49875 * NSWidth(group), NSMinY(group) + 0.01667 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.50623 * NSWidth(group), NSMinY(group) + 0.00000 * NSHeight(group))];
         [bezier15Path closePath];
         [bezier15Path setMiterLimit: 4];
-        [StreamCloudStyles.orangeDark setFill];
+        [StreamCloudStyles.grayDark setFill];
         [bezier15Path fill];
     }
 }
@@ -459,7 +459,7 @@ static NSGradient* _orangeGradient = nil;
 + (void)drawSeperatorViewWithFrame: (NSRect)frame;
 {
     //// Color Declarations
-    NSColor* seperatorColor = [NSColor colorWithCalibratedRed: 0.728 green: 0.723 blue: 0.728 alpha: 1];
+    NSColor* seperatorColor = [NSColor colorWithCalibratedRed: 0.773 green: 0.773 blue: 0.773 alpha: 1];
 
     //// Rectangle Drawing
     NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(frame), NSMinY(frame), NSWidth(frame), NSHeight(frame))];

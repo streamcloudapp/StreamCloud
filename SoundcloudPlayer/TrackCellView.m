@@ -12,7 +12,6 @@
 @implementation TrackCellView
 
 - (void)awakeFromNib {
-    NSLog(@"awake");
     [self.artistLabel setTextColor:[StreamCloudStyles orangeDark]];
     [self markAsPlaying:NO];
 }
@@ -20,6 +19,7 @@
 - (void)markAsPlaying:(BOOL)playing {
     if (playing){
         [self.playingIndicatiorView setHidden:NO];
+        [self.playingIndicatiorView setNeedsDisplay:YES];
     } else {
         [self.playingIndicatiorView setHidden:YES];
     }

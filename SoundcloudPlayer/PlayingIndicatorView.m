@@ -10,8 +10,16 @@
 #import "StreamCloudStyles.h"
 @implementation PlayingIndicatorView
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [StreamCloudStyles drawPlayingIndicatorWithFrame:dirtyRect];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self){
+    }
+    return self;
 }
+
+- (void)drawRect:(NSRect)dirtyRect {
+    [StreamCloudStyles drawPlayingIndicatorWithFrame:NSMakeRect(0, 0, self.frame.size.width, self.frame.size.height)];
+}
+
 
 @end

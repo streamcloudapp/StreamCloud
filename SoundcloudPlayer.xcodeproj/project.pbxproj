@@ -22,6 +22,8 @@
 		FD3BED5B195981D300B2D49A /* PlayingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED59195981D300B2D49A /* PlayingIndicatorView.m */; };
 		FD3BED5E1959883400B2D49A /* SeperatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED5D1959883400B2D49A /* SeperatorView.m */; };
 		FD3BED5F1959883400B2D49A /* SeperatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED5D1959883400B2D49A /* SeperatorView.m */; };
+		FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FD3BED6519598CBB00B2D49A /* AppleMediaKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */; };
 		FD7CD2901954396C002AC765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD28F1954396C002AC765 /* Cocoa.framework */; };
 		FD7CD29A1954396C002AC765 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2981954396C002AC765 /* InfoPlist.strings */; };
 		FD7CD29C1954396C002AC765 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7CD29B1954396C002AC765 /* main.m */; };
@@ -88,6 +90,9 @@
 		FD3BED59195981D300B2D49A /* PlayingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingIndicatorView.m; sourceTree = "<group>"; };
 		FD3BED5C1959883400B2D49A /* SeperatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeperatorView.h; sourceTree = "<group>"; };
 		FD3BED5D1959883400B2D49A /* SeperatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeperatorView.m; sourceTree = "<group>"; };
+		FD3BED6119598C9700B2D49A /* singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
+		FD3BED6219598CBB00B2D49A /* AppleMediaKeyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleMediaKeyController.h; sourceTree = "<group>"; };
+		FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleMediaKeyController.m; sourceTree = "<group>"; };
 		FD7CD28C1954396C002AC765 /* SoundcloudPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundcloudPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD7CD28F1954396C002AC765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FD7CD2921954396C002AC765 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -185,6 +190,16 @@
 			name = CustomViews;
 			sourceTree = "<group>";
 		};
+		FD3BED6019598C8800B2D49A /* MediaKeys */ = {
+			isa = PBXGroup;
+			children = (
+				FD3BED6119598C9700B2D49A /* singleton.h */,
+				FD3BED6219598CBB00B2D49A /* AppleMediaKeyController.h */,
+				FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */,
+			);
+			name = MediaKeys;
+			sourceTree = "<group>";
+		};
 		FD7CD2831954396C002AC765 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +261,7 @@
 				FD7CD2A21954396C002AC765 /* AppDelegate.m */,
 				FD7ECBBE1955BE05005828CF /* SharedAudioPlayer.h */,
 				FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */,
+				FD3BED6019598C8800B2D49A /* MediaKeys */,
 				FD3BED57195981BC00B2D49A /* CustomViews */,
 				FD3BED5219597B2300B2D49A /* Custom Table View Cell */,
 				FD3BED451958355500B2D49A /* CustomButtons */,
@@ -436,6 +452,7 @@
 				FD3BED501958389B00B2D49A /* PreviousButtonCell.m in Sources */,
 				FD7ECBC01955BE05005828CF /* SharedAudioPlayer.m in Sources */,
 				FD7CD29C1954396C002AC765 /* main.m in Sources */,
+				FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
 				FD3BED481958364200B2D49A /* PlayPauseButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +470,7 @@
 				FD3BED5B195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
 				FD3BED5619597B4300B2D49A /* TrackCellView.m in Sources */,
 				FD7CD2BA1954396C002AC765 /* SoundcloudPlayerTests.m in Sources */,
+				FD3BED6519598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

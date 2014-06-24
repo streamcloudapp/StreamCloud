@@ -34,6 +34,7 @@
 
 - (void)setPlaying:(BOOL)playing {
     _playing = playing;
+    [self setEnabled:NO];
     [self setEnabled:YES];
 }
 

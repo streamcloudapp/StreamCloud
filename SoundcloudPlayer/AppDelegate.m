@@ -13,6 +13,7 @@
 #import "StreamCloudStyles.h"
 #import "AFNetworking.h"
 #import "TrackCellView.h"
+#import "AppleMediaKeyController.h"
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -47,14 +48,16 @@
     [titleBarView addSubview:imageView];
     
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
+    
+    // MediaKeys
+    [AppleMediaKeyController sharedController];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(playButtonAction:) name:MediaKeyPlayPauseNotification object:nil];
+    [center addObserver:self selector:@selector(nextButtonAction:) name:MediaKeyNextNotification object:nil];
+    [center addObserver:self selector:@selector(previousButtonAction:) name:MediaKeyPreviousNotification object:nil];
 }
 
--(void)awakeFromNib {
-    NSRect frame = self.tableView.headerView.frame;
-    frame.size.height = 0;
-    self.tableView.headerView.frame = frame;
-}
-
+# pragma mark - SoundCloud API
 - (void)getAccountInfo {
     SCAccount *account = [SCSoundCloud account];
     
@@ -102,6 +105,7 @@
     }
     
 }
+
 
 # pragma mark - NSTableViewDelegate
 

@@ -36,7 +36,7 @@
 + (void)drawSoundCloudLogoWithFrame: (NSRect)frame;
 + (void)drawPlayingIndicatorWithFrame: (NSRect)frame;
 + (void)drawSeperatorViewWithFrame: (NSRect)frame;
-+ (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
++ (void)drawProgressIndicatorViewWithFrame: (NSRect)frame percentShown: (CGFloat)percentShown;
 
 // Generated Images
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;

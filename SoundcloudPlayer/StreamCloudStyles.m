@@ -468,7 +468,7 @@ static NSGradient* _orangeGradient = nil;
     [rectanglePath fill];
 }
 
-+ (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
++ (void)drawProgressIndicatorViewWithFrame: (NSRect)frame percentShown: (CGFloat)percentShown;
 {
     //// Color Declarations
     NSColor* progressIndicatorTrackColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.5];
@@ -476,26 +476,23 @@ static NSGradient* _orangeGradient = nil;
     //// Variable Declarations
     CGFloat progressWidth = 320 * percentShown / 100.0;
 
-    //// Group
-    {
-        //// Track Drawing
-        NSBezierPath* trackPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 320, 4)];
-        [progressIndicatorTrackColor setFill];
-        [trackPath fill];
+    //// Track Drawing
+    NSBezierPath* trackPath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(frame),0 , NSWidth(frame), 4)];
+    [progressIndicatorTrackColor setFill];
+    [trackPath fill];
 
 
-        //// Progress Drawing
-        CGFloat progressCornerRadius = 2;
-        NSRect progressRect = NSMakeRect(0, 0, progressWidth, 4);
-        NSRect progressInnerRect = NSInsetRect(progressRect, progressCornerRadius, progressCornerRadius);
-        NSBezierPath* progressPath = NSBezierPath.bezierPath;
-        [progressPath moveToPoint: NSMakePoint(NSMinX(progressRect), NSMinY(progressRect))];
-        [progressPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(progressInnerRect), NSMinY(progressInnerRect)) radius: progressCornerRadius startAngle: 270 endAngle: 360];
-        [progressPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(progressInnerRect), NSMaxY(progressInnerRect)) radius: progressCornerRadius startAngle: 0 endAngle: 90];
-        [progressPath lineToPoint: NSMakePoint(NSMinX(progressRect), NSMaxY(progressRect))];
-        [progressPath closePath];
-        [StreamCloudStyles.orangeGradient drawInBezierPath: progressPath angle: 90];
-    }
+    //// Progress Drawing
+    CGFloat progressCornerRadius = 2;
+    NSRect progressRect = NSMakeRect(0, 0, progressWidth, 4);
+    NSRect progressInnerRect = NSInsetRect(progressRect, progressCornerRadius, progressCornerRadius);
+    NSBezierPath* progressPath = NSBezierPath.bezierPath;
+    [progressPath moveToPoint: NSMakePoint(NSMinX(progressRect), NSMinY(progressRect))];
+    [progressPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(progressInnerRect), NSMinY(progressInnerRect)) radius: progressCornerRadius startAngle: 270 endAngle: 360];
+    [progressPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(progressInnerRect), NSMaxY(progressInnerRect)) radius: progressCornerRadius startAngle: 0 endAngle: 90];
+    [progressPath lineToPoint: NSMakePoint(NSMinX(progressRect), NSMaxY(progressRect))];
+    [progressPath closePath];
+    [StreamCloudStyles.orangeGradient drawInBezierPath: progressPath angle: 90];
 }
 
 #pragma mark Generated Images

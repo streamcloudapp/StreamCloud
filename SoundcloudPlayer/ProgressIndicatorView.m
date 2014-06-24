@@ -37,15 +37,18 @@
 {
     [super drawRect:dirtyRect];
     
-    [StreamCloudStyles drawProgressIndicatorViewWithPercentShown:self.progress];
+    [StreamCloudStyles drawProgressIndicatorViewWithFrame:self.frame percentShown:floorf(self.progress)];
 }
 
 - (void)updateProgress {
     float timeGone = CMTimeGetSeconds([SharedAudioPlayer sharedPlayer].audioPlayer.currentTime);
     float durationOfItem = CMTimeGetSeconds([SharedAudioPlayer sharedPlayer].audioPlayer.currentItem.duration);
     //float timeToGo = durationOfItem - timeGone;
-    self.progress = (timeGone/durationOfItem)*100;
-    [self setNeedsDisplay:YES];
+    float progress = (timeGone/durationOfItem)*100;
+    if (!isnan(progress)){
+        self.progress = progress;
+        [self setNeedsDisplay:YES];
+    }
 }
 
 @end

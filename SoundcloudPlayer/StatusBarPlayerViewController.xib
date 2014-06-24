@@ -6,7 +6,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StatusBarPlayerViewController">
             <connections>
+                <outlet property="artistLabel" destination="Sni-YI-7u3" id="fhg-Jx-IfN"/>
                 <outlet property="coverArtImageView" destination="eqK-TV-mH6" id="9w0-mN-EVr"/>
+                <outlet property="trackLabel" destination="bPh-JP-xZT" id="fKA-J9-OoH"/>
                 <outlet property="view" destination="c22-O7-iKe" id="0lX-4J-YX6"/>
             </connections>
         </customObject>
@@ -48,7 +50,7 @@
                     </connections>
                 </button>
                 <button id="xYK-ND-meG">
-                    <rect key="frame" x="20" y="17" width="16" height="16"/>
+                    <rect key="frame" x="20" y="18" width="16" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Uwl-ez-uXO" customClass="ShuffleButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -59,7 +61,7 @@
                     </connections>
                 </button>
                 <button id="R2J-KQ-fEU">
-                    <rect key="frame" x="284" y="17" width="16" height="16"/>
+                    <rect key="frame" x="284" y="18" width="16" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VW5-Sd-qPW" customClass="RepeatButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -80,6 +82,24 @@
                         <action selector="nextButtonAction:" target="-2" id="C8O-Tp-Cgp"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Sni-YI-7u3">
+                    <rect key="frame" x="6" y="111" width="296" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ArtistLabel" id="gvJ-g1-vrH">
+                        <font key="font" size="14" name="HelveticaNeue-Light"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="bPh-JP-xZT">
+                    <rect key="frame" x="7" y="79" width="296" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="TrackLabel" id="X87-EL-wLD">
+                        <font key="font" size="20" name="HelveticaNeue-UltraLight"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
         </customView>
     </objects>

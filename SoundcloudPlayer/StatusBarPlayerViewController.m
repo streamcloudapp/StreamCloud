@@ -21,6 +21,7 @@
 - (void)reloadImage {
     NSDictionary *currentObject = [SharedAudioPlayer sharedPlayer].currentItem;
     NSDictionary *originDict = [currentObject objectForKey:@"origin"];
+    [self.trackLabel setStringValue:[originDict objectForKey:@"title"]];
     BOOL useAvatar = YES;
     if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
         if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
@@ -40,6 +41,7 @@
         }
     }
     NSDictionary *userDict = [originDict objectForKey:@"user"];
+    [self.artistLabel setStringValue:[userDict objectForKey:@"username"]];
     if ([[userDict objectForKey:@"avatar_url"] isKindOfClass:[NSString class]] && useAvatar) {
         if ([userDict objectForKey:@"avatar_url"] && ![[userDict objectForKey:@"avatar_url"] isEqualToString:@"<null>"]){
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

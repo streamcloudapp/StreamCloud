@@ -11,7 +11,8 @@
 @interface StatusBarPlayerViewController : NSViewController
 
 @property (nonatomic ,strong) IBOutlet NSImageView *coverArtImageView;
-
+@property (nonatomic, strong) IBOutlet NSTextField *artistLabel;
+@property (nonatomic, strong) IBOutlet NSTextField *trackLabel;
 
 - (IBAction)playPauseButtonAction:(id)sender;
 - (IBAction)nextButtonAction:(id)sender;

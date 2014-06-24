@@ -35,8 +35,6 @@
 		FD7CD2B01954396C002AC765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD28F1954396C002AC765 /* Cocoa.framework */; };
 		FD7CD2B81954396C002AC765 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2B61954396C002AC765 /* InfoPlist.strings */; };
 		FD7CD2BA1954396C002AC765 /* SoundcloudPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7CD2B91954396C002AC765 /* SoundcloudPlayerTests.m */; };
-		FD7CD2CE19543C2F002AC765 /* OAuth2Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2CC19543C2E002AC765 /* OAuth2Client.framework */; };
-		FD7CD2CF19543C2F002AC765 /* SoundCloudAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2CD19543C2F002AC765 /* SoundCloudAPI.framework */; };
 		FD7CD2D119543C35002AC765 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D019543C35002AC765 /* QuartzCore.framework */; };
 		FD7CD2D319543C3A002AC765 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D219543C3A002AC765 /* AddressBook.framework */; };
 		FD7CD2D519543C46002AC765 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D419543C46002AC765 /* CoreLocation.framework */; };
@@ -45,8 +43,12 @@
 		FD7CD2DB19543C55002AC765 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2DA19543C55002AC765 /* CoreText.framework */; };
 		FD7ECBC01955BE05005828CF /* SharedAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */; };
 		FD7ECBC11955BE05005828CF /* SharedAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */; };
-		FD7ECBD11955EEFF005828CF /* SoundCloudAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FD7ECBCF1955EEFF005828CF /* SoundCloudAPI.framework */; };
-		FD7ECBD21955EEFF005828CF /* OAuth2Client.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FD7ECBD01955EEFF005828CF /* OAuth2Client.framework */; };
+		FD8F6AD81959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; };
+		FD8F6AD91959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; };
+		FD8F6ADA1959996D004D4B61 /* OAuth2Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
+		FD8F6ADB1959996D004D4B61 /* OAuth2Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
+		FD8F6ADC195999B6004D4B61 /* SoundCloudAPI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; };
+		FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,16 +62,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FD7ECBC21955EDE5005828CF /* CopyFiles */ = {
+		FD7ECBC21955EDE5005828CF /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FD7ECBD11955EEFF005828CF /* SoundCloudAPI.framework in CopyFiles */,
-				FD7ECBD21955EEFF005828CF /* OAuth2Client.framework in CopyFiles */,
+				FD8F6ADC195999B6004D4B61 /* SoundCloudAPI.framework in Copy Frameworks */,
+				FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -123,8 +126,8 @@
 		FD7CD2DC19548A93002AC765 /* SoundcloudPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SoundcloudPlayer.entitlements; sourceTree = "<group>"; };
 		FD7ECBBE1955BE05005828CF /* SharedAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedAudioPlayer.h; sourceTree = "<group>"; };
 		FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedAudioPlayer.m; sourceTree = "<group>"; };
-		FD7ECBCF1955EEFF005828CF /* SoundCloudAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SoundCloudAPI.framework; path = "/Users/philip.brechler/Library/Developer/Xcode/DerivedData/SoundcloudPlayer-fksklwyfrvbjiuemzdrrglqiwkgd/Build/Products/Debug/SoundCloudAPI.framework"; sourceTree = "<absolute>"; };
-		FD7ECBD01955EEFF005828CF /* OAuth2Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OAuth2Client.framework; path = "/Users/philip.brechler/Library/Developer/Xcode/DerivedData/SoundcloudPlayer-fksklwyfrvbjiuemzdrrglqiwkgd/Build/Products/Debug/OAuth2Client.framework"; sourceTree = "<absolute>"; };
+		FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundCloudAPI.framework; path = SoundcloudPlayer/SoundCloudAPI.framework; sourceTree = "<group>"; };
+		FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuth2Client.framework; path = SoundcloudPlayer/OAuth2Client.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,11 +139,11 @@
 				FD7CD2D919543C51002AC765 /* CoreGraphics.framework in Frameworks */,
 				FD7CD2D719543C4B002AC765 /* Security.framework in Frameworks */,
 				FD7CD2D519543C46002AC765 /* CoreLocation.framework in Frameworks */,
+				FD8F6ADA1959996D004D4B61 /* OAuth2Client.framework in Frameworks */,
 				FD7CD2D319543C3A002AC765 /* AddressBook.framework in Frameworks */,
 				FD7CD2D119543C35002AC765 /* QuartzCore.framework in Frameworks */,
-				FD7CD2CE19543C2F002AC765 /* OAuth2Client.framework in Frameworks */,
-				FD7CD2CF19543C2F002AC765 /* SoundCloudAPI.framework in Frameworks */,
 				FD7CD2901954396C002AC765 /* Cocoa.framework in Frameworks */,
+				FD8F6AD81959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */,
 				BCD81D31C48D4057B89AA34E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +152,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD8F6ADB1959996D004D4B61 /* OAuth2Client.framework in Frameworks */,
+				FD8F6AD91959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */,
 				FD7CD2B01954396C002AC765 /* Cocoa.framework in Frameworks */,
 				FD7CD2AF1954396C002AC765 /* XCTest.framework in Frameworks */,
 			);
@@ -205,8 +210,6 @@
 			children = (
 				FD3BED41195833E800B2D49A /* StreamCloudStyles.h */,
 				FD3BED42195833E800B2D49A /* StreamCloudStyles.m */,
-				FD7ECBCF1955EEFF005828CF /* SoundCloudAPI.framework */,
-				FD7ECBD01955EEFF005828CF /* OAuth2Client.framework */,
 				FD7CD2951954396C002AC765 /* SoundcloudPlayer */,
 				FD7CD2B31954396C002AC765 /* SoundcloudPlayerTests */,
 				FD7CD28E1954396C002AC765 /* Frameworks */,
@@ -227,6 +230,8 @@
 		FD7CD28E1954396C002AC765 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */,
+				FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */,
 				FD7CD2DA19543C55002AC765 /* CoreText.framework */,
 				FD7CD2D819543C51002AC765 /* CoreGraphics.framework */,
 				FD7CD2D619543C4B002AC765 /* Security.framework */,
@@ -313,7 +318,7 @@
 				FD7CD2881954396C002AC765 /* Sources */,
 				FD7CD2891954396C002AC765 /* Frameworks */,
 				FD7CD28A1954396C002AC765 /* Resources */,
-				FD7ECBC21955EDE5005828CF /* CopyFiles */,
+				FD7ECBC21955EDE5005828CF /* Copy Frameworks */,
 				1B410E901A2642138976E644 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -602,13 +607,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OAuth2Client/build/Debug",
 					"$(PROJECT_DIR)/CocoaSoundCloudAPI/build/Debug",
+					"$(PROJECT_DIR)/SoundcloudPlayer",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/*/**",
 				);
 				INFOPLIST_FILE = "SoundcloudPlayer/SoundcloudPlayer-Info.plist";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -629,13 +634,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/OAuth2Client/build/Debug",
 					"$(PROJECT_DIR)/CocoaSoundCloudAPI/build/Debug",
+					"$(PROJECT_DIR)/SoundcloudPlayer",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/*/**",
 				);
 				INFOPLIST_FILE = "SoundcloudPlayer/SoundcloudPlayer-Info.plist";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -652,6 +657,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/SoundcloudPlayer",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";
@@ -674,6 +680,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/SoundcloudPlayer",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";

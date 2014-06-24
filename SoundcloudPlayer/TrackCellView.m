@@ -14,6 +14,7 @@
 - (void)awakeFromNib {
     [self.artistLabel setTextColor:[StreamCloudStyles orangeDark]];
     [self markAsPlaying:NO];
+    [self.durationLabel setTextColor:[StreamCloudStyles grayDark]];
 }
 
 - (void)markAsPlaying:(BOOL)playing {

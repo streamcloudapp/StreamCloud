@@ -148,6 +148,8 @@
         }
         [viewforRow.titleLabel setStringValue:[originDict objectForKey:@"title"]];
         [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
+        [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
+        
         if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
             [viewforRow markAsPlaying:YES];
         } else {

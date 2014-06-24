@@ -717,7 +717,7 @@
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="cIG-lQ-HQc"/>
                                                         </imageView>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="gip-Wf-m62">
-                                                            <rect key="frame" x="75" y="23" width="297" height="17"/>
+                                                            <rect key="frame" x="75" y="23" width="236" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="8wC-yb-ais">
                                                                 <font key="font" metaFont="system"/>
@@ -726,9 +726,18 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="nbg-iy-TSn">
-                                                            <rect key="frame" x="75" y="40" width="297" height="17"/>
+                                                            <rect key="frame" x="75" y="40" width="236" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yb8-Yg-u1b">
+                                                                <font key="font" metaFont="systemBold"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="kL7-Gl-euN">
+                                                            <rect key="frame" x="315" y="36" width="70" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="00:00:00" id="dVx-FK-MOy">
                                                                 <font key="font" metaFont="systemBold"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -746,6 +755,7 @@
                                                     <connections>
                                                         <outlet property="artistLabel" destination="nbg-iy-TSn" id="a0L-KP-dXd"/>
                                                         <outlet property="artworkView" destination="zJg-8d-F0w" id="mqm-Ur-Nbh"/>
+                                                        <outlet property="durationLabel" destination="kL7-Gl-euN" id="h94-Z6-SxN"/>
                                                         <outlet property="playingIndicatiorView" destination="vAn-OL-IdT" id="sBo-Pl-qHa"/>
                                                         <outlet property="seperatorView" destination="cdw-Ts-Guv" id="PQs-qs-M2S"/>
                                                         <outlet property="titleLabel" destination="gip-Wf-m62" id="7sV-2t-ZzS"/>

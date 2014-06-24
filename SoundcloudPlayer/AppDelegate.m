@@ -14,6 +14,8 @@
 #import "AFNetworking.h"
 #import "TrackCellView.h"
 #import "AppleMediaKeyController.h"
+#import "AXStatusItemPopup.h"
+
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -55,6 +57,12 @@
     [center addObserver:self selector:@selector(playButtonAction:) name:MediaKeyPlayPauseNotification object:nil];
     [center addObserver:self selector:@selector(nextButtonAction:) name:MediaKeyNextNotification object:nil];
     [center addObserver:self selector:@selector(previousButtonAction:) name:MediaKeyPreviousNotification object:nil];
+    
+    // Status Item
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:24];
+    [self.statusItem setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 20, 8)]];
+    [self.statusItem setAction:@selector(playButtonAction:)];
+    
 }
 
 # pragma mark - SoundCloud API
@@ -177,7 +185,6 @@
     NSInteger clickedRow = [self.tableView clickedRow];
     [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:clickedRow];
 }
-
 
 # pragma mark - Update UI 
 

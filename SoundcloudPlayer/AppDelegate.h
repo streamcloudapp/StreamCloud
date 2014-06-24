@@ -15,4 +15,5 @@
 @property (nonatomic, strong) IBOutlet NSTextField *timeToGoLabel;
 @property (nonatomic, strong) IBOutlet NSTextField *timeGoneLabel;
 @property (nonatomic, strong) IBOutlet NSTableView *tableView;
+@property (nonatomic, strong) NSStatusItem *statusItem;
 @end

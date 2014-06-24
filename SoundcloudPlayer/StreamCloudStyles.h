@@ -20,6 +20,8 @@
 + (NSColor*)grayMedium;
 + (NSColor*)grayDark;
 + (NSColor*)grayLight;
++ (NSColor*)artistLabelColor;
++ (NSColor*)durationLabelColor;
 
 // Gradients
 + (NSGradient*)orangeGradient;

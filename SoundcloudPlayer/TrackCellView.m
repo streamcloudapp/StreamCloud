@@ -12,9 +12,9 @@
 @implementation TrackCellView
 
 - (void)awakeFromNib {
-    [self.artistLabel setTextColor:[StreamCloudStyles orangeDark]];
+    [self.artistLabel setTextColor:[StreamCloudStyles artistLabelColor]];
     [self markAsPlaying:NO];
-    [self.durationLabel setTextColor:[StreamCloudStyles grayDark]];
+    [self.durationLabel setTextColor:[StreamCloudStyles durationLabelColor]];
 }
 
 - (void)markAsPlaying:(BOOL)playing {

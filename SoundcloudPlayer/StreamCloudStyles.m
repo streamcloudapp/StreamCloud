@@ -21,6 +21,8 @@ static NSColor* _orangeDark = nil;
 static NSColor* _grayMedium = nil;
 static NSColor* _grayDark = nil;
 static NSColor* _grayLight = nil;
+static NSColor* _artistLabelColor = nil;
+static NSColor* _durationLabelColor = nil;
 
 static NSGradient* _orangeGradient = nil;
 
@@ -32,8 +34,10 @@ static NSGradient* _orangeGradient = nil;
     _orangeLight = [NSColor colorWithCalibratedRed: 1 green: 0.545 blue: 0 alpha: 1];
     _orangeMedium = [NSColor colorWithCalibratedRed: 1 green: 0.416 blue: 0 alpha: 1];
     _orangeDark = [NSColor colorWithCalibratedRed: 1 green: 0.282 blue: 0 alpha: 1];
+    _artistLabelColor = _orangeDark;
     _grayMedium = [NSColor colorWithCalibratedRed: 0.298 green: 0.318 blue: 0.329 alpha: 1];
     _grayDark = [NSColor colorWithCalibratedRed: 0.2 green: 0.2 blue: 0.2 alpha: 1];
+    _durationLabelColor = _grayDark;
     _grayLight = [NSColor colorWithCalibratedRed: 0.868 green: 0.869 blue: 0.868 alpha: 1];
 
     // Gradients Initialization
@@ -49,6 +53,8 @@ static NSGradient* _orangeGradient = nil;
 + (NSColor*)grayMedium { return _grayMedium; }
 + (NSColor*)grayDark { return _grayDark; }
 + (NSColor*)grayLight { return _grayLight; }
++ (NSColor*)artistLabelColor { return _artistLabelColor; }
++ (NSColor*)durationLabelColor { return _durationLabelColor; }
 
 #pragma mark Gradients
 

@@ -37,7 +37,7 @@
 {
     [super drawRect:dirtyRect];
     
-    [StreamCloudStyles drawProgressIndicatorViewWithFrame:self.frame percentShown:floorf(self.progress)];
+    [StreamCloudStyles drawProgressIndicatorViewWithPercentShown:floorf(self.progress)];
 }
 
 - (void)updateProgress {

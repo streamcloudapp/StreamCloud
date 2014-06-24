@@ -19,16 +19,13 @@
 + (NSColor*)orangeDark;
 + (NSColor*)grayMedium;
 + (NSColor*)grayDark;
-+ (NSColor*)fakeClearColor;
 + (NSColor*)grayLight;
 + (NSColor*)seperatorColor;
 + (NSColor*)artistLabelColor;
 + (NSColor*)durationLabelColor;
-+ (NSColor*)blackCoverGradientColor;
 
 // Gradients
 + (NSGradient*)orangeGradient;
-+ (NSGradient*)blackCoverGradient;
 
 // Drawing Methods
 + (void)drawPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;
@@ -39,7 +36,7 @@
 + (void)drawSoundCloudLogoWithFrame: (NSRect)frame;
 + (void)drawPlayingIndicatorWithFrame: (NSRect)frame;
 + (void)drawSeperatorViewWithFrame: (NSRect)frame;
-+ (void)drawProgressIndicatorViewWithFrame: (NSRect)frame percentShown: (CGFloat)percentShown;
++ (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
 
 // Generated Images
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;

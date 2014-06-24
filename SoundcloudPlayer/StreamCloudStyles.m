@@ -20,15 +20,12 @@ static NSColor* _orangeMedium = nil;
 static NSColor* _orangeDark = nil;
 static NSColor* _grayMedium = nil;
 static NSColor* _grayDark = nil;
-static NSColor* _fakeClearColor = nil;
 static NSColor* _grayLight = nil;
 static NSColor* _seperatorColor = nil;
 static NSColor* _artistLabelColor = nil;
 static NSColor* _durationLabelColor = nil;
-static NSColor* _blackCoverGradientColor = nil;
 
 static NSGradient* _orangeGradient = nil;
-static NSGradient* _blackCoverGradient = nil;
 
 #pragma mark Initialization
 
@@ -42,16 +39,11 @@ static NSGradient* _blackCoverGradient = nil;
     _grayMedium = [NSColor colorWithCalibratedRed: 0.298 green: 0.318 blue: 0.329 alpha: 1];
     _durationLabelColor = _grayMedium;
     _grayDark = [NSColor colorWithCalibratedRed: 0.2 green: 0.2 blue: 0.2 alpha: 1];
-    _fakeClearColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0];
     _grayLight = [NSColor colorWithCalibratedRed: 0.91 green: 0.91 blue: 0.91 alpha: 1];
     _seperatorColor = [NSColor colorWithCalibratedRed: 0.773 green: 0.773 blue: 0.773 alpha: 1];
-    _blackCoverGradientColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.809];
 
     // Gradients Initialization
     _orangeGradient = [NSGradient.alloc initWithStartingColor: StreamCloudStyles.orangeDark endingColor: StreamCloudStyles.orangeLight];
-    _blackCoverGradient = [NSGradient.alloc initWithColorsAndLocations: 
-        StreamCloudStyles.blackCoverGradientColor, 0.0, 
-        StreamCloudStyles.fakeClearColor, 0.50, nil];
 
 }
 
@@ -62,26 +54,25 @@ static NSGradient* _blackCoverGradient = nil;
 + (NSColor*)orangeDark { return _orangeDark; }
 + (NSColor*)grayMedium { return _grayMedium; }
 + (NSColor*)grayDark { return _grayDark; }
-+ (NSColor*)fakeClearColor { return _fakeClearColor; }
 + (NSColor*)grayLight { return _grayLight; }
 + (NSColor*)seperatorColor { return _seperatorColor; }
 + (NSColor*)artistLabelColor { return _artistLabelColor; }
 + (NSColor*)durationLabelColor { return _durationLabelColor; }
-+ (NSColor*)blackCoverGradientColor { return _blackCoverGradientColor; }
 
 #pragma mark Gradients
 
 + (NSGradient*)orangeGradient { return _orangeGradient; }
-+ (NSGradient*)blackCoverGradient { return _blackCoverGradient; }
 
 #pragma mark Drawing Methods
 
 + (void)drawPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;
 {
+    //// Color Declarations
+    NSColor* fakeClearColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0];
 
     //// Variable Declarations
-    NSColor* playFillColor = playing ? StreamCloudStyles.fakeClearColor : StreamCloudStyles.grayDark;
-    NSColor* pauseFillColor = playing ? StreamCloudStyles.grayDark : StreamCloudStyles.fakeClearColor;
+    NSColor* playFillColor = playing ? fakeClearColor : StreamCloudStyles.grayDark;
+    NSColor* pauseFillColor = playing ? StreamCloudStyles.grayDark : fakeClearColor;
 
 
     //// Subframes
@@ -477,7 +468,7 @@ static NSGradient* _blackCoverGradient = nil;
     [rectanglePath fill];
 }
 
-+ (void)drawProgressIndicatorViewWithFrame: (NSRect)frame percentShown: (CGFloat)percentShown;
++ (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
 {
     //// Color Declarations
     NSColor* progressIndicatorTrackColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.5];
@@ -486,7 +477,7 @@ static NSGradient* _blackCoverGradient = nil;
     CGFloat progressWidth = 320 * percentShown / 100.0;
 
     //// Track Drawing
-    NSBezierPath* trackPath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(frame),0 , NSWidth(frame), 4)];
+    NSBezierPath* trackPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 320, 4)];
     [progressIndicatorTrackColor setFill];
     [trackPath fill];
 

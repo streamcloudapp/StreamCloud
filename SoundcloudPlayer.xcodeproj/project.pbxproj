@@ -416,6 +416,7 @@
 				ORGANIZATIONNAME = "Call a Nerd";
 				TargetAttributes = {
 					FD7CD28B1954396C002AC765 = {
+						DevelopmentTeam = 2288N2XPYD;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -675,7 +676,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SoundcloudPlayer/SoundcloudPlayer.entitlements;
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -703,7 +703,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SoundcloudPlayer/SoundcloudPlayer.entitlements;
-				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

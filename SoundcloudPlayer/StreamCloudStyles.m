@@ -27,8 +27,6 @@ static NSColor* _durationLabelColor = nil;
 
 static NSGradient* _orangeGradient = nil;
 
-static NSImage* _imageOfMenuBarIcon = nil;
-
 #pragma mark Initialization
 
 + (void)initialize
@@ -548,8 +546,14 @@ static NSImage* _imageOfMenuBarIcon = nil;
     [StreamCloudStyles.orangeGradient drawInBezierPath: progressPath angle: 90];
 }
 
-+ (void)drawMenuBarIcon;
++ (void)drawMenuBarIconWithActive: (BOOL)active;
 {
+    //// Color Declarations
+    NSColor* statusItemActiveColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
+    NSColor* statusItemNormalColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
+
+    //// Variable Declarations
+    NSColor* colorForStatusBarIcon = active ? statusItemActiveColor : statusItemNormalColor;
 
     //// Group
     {
@@ -617,7 +621,7 @@ static NSImage* _imageOfMenuBarIcon = nil;
         [bezier15Path curveToPoint: NSMakePoint(12.82, 4.5) controlPoint1: NSMakePoint(12.47, 4.68) controlPoint2: NSMakePoint(12.64, 4.5)];
         [bezier15Path closePath];
         [bezier15Path setMiterLimit: 4];
-        [StreamCloudStyles.grayDark setFill];
+        [colorForStatusBarIcon setFill];
         [bezier15Path fill];
     }
 }
@@ -869,17 +873,14 @@ static NSImage* _imageOfMenuBarIcon = nil;
     return imageOfPlayingIndicator;
 }
 
-+ (NSImage*)imageOfMenuBarIcon;
++ (NSImage*)imageOfMenuBarIconWithActive: (BOOL)active;
 {
-    if (_imageOfMenuBarIcon)
-        return _imageOfMenuBarIcon;
+    NSImage* imageOfMenuBarIcon = [NSImage.alloc initWithSize: NSMakeSize(25, 20)];
+    [imageOfMenuBarIcon lockFocus];
+    [StreamCloudStyles drawMenuBarIconWithActive: active];
+    [imageOfMenuBarIcon unlockFocus];
 
-    _imageOfMenuBarIcon = [NSImage.alloc initWithSize: NSMakeSize(25, 20)];
-    [_imageOfMenuBarIcon lockFocus];
-    [StreamCloudStyles drawMenuBarIcon];
-    [_imageOfMenuBarIcon unlockFocus];
-
-    return _imageOfMenuBarIcon;
+    return imageOfMenuBarIcon;
 }
 
 + (NSImage*)imageOfImageOverlayGradientViewWithFrame: (NSRect)frame;

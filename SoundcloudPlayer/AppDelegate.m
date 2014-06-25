@@ -60,7 +60,9 @@
     
     // Status Item
     self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
-    self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:[StreamCloudStyles imageOfMenuBarIcon]];
+    NSImage *normalImageForStatusBar = [StreamCloudStyles imageOfMenuBarIconWithActive:NO];
+    //NSImage *activeImageForStatusBar = [StreamCloudStyles imageOfMenuBarIconWithActive:YES];
+    self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar];
     
     if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];

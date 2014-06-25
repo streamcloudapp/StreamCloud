@@ -47,7 +47,7 @@
 + (NSImage*)imageOfRepeatButtonWithFrame: (NSRect)frame repeatMode: (CGFloat)repeatMode;
 + (NSImage*)imageOfSoundCloudLogoWithFrame: (NSRect)frame;
 + (NSImage*)imageOfPlayingIndicatorWithFrame: (NSRect)frame;
-+ (NSImage*)imageOfMenuBarIcon;
++ (NSImage*)imageOfMenuBarIconWithActive: (BOOL)active;
 + (NSImage*)imageOfImageOverlayGradientViewWithFrame: (NSRect)frame;
 
 @end

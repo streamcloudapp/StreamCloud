@@ -8,6 +8,7 @@
 
 #import "PlayPauseButtonCell.h"
 #import "StreamCloudStyles.h"
+#import "SharedAudioPlayer.h"
 
 @implementation PlayPauseButtonCell
 
@@ -21,7 +22,7 @@
 }
 
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView {
-    [StreamCloudStyles drawPlayPauseButtonWithFrame:frame playing:_playing];
+    [StreamCloudStyles drawPlayPauseButtonWithFrame:frame playing:[SharedAudioPlayer sharedPlayer].audioPlayer.rate];
 }
 
 - (void)markAsPlaying:(NSNotification *)notification {

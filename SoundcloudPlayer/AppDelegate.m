@@ -229,6 +229,10 @@
     [[SharedAudioPlayer sharedPlayer] nextItem];
 }
 
+- (IBAction)shuffleButtonAction:(id)sender {
+    [[SharedAudioPlayer sharedPlayer] setShuffleEnabled:![SharedAudioPlayer sharedPlayer].shuffleEnabled];
+}
+
 - (IBAction)sliderUpdate:(id)sender {
     float durationOfItem = CMTimeGetSeconds([SharedAudioPlayer sharedPlayer].audioPlayer.currentItem.duration);
     double newValue = self.playerTimeSlider.doubleValue;

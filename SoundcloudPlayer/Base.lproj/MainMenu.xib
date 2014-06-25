@@ -851,6 +851,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="shuffleButtonAction:" target="Voe-Tx-rLC" id="xLJ-Fz-7s6"/>
+                                </connections>
                             </button>
                             <button id="ovx-QB-42m">
                                 <rect key="frame" x="360" y="17" width="16" height="14"/>

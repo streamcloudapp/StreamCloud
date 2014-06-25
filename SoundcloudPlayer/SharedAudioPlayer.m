@@ -50,8 +50,16 @@
 }
 
 - (void)nextItem {
-    [self.audioPlayer advanceToNextItem];
-    [self itemDidFinishPlaying:nil];
+    if (self.shuffleEnabled) {
+        [self jumpToItemAtIndex:[self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:self.positionInPlaylist]]];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+        if (self.positionInPlaylist == self.itemsToPlay.count-1) {
+            [self getNextSongs];
+        }
+    } else {
+        [self.audioPlayer advanceToNextItem];
+        [self itemDidFinishPlaying:nil];
+    }
 }
 
 - (void)previousItem {
@@ -85,6 +93,26 @@
     else
         return nil;
 }
+
+- (void)setShuffleEnabled:(BOOL)shuffleEnabled {
+    _shuffleEnabled = shuffleEnabled;
+    if (shuffleEnabled) {
+        self.shuffledItemsToPlay = [NSMutableArray arrayWithArray:self.itemsToPlay];
+        NSUInteger count = [self.shuffledItemsToPlay count];
+        for (NSUInteger i = 0; i < count; ++i) {
+            // Select a random element between i and end of array to swap with.
+            NSUInteger nElements = count - i;
+            NSUInteger n = (arc4random() % nElements) + i;
+            [self.shuffledItemsToPlay exchangeObjectAtIndex:i withObjectAtIndex:n];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayShuffleStarted" object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayShuffleEnded" object:nil];
+    }
+}
+
+# pragma mark - Inserting new items
+
 - (void)insertItemsFromResponse:(NSDictionary *)response {
     NSArray *collectionItems = [response objectForKey:@"collection"];
     self.nextStreamPartURL = [response objectForKey:@"next_href"];
@@ -97,6 +125,9 @@
                 [itemsToPlay addObject:itemToPlay];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:itemToPlay];
             }
+        }
+        if (self.shuffleEnabled){
+            [self setShuffleEnabled:YES];
         }
         self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
         [self.audioPlayer addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
@@ -115,6 +146,9 @@
                 [self.audioPlayer insertItem:itemToPlay afterItem:nil];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:itemToPlay];
             }
+        }
+        if (self.shuffleEnabled){
+            [self setShuffleEnabled:YES];
         }
     }
 }
@@ -135,7 +169,14 @@
 # pragma mark - NotificationHandling
 
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
-    self.positionInPlaylist++;
+    if (self.shuffleEnabled){
+        if (_positionInPlaylist <= self.itemsToPlay.count) {
+            self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
+            [self jumpToItemAtIndex: _positionInPlaylist];
+        }
+    } else {
+        self.positionInPlaylist++;
+    }
     [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
     if (self.positionInPlaylist == self.itemsToPlay.count-1) {
         [self getNextSongs];

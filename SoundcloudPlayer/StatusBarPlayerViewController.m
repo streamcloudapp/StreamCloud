@@ -73,7 +73,7 @@
     [[SharedAudioPlayer sharedPlayer] previousItem];
 }
 - (IBAction)shuffleButtonAction:(id)sender {
-    
+    [[SharedAudioPlayer sharedPlayer] setShuffleEnabled:![SharedAudioPlayer sharedPlayer].shuffleEnabled];
 }
 - (IBAction)repeatButtonAction:(id)sender {
     

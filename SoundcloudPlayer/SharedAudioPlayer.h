@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) AVQueuePlayer *audioPlayer;
 @property (nonatomic, strong) NSMutableArray *itemsToPlay;
+@property (nonatomic, strong) NSMutableArray *shuffledItemsToPlay;
+@property (nonatomic) BOOL shuffleEnabled;
 @property (nonatomic) NSInteger positionInPlaylist;
 @property (nonatomic, strong) NSString *nextStreamPartURL;
 

@@ -65,6 +65,9 @@
 		FD8F6AFA195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */; };
 		FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
 		FD8F6AFE195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
+		FD8F6B00195B5318004D4B61 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
+		FD8F6B01195B5318004D4B61 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
+		FD8F6B02195B531F004D4B61 /* HockeySDK.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,7 @@
 			files = (
 				FD8F6ADC195999B6004D4B61 /* SoundCloudAPI.framework in Copy Frameworks */,
 				FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */,
+				FD8F6B02195B531F004D4B61 /* HockeySDK.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +165,7 @@
 		FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectButtonCell.m; sourceTree = "<group>"; };
 		FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBackgroundView.h; sourceTree = "<group>"; };
 		FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBackgroundView.m; sourceTree = "<group>"; };
+		FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +182,7 @@
 				FD7CD2D119543C35002AC765 /* QuartzCore.framework in Frameworks */,
 				FD7CD2901954396C002AC765 /* Cocoa.framework in Frameworks */,
 				FD8F6AD81959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */,
+				FD8F6B00195B5318004D4B61 /* HockeySDK.framework in Frameworks */,
 				BCD81D31C48D4057B89AA34E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +194,7 @@
 				FD8F6ADB1959996D004D4B61 /* OAuth2Client.framework in Frameworks */,
 				FD8F6AD91959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */,
 				FD7CD2B01954396C002AC765 /* Cocoa.framework in Frameworks */,
+				FD8F6B01195B5318004D4B61 /* HockeySDK.framework in Frameworks */,
 				FD7CD2AF1954396C002AC765 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +282,7 @@
 		FD7CD28E1954396C002AC765 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */,
 				FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */,
 				FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */,
 				FD7CD2DA19543C55002AC765 /* CoreText.framework */,
@@ -674,6 +682,7 @@
 					"$(PROJECT_DIR)/OAuth2Client/build/Debug",
 					"$(PROJECT_DIR)/CocoaSoundCloudAPI/build/Debug",
 					"$(PROJECT_DIR)/SoundcloudPlayer",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";
@@ -701,6 +710,7 @@
 					"$(PROJECT_DIR)/OAuth2Client/build/Debug",
 					"$(PROJECT_DIR)/CocoaSoundCloudAPI/build/Debug",
 					"$(PROJECT_DIR)/SoundcloudPlayer",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";
@@ -724,6 +734,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/SoundcloudPlayer",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";
@@ -747,6 +758,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/SoundcloudPlayer",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";

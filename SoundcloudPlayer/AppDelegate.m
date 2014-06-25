@@ -15,6 +15,7 @@
 #import "TrackCellView.h"
 #import "AppleMediaKeyController.h"
 #import "SoundCloudAPIClient.h"
+#import <HockeySDK/HockeySDK.h>
 
 @implementation AppDelegate
 
@@ -69,6 +70,8 @@
     } else {
         [self didFailToAuthenticate];
     }
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"749b642d520ae57bfe9101ce28da075c"];
+    [[BITHockeyManager sharedHockeyManager] startManager];
 }
 
 

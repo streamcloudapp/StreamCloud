@@ -143,7 +143,7 @@
             <rect key="contentRect" x="417" y="177" width="422" height="768"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="422" height="168"/>
-            <value key="maxSize" type="size" width="768" height="1526"/>
+            <value key="maxSize" type="size" width="2560" height="1440"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="422" height="768"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -185,7 +185,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="MainColumn" width="422" minWidth="400" maxWidth="768" id="NxF-Gu-EYt">
+                                        <tableColumn identifier="MainColumn" width="422" minWidth="422" maxWidth="2560" id="NxF-Gu-EYt">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

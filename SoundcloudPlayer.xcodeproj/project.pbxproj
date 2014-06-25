@@ -57,6 +57,8 @@
 		FD8F6AEA1959AC0C004D4B61 /* StatusBarPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD8F6AE81959AC0C004D4B61 /* StatusBarPlayerViewController.xib */; };
 		FD8F6AED1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */; };
 		FD8F6AEE1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */; };
+		FD8F6AF1195AD16D004D4B61 /* SoundCloudAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */; };
+		FD8F6AF2195AD16D004D4B61 /* SoundCloudAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +147,8 @@
 		FD8F6AE81959AC0C004D4B61 /* StatusBarPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusBarPlayerViewController.xib; sourceTree = "<group>"; };
 		FD8F6AEB1959CB6E004D4B61 /* ProgressIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressIndicatorView.h; sourceTree = "<group>"; };
 		FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressIndicatorView.m; sourceTree = "<group>"; };
+		FD8F6AEF195AD16D004D4B61 /* SoundCloudAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudAPIClient.h; sourceTree = "<group>"; };
+		FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudAPIClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +295,8 @@
 				FD8F6AE51959AB8D004D4B61 /* StatusBarPlayerViewController.m */,
 				FD7ECBBE1955BE05005828CF /* SharedAudioPlayer.h */,
 				FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */,
+				FD8F6AEF195AD16D004D4B61 /* SoundCloudAPIClient.h */,
+				FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */,
 				FD3BED6019598C8800B2D49A /* MediaKeys */,
 				FD3BED57195981BC00B2D49A /* CustomViews */,
 				FD3BED5219597B2300B2D49A /* Custom Table View Cell */,
@@ -485,6 +491,7 @@
 				FD3BED5E1959883400B2D49A /* SeperatorView.m in Sources */,
 				FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD3BED501958389B00B2D49A /* PreviousButtonCell.m in Sources */,
+				FD8F6AF1195AD16D004D4B61 /* SoundCloudAPIClient.m in Sources */,
 				FD7ECBC01955BE05005828CF /* SharedAudioPlayer.m in Sources */,
 				FD7CD29C1954396C002AC765 /* main.m in Sources */,
 				FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
@@ -503,6 +510,7 @@
 				FD3BED491958364200B2D49A /* PlayPauseButtonCell.m in Sources */,
 				FD8F6AE71959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */,
 				FD7ECBC11955BE05005828CF /* SharedAudioPlayer.m in Sources */,
+				FD8F6AF2195AD16D004D4B61 /* SoundCloudAPIClient.m in Sources */,
 				FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD3BED5F1959883400B2D49A /* SeperatorView.m in Sources */,
 				FD3BED5B195981D300B2D49A /* PlayingIndicatorView.m in Sources */,

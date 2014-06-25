@@ -14,6 +14,7 @@
 #import "AFNetworking.h"
 #import "TrackCellView.h"
 #import "AppleMediaKeyController.h"
+#import "SoundCloudAPIClient.h"
 
 @implementation AppDelegate
 
@@ -29,14 +30,17 @@
                                                        andSelector:@selector(handleURLEvent:withReplyEvent:)
                                                      forEventClass:kInternetEventClass
                                                         andEventID:kAEGetURL];
-    SCAccount *account = [SCSoundCloud account];
-    if (!account) {
-        [self login];
+
+    if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
+        [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
     } else {
-        [self getAccountInfo];
+        //TODO: Show Login Button
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSlider) name:@"SharedAudioPlayerUpdatedTimePlayed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayingItem) name:@"SharedPlayerDidFinishObject" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetNewSongs:) name:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+    id clipView = [[self.tableView enclosingScrollView] contentView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tableViewDidScroll:) name:NSViewBoundsDidChangeNotification object:clipView];
     
     INAppStoreWindow *aWindow = (INAppStoreWindow*)[self window];
     aWindow.titleBarHeight = 28.0;
@@ -69,40 +73,7 @@
     return YES;
 }
 
-# pragma mark - SoundCloud API
-- (void)getAccountInfo {
-    SCAccount *account = [SCSoundCloud account];
-    
-   [SCRequest performMethod:SCRequestMethodGET
-                           onResource:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.soundcloud.com/me/activities/tracks/affiliated"]]
-                      usingParameters:nil
-                          withAccount:account
-               sendingProgressHandler:nil
-                      responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-                          // Handle the response
-                          if (error) {
-                              NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
-                          } else {
-                              NSLog(@"Got data, yeah");
-                              NSError *error;
-                              id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                              if (!error){
-                                  if ([objectFromData isKindOfClass:[NSDictionary class]]) {
-                                      [[SharedAudioPlayer sharedPlayer]insertItemsFromResponse:objectFromData];
-                                  }
-                              }
-                              [self.tableView reloadData];
-                          }
-                      }];
-}
 
-- (void)login {
-    [SCSoundCloud requestAccessWithPreparedAuthorizationURLHandler:^(NSURL *preparedURL){
-        // Load the URL in a web view or open it in an external browser
-        [[NSWorkspace sharedWorkspace] openURL:preparedURL];
-    }];
-
-}
 
 - (void)handleURLEvent:(NSAppleEventDescriptor*)event
         withReplyEvent:(NSAppleEventDescriptor*)replyEvent;
@@ -113,7 +84,7 @@
     if (!handled) {
         NSLog(@"The URL (%@) could not be handled by the SoundCloud API. Maybe you want to do something with it.", url);
     } else {
-        [self getAccountInfo];
+        [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
     }
     
 }
@@ -190,6 +161,26 @@
     [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:clickedRow];
 }
 
+# pragma mark - NSTableView Scroll Handling
+
+-(void)tableViewDidScroll:(NSNotification *) notification
+{
+    NSScrollView *scrollView = [notification object];
+    CGFloat currentPosition = CGRectGetMaxY([scrollView visibleRect]);
+    CGFloat tableViewHeight = [self.tableView bounds].size.height - 100;
+    
+    //console.log("TableView Height: " + tableViewHeight);
+    //console.log("Current Position: " + currentPosition);
+    
+    if ((currentPosition > tableViewHeight - 100) && !self.atBottom)
+    {
+        self.atBottom = YES;
+        [[SharedAudioPlayer sharedPlayer] getNextSongs];
+    } else if (currentPosition < tableViewHeight - 100) {
+        self.atBottom = NO;
+    }
+}
+
 # pragma mark - Update UI 
 
 - (void)updateSlider {
@@ -219,6 +210,10 @@
     if (cellForRow){
         [cellForRow markAsPlaying:YES];
     }
+}
+
+- (void)didGetNewSongs:(NSNotification *)notification {
+    [self.tableView reloadData];
 }
 # pragma mark - IBActions
 

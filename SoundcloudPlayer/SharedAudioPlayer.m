@@ -8,6 +8,7 @@
 
 #import "SharedAudioPlayer.h"
 #import <math.h>
+#import "SoundCloudAPIClient.h"
 #define CLIENT_ID @"909c2edcdbd7b312b48a04a3f1e6b40c"
 
 @interface SharedAudioPlayer ()
@@ -86,13 +87,16 @@
 }
 - (void)insertItemsFromResponse:(NSDictionary *)response {
     NSArray *collectionItems = [response objectForKey:@"collection"];
+    self.nextStreamPartURL = [response objectForKey:@"next_href"];
     if (!_audioPlayer){
         NSMutableArray *itemsToPlay = [NSMutableArray array];
         for (NSDictionary *dict in collectionItems){
-            [self.itemsToPlay addObject:dict];
             AVPlayerItem *itemToPlay = [self itemForDict:dict];
-            [itemsToPlay addObject:itemToPlay];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:itemToPlay];
+            if (itemToPlay){
+                [self.itemsToPlay addObject:dict];
+                [itemsToPlay addObject:itemToPlay];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:itemToPlay];
+            }
         }
         self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
         [self.audioPlayer addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
@@ -105,11 +109,12 @@
         [self.audioPlayer setActionAtItemEnd:AVPlayerActionAtItemEndAdvance];
     } else {
         for (NSDictionary *dict in collectionItems){
-            [self.itemsToPlay addObject:dict];
             AVPlayerItem *itemToPlay = [self itemForDict:dict];
-            [self.audioPlayer insertItem:itemToPlay afterItem:nil];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:itemToPlay];
-
+            if (itemToPlay) {
+                [self.itemsToPlay addObject:dict];
+                [self.audioPlayer insertItem:itemToPlay afterItem:nil];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:itemToPlay];
+            }
         }
     }
 }
@@ -133,10 +138,15 @@
     self.positionInPlaylist++;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
     if (self.positionInPlaylist == self.itemsToPlay.count-1) {
-        //TODO: Get new items!
+        [self getNextSongs];
     }
 }
 
+- (void)getNextSongs {
+    if (self.nextStreamPartURL){
+        [[SoundCloudAPIClient sharedClient] getStreamSongsWithURL:self.nextStreamPartURL];
+    }
+}
 
 # pragma mark - Creating AVPlayerItems
 

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) AVQueuePlayer *audioPlayer;
 @property (nonatomic, strong) NSMutableArray *itemsToPlay;
 @property (nonatomic) NSInteger positionInPlaylist;
+@property (nonatomic, strong) NSString *nextStreamPartURL;
 
 + (SharedAudioPlayer *)sharedPlayer;
 - (void)insertItemsFromResponse:(NSDictionary *)response;
@@ -24,4 +25,5 @@
 - (void)jumpToItemAtIndex:(NSInteger)item;
 - (void)advanceToTime:(CMTime)time;
 - (NSDictionary *)currentItem;
+- (void)getNextSongs;
 @end

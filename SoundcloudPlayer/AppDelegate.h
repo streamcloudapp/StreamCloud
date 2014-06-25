@@ -19,4 +19,5 @@
 @property (nonatomic, strong) IBOutlet NSTableView *tableView;
 @property (nonatomic, strong) AXStatusItemPopup *statusItemPopup;
 @property (nonatomic, strong) StatusBarPlayerViewController *statusBarPlayerViewController;
+@property (nonatomic) BOOL atBottom;
 @end

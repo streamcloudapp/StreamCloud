@@ -106,13 +106,13 @@
 - (void)toggleRepeatMode {
     switch (self.repeatMode) {
         case RepeatModeNone:
-            [self setRepeatMode:RepeatModeTrack];
-            break;
-        case RepeatModeTrack:
             [self setRepeatMode:RepeatModeAll];
             break;
-        case RepeatModeAll:
+        case RepeatModeTrack:
             [self setRepeatMode:RepeatModeNone];
+            break;
+        case RepeatModeAll:
+            [self setRepeatMode:RepeatModeTrack];
     }
 }
 - (void)setShuffleEnabled:(BOOL)shuffleEnabled {

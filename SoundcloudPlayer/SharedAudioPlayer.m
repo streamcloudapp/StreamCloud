@@ -58,9 +58,9 @@
             [self getNextSongs];
         }
     } else {
+        [self itemDidFinishPlaying:nil];
         if (self.repeatMode == RepeatModeNone || self.repeatMode == RepeatModeAll)
             [self.audioPlayer advanceToNextItem];
-        [self itemDidFinishPlaying:nil];
         
     }
 }
@@ -232,7 +232,10 @@
             break;
         }
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
+    if (self.audioPlayer.items.count >= 2) {
+        AVPlayerItem *nextItem = [[self.audioPlayer items] objectAtIndex:1];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
+    }
 }
 
 - (void)getNextSongs {

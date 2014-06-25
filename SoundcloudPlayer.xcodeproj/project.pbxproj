@@ -61,6 +61,10 @@
 		FD8F6AF2195AD16D004D4B61 /* SoundCloudAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */; };
 		FD8F6AF5195AE093004D4B61 /* VolumeButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */; };
 		FD8F6AF6195AE093004D4B61 /* VolumeButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */; };
+		FD8F6AF9195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */; };
+		FD8F6AFA195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */; };
+		FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
+		FD8F6AFE195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +157,10 @@
 		FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudAPIClient.m; sourceTree = "<group>"; };
 		FD8F6AF3195AE093004D4B61 /* VolumeButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeButtonCell.h; sourceTree = "<group>"; };
 		FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeButtonCell.m; sourceTree = "<group>"; };
+		FD8F6AF7195B1FD6004D4B61 /* ConnectButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectButtonCell.h; sourceTree = "<group>"; };
+		FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectButtonCell.m; sourceTree = "<group>"; };
+		FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBackgroundView.h; sourceTree = "<group>"; };
+		FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBackgroundView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +210,8 @@
 				FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */,
 				FD8F6AF3195AE093004D4B61 /* VolumeButtonCell.h */,
 				FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */,
+				FD8F6AF7195B1FD6004D4B61 /* ConnectButtonCell.h */,
+				FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */,
 			);
 			name = CustomButtons;
 			sourceTree = "<group>";
@@ -223,6 +233,8 @@
 				FD3BED5C1959883400B2D49A /* SeperatorView.h */,
 				FD3BED5D1959883400B2D49A /* SeperatorView.m */,
 				FD8F6AEB1959CB6E004D4B61 /* ProgressIndicatorView.h */,
+				FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */,
+				FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */,
 				FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */,
 			);
 			name = CustomViews;
@@ -490,7 +502,9 @@
 			files = (
 				FD3BED4C1958387300B2D49A /* NextButtonCell.m in Sources */,
 				FD7CD2A31954396C002AC765 /* AppDelegate.m in Sources */,
+				FD8F6AF9195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */,
 				FD3BED5519597B4300B2D49A /* TrackCellView.m in Sources */,
+				FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */,
 				FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */,
 				FD3BED5A195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
 				FD8F6AED1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */,
@@ -523,6 +537,8 @@
 				FD3BED5F1959883400B2D49A /* SeperatorView.m in Sources */,
 				FD3BED5B195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
 				FD3BED5619597B4300B2D49A /* TrackCellView.m in Sources */,
+				FD8F6AFA195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */,
+				FD8F6AFE195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */,
 				FD7CD2BA1954396C002AC765 /* SoundcloudPlayerTests.m in Sources */,
 				FD3BED6519598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
 				FD8F6AEE1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */,

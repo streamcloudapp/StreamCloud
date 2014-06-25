@@ -148,12 +148,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="422" height="768"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" id="5C4-zw-ZJX">
-                        <rect key="frame" x="112" y="374" width="198" height="19"/>
+                    <customView id="gLC-Tf-fgM" customClass="WhiteBackgroundView">
+                        <rect key="frame" x="0.0" y="48" width="422" height="722"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="kA2-Ak-kaG">
+                        <rect key="frame" x="84" y="400" width="255" height="62"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="roundRect" title="Connect With SoundCloud" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="x3z-4f-je6">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Connect with SoundCloud® to get your Stream" id="WtW-QK-d4G">
+                            <font key="font" size="20" name="HelveticaNeue-Light"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button id="5C4-zw-ZJX">
+                        <rect key="frame" x="131" y="325" width="160" height="48"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="x3z-4f-je6" customClass="ConnectButtonCell">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="controlContent"/>
+                            <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="loginButtonAction:" target="Voe-Tx-rLC" id="mOF-Av-Hnz"/>

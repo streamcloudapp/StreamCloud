@@ -38,6 +38,7 @@
 + (void)drawSeperatorViewWithFrame: (NSRect)frame;
 + (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
 + (void)drawVolumeSettingsWithFrame: (NSRect)frame volumeToShow: (CGFloat)volumeToShow;
++ (void)drawLoginButtonWithFrame: (NSRect)frame;
 
 // Generated Images
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;

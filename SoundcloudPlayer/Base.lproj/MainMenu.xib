@@ -14,13 +14,26 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="playerTimeSlider" destination="b9W-DM-2Ce" id="4WN-hQ-iCb"/>
+                <outlet property="playerVolumeSlider" destination="cE3-R7-2CJ" id="yaq-av-08a"/>
                 <outlet property="tableView" destination="sdz-JV-mui" id="242-40-xKD"/>
                 <outlet property="timeGoneLabel" destination="6dT-Qa-uCR" id="7yc-lF-zst"/>
                 <outlet property="timeToGoLabel" destination="Xzd-Aq-Y3F" id="xuE-vm-wjZ"/>
+                <outlet property="volumeButton" destination="1FD-nG-Ad2" id="vbs-vF-uAg"/>
+                <outlet property="volumePopover" destination="R2K-QH-3Ex" id="DhQ-xy-ScA"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <viewController id="G0O-ho-qsH" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="cZZ-u4-xsv" id="p6T-Cq-etq"/>
+            </connections>
+        </viewController>
+        <popover behavior="t" id="R2K-QH-3Ex">
+            <connections>
+                <outlet property="contentViewController" destination="G0O-ho-qsH" id="7MM-7X-CzK"/>
+            </connections>
+        </popover>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="SoundcloudPlayer" id="1Xt-HY-uBw">
@@ -673,28 +686,28 @@
         <window title="SoundcloudPlayer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="INAppStoreWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="417" y="177" width="400" height="768"/>
+            <rect key="contentRect" x="417" y="177" width="422" height="768"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <value key="minSize" type="size" width="400" height="168"/>
+            <value key="minSize" type="size" width="422" height="168"/>
             <value key="maxSize" type="size" width="768" height="1526"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="768"/>
+                <rect key="frame" x="0.0" y="0.0" width="422" height="768"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="80" horizontalPageScroll="10" verticalLineScroll="80" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" id="2dY-Lj-jPa">
-                        <rect key="frame" x="0.0" y="48" width="402" height="722"/>
+                        <rect key="frame" x="0.0" y="48" width="422" height="722"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="jpA-t5-Wbq">
-                            <rect key="frame" x="0.0" y="0.0" width="402" height="722"/>
+                            <rect key="frame" x="0.0" y="0.0" width="422" height="722"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" rowSizeStyle="automatic" viewBased="YES" id="sdz-JV-mui">
-                                    <rect key="frame" x="0.0" y="0.0" width="402" height="722"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="422" height="722"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="MainColumn" width="402" minWidth="400" maxWidth="768" id="NxF-Gu-EYt">
+                                        <tableColumn identifier="MainColumn" width="422" minWidth="400" maxWidth="768" id="NxF-Gu-EYt">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -708,7 +721,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="MainCell" id="AZM-9k-Lge" customClass="TrackCellView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="402" height="80"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="422" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="zJg-8d-F0w">
@@ -717,7 +730,7 @@
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="cIG-lQ-HQc"/>
                                                         </imageView>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="gip-Wf-m62">
-                                                            <rect key="frame" x="75" y="21" width="236" height="24"/>
+                                                            <rect key="frame" x="75" y="21" width="256" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="8wC-yb-ais">
                                                                 <font key="font" size="14" name="HelveticaNeue-Light"/>
@@ -726,7 +739,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="nbg-iy-TSn">
-                                                            <rect key="frame" x="75" y="45" width="236" height="17"/>
+                                                            <rect key="frame" x="75" y="45" width="256" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yb8-Yg-u1b">
                                                                 <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -735,7 +748,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="kL7-Gl-euN">
-                                                            <rect key="frame" x="315" y="42" width="70" height="17"/>
+                                                            <rect key="frame" x="335" y="42" width="70" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="00:00:00" id="dVx-FK-MOy">
                                                                 <font key="font" size="12" name="HelveticaNeue"/>
@@ -744,11 +757,11 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <customView canDrawConcurrently="YES" id="vAn-OL-IdT" customClass="PlayingIndicatorView">
-                                                            <rect key="frame" x="391" y="1" width="12" height="81"/>
+                                                            <rect key="frame" x="411" y="1" width="12" height="81"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
                                                         </customView>
                                                         <customView id="cdw-Ts-Guv" customClass="SeperatorView">
-                                                            <rect key="frame" x="16" y="0.0" width="386" height="1"/>
+                                                            <rect key="frame" x="16" y="0.0" width="406" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         </customView>
                                                     </subviews>
@@ -782,7 +795,7 @@
                         </scroller>
                     </scrollView>
                     <customView id="zcd-qV-Njv">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="48"/>
+                        <rect key="frame" x="0.0" y="0.0" width="422" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" id="Csf-qN-68n">
@@ -845,7 +858,7 @@
                                 </textFieldCell>
                             </textField>
                             <button id="X0h-rx-lLU">
-                                <rect key="frame" x="327" y="17" width="16" height="14"/>
+                                <rect key="frame" x="360" y="17" width="16" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4cg-yd-hLI" customClass="ShuffleButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -855,8 +868,19 @@
                                     <action selector="shuffleButtonAction:" target="Voe-Tx-rLC" id="xLJ-Fz-7s6"/>
                                 </connections>
                             </button>
+                            <button id="1FD-nG-Ad2">
+                                <rect key="frame" x="327" y="17" width="16" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3q2-k7-j70" customClass="VolumeButtonCell">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="volumeButtonAction:" target="Voe-Tx-rLC" id="3Or-ce-Vm8"/>
+                                </connections>
+                            </button>
                             <button id="ovx-QB-42m">
-                                <rect key="frame" x="360" y="17" width="16" height="14"/>
+                                <rect key="frame" x="393" y="17" width="16" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcm-P4-Amv" customClass="RepeatButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -868,6 +892,20 @@
                 </subviews>
             </view>
         </window>
+        <customView appearanceType="lightContent" id="cZZ-u4-xsv">
+            <rect key="frame" x="0.0" y="0.0" width="29" height="116"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
+                    <rect key="frame" x="4" y="3" width="20" height="109"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
+                    <connections>
+                        <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
+                    </connections>
+                </slider>
+            </subviews>
+        </customView>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>

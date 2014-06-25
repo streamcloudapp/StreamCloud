@@ -59,6 +59,8 @@
 		FD8F6AEE1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */; };
 		FD8F6AF1195AD16D004D4B61 /* SoundCloudAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */; };
 		FD8F6AF2195AD16D004D4B61 /* SoundCloudAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */; };
+		FD8F6AF5195AE093004D4B61 /* VolumeButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */; };
+		FD8F6AF6195AE093004D4B61 /* VolumeButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +151,8 @@
 		FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressIndicatorView.m; sourceTree = "<group>"; };
 		FD8F6AEF195AD16D004D4B61 /* SoundCloudAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudAPIClient.h; sourceTree = "<group>"; };
 		FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudAPIClient.m; sourceTree = "<group>"; };
+		FD8F6AF3195AE093004D4B61 /* VolumeButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeButtonCell.h; sourceTree = "<group>"; };
+		FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeButtonCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,8 @@
 				FD8F6ADF1959A454004D4B61 /* ShuffleButtonCell.m */,
 				FD8F6AE11959A483004D4B61 /* RepeatButtonCell.h */,
 				FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */,
+				FD8F6AF3195AE093004D4B61 /* VolumeButtonCell.h */,
+				FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */,
 			);
 			name = CustomButtons;
 			sourceTree = "<group>";
@@ -488,6 +494,7 @@
 				FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */,
 				FD3BED5A195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
 				FD8F6AED1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */,
+				FD8F6AF5195AE093004D4B61 /* VolumeButtonCell.m in Sources */,
 				FD3BED5E1959883400B2D49A /* SeperatorView.m in Sources */,
 				FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD3BED501958389B00B2D49A /* PreviousButtonCell.m in Sources */,
@@ -506,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD3BED511958389B00B2D49A /* PreviousButtonCell.m in Sources */,
+				FD8F6AF6195AE093004D4B61 /* VolumeButtonCell.m in Sources */,
 				FD3BED4D1958387300B2D49A /* NextButtonCell.m in Sources */,
 				FD3BED491958364200B2D49A /* PlayPauseButtonCell.m in Sources */,
 				FD8F6AE71959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */,

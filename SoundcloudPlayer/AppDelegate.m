@@ -241,6 +241,19 @@
     [[SharedAudioPlayer sharedPlayer] advanceToTime:CMTimeMake(newTime, NSEC_PER_SEC)];
 }
 
+- (IBAction)volumeSliderUpdate:(id)sender {
+    [[SharedAudioPlayer sharedPlayer].audioPlayer setVolume:self.playerVolumeSlider.doubleValue/100];
+}
+
+- (IBAction)volumeButtonAction:(id)sender {
+    [self.playerVolumeSlider setDoubleValue:[SharedAudioPlayer sharedPlayer].audioPlayer.volume*100];
+    if (self.volumePopover.isShown){
+        [self.volumePopover close];
+    } else {
+        [self.volumePopover showRelativeToRect:self.volumeButton.bounds ofView:self.volumeButton preferredEdge:NSMaxYEdge];
+    }
+}
+
 # pragma mark - Helpers
 
 - (NSString *)stringForSeconds:(NSUInteger)elapsedSeconds {

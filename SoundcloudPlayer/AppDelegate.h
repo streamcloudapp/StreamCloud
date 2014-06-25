@@ -17,6 +17,9 @@
 @property (nonatomic, strong) IBOutlet NSTextField *timeToGoLabel;
 @property (nonatomic, strong) IBOutlet NSTextField *timeGoneLabel;
 @property (nonatomic, strong) IBOutlet NSTableView *tableView;
+@property (nonatomic, strong) IBOutlet NSSlider *playerVolumeSlider;
+@property (nonatomic, strong) IBOutlet NSPopover *volumePopover;
+@property (nonatomic, strong) IBOutlet NSButton *volumeButton;
 @property (nonatomic, strong) AXStatusItemPopup *statusItemPopup;
 @property (nonatomic, strong) StatusBarPlayerViewController *statusBarPlayerViewController;
 @property (nonatomic) BOOL atBottom;

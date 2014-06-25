@@ -252,6 +252,8 @@
 
 - (IBAction)volumeSliderUpdate:(id)sender {
     [[SharedAudioPlayer sharedPlayer].audioPlayer setVolume:self.playerVolumeSlider.doubleValue/100];
+    [self.volumeButton.cell setEnabled:NO];
+    [self.volumeButton.cell setEnabled:YES];
 }
 
 - (IBAction)volumeButtonAction:(id)sender {

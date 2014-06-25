@@ -8,10 +8,16 @@
 
 #import "VolumeButtonCell.h"
 #import "StreamCloudStyles.h"
+#import "SharedAudioPlayer.h"
 @implementation VolumeButtonCell
 
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView {
-    [StreamCloudStyles drawVolumeSettingsWithFrame:frame];
+    float volumeToUse =[SharedAudioPlayer sharedPlayer].audioPlayer.volume*100;
+    if ([SharedAudioPlayer sharedPlayer].audioPlayer){
+        [StreamCloudStyles drawVolumeSettingsWithFrame:frame volumeToShow:volumeToUse];
+    } else {
+        [StreamCloudStyles drawVolumeSettingsWithFrame:frame volumeToShow:100];
+    }
 }
 
 

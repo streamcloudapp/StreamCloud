@@ -135,8 +135,6 @@
 		FD7CD2B51954396C002AC765 /* SoundcloudPlayerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SoundcloudPlayerTests-Info.plist"; sourceTree = "<group>"; };
 		FD7CD2B71954396C002AC765 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FD7CD2B91954396C002AC765 /* SoundcloudPlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoundcloudPlayerTests.m; sourceTree = "<group>"; };
-		FD7CD2CC19543C2E002AC765 /* OAuth2Client.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuth2Client.framework; path = OAuth2Client/build/Debug/OAuth2Client.framework; sourceTree = "<group>"; };
-		FD7CD2CD19543C2F002AC765 /* SoundCloudAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundCloudAPI.framework; path = CocoaSoundCloudAPI/build/Debug/SoundCloudAPI.framework; sourceTree = "<group>"; };
 		FD7CD2D019543C35002AC765 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FD7CD2D219543C3A002AC765 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		FD7CD2D419543C46002AC765 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -291,8 +289,6 @@
 				FD7CD2D419543C46002AC765 /* CoreLocation.framework */,
 				FD7CD2D219543C3A002AC765 /* AddressBook.framework */,
 				FD7CD2D019543C35002AC765 /* QuartzCore.framework */,
-				FD7CD2CC19543C2E002AC765 /* OAuth2Client.framework */,
-				FD7CD2CD19543C2F002AC765 /* SoundCloudAPI.framework */,
 				FD7CD28F1954396C002AC765 /* Cocoa.framework */,
 				FD7CD2AE1954396C002AC765 /* XCTest.framework */,
 				FD7CD2911954396C002AC765 /* Other Frameworks */,

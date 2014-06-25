@@ -39,6 +39,7 @@
 + (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
 + (void)drawVolumeSettingsWithFrame: (NSRect)frame volumeToShow: (CGFloat)volumeToShow;
 + (void)drawLoginButtonWithFrame: (NSRect)frame;
++ (void)drawCanvas1;
 
 // Generated Images
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;

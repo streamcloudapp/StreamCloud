@@ -527,10 +527,10 @@ static NSImage* _imageOfMenuBarIcon = nil;
     NSColor* progressIndicatorTrackColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.5];
 
     //// Variable Declarations
-    CGFloat progressWidth = 320 * percentShown / 100.0;
+    CGFloat progressWidth = 240 * percentShown / 100.0;
 
     //// Track Drawing
-    NSBezierPath* trackPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 320, 4)];
+    NSBezierPath* trackPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 240, 4)];
     [progressIndicatorTrackColor setFill];
     [trackPath fill];
 
@@ -811,6 +811,10 @@ static NSImage* _imageOfMenuBarIcon = nil;
 
         [@"Connect" drawInRect: NSOffsetRect(buttonLabelRect, 0, -1) withAttributes: buttonLabelFontAttributes];
     }
+}
+
++ (void)drawCanvas1;
+{
 }
 
 #pragma mark Generated Images

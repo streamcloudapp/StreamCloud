@@ -67,7 +67,11 @@
 
 - (void)previousItem {
     if (self.positionInPlaylist >= 1) {
-        [self jumpToItemAtIndex:self.positionInPlaylist-1];
+        if (self.shuffleEnabled){
+            [self jumpToItemAtIndex:[self.shuffledItemsToPlay indexOfObject:[self.itemsToPlay objectAtIndex:self.positionInPlaylist]]-1];
+        } else {
+            [self jumpToItemAtIndex:self.positionInPlaylist-1];
+        }
     }
 }
 

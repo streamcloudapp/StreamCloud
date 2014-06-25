@@ -58,9 +58,8 @@
             [self getNextSongs];
         }
     } else {
-        [self itemDidFinishPlaying:nil];
-        if (self.repeatMode == RepeatModeNone || self.repeatMode == RepeatModeAll)
-            [self.audioPlayer advanceToNextItem];
+        [self jumpedToNextItem];
+        [self.audioPlayer advanceToNextItem];
         
     }
 }
@@ -201,6 +200,26 @@
 
 # pragma mark - NotificationHandling
 
+
+- (void)jumpedToNextItem {
+    if (self.shuffleEnabled){
+        if (_positionInPlaylist <= self.itemsToPlay.count) {
+            self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
+            [self jumpToItemAtIndex: _positionInPlaylist];
+        }
+    } else {
+        self.positionInPlaylist++;
+    }
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+    if (self.positionInPlaylist == self.itemsToPlay.count-1) {
+        [self getNextSongs];
+    }
+    if (self.audioPlayer.items.count >= 2) {
+        AVPlayerItem *nextItem = [[self.audioPlayer items] objectAtIndex:1];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
+    }
+}
+
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
     switch (self.repeatMode) {
         case RepeatModeTrack: {
@@ -209,15 +228,12 @@
             break;
         }
         case RepeatModeAll: {
-            if (self.positionInPlaylist < self.itemsToPlay.count) {
+            if (self.positionInPlaylist < self.itemsToPlay.count-1) {
                 self.positionInPlaylist++;
             } else {
                 [self jumpToItemAtIndex:0];
             }
             [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
-            if (self.positionInPlaylist == self.itemsToPlay.count-1) {
-                [self getNextSongs];
-            }
             break;
         }
         default: {

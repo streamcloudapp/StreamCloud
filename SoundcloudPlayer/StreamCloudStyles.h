@@ -32,7 +32,7 @@
 + (void)drawNextButtonWithFrame: (NSRect)frame;
 + (void)drawPreviousButtonWithFrame: (NSRect)frame;
 + (void)drawShuffleButtonWithFrame: (NSRect)frame active: (BOOL)active;
-+ (void)drawRepeatButtonWithFrame: (NSRect)frame active: (BOOL)active;
++ (void)drawRepeatButtonWithFrame: (NSRect)frame repeatMode: (CGFloat)repeatMode;
 + (void)drawSoundCloudLogoWithFrame: (NSRect)frame;
 + (void)drawPlayingIndicatorWithFrame: (NSRect)frame;
 + (void)drawSeperatorViewWithFrame: (NSRect)frame;
@@ -42,7 +42,7 @@
 // Generated Images
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;
 + (NSImage*)imageOfShuffleButtonWithFrame: (NSRect)frame active: (BOOL)active;
-+ (NSImage*)imageOfRepeatButtonWithFrame: (NSRect)frame active: (BOOL)active;
++ (NSImage*)imageOfRepeatButtonWithFrame: (NSRect)frame repeatMode: (CGFloat)repeatMode;
 + (NSImage*)imageOfSoundCloudLogoWithFrame: (NSRect)frame;
 + (NSImage*)imageOfPlayingIndicatorWithFrame: (NSRect)frame;
 + (NSImage*)imageOfMenuBarIcon;

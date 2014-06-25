@@ -36,4 +36,5 @@ typedef enum : NSUInteger {
 - (NSDictionary *)currentItem;
 - (void)getNextSongs;
 - (void)toggleRepeatMode;
+- (void)reset;
 @end

@@ -24,13 +24,13 @@
     RepeatMode repeatMode = [[SharedAudioPlayer sharedPlayer] repeatMode];
     switch (repeatMode) {
         case RepeatModeNone:
-            [StreamCloudStyles drawRepeatButtonWithFrame:frame active:NO];
+            [StreamCloudStyles drawRepeatButtonWithFrame:frame repeatMode:1];
             break;
         case RepeatModeAll:
-            [StreamCloudStyles drawRepeatButtonWithFrame:frame active:YES];
+            [StreamCloudStyles drawRepeatButtonWithFrame:frame repeatMode:2];
             break;
         case RepeatModeTrack:
-            [StreamCloudStyles drawRepeatButtonWithFrame:frame active:YES];
+            [StreamCloudStyles drawRepeatButtonWithFrame:frame repeatMode:3];
             break;
     }
 }

@@ -15,7 +15,8 @@
 - (id)init {
     self = [super init];
     if (self){
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTracks) name:SCSoundCloudAccountDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFailToAuthenticate) name:SCSoundCloudDidFailToRequestAccessNotification object:nil];
     }
     return self;
 }
@@ -36,6 +37,16 @@
     }];
 }
 
+
+- (void)logout {
+    [SCSoundCloud removeAccess];
+    [self didFailToAuthenticate];
+}
+
+- (void)didFailToAuthenticate {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidFailToAuthenticate" object:nil];
+    [[SharedAudioPlayer sharedPlayer] reset];
+}
 - (BOOL)isLoggedIn {
     SCAccount *account = [SCSoundCloud account];
     if (!account) {
@@ -43,6 +54,11 @@
     } else {
         return YES;
     }
+}
+
+- (void)reloadTracks {
+    [[SharedAudioPlayer sharedPlayer] reset];
+    [self getInitialStreamSongs];
 }
 
 - (void)getInitialStreamSongs {
@@ -65,8 +81,8 @@
                          if ([objectFromData isKindOfClass:[NSDictionary class]]) {
                              [[SharedAudioPlayer sharedPlayer]insertItemsFromResponse:objectFromData];
                          }
+                         [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
                      }
-                     [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
                  }
              }];
 }

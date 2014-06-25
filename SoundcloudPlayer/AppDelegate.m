@@ -31,16 +31,12 @@
                                                      forEventClass:kInternetEventClass
                                                         andEventID:kAEGetURL];
 
-    if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
-        [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
-    } else {
-        //TODO: Show Login Button
-    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSlider) name:@"SharedAudioPlayerUpdatedTimePlayed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayingItem) name:@"SharedPlayerDidFinishObject" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetNewSongs:) name:@"SoundCloudAPIClientDidLoadSongs" object:nil];
     id clipView = [[self.tableView enclosingScrollView] contentView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tableViewDidScroll:) name:NSViewBoundsDidChangeNotification object:clipView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFailToAuthenticate) name:@"SoundCloudAPIClientDidFailToAuthenticate" object:nil];
     
     INAppStoreWindow *aWindow = (INAppStoreWindow*)[self window];
     aWindow.titleBarHeight = 28.0;
@@ -50,6 +46,7 @@
     NSRect titleViewFrame = NSMakeRect(NSMidX(titleBarView.bounds) - (buttonSize.width / 2.f), NSMidY(titleBarView.bounds) - (buttonSize.height / 2.f), buttonSize.width, buttonSize.height);
     NSImageView *imageView = [[NSImageView alloc] initWithFrame:titleViewFrame];
     [imageView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
+    [imageView setAutoresizingMask:NSViewMinXMargin|NSViewMaxXMargin];
     [titleBarView addSubview:imageView];
     
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
@@ -64,7 +61,14 @@
     // Status Item
     self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
     self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:[StreamCloudStyles imageOfMenuBarIcon]];
+    
+    if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
+        [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
+    } else {
+        [self didFailToAuthenticate];
+    }
 }
+
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
     if (!flag){
@@ -84,6 +88,7 @@
     if (!handled) {
         NSLog(@"The URL (%@) could not be handled by the SoundCloud API. Maybe you want to do something with it.", url);
     } else {
+        [self.tableView.enclosingScrollView setHidden:NO];
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
     }
     
@@ -215,6 +220,10 @@
 - (void)didGetNewSongs:(NSNotification *)notification {
     [self.tableView reloadData];
 }
+
+- (void)didFailToAuthenticate {
+    [self.tableView.enclosingScrollView setHidden:YES];
+}
 # pragma mark - IBActions
 
 - (IBAction)playButtonAction:(id)sender {
@@ -258,6 +267,17 @@
     [[SharedAudioPlayer sharedPlayer] toggleRepeatMode];
 }
 
+- (IBAction)loginButtonAction:(id)sender {
+    [[SoundCloudAPIClient sharedClient] login];
+}
+
+- (IBAction)logoutMenuAction:(id)sender {
+    [[SoundCloudAPIClient sharedClient] logout];
+}
+
+- (IBAction)reloadMenuAction:(id)sender {
+    [[SoundCloudAPIClient sharedClient] reloadTracks];
+}
 # pragma mark - Helpers
 
 - (NSString *)stringForSeconds:(NSUInteger)elapsedSeconds {

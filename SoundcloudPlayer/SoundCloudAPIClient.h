@@ -12,7 +12,9 @@
 
 + (SoundCloudAPIClient *)sharedClient;
 - (void)login;
+- (void)logout;
 - (BOOL)isLoggedIn;
 - (void)getInitialStreamSongs;
 - (void)getStreamSongsWithURL:(NSString *)url;
+- (void)reloadTracks;
 @end

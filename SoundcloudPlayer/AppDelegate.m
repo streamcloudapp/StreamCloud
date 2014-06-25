@@ -245,9 +245,9 @@
 - (IBAction)sliderUpdate:(id)sender {
     float durationOfItem = CMTimeGetSeconds([SharedAudioPlayer sharedPlayer].audioPlayer.currentItem.duration);
     double newValue = self.playerTimeSlider.doubleValue;
-    int newTime = (newValue/100)*durationOfItem;
-    NSLog(@"Seeking to time %d",newTime);
-    [[SharedAudioPlayer sharedPlayer] advanceToTime:CMTimeMake(newTime, NSEC_PER_SEC)];
+    float newTime = (newValue/100)*durationOfItem;
+    NSLog(@"Seeking to time %f.0",newTime);
+    [[SharedAudioPlayer sharedPlayer] advanceToTime:newTime];
 }
 
 - (IBAction)volumeSliderUpdate:(id)sender {

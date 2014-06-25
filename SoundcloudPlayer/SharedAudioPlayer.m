@@ -85,7 +85,9 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
 }
 
-- (void)advanceToTime:(CMTime)time {
+- (void)advanceToTime:(float)timeToGo {
+    int32_t timeScale = self.audioPlayer.currentItem.asset.duration.timescale;
+    CMTime time = CMTimeMakeWithSeconds(timeToGo, timeScale);
     [self.audioPlayer seekToTime:time completionHandler:^(BOOL finished) {
         NSLog(@"Finished %@",finished ? @"NO" : @"YES");
     }];

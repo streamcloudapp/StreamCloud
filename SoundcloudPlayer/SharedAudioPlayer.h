@@ -32,7 +32,7 @@ typedef enum : NSUInteger {
 - (void)previousItem;
 - (void)nextItem;
 - (void)jumpToItemAtIndex:(NSInteger)item;
-- (void)advanceToTime:(CMTime)time;
+- (void)advanceToTime:(float)timeToGo;
 - (NSDictionary *)currentItem;
 - (void)getNextSongs;
 - (void)toggleRepeatMode;

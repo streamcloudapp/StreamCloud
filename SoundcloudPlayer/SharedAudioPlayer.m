@@ -58,9 +58,9 @@
             [self getNextSongs];
         }
     } else {
+        [self itemDidFinishPlaying:nil];
         if (self.repeatMode == RepeatModeNone || self.repeatMode == RepeatModeAll)
             [self.audioPlayer advanceToNextItem];
-        [self itemDidFinishPlaying:nil];
         
     }
 }
@@ -85,7 +85,9 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
 }
 
-- (void)advanceToTime:(CMTime)time {
+- (void)advanceToTime:(float)timeToGo {
+    int32_t timeScale = self.audioPlayer.currentItem.asset.duration.timescale;
+    CMTime time = CMTimeMakeWithSeconds(timeToGo, timeScale);
     [self.audioPlayer seekToTime:time completionHandler:^(BOOL finished) {
         NSLog(@"Finished %@",finished ? @"NO" : @"YES");
     }];
@@ -230,7 +232,10 @@
             break;
         }
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
+    if (self.audioPlayer.items.count >= 2) {
+        AVPlayerItem *nextItem = [[self.audioPlayer items] objectAtIndex:1];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
+    }
 }
 
 - (void)getNextSongs {

@@ -76,7 +76,7 @@
     [[SharedAudioPlayer sharedPlayer] setShuffleEnabled:![SharedAudioPlayer sharedPlayer].shuffleEnabled];
 }
 - (IBAction)repeatButtonAction:(id)sender {
-    
+    [[SharedAudioPlayer sharedPlayer] toggleRepeatMode];
 }
 
 @end

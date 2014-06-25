@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    RepeatModeNone,
+    RepeatModeAll,
+    RepeatModeTrack,
+} RepeatMode;
+
 @import AVFoundation;
 
 @interface SharedAudioPlayer : NSObject <AVAudioPlayerDelegate>
@@ -18,6 +24,7 @@
 @property (nonatomic) BOOL shuffleEnabled;
 @property (nonatomic) NSInteger positionInPlaylist;
 @property (nonatomic, strong) NSString *nextStreamPartURL;
+@property (nonatomic) RepeatMode repeatMode;
 
 + (SharedAudioPlayer *)sharedPlayer;
 - (void)insertItemsFromResponse:(NSDictionary *)response;
@@ -28,4 +35,5 @@
 - (void)advanceToTime:(CMTime)time;
 - (NSDictionary *)currentItem;
 - (void)getNextSongs;
+- (void)toggleRepeatMode;
 @end

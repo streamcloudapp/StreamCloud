@@ -254,6 +254,10 @@
     }
 }
 
+- (IBAction)repeatButtonAction:(id)sender {
+    [[SharedAudioPlayer sharedPlayer] toggleRepeatMode];
+}
+
 # pragma mark - Helpers
 
 - (NSString *)stringForSeconds:(NSUInteger)elapsedSeconds {

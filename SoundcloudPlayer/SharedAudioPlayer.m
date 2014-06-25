@@ -94,6 +94,18 @@
         return nil;
 }
 
+- (void)toggleRepeatMode {
+    switch (self.repeatMode) {
+        case RepeatModeNone:
+            [self setRepeatMode:RepeatModeTrack];
+            break;
+        case RepeatModeTrack:
+            [self setRepeatMode:RepeatModeAll];
+            break;
+        case RepeatModeAll:
+            [self setRepeatMode:RepeatModeNone];
+    }
+}
 - (void)setShuffleEnabled:(BOOL)shuffleEnabled {
     _shuffleEnabled = shuffleEnabled;
     if (shuffleEnabled) {
@@ -109,6 +121,11 @@
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayShuffleEnded" object:nil];
     }
+}
+
+- (void)setRepeatMode:(RepeatMode)repeatMode {
+    _repeatMode = repeatMode;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayerChangedRepeatMode" object:nil];
 }
 
 # pragma mark - Inserting new items
@@ -169,17 +186,39 @@
 # pragma mark - NotificationHandling
 
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
-    if (self.shuffleEnabled){
-        if (_positionInPlaylist <= self.itemsToPlay.count) {
-            self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
-            [self jumpToItemAtIndex: _positionInPlaylist];
+    switch (self.repeatMode) {
+        case RepeatModeNone: {
+            if (self.shuffleEnabled){
+                if (_positionInPlaylist <= self.itemsToPlay.count) {
+                    self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
+                    [self jumpToItemAtIndex: _positionInPlaylist];
+                }
+            } else {
+                self.positionInPlaylist++;
+            }
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+            if (self.positionInPlaylist == self.itemsToPlay.count-1) {
+                [self getNextSongs];
+            }
+            break;
         }
-    } else {
-        self.positionInPlaylist++;
-    }
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
-    if (self.positionInPlaylist == self.itemsToPlay.count-1) {
-        [self getNextSongs];
+        case RepeatModeTrack: {
+            [self jumpToItemAtIndex:self.positionInPlaylist];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+            break;
+        }
+        case RepeatModeAll: {
+            if (self.positionInPlaylist <= self.itemsToPlay.count) {
+                self.positionInPlaylist++;
+            } else {
+                [self jumpToItemAtIndex:0];
+            }
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+            if (self.positionInPlaylist == self.itemsToPlay.count-1) {
+                [self getNextSongs];
+            }
+            break;
+        }
     }
 }
 
@@ -188,6 +227,7 @@
         [[SoundCloudAPIClient sharedClient] getStreamSongsWithURL:self.nextStreamPartURL];
     }
 }
+
 
 # pragma mark - Creating AVPlayerItems
 

@@ -82,8 +82,6 @@
     return YES;
 }
 
-
-
 - (void)handleURLEvent:(NSAppleEventDescriptor*)event
         withReplyEvent:(NSAppleEventDescriptor*)replyEvent;
 {
@@ -220,6 +218,8 @@
     if (cellForRow){
         [cellForRow markAsPlaying:YES];
     }
+    if ([SharedAudioPlayer sharedPlayer].shuffleEnabled)
+        [self.tableView scrollRowToVisible:rowForItem];
 }
 
 - (void)didGetNewSongs:(NSNotification *)notification {

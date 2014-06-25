@@ -218,8 +218,7 @@
     if (cellForRow){
         [cellForRow markAsPlaying:YES];
     }
-    if ([SharedAudioPlayer sharedPlayer].shuffleEnabled)
-        [self.tableView scrollRowToVisible:rowForItem];
+    [self.tableView scrollRowToVisible:rowForItem];
 }
 
 - (void)didGetNewSongs:(NSNotification *)notification {

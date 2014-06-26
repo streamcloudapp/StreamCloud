@@ -70,14 +70,18 @@
 - (void)previousItem {
     if (self.positionInPlaylist >= 1) {
         if (self.shuffleEnabled){
-            [self jumpToItemAtIndex:[self.shuffledItemsToPlay indexOfObject:[self.itemsToPlay objectAtIndex:self.positionInPlaylist]]-1];
+            [self jumpToItemAtIndex:[self.shuffledItemsToPlay indexOfObject:[self.itemsToPlay objectAtIndex:self.positionInPlaylist]]-1 startPlaying:self.audioPlayer.rate];
         } else {
-            [self jumpToItemAtIndex:self.positionInPlaylist-1];
+            [self jumpToItemAtIndex:self.positionInPlaylist-1 startPlaying:self.audioPlayer.rate];
         }
     }
 }
 
 - (void)jumpToItemAtIndex:(NSInteger)item {
+    [self jumpToItemAtIndex:item startPlaying:YES];
+}
+
+- (void)jumpToItemAtIndex:(NSInteger)item startPlaying:(BOOL)start{
     [self.audioPlayer pause];
     [self.audioPlayer removeAllItems];
     
@@ -86,7 +90,8 @@
         [self.audioPlayer insertItem:[self itemForDict:itemInList] afterItem:nil];
     }
     self.positionInPlaylist = item;
-    [self.audioPlayer play];
+    if (start)
+        [self.audioPlayer play];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
 }

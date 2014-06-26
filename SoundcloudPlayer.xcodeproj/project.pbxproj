@@ -68,6 +68,8 @@
 		FD8F6B00195B5318004D4B61 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
 		FD8F6B01195B5318004D4B61 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
 		FD8F6B02195B531F004D4B61 /* HockeySDK.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
+		FDE51B14195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
+		FDE51B15195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,8 @@
 		FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBackgroundView.h; sourceTree = "<group>"; };
 		FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBackgroundView.m; sourceTree = "<group>"; };
 		FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
+		FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseOverImageView.h; sourceTree = "<group>"; };
+		FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseOverImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +245,8 @@
 				FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */,
 				FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */,
 				FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */,
+				FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */,
+				FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -507,6 +513,7 @@
 			files = (
 				FD3BED4C1958387300B2D49A /* NextButtonCell.m in Sources */,
 				FD7CD2A31954396C002AC765 /* AppDelegate.m in Sources */,
+				FDE51B14195C18E5009B1F2D /* MouseOverImageView.m in Sources */,
 				FD8F6AF9195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */,
 				FD3BED5519597B4300B2D49A /* TrackCellView.m in Sources */,
 				FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */,
@@ -547,6 +554,7 @@
 				FD7CD2BA1954396C002AC765 /* SoundcloudPlayerTests.m in Sources */,
 				FD3BED6519598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
 				FD8F6AEE1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */,
+				FDE51B15195C18E5009B1F2D /* MouseOverImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

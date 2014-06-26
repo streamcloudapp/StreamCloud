@@ -202,7 +202,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="422" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="zJg-8d-F0w">
+                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="zJg-8d-F0w" customClass="MouseOverImageView">
                                                             <rect key="frame" x="16" y="16" width="48" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="cIG-lQ-HQc"/>
@@ -380,7 +380,7 @@
                 <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
                     <rect key="frame" x="4" y="3" width="20" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" sliderType="linear" id="dMG-C9-CMS"/>
                     <connections>
                         <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
                     </connections>

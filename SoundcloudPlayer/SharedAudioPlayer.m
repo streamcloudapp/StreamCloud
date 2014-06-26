@@ -58,9 +58,12 @@
             [self getNextSongs];
         }
     } else {
-        [self jumpedToNextItem];
-        [self.audioPlayer advanceToNextItem];
-        
+        if (self.audioPlayer.items.count >= 2) {
+            [self jumpedToNextItem];
+            [self.audioPlayer advanceToNextItem];
+        } else {
+            [self jumpToItemAtIndex:0];
+        }
     }
 }
 
@@ -242,8 +245,11 @@
                     self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
                     [self jumpToItemAtIndex: _positionInPlaylist];
                 }
-            } else {
+            } else if (self.audioPlayer.items.count > 1) {
+                
                 self.positionInPlaylist++;
+            } else {
+                [self.audioPlayer pause];
             }
             [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
             if (self.positionInPlaylist == self.itemsToPlay.count-1) {

@@ -1,5 +1,5 @@
 //
-//  MouseOverImageView.h
+//  PlayPauseOverlayView.h
 //  SoundcloudPlayer
 //
 //  Created by Philip Brechler on 26.06.14.
@@ -8,8 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MouseOverImageView : NSImageView
+@interface PlayPauseOverlayView : NSView
 
 @property (nonatomic) NSInteger row;
-
 @end

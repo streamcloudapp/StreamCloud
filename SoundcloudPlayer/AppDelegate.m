@@ -106,6 +106,7 @@
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"MainColumn"]){
         TrackCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
+        [viewforRow setRow:row];
         [viewforRow.artworkView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
         BOOL useAvatar = YES;
         if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {

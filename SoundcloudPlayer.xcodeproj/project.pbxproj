@@ -72,6 +72,8 @@
 		FDE51B15195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
 		FDE51B18195C1F3A009B1F2D /* PlayPauseOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */; };
 		FDE51B19195C1F3A009B1F2D /* PlayPauseOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */; };
+		FDE51B20195C2F32009B1F2D /* ProgressSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B1F195C2F32009B1F2D /* ProgressSliderCell.m */; };
+		FDE51B21195C2F32009B1F2D /* ProgressSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B1F195C2F32009B1F2D /* ProgressSliderCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +174,8 @@
 		FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseOverImageView.m; sourceTree = "<group>"; };
 		FDE51B16195C1F3A009B1F2D /* PlayPauseOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayPauseOverlayView.h; sourceTree = "<group>"; };
 		FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayPauseOverlayView.m; sourceTree = "<group>"; };
+		FDE51B1E195C2F32009B1F2D /* ProgressSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressSliderCell.h; sourceTree = "<group>"; };
+		FDE51B1F195C2F32009B1F2D /* ProgressSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressSliderCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +257,8 @@
 				FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */,
 				FDE51B16195C1F3A009B1F2D /* PlayPauseOverlayView.h */,
 				FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */,
+				FDE51B1E195C2F32009B1F2D /* ProgressSliderCell.h */,
+				FDE51B1F195C2F32009B1F2D /* ProgressSliderCell.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 				FD3BED5A195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
 				FD8F6AED1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */,
 				FD8F6AF5195AE093004D4B61 /* VolumeButtonCell.m in Sources */,
+				FDE51B20195C2F32009B1F2D /* ProgressSliderCell.m in Sources */,
 				FD3BED5E1959883400B2D49A /* SeperatorView.m in Sources */,
 				FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD3BED501958389B00B2D49A /* PreviousButtonCell.m in Sources */,
@@ -558,6 +565,7 @@
 				FD3BED5B195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
 				FD3BED5619597B4300B2D49A /* TrackCellView.m in Sources */,
 				FD8F6AFA195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */,
+				FDE51B21195C2F32009B1F2D /* ProgressSliderCell.m in Sources */,
 				FD8F6AFE195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */,
 				FD7CD2BA1954396C002AC765 /* SoundcloudPlayerTests.m in Sources */,
 				FD3BED6519598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,

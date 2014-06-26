@@ -559,66 +559,66 @@ static NSGradient* _orangeGradient = nil;
     {
         //// Bezier 15 Drawing
         NSBezierPath* bezier15Path = NSBezierPath.bezierPath;
-        [bezier15Path moveToPoint: NSMakePoint(1.8, 5.66)];
-        [bezier15Path lineToPoint: NSMakePoint(2.2, 7.43)];
-        [bezier15Path lineToPoint: NSMakePoint(1.8, 9.27)];
-        [bezier15Path curveToPoint: NSMakePoint(1.57, 9.39) controlPoint1: NSMakePoint(1.8, 9.33) controlPoint2: NSMakePoint(1.69, 9.39)];
-        [bezier15Path curveToPoint: NSMakePoint(1.34, 9.27) controlPoint1: NSMakePoint(1.46, 9.39) controlPoint2: NSMakePoint(1.34, 9.33)];
-        [bezier15Path lineToPoint: NSMakePoint(1, 7.43)];
-        [bezier15Path lineToPoint: NSMakePoint(1.34, 5.66)];
-        [bezier15Path curveToPoint: NSMakePoint(1.57, 5.54) controlPoint1: NSMakePoint(1.34, 5.6) controlPoint2: NSMakePoint(1.46, 5.54)];
-        [bezier15Path curveToPoint: NSMakePoint(1.8, 5.66) controlPoint1: NSMakePoint(1.69, 5.6) controlPoint2: NSMakePoint(1.8, 5.6)];
+        [bezier15Path moveToPoint: NSMakePoint(3.7, 6.06)];
+        [bezier15Path lineToPoint: NSMakePoint(4.05, 7.67)];
+        [bezier15Path lineToPoint: NSMakePoint(3.7, 9.33)];
+        [bezier15Path curveToPoint: NSMakePoint(3.5, 9.44) controlPoint1: NSMakePoint(3.7, 9.39) controlPoint2: NSMakePoint(3.6, 9.44)];
+        [bezier15Path curveToPoint: NSMakePoint(3.3, 9.33) controlPoint1: NSMakePoint(3.4, 9.44) controlPoint2: NSMakePoint(3.3, 9.39)];
+        [bezier15Path lineToPoint: NSMakePoint(3, 7.67)];
+        [bezier15Path lineToPoint: NSMakePoint(3.3, 6.06)];
+        [bezier15Path curveToPoint: NSMakePoint(3.5, 5.94) controlPoint1: NSMakePoint(3.3, 6) controlPoint2: NSMakePoint(3.4, 5.94)];
+        [bezier15Path curveToPoint: NSMakePoint(3.7, 6.06) controlPoint1: NSMakePoint(3.6, 6) controlPoint2: NSMakePoint(3.7, 6)];
         [bezier15Path closePath];
-        [bezier15Path moveToPoint: NSMakePoint(4.15, 4.68)];
-        [bezier15Path lineToPoint: NSMakePoint(4.5, 7.37)];
-        [bezier15Path lineToPoint: NSMakePoint(4.15, 11.53)];
-        [bezier15Path curveToPoint: NSMakePoint(3.87, 11.71) controlPoint1: NSMakePoint(4.15, 11.65) controlPoint2: NSMakePoint(4.04, 11.71)];
-        [bezier15Path curveToPoint: NSMakePoint(3.58, 11.53) controlPoint1: NSMakePoint(3.7, 11.71) controlPoint2: NSMakePoint(3.58, 11.65)];
-        [bezier15Path lineToPoint: NSMakePoint(3.29, 7.37)];
-        [bezier15Path lineToPoint: NSMakePoint(3.58, 4.68)];
-        [bezier15Path curveToPoint: NSMakePoint(3.87, 4.5) controlPoint1: NSMakePoint(3.58, 4.56) controlPoint2: NSMakePoint(3.7, 4.5)];
-        [bezier15Path curveToPoint: NSMakePoint(4.15, 4.68) controlPoint1: NSMakePoint(4.04, 4.5) controlPoint2: NSMakePoint(4.15, 4.62)];
+        [bezier15Path moveToPoint: NSMakePoint(5.74, 5.17)];
+        [bezier15Path lineToPoint: NSMakePoint(6.04, 7.61)];
+        [bezier15Path lineToPoint: NSMakePoint(5.74, 11.39)];
+        [bezier15Path curveToPoint: NSMakePoint(5.49, 11.56) controlPoint1: NSMakePoint(5.74, 11.5) controlPoint2: NSMakePoint(5.64, 11.56)];
+        [bezier15Path curveToPoint: NSMakePoint(5.24, 11.39) controlPoint1: NSMakePoint(5.34, 11.56) controlPoint2: NSMakePoint(5.24, 11.5)];
+        [bezier15Path lineToPoint: NSMakePoint(5, 7.61)];
+        [bezier15Path lineToPoint: NSMakePoint(5.24, 5.17)];
+        [bezier15Path curveToPoint: NSMakePoint(5.49, 5) controlPoint1: NSMakePoint(5.24, 5.06) controlPoint2: NSMakePoint(5.34, 5)];
+        [bezier15Path curveToPoint: NSMakePoint(5.74, 5.17) controlPoint1: NSMakePoint(5.64, 5) controlPoint2: NSMakePoint(5.74, 5.11)];
         [bezier15Path closePath];
-        [bezier15Path moveToPoint: NSMakePoint(6.51, 4.74)];
-        [bezier15Path lineToPoint: NSMakePoint(6.79, 7.43)];
-        [bezier15Path lineToPoint: NSMakePoint(6.51, 12.99)];
-        [bezier15Path curveToPoint: NSMakePoint(6.16, 13.24) controlPoint1: NSMakePoint(6.51, 13.12) controlPoint2: NSMakePoint(6.33, 13.24)];
-        [bezier15Path curveToPoint: NSMakePoint(5.82, 12.99) controlPoint1: NSMakePoint(5.99, 13.24) controlPoint2: NSMakePoint(5.82, 13.12)];
-        [bezier15Path lineToPoint: NSMakePoint(5.59, 7.43)];
-        [bezier15Path lineToPoint: NSMakePoint(5.82, 4.74)];
-        [bezier15Path curveToPoint: NSMakePoint(6.16, 4.5) controlPoint1: NSMakePoint(5.82, 4.62) controlPoint2: NSMakePoint(5.99, 4.5)];
-        [bezier15Path curveToPoint: NSMakePoint(6.51, 4.74) controlPoint1: NSMakePoint(6.33, 4.5) controlPoint2: NSMakePoint(6.51, 4.62)];
+        [bezier15Path moveToPoint: NSMakePoint(7.79, 5.22)];
+        [bezier15Path lineToPoint: NSMakePoint(8.04, 7.67)];
+        [bezier15Path lineToPoint: NSMakePoint(7.79, 12.72)];
+        [bezier15Path curveToPoint: NSMakePoint(7.49, 12.94) controlPoint1: NSMakePoint(7.79, 12.83) controlPoint2: NSMakePoint(7.64, 12.94)];
+        [bezier15Path curveToPoint: NSMakePoint(7.19, 12.72) controlPoint1: NSMakePoint(7.34, 12.94) controlPoint2: NSMakePoint(7.19, 12.83)];
+        [bezier15Path lineToPoint: NSMakePoint(6.99, 7.67)];
+        [bezier15Path lineToPoint: NSMakePoint(7.19, 5.22)];
+        [bezier15Path curveToPoint: NSMakePoint(7.49, 5) controlPoint1: NSMakePoint(7.19, 5.11) controlPoint2: NSMakePoint(7.34, 5)];
+        [bezier15Path curveToPoint: NSMakePoint(7.79, 5.22) controlPoint1: NSMakePoint(7.64, 5) controlPoint2: NSMakePoint(7.79, 5.11)];
         [bezier15Path closePath];
-        [bezier15Path moveToPoint: NSMakePoint(8.86, 4.81)];
-        [bezier15Path lineToPoint: NSMakePoint(9.09, 7.43)];
-        [bezier15Path lineToPoint: NSMakePoint(8.86, 13.06)];
-        [bezier15Path curveToPoint: NSMakePoint(8.51, 13.36) controlPoint1: NSMakePoint(8.86, 13.24) controlPoint2: NSMakePoint(8.69, 13.36)];
-        [bezier15Path curveToPoint: NSMakePoint(8.17, 13.06) controlPoint1: NSMakePoint(8.28, 13.36) controlPoint2: NSMakePoint(8.17, 13.24)];
-        [bezier15Path lineToPoint: NSMakePoint(8, 7.43)];
-        [bezier15Path lineToPoint: NSMakePoint(8.17, 4.81)];
-        [bezier15Path curveToPoint: NSMakePoint(8.51, 4.5) controlPoint1: NSMakePoint(8.17, 4.62) controlPoint2: NSMakePoint(8.34, 4.5)];
-        [bezier15Path curveToPoint: NSMakePoint(8.86, 4.81) controlPoint1: NSMakePoint(8.69, 4.5) controlPoint2: NSMakePoint(8.86, 4.62)];
+        [bezier15Path moveToPoint: NSMakePoint(9.83, 5.28)];
+        [bezier15Path lineToPoint: NSMakePoint(10.03, 7.67)];
+        [bezier15Path lineToPoint: NSMakePoint(9.83, 12.78)];
+        [bezier15Path curveToPoint: NSMakePoint(9.53, 13.06) controlPoint1: NSMakePoint(9.83, 12.94) controlPoint2: NSMakePoint(9.68, 13.06)];
+        [bezier15Path curveToPoint: NSMakePoint(9.23, 12.78) controlPoint1: NSMakePoint(9.33, 13.06) controlPoint2: NSMakePoint(9.23, 12.94)];
+        [bezier15Path lineToPoint: NSMakePoint(9.08, 7.67)];
+        [bezier15Path lineToPoint: NSMakePoint(9.23, 5.28)];
+        [bezier15Path curveToPoint: NSMakePoint(9.53, 5) controlPoint1: NSMakePoint(9.23, 5.11) controlPoint2: NSMakePoint(9.38, 5)];
+        [bezier15Path curveToPoint: NSMakePoint(9.83, 5.28) controlPoint1: NSMakePoint(9.68, 5) controlPoint2: NSMakePoint(9.83, 5.11)];
         [bezier15Path closePath];
-        [bezier15Path moveToPoint: NSMakePoint(11.15, 4.81)];
-        [bezier15Path lineToPoint: NSMakePoint(11.32, 7.37)];
-        [bezier15Path lineToPoint: NSMakePoint(11.15, 13.79)];
-        [bezier15Path curveToPoint: NSMakePoint(10.75, 14.09) controlPoint1: NSMakePoint(11.15, 13.97) controlPoint2: NSMakePoint(10.98, 14.09)];
-        [bezier15Path curveToPoint: NSMakePoint(10.35, 13.79) controlPoint1: NSMakePoint(10.52, 14.09) controlPoint2: NSMakePoint(10.35, 13.97)];
-        [bezier15Path lineToPoint: NSMakePoint(10.18, 7.37)];
-        [bezier15Path lineToPoint: NSMakePoint(10.35, 4.81)];
-        [bezier15Path curveToPoint: NSMakePoint(10.75, 4.5) controlPoint1: NSMakePoint(10.35, 4.62) controlPoint2: NSMakePoint(10.52, 4.5)];
-        [bezier15Path curveToPoint: NSMakePoint(11.15, 4.81) controlPoint1: NSMakePoint(10.98, 4.5) controlPoint2: NSMakePoint(11.15, 4.62)];
+        [bezier15Path moveToPoint: NSMakePoint(11.83, 5.28)];
+        [bezier15Path lineToPoint: NSMakePoint(11.98, 7.61)];
+        [bezier15Path lineToPoint: NSMakePoint(11.83, 13.44)];
+        [bezier15Path curveToPoint: NSMakePoint(11.48, 13.72) controlPoint1: NSMakePoint(11.83, 13.61) controlPoint2: NSMakePoint(11.68, 13.72)];
+        [bezier15Path curveToPoint: NSMakePoint(11.13, 13.44) controlPoint1: NSMakePoint(11.28, 13.72) controlPoint2: NSMakePoint(11.13, 13.61)];
+        [bezier15Path lineToPoint: NSMakePoint(10.98, 7.61)];
+        [bezier15Path lineToPoint: NSMakePoint(11.13, 5.28)];
+        [bezier15Path curveToPoint: NSMakePoint(11.48, 5) controlPoint1: NSMakePoint(11.13, 5.11) controlPoint2: NSMakePoint(11.28, 5)];
+        [bezier15Path curveToPoint: NSMakePoint(11.83, 5.28) controlPoint1: NSMakePoint(11.68, 5) controlPoint2: NSMakePoint(11.83, 5.11)];
         [bezier15Path closePath];
-        [bezier15Path moveToPoint: NSMakePoint(12.82, 4.5)];
-        [bezier15Path curveToPoint: NSMakePoint(21.02, 4.5) controlPoint1: NSMakePoint(12.82, 4.5) controlPoint2: NSMakePoint(20.96, 4.5)];
-        [bezier15Path curveToPoint: NSMakePoint(24, 7.62) controlPoint1: NSMakePoint(22.62, 4.5) controlPoint2: NSMakePoint(24, 5.91)];
-        [bezier15Path curveToPoint: NSMakePoint(21.02, 10.73) controlPoint1: NSMakePoint(24, 9.33) controlPoint2: NSMakePoint(22.68, 10.73)];
-        [bezier15Path curveToPoint: NSMakePoint(19.87, 10.49) controlPoint1: NSMakePoint(20.62, 10.73) controlPoint2: NSMakePoint(20.21, 10.67)];
-        [bezier15Path curveToPoint: NSMakePoint(14.65, 15.5) controlPoint1: NSMakePoint(19.64, 13.3) controlPoint2: NSMakePoint(17.4, 15.5)];
-        [bezier15Path curveToPoint: NSMakePoint(12.76, 15.13) controlPoint1: NSMakePoint(13.96, 15.5) controlPoint2: NSMakePoint(13.33, 15.38)];
-        [bezier15Path curveToPoint: NSMakePoint(12.47, 14.77) controlPoint1: NSMakePoint(12.53, 15.07) controlPoint2: NSMakePoint(12.47, 14.95)];
-        [bezier15Path lineToPoint: NSMakePoint(12.47, 4.87)];
-        [bezier15Path curveToPoint: NSMakePoint(12.82, 4.5) controlPoint1: NSMakePoint(12.47, 4.68) controlPoint2: NSMakePoint(12.64, 4.5)];
+        [bezier15Path moveToPoint: NSMakePoint(13.27, 5)];
+        [bezier15Path curveToPoint: NSMakePoint(20.41, 5) controlPoint1: NSMakePoint(13.27, 5) controlPoint2: NSMakePoint(20.36, 5)];
+        [bezier15Path curveToPoint: NSMakePoint(23, 7.83) controlPoint1: NSMakePoint(21.8, 5) controlPoint2: NSMakePoint(23, 6.28)];
+        [bezier15Path curveToPoint: NSMakePoint(20.41, 10.67) controlPoint1: NSMakePoint(23, 9.39) controlPoint2: NSMakePoint(21.85, 10.67)];
+        [bezier15Path curveToPoint: NSMakePoint(19.41, 10.44) controlPoint1: NSMakePoint(20.06, 10.67) controlPoint2: NSMakePoint(19.71, 10.61)];
+        [bezier15Path curveToPoint: NSMakePoint(14.87, 15) controlPoint1: NSMakePoint(19.21, 13) controlPoint2: NSMakePoint(17.26, 15)];
+        [bezier15Path curveToPoint: NSMakePoint(13.22, 14.67) controlPoint1: NSMakePoint(14.27, 15) controlPoint2: NSMakePoint(13.72, 14.89)];
+        [bezier15Path curveToPoint: NSMakePoint(12.98, 14.33) controlPoint1: NSMakePoint(13.02, 14.61) controlPoint2: NSMakePoint(12.98, 14.5)];
+        [bezier15Path lineToPoint: NSMakePoint(12.98, 5.33)];
+        [bezier15Path curveToPoint: NSMakePoint(13.27, 5) controlPoint1: NSMakePoint(12.98, 5.17) controlPoint2: NSMakePoint(13.12, 5)];
         [bezier15Path closePath];
         [bezier15Path setMiterLimit: 4];
         [colorForStatusBarIcon setFill];
@@ -918,6 +918,44 @@ static NSGradient* _orangeGradient = nil;
     }
 }
 
++ (void)drawProgressSliderKnobWithFrame: (NSRect)frame;
+{
+    //// Color Declarations
+    NSColor* progressSliderKnobStrokeColor = [StreamCloudStyles.grayDark colorWithAlphaComponent: 0.33];
+    NSColor* progressSliderKnobColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
+
+    //// Oval Drawing
+    NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(NSMinX(frame) + 3.25, NSMinY(frame) + 2.75, NSWidth(frame) - 6.25, NSHeight(frame) - 5.25)];
+    [progressSliderKnobColor setFill];
+    [ovalPath fill];
+    [progressSliderKnobStrokeColor setStroke];
+    [ovalPath setLineWidth: 0.5];
+    [ovalPath stroke];
+}
+
++ (void)drawCanvas2;
+{
+}
+
++ (void)drawProgressSliderTrackWithFrame: (NSRect)frame;
+{
+    //// Color Declarations
+    NSColor* progressSliderTrackColor = StreamCloudStyles.grayDark;
+
+    //// Rectangle Drawing
+    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(NSMinX(frame), NSMinY(frame), NSWidth(frame), NSHeight(frame)) xRadius: 3 yRadius: 3];
+    [progressSliderTrackColor setFill];
+    [rectanglePath fill];
+}
+
++ (void)drawProgressSliderProgressWithFrame: (NSRect)frame;
+{
+
+    //// Rectangle Drawing
+    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(NSMinX(frame), NSMinY(frame) + 7, NSWidth(frame), NSHeight(frame) - 14) xRadius: 3 yRadius: 3];
+    [StreamCloudStyles.orangeGradient drawInBezierPath: rectanglePath angle: -90];
+}
+
 #pragma mark Generated Images
 
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;
@@ -972,7 +1010,7 @@ static NSGradient* _orangeGradient = nil;
 
 + (NSImage*)imageOfMenuBarIconWithActive: (BOOL)active;
 {
-    NSImage* imageOfMenuBarIcon = [NSImage.alloc initWithSize: NSMakeSize(25, 20)];
+    NSImage* imageOfMenuBarIcon = [NSImage.alloc initWithSize: NSMakeSize(26, 20)];
     [imageOfMenuBarIcon lockFocus];
     [StreamCloudStyles drawMenuBarIconWithActive: active];
     [imageOfMenuBarIcon unlockFocus];

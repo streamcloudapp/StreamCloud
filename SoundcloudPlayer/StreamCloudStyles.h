@@ -41,6 +41,10 @@
 + (void)drawLoginButtonWithFrame: (NSRect)frame;
 + (void)drawCanvas1;
 + (void)drawPlayPauseOverlayWithFrame: (NSRect)frame playing: (BOOL)playing;
++ (void)drawProgressSliderKnobWithFrame: (NSRect)frame;
++ (void)drawCanvas2;
++ (void)drawProgressSliderTrackWithFrame: (NSRect)frame;
++ (void)drawProgressSliderProgressWithFrame: (NSRect)frame;
 
 // Generated Images
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;

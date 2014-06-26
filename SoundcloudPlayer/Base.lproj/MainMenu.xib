@@ -321,7 +321,7 @@
                             <slider verticalHuggingPriority="750" id="b9W-DM-2Ce">
                                 <rect key="frame" x="158" y="14" width="117" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="M7S-Xp-lhR"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="M7S-Xp-lhR" customClass="ProgressSliderCell"/>
                                 <connections>
                                     <action selector="sliderUpdate:" target="Voe-Tx-rLC" id="kXV-rA-uDb"/>
                                 </connections>
@@ -384,7 +384,7 @@
                 <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
                     <rect key="frame" x="4" y="3" width="20" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" sliderType="linear" id="dMG-C9-CMS"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
                     <connections>
                         <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
                     </connections>

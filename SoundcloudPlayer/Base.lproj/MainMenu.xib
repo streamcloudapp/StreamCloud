@@ -368,6 +368,10 @@
                                     <action selector="repeatButtonAction:" target="Voe-Tx-rLC" id="uXb-b9-eFg"/>
                                 </connections>
                             </button>
+                            <customView id="Vz7-QP-5VS" customClass="SeperatorView">
+                                <rect key="frame" x="0.0" y="47" width="422" height="1"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </customView>
                         </subviews>
                     </customView>
                 </subviews>

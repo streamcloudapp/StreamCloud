@@ -172,6 +172,10 @@
                             <action selector="loginButtonAction:" target="Voe-Tx-rLC" id="mOF-Av-Hnz"/>
                         </connections>
                     </button>
+                    <customView id="Vz7-QP-5VS" customClass="SeperatorView">
+                        <rect key="frame" x="0.0" y="47" width="422" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    </customView>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="80" horizontalPageScroll="10" verticalLineScroll="80" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" id="2dY-Lj-jPa">
                         <rect key="frame" x="0.0" y="48" width="422" height="722"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -368,10 +372,6 @@
                                     <action selector="repeatButtonAction:" target="Voe-Tx-rLC" id="uXb-b9-eFg"/>
                                 </connections>
                             </button>
-                            <customView id="Vz7-QP-5VS" customClass="SeperatorView">
-                                <rect key="frame" x="0.0" y="47" width="422" height="1"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            </customView>
                         </subviews>
                     </customView>
                 </subviews>

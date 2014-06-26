@@ -318,7 +318,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <slider verticalHuggingPriority="750" id="b9W-DM-2Ce">
+                            <slider verticalHuggingPriority="750" id="b9W-DM-2Ce" customClass="ProgressSliderView">
                                 <rect key="frame" x="158" y="14" width="117" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="M7S-Xp-lhR" customClass="ProgressSliderCell"/>

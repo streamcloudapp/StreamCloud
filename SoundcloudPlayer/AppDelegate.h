@@ -9,11 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import "AXStatusItemPopup.h"
 #import "StatusBarPlayerViewController.h"
+#import "ProgressSliderView.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-@property (nonatomic, strong) IBOutlet NSSlider *playerTimeSlider;
+@property (nonatomic, strong) IBOutlet ProgressSliderView *playerTimeSlider;
 @property (nonatomic, strong) IBOutlet NSTextField *timeToGoLabel;
 @property (nonatomic, strong) IBOutlet NSTextField *timeGoneLabel;
 @property (nonatomic, strong) IBOutlet NSTableView *tableView;

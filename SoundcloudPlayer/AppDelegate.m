@@ -198,7 +198,8 @@
     //float timeToGo = durationOfItem - timeGone;
     [self.timeToGoLabel setStringValue:[self stringForSeconds:durationOfItem]];
     [self.timeGoneLabel setStringValue:[self stringForSeconds:timeGone]];
-    [self.playerTimeSlider setDoubleValue:(timeGone/durationOfItem)*100];
+    if (!self.playerTimeSlider.clicked)
+        [self.playerTimeSlider setDoubleValue:(timeGone/durationOfItem)*100];
 }
 
 - (void)updatePlayingItem {

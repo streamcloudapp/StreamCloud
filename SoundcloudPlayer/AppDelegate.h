@@ -24,4 +24,5 @@
 @property (nonatomic, strong) AXStatusItemPopup *statusItemPopup;
 @property (nonatomic, strong) StatusBarPlayerViewController *statusBarPlayerViewController;
 @property (nonatomic) BOOL atBottom;
+@property (nonatomic, strong) IBOutlet NSPanel *aboutPanel;
 @end

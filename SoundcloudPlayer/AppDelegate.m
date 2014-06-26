@@ -306,6 +306,10 @@
 - (IBAction)reloadMenuAction:(id)sender {
     [[SoundCloudAPIClient sharedClient] reloadTracks];
 }
+
+- (IBAction)showAboutMenuAction:(id)sender {
+    [self.aboutPanel makeKeyAndOrderFront:sender];
+}
 # pragma mark - Helpers
 
 - (NSString *)stringForSeconds:(NSUInteger)elapsedSeconds {

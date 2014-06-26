@@ -16,6 +16,7 @@
 #import "AppleMediaKeyController.h"
 #import "SoundCloudAPIClient.h"
 #import <HockeySDK/HockeySDK.h>
+#import "AFNetworking.h"
 
 @implementation AppDelegate
 
@@ -72,6 +73,25 @@
     }
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"749b642d520ae57bfe9101ce28da075c"];
     [[BITHockeyManager sharedHockeyManager] startManager];
+    
+    AFHTTPRequestOperationManager *betaRequest = [AFHTTPRequestOperationManager manager];
+    [betaRequest setResponseSerializer:[AFPropertyListResponseSerializer serializer]];
+    [betaRequest.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/xml"]];
+    [betaRequest GET:@"http://streamcloud.zutrinken.com/streamcloud_beta.plist" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Got object");
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([[responseObject objectForKey:@"beta_over"] boolValue]){
+                NSAlert *betaOverAlert = [[NSAlert alloc]init];
+                [betaOverAlert setMessageText:@"The BETA is over. Please get StreamCloud from the Mac AppStore"];
+                [betaOverAlert setAlertStyle:NSCriticalAlertStyle];
+                [betaOverAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
+                    exit(0);
+                }];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Could not get killswitch %@",error);
+    }];
 }
 
 

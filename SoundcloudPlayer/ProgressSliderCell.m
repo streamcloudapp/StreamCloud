@@ -7,6 +7,7 @@
 //
 
 #import "ProgressSliderCell.h"
+#import "ProgressSliderView.h"
 #import "StreamCloudStyles.h"
 @implementation ProgressSliderCell
 
@@ -31,6 +32,12 @@
         [StreamCloudStyles drawProgressSliderProgressWithFrame:NSIntegralRect(leftRect)];
     }
     [self drawKnob];
+}
+
+- (void)stopTracking:(NSPoint)lastPoint at:(NSPoint)stopPoint inView:(NSView *)controlView mouseIsUp:(BOOL)flag {
+    [super stopTracking:lastPoint at:stopPoint inView:controlView mouseIsUp:flag];
+    ProgressSliderView *parentView = (ProgressSliderView *)controlView;
+    [parentView setClicked:NO];
 }
 
 @end

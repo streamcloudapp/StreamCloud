@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
+        self.clicked = NO;
     }
     return self;
 }
@@ -27,13 +27,9 @@
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
-    [super mouseDown:theEvent];
     self.clicked = YES;
+    [super mouseDown:theEvent];
 }
 
-- (void)mouseUp:(NSEvent *)theEvent {
-    [super mouseUp:theEvent];
-    self.clicked = NO;
-}
 
 @end

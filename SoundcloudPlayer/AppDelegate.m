@@ -78,7 +78,6 @@
     [betaRequest setResponseSerializer:[AFPropertyListResponseSerializer serializer]];
     [betaRequest.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/xml"]];
     [betaRequest GET:@"http://streamcloud.zutrinken.com/streamcloud_beta.plist" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Got object");
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([[responseObject objectForKey:@"beta_over"] boolValue]){
                 NSAlert *betaOverAlert = [[NSAlert alloc]init];
@@ -90,7 +89,6 @@
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Could not get killswitch %@",error);
     }];
 }
 

@@ -65,7 +65,7 @@
     SCAccount *account = [SCSoundCloud account];
     
     [SCRequest performMethod:SCRequestMethodGET
-                  onResource:[NSURL URLWithString:@"https://api.soundcloud.com/me/activities/all"]
+                  onResource:[NSURL URLWithString:@"https://api.soundcloud.com/me/activities"]
              usingParameters:nil
                  withAccount:account
       sendingProgressHandler:nil

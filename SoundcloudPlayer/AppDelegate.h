@@ -11,7 +11,7 @@
 #import "StatusBarPlayerViewController.h"
 #import "ProgressSliderView.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate,NSWindowDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (nonatomic, strong) IBOutlet ProgressSliderView *playerTimeSlider;
@@ -25,4 +25,9 @@
 @property (nonatomic, strong) StatusBarPlayerViewController *statusBarPlayerViewController;
 @property (nonatomic) BOOL atBottom;
 @property (nonatomic, strong) IBOutlet NSPanel *aboutPanel;
+
+@property (nonatomic, strong) IBOutlet NSPanel *settingsPanel;
+@property (nonatomic, strong) IBOutlet NSTextField *lastFMUserNameField;
+@property (nonatomic, strong) IBOutlet NSTextField *lastFMPasswordField;
+@property (nonatomic, strong) IBOutlet NSButton *useLastFMButton;
 @end

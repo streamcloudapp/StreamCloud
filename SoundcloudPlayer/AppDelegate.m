@@ -17,6 +17,7 @@
 #import "SoundCloudAPIClient.h"
 #import <HockeySDK/HockeySDK.h>
 #import "AFNetworking.h"
+#import "LastFm.h"
 
 @implementation AppDelegate
 
@@ -114,6 +115,9 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error getting updates %@",error);
     }];
+    
+    [LastFm sharedInstance].apiKey = @"2473328884e701efe22e0491a9bbaeb6";
+    [LastFm sharedInstance].apiSecret = @"8c197f07a45e251288815154a1569978";
 }
 
 
@@ -282,6 +286,17 @@
     self.statusItemPopup = nil;
     self.statusBarPlayerViewController = nil;
 }
+
+# pragma mark - NSWindowDelegate
+
+- (void)windowWillClose:(NSNotification *)notification {
+    NSLog(@"Close");
+    [[NSUserDefaults standardUserDefaults] setInteger:self.useLastFMButton.state forKey:@"useLastFM"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.lastFMUserNameField.stringValue forKey:@"lastFMUserName"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.lastFMPasswordField.stringValue forKey:@"lastFMPassword"];
+    
+}
+
 # pragma mark - IBActions
 
 - (IBAction)playButtonAction:(id)sender {
@@ -342,6 +357,27 @@
 - (IBAction)showAboutMenuAction:(id)sender {
     [self.aboutPanel makeKeyAndOrderFront:sender];
 }
+
+- (IBAction)showSettingsMenuAction:(id)sender {
+    [self.settingsPanel makeKeyAndOrderFront:sender];
+    NSLog(@"Open");
+    [self.useLastFMButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"useLastFM"]];
+    [self.lastFMUserNameField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
+    [self.lastFMPasswordField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMPassword"]];
+}
+
+- (IBAction)connectLastFMButtonAction:(id)sender {
+    [[LastFm sharedInstance] getSessionForUser:self.lastFMUserNameField.stringValue password:self.lastFMPasswordField.stringValue successHandler:^(NSDictionary *result) {
+        NSLog(@"Got LastFM Session");
+        NSString *lastFMSessionKey = [result objectForKey:@"key"];
+        if (lastFMSessionKey){
+            [[NSUserDefaults standardUserDefaults] setObject:lastFMSessionKey forKey:@"lastFMSessionKey"];
+        }
+    } failureHandler:^(NSError *error) {
+        NSLog(@"No LastFM Session");
+    }];
+}
+
 # pragma mark - Helpers
 
 - (NSString *)stringForSeconds:(NSUInteger)elapsedSeconds {

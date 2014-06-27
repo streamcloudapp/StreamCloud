@@ -25,6 +25,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) NSInteger positionInPlaylist;
 @property (nonatomic, strong) NSString *nextStreamPartURL;
 @property (nonatomic) RepeatMode repeatMode;
+@property (nonatomic ,strong) NSMutableArray *scrobbledItems;
 
 + (SharedAudioPlayer *)sharedPlayer;
 - (void)insertItemsFromResponse:(NSDictionary *)response;

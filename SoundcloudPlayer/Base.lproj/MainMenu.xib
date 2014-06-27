@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
+        <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
@@ -14,11 +15,15 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="aboutPanel" destination="FdX-Zp-Xfx" id="m1G-v0-jNF"/>
+                <outlet property="lastFMPasswordField" destination="Nyt-27-x5C" id="a9d-IT-xZr"/>
+                <outlet property="lastFMUserNameField" destination="dld-TT-S2u" id="bdk-le-EJW"/>
                 <outlet property="playerTimeSlider" destination="b9W-DM-2Ce" id="4WN-hQ-iCb"/>
                 <outlet property="playerVolumeSlider" destination="cE3-R7-2CJ" id="yaq-av-08a"/>
+                <outlet property="settingsPanel" destination="jPL-6b-gCr" id="dl8-ga-HWM"/>
                 <outlet property="tableView" destination="sdz-JV-mui" id="242-40-xKD"/>
                 <outlet property="timeGoneLabel" destination="6dT-Qa-uCR" id="7yc-lF-zst"/>
                 <outlet property="timeToGoLabel" destination="Xzd-Aq-Y3F" id="xuE-vm-wjZ"/>
+                <outlet property="useLastFMButton" destination="xso-pQ-lsb" id="rul-DU-hno"/>
                 <outlet property="volumeButton" destination="1FD-nG-Ad2" id="vbs-vF-uAg"/>
                 <outlet property="volumePopover" destination="R2K-QH-3Ex" id="DhQ-xy-ScA"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -48,7 +53,11 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                <connections>
+                                    <action selector="showSettingsMenuAction:" target="Voe-Tx-rLC" id="u0j-Ra-iA6"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                             <menuItem title="Services" id="NMo-om-nkz">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -385,7 +394,7 @@
                 <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
                     <rect key="frame" x="4" y="3" width="20" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" sliderType="linear" id="dMG-C9-CMS"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
                     <connections>
                         <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
                     </connections>
@@ -493,6 +502,61 @@
                     </customView>
                 </subviews>
             </view>
+        </window>
+        <window title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="jPL-6b-gCr" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="272" y="172" width="324" height="162"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <view key="contentView" id="hEo-d1-laX">
+                <rect key="frame" x="0.0" y="0.0" width="324" height="162"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button id="xso-pQ-lsb">
+                        <rect key="frame" x="90" y="118" width="145" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Scrobble to Last.FM" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tjo-fC-7j4">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <textField verticalHuggingPriority="750" id="dld-TT-S2u">
+                        <rect key="frame" x="20" y="77" width="284" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Last.FM user" drawsBackground="YES" id="qXc-fQ-HSY">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <secureTextField verticalHuggingPriority="750" id="Nyt-27-x5C">
+                        <rect key="frame" x="20" y="38" width="284" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Last.FM Password" drawsBackground="YES" usesSingleLineMode="YES" id="f2x-ai-wys">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </secureTextFieldCell>
+                    </secureTextField>
+                    <button verticalHuggingPriority="750" id="knH-Km-mWZ">
+                        <rect key="frame" x="218" y="2" width="92" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pN0-tC-qXY">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="connectLastFMButtonAction:" target="Voe-Tx-rLC" id="l6e-Md-MrR"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="L3s-nt-I35"/>
+            </connections>
         </window>
     </objects>
     <resources>

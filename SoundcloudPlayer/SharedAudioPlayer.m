@@ -11,6 +11,7 @@
 #import "SoundCloudAPIClient.h"
 #define CLIENT_ID @"909c2edcdbd7b312b48a04a3f1e6b40c"
 #import "AFNetworking.h"
+#import "LastFm.h"
 
 @interface SharedAudioPlayer ()
 
@@ -26,6 +27,7 @@
         self.itemsToPlay = [NSMutableArray array];
         self.positionInPlaylist = 0;
         [self setRepeatMode:RepeatModeNone];
+        self.scrobbledItems = [NSMutableArray array];
 
     }
     return self;
@@ -259,6 +261,23 @@
         self.audioPlayerCallback = [self.audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1.0, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
             if (!isnan(CMTimeGetSeconds(time))) {
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedAudioPlayerUpdatedTimePlayed" object:[NSNumber numberWithFloat:CMTimeGetSeconds(time)]];
+                float seconds = CMTimeGetSeconds(time);
+                NSDictionary *currentItem = [[SharedAudioPlayer sharedPlayer] currentItem];
+                NSDictionary *originItem = [currentItem objectForKey:@"origin"];
+                NSNumber *duration = [originItem objectForKey:@"duration"];
+                BOOL doScrobble = [[NSUserDefaults standardUserDefaults] boolForKey:@"useLastFM"];
+                if ((seconds > 240 || seconds > (duration.floatValue/1000)*0.3) && ![[SharedAudioPlayer sharedPlayer].scrobbledItems containsObject:currentItem] && doScrobble) {
+                    NSLog(@"Scrobble!");
+                    [[LastFm sharedInstance] setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
+                    [[LastFm sharedInstance] setSession:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMSessionKey"]];
+                    NSDictionary *userDict = [originItem objectForKey:@"user"];
+                    [[LastFm sharedInstance] sendScrobbledTrack:[originItem objectForKey:@"title"] byArtist:[userDict objectForKey:@"username"] onAlbum:nil withDuration:duration.doubleValue/1000 atTimestamp:[[NSDate date] timeIntervalSince1970] successHandler:^(NSDictionary *result) {
+                        NSLog(@"Success %@",result);
+                    } failureHandler:^(NSError *error) {
+                        NSLog(@"Error scrobbling %@",error);
+                    }];
+                    [[SharedAudioPlayer sharedPlayer].scrobbledItems addObject:currentItem];
+                }
             }
         }];
 
@@ -312,6 +331,7 @@
 }
 
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
+    [self.scrobbledItems removeObject:self.currentItem];
     switch (self.repeatMode) {
         case RepeatModeTrack: {
             [self jumpToItemAtIndex:self.positionInPlaylist];

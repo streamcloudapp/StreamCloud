@@ -16,7 +16,7 @@ typedef enum : NSUInteger {
 
 @import AVFoundation;
 
-@interface SharedAudioPlayer : NSObject <AVAudioPlayerDelegate>
+@interface SharedAudioPlayer : NSObject <AVAudioPlayerDelegate, NSUserNotificationCenterDelegate>
 
 @property (nonatomic, strong) AVQueuePlayer *audioPlayer;
 @property (nonatomic, strong) NSMutableArray *itemsToPlay;

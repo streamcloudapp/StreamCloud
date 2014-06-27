@@ -10,6 +10,7 @@
 #import <math.h>
 #import "SoundCloudAPIClient.h"
 #define CLIENT_ID @"909c2edcdbd7b312b48a04a3f1e6b40c"
+#import "AFNetworking.h"
 
 @interface SharedAudioPlayer ()
 
@@ -47,6 +48,7 @@
     } else {
         [self.audioPlayer play];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+        [self postNotificationForCurrentItem];
     }
 }
 
@@ -64,6 +66,8 @@
         } else {
             [self jumpToItemAtIndex:0];
         }
+        if (self.audioPlayer.rate)
+            [self postNotificationForCurrentItem];
     }
 }
 
@@ -98,6 +102,9 @@
         [self.audioPlayer play];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+    if (start){
+        [self postNotificationForCurrentItem];
+    }
 }
 
 - (void)advanceToTime:(float)timeToGo {
@@ -159,6 +166,78 @@
     self.itemsToPlay = nil;
     self.shuffledItemsToPlay = [NSMutableArray array];
     self.itemsToPlay = [NSMutableArray array];
+}
+
+# pragma mark - Posting user notifications
+
+- (void)postNotificationForCurrentItem {
+    NSDictionary *currentItem = [self currentItem];
+    NSDictionary *originDict = [currentItem objectForKey:@"origin"];
+    NSDictionary *userDict = [originDict objectForKey:@"user"];
+    NSString *title = [originDict objectForKey:@"title"];
+    NSString *name = [userDict objectForKey:@"username"];
+    BOOL useAvatar = YES;
+    if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
+        if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
+                                                          isEqualToString:@"<null>"]){
+            useAvatar = NO;
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer = [AFImageResponseSerializer serializer];
+            [manager GET:[originDict objectForKey:@"artwork_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+                NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
+                [defaultCenter setDelegate:self];
+                [nowPlayingNotification setTitle:name];
+                [nowPlayingNotification setInformativeText:title];
+                [nowPlayingNotification setHasActionButton:NO];
+                if ([nowPlayingNotification respondsToSelector:@selector(setContentImage:)]) {
+                    [nowPlayingNotification setContentImage:responseObject];
+                }
+                [defaultCenter deliverNotification:nowPlayingNotification];
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+                NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
+                [defaultCenter setDelegate:self];
+                [nowPlayingNotification setTitle:name];
+                [nowPlayingNotification setInformativeText:title];
+                [nowPlayingNotification setHasActionButton:NO];
+                [defaultCenter deliverNotification:nowPlayingNotification];
+            }];
+        }
+    }
+    if ([[userDict objectForKey:@"avatar_url"] isKindOfClass:[NSString class]] && useAvatar) {
+        if ([userDict objectForKey:@"avatar_url"] && ![[userDict objectForKey:@"avatar_url"] isEqualToString:@"<null>"]){
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer = [AFImageResponseSerializer serializer];
+            [manager GET:[userDict objectForKey:@"avatar_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+                NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
+                [defaultCenter setDelegate:self];
+                [nowPlayingNotification setTitle:name];
+                [nowPlayingNotification setInformativeText:title];
+                [nowPlayingNotification setHasActionButton:NO];
+                if ([nowPlayingNotification respondsToSelector:@selector(setContentImage:)]) {
+                    [nowPlayingNotification setContentImage:responseObject];
+                }
+                [defaultCenter deliverNotification:nowPlayingNotification];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+                NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
+                [defaultCenter setDelegate:self];
+                [nowPlayingNotification setTitle:name];
+                [nowPlayingNotification setInformativeText:title];
+                [nowPlayingNotification setHasActionButton:NO];
+                [defaultCenter deliverNotification:nowPlayingNotification];
+            }];
+        }
+    }
+}
+
+# pragma mark - NSUserNotificationCenterDelegate
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
+    return YES;
 }
 
 # pragma mark - Inserting new items

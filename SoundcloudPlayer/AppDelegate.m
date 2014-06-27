@@ -60,14 +60,13 @@
     [center addObserver:self selector:@selector(nextButtonAction:) name:MediaKeyNextNotification object:nil];
     [center addObserver:self selector:@selector(previousButtonAction:) name:MediaKeyPreviousNotification object:nil];
     
-    // Status Item
-    self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
-    NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];;
-    NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
-    self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
-    
     if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
+        // Status Item
+        self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
+        NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];;
+        NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
+        self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
     } else {
         [self didFailToAuthenticate];
     }
@@ -111,6 +110,13 @@
     } else {
         [self.tableView.enclosingScrollView setHidden:NO];
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
+        if (!self.statusBarPlayerViewController){
+            // Status Item
+            self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
+            NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];;
+            NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
+            self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
+        }
     }
     
 }
@@ -247,6 +253,9 @@
 
 - (void)didFailToAuthenticate {
     [self.tableView.enclosingScrollView setHidden:YES];
+    [[NSStatusBar systemStatusBar] removeStatusItem:self.statusItemPopup.statusItem];
+    self.statusItemPopup = nil;
+    self.statusBarPlayerViewController = nil;
 }
 # pragma mark - IBActions
 

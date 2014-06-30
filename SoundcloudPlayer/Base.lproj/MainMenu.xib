@@ -15,6 +15,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="aboutPanel" destination="FdX-Zp-Xfx" id="m1G-v0-jNF"/>
+                <outlet property="lastFMConnectionStateField" destination="H6R-Kn-dHx" id="IRu-U4-Sur"/>
                 <outlet property="lastFMPasswordField" destination="Nyt-27-x5C" id="a9d-IT-xZr"/>
                 <outlet property="lastFMUserNameField" destination="dld-TT-S2u" id="bdk-le-EJW"/>
                 <outlet property="playerTimeSlider" destination="b9W-DM-2Ce" id="4WN-hQ-iCb"/>
@@ -394,7 +395,7 @@
                 <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
                     <rect key="frame" x="4" y="3" width="20" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" sliderType="linear" id="dMG-C9-CMS"/>
                     <connections>
                         <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
                     </connections>
@@ -513,45 +514,88 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="xso-pQ-lsb">
-                        <rect key="frame" x="90" y="118" width="145" height="26"/>
+                        <rect key="frame" x="95" y="18" width="158" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Scrobble to Last.FM" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tjo-fC-7j4">
+                        <buttonCell key="cell" type="check" title="deactivated" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tjo-fC-7j4">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="scrobbleStateSwitchAction:" target="Voe-Tx-rLC" id="hBE-P8-ShA"/>
+                        </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="dld-TT-S2u">
-                        <rect key="frame" x="20" y="77" width="284" height="22"/>
+                        <rect key="frame" x="97" y="87" width="207" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Last.FM user" drawsBackground="YES" id="qXc-fQ-HSY">
-                            <font key="font" metaFont="system"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="qXc-fQ-HSY">
+                            <font key="font" size="11" name="HelveticaNeue-Light"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <action selector="lastFMUserPasswordFieldAction:" target="Voe-Tx-rLC" id="31L-tF-m3V"/>
+                        </connections>
                     </textField>
                     <secureTextField verticalHuggingPriority="750" id="Nyt-27-x5C">
-                        <rect key="frame" x="20" y="38" width="284" height="22"/>
+                        <rect key="frame" x="97" y="55" width="207" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Last.FM Password" drawsBackground="YES" usesSingleLineMode="YES" id="f2x-ai-wys">
-                            <font key="font" metaFont="system"/>
+                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="f2x-ai-wys">
+                            <font key="font" size="13" name="HelveticaNeue-Light"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <allowedInputSourceLocales>
                                 <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                             </allowedInputSourceLocales>
                         </secureTextFieldCell>
-                    </secureTextField>
-                    <button verticalHuggingPriority="750" id="knH-Km-mWZ">
-                        <rect key="frame" x="218" y="2" width="92" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pN0-tC-qXY">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
                         <connections>
-                            <action selector="connectLastFMButtonAction:" target="Voe-Tx-rLC" id="l6e-Md-MrR"/>
+                            <action selector="lastFMUserPasswordFieldAction:" target="Voe-Tx-rLC" id="gg7-KM-YRb"/>
                         </connections>
-                    </button>
+                    </secureTextField>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="b5t-kK-dta">
+                        <rect key="frame" x="20" y="132" width="10" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon-lastfm" id="vHw-fT-vIv"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="H6R-Kn-dHx">
+                        <rect key="frame" x="201" y="129" width="105" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Not connected" id="Bkb-CL-vZW">
+                            <font key="font" size="10" name="HelveticaNeue-Light"/>
+                            <color key="textColor" red="0.58431375026702881" green="0.58431375026702881" blue="0.58431375026702881" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView id="5Lh-Xn-uTH" customClass="SeperatorView">
+                        <rect key="frame" x="20" y="125" width="284" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="lts-LJ-3xJ">
+                        <rect key="frame" x="18" y="89" width="81" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Username: " id="aBa-6c-VmT">
+                            <font key="font" size="14" name="HelveticaNeue-Light"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="w80-p4-Je3">
+                        <rect key="frame" x="19" y="57" width="81" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password:" id="w3J-ke-elS">
+                            <font key="font" size="14" name="HelveticaNeue-Light"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dJP-4Q-E5F">
+                        <rect key="frame" x="31" y="23" width="64" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Srobble:" id="czf-Ew-5Ed">
+                            <font key="font" size="14" name="HelveticaNeue-Light"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
@@ -562,6 +606,7 @@
     <resources>
         <image name="AppIcon" width="128" height="128"/>
         <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="icon-lastfm" width="10" height="10"/>
         <image name="plaetzchen" width="32" height="32"/>
         <image name="zutrinken" width="32" height="32"/>
     </resources>

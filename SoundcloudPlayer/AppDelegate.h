@@ -30,4 +30,5 @@
 @property (nonatomic, strong) IBOutlet NSTextField *lastFMUserNameField;
 @property (nonatomic, strong) IBOutlet NSTextField *lastFMPasswordField;
 @property (nonatomic, strong) IBOutlet NSButton *useLastFMButton;
+@property (nonatomic, strong) IBOutlet NSTextField *lastFMConnectionStateField;
 @end

@@ -24,6 +24,7 @@
 		FD3BED5F1959883400B2D49A /* SeperatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED5D1959883400B2D49A /* SeperatorView.m */; };
 		FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FD3BED6519598CBB00B2D49A /* AppleMediaKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */; };
+		FD4F678119618C8A008E8519 /* SoundcloudPlayer.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2DC19548A93002AC765 /* SoundcloudPlayer.entitlements */; };
 		FD7CD2901954396C002AC765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD28F1954396C002AC765 /* Cocoa.framework */; };
 		FD7CD29A1954396C002AC765 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2981954396C002AC765 /* InfoPlist.strings */; };
 		FD7CD29C1954396C002AC765 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7CD29B1954396C002AC765 /* main.m */; };
@@ -65,9 +66,6 @@
 		FD8F6AFA195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */; };
 		FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
 		FD8F6AFE195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
-		FD8F6B00195B5318004D4B61 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
-		FD8F6B01195B5318004D4B61 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
-		FD8F6B02195B531F004D4B61 /* HockeySDK.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */; };
 		FDE51B14195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
 		FDE51B15195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
 		FDE51B18195C1F3A009B1F2D /* PlayPauseOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */; };
@@ -97,7 +95,6 @@
 			files = (
 				FD8F6ADC195999B6004D4B61 /* SoundCloudAPI.framework in Copy Frameworks */,
 				FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */,
-				FD8F6B02195B531F004D4B61 /* HockeySDK.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,7 +168,6 @@
 		FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectButtonCell.m; sourceTree = "<group>"; };
 		FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBackgroundView.h; sourceTree = "<group>"; };
 		FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBackgroundView.m; sourceTree = "<group>"; };
-		FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseOverImageView.h; sourceTree = "<group>"; };
 		FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseOverImageView.m; sourceTree = "<group>"; };
 		FDE51B16195C1F3A009B1F2D /* PlayPauseOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayPauseOverlayView.h; sourceTree = "<group>"; };
@@ -197,7 +193,6 @@
 				FD7CD2D119543C35002AC765 /* QuartzCore.framework in Frameworks */,
 				FD7CD2901954396C002AC765 /* Cocoa.framework in Frameworks */,
 				FD8F6AD81959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */,
-				FD8F6B00195B5318004D4B61 /* HockeySDK.framework in Frameworks */,
 				BCD81D31C48D4057B89AA34E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,7 +204,6 @@
 				FD8F6ADB1959996D004D4B61 /* OAuth2Client.framework in Frameworks */,
 				FD8F6AD91959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */,
 				FD7CD2B01954396C002AC765 /* Cocoa.framework in Frameworks */,
-				FD8F6B01195B5318004D4B61 /* HockeySDK.framework in Frameworks */,
 				FD7CD2AF1954396C002AC765 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,7 +300,6 @@
 		FD7CD28E1954396C002AC765 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FD8F6AFF195B5318004D4B61 /* HockeySDK.framework */,
 				FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */,
 				FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */,
 				FD7CD2DA19543C55002AC765 /* CoreText.framework */,
@@ -474,6 +467,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD4F678119618C8A008E8519 /* SoundcloudPlayer.entitlements in Resources */,
 				FD7CD29A1954396C002AC765 /* InfoPlist.strings in Resources */,
 				FD7CD2A81954396C002AC765 /* Images.xcassets in Resources */,
 				FD7CD2A01954396C002AC765 /* Credits.rtf in Resources */,
@@ -662,7 +656,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -695,7 +689,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -706,6 +700,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SoundcloudPlayer/SoundcloudPlayer.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -722,8 +717,10 @@
 				);
 				INFOPLIST_FILE = "SoundcloudPlayer/SoundcloudPlayer-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B0FC00EB-49DC-4B51-83FB-25CEFA79784F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -734,6 +731,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SoundcloudPlayer/SoundcloudPlayer.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -750,8 +748,10 @@
 				);
 				INFOPLIST_FILE = "SoundcloudPlayer/SoundcloudPlayer-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "B0FC00EB-49DC-4B51-83FB-25CEFA79784F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

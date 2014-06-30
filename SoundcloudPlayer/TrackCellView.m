@@ -20,8 +20,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mouseOverImage:) name:@"MouseOverImageEntered" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mouseOutImage:) name:@"MouseOverImageExited" object:nil];
+
     }
     return self;
 }
@@ -40,18 +39,6 @@
     }
 }
 
-- (void)mouseOverImage:(NSNotification *)notification {
-    NSImageView *notificaitonView = [notification object];
-    if (notificaitonView == self.artworkView){
-        NSLog(@"I was hovered");
-    }
-}
 
-- (void)mouseOutImage:(NSNotification *)notification {
-    NSImageView *notificaitonView = [notification object];
-    if (notificaitonView == self.artworkView){
-        NSLog(@"I was exited");
-    }
-}
 
 @end

@@ -432,6 +432,10 @@
     [lastFMAlert runModal];
 }
 
+- (IBAction)sendMailFromHelpMenuAction:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:streamcloudreview@icloud.com"]];
+}
+
 # pragma mark - Helpers
 
 - (NSString *)stringForSeconds:(NSUInteger)elapsedSeconds {

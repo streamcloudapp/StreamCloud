@@ -63,11 +63,7 @@
     
     if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
-        // Status Item
-        self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
-        NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];;
-        NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
-        self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
+
     } else {
         [self didFailToAuthenticate];
     }
@@ -279,6 +275,11 @@
 
 - (void)didGetNewSongs:(NSNotification *)notification {
     [self.tableView reloadData];
+    // Status Item
+    self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
+    NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];;
+    NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
+    self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
 }
 
 - (void)didFailToAuthenticate {

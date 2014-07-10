@@ -80,12 +80,14 @@
                      if (!error){
                          if ([objectFromData isKindOfClass:[NSDictionary class]]) {
                              [[SharedAudioPlayer sharedPlayer]insertItemsFromResponse:objectFromData];
+                             
                          }
                          [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
                      }
                  }
              }];
 }
+
 
 - (void)getStreamSongsWithURL:(NSString *)url {
     SCAccount *account = [SCSoundCloud account];

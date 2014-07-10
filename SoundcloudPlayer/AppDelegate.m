@@ -125,6 +125,7 @@
     if (!flag){
         [self.window makeKeyAndOrderFront:self];
     }
+    [AppleMediaKeyController sharedController];
     return YES;
 }
 

@@ -301,6 +301,20 @@
     
 }
 
+# pragma mark - Hotkeys
+
+- (void)spaceBarPressed:(NSEvent *)event {
+    [self playButtonAction:nil];
+}
+
+- (void)leftKeyPressed:(NSEvent *)event {
+    [self previousButtonAction:nil];
+}
+
+- (void)rightKeyPressed:(NSEvent *)event {
+    [self nextButtonAction:nil];
+}
+
 # pragma mark - IBActions
 
 - (IBAction)playButtonAction:(id)sender {

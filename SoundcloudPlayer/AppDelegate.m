@@ -275,11 +275,13 @@
 
 - (void)didGetNewSongs:(NSNotification *)notification {
     [self.tableView reloadData];
-    // Status Item
-    self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
-    NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];;
-    NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
-    self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
+    if (!self.statusItemPopup){
+        // Status Item
+        self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
+        NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];;
+        NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
+        self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
+    }
 }
 
 - (void)didFailToAuthenticate {

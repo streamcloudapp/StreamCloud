@@ -55,7 +55,7 @@
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
     
     // MediaKeys
-    [AppleMediaKeyController sharedController];
+    [AppleMediaKeyController sharedController] ;
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(playButtonAction:) name:MediaKeyPlayPauseNotification object:nil];
     [center addObserver:self selector:@selector(nextButtonAction:) name:MediaKeyNextNotification object:nil];
@@ -121,7 +121,6 @@
     if (!flag){
         [self.window makeKeyAndOrderFront:self];
     }
-    [AppleMediaKeyController sharedController];
     return YES;
 }
 

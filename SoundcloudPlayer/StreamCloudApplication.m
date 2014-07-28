@@ -15,7 +15,6 @@
 	if ([event type] == NSKeyDown)
 	{
 		NSString *str = [event characters];
-        NSLog(@"Charecater 0 %hu",[str characterAtIndex:0]);
 		if([str characterAtIndex:0] == 0x20) // spacebar
 		{
 			[super sendAction:@selector(spaceBarPressed:) to:nil from:self];

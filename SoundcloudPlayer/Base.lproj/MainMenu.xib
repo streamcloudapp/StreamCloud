@@ -18,8 +18,11 @@
                 <outlet property="lastFMConnectionStateField" destination="H6R-Kn-dHx" id="IRu-U4-Sur"/>
                 <outlet property="lastFMPasswordField" destination="Nyt-27-x5C" id="a9d-IT-xZr"/>
                 <outlet property="lastFMUserNameField" destination="dld-TT-S2u" id="bdk-le-EJW"/>
+                <outlet property="nextShortcutView" destination="PDH-VL-SyJ" id="oL4-Xe-ZrD"/>
+                <outlet property="playPauseShortcutView" destination="wO7-UA-2JF" id="FcO-gr-pjL"/>
                 <outlet property="playerTimeSlider" destination="b9W-DM-2Ce" id="4WN-hQ-iCb"/>
                 <outlet property="playerVolumeSlider" destination="cE3-R7-2CJ" id="yaq-av-08a"/>
+                <outlet property="prevShortcutView" destination="xfO-U0-Hcw" id="6Pj-JX-cAu"/>
                 <outlet property="settingsPanel" destination="jPL-6b-gCr" id="dl8-ga-HWM"/>
                 <outlet property="tableView" destination="sdz-JV-mui" id="242-40-xKD"/>
                 <outlet property="timeGoneLabel" destination="6dT-Qa-uCR" id="7yc-lF-zst"/>
@@ -395,7 +398,7 @@
                 <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
                     <rect key="frame" x="4" y="3" width="20" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" sliderType="linear" id="dMG-C9-CMS"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
                     <connections>
                         <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
                     </connections>
@@ -507,10 +510,10 @@
         <window title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="jPL-6b-gCr" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="272" y="172" width="324" height="162"/>
+            <rect key="contentRect" x="272" y="172" width="324" height="250"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="hEo-d1-laX">
-                <rect key="frame" x="0.0" y="0.0" width="324" height="162"/>
+                <rect key="frame" x="0.0" y="0.0" width="324" height="250"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="xso-pQ-lsb">
@@ -578,6 +581,33 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="zak-7t-b7l">
+                        <rect key="frame" x="20" y="202" width="81" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Play/Pause" id="hc1-6o-p8W">
+                            <font key="font" size="14" name="HelveticaNeue-Light"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="d5i-n6-2FG">
+                        <rect key="frame" x="20" y="179" width="81" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Next" id="vTv-wl-pgU">
+                            <font key="font" size="14" name="HelveticaNeue-Light"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yq4-5Y-5Lj">
+                        <rect key="frame" x="20" y="155" width="81" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Previous" id="nei-62-XYK">
+                            <font key="font" size="14" name="HelveticaNeue-Light"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="w80-p4-Je3">
                         <rect key="frame" x="19" y="57" width="81" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -605,6 +635,31 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <customView id="htP-Lv-XJd" customClass="SeperatorView">
+                        <rect key="frame" x="21" y="226" width="284" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Hud-vQ-iHx">
+                        <rect key="frame" x="20" y="231" width="63" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Hotkeys" id="Y7h-rr-3vx">
+                            <font key="font" size="11" name="HelveticaNeue-Medium"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView id="wO7-UA-2JF" customClass="MASShortcutView">
+                        <rect key="frame" x="142" y="199" width="163" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                    <customView id="PDH-VL-SyJ" customClass="MASShortcutView">
+                        <rect key="frame" x="142" y="176" width="163" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                    <customView id="xfO-U0-Hcw" customClass="MASShortcutView">
+                        <rect key="frame" x="142" y="152" width="163" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
                 </subviews>
             </view>
             <connections>

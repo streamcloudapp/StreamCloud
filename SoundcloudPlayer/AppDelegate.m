@@ -13,11 +13,20 @@
 #import "StreamCloudStyles.h"
 #import "AFNetworking.h"
 #import "TrackCellView.h"
-#import "AppleMediaKeyController.h"
+//#import "AppleMediaKeyController.h"
 #import "SoundCloudAPIClient.h"
 //#import <HockeySDK/HockeySDK.h>
 #import "AFNetworking.h"
 #import "LastFm.h"
+#import "MASShortcutView.h"
+#import "MASShortcutView+UserDefaults.h"
+#import "MASShortcut+UserDefaults.h"
+#import "MASShortcut+Monitoring.h"
+
+NSString *const PlayPauseShortcutPreferenceKey = @"PlayPauseShortcut";
+NSString *const NextShortcutPreferenceKey = @"NextShortcut";
+NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
+
 
 @implementation AppDelegate
 
@@ -54,12 +63,35 @@
     
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
     
-    // MediaKeys
-    [AppleMediaKeyController sharedController] ;
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(playButtonAction:) name:MediaKeyPlayPauseNotification object:nil];
-    [center addObserver:self selector:@selector(nextButtonAction:) name:MediaKeyNextNotification object:nil];
-    [center addObserver:self selector:@selector(previousButtonAction:) name:MediaKeyPreviousNotification object:nil];
+//    // MediaKeys
+//    [AppleMediaKeyController sharedController] ;
+//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//    [center addObserver:self selector:@selector(playButtonAction:) name:MediaKeyPlayPauseNotification object:nil];
+//    [center addObserver:self selector:@selector(nextButtonAction:) name:MediaKeyNextNotification object:nil];
+//    [center addObserver:self selector:@selector(previousButtonAction:) name:MediaKeyPreviousNotification object:nil];
+    
+    //Global Shortcuts
+    
+    // Shortcut view will follow and modify user preferences automatically
+    self.playPauseShortcutView.associatedUserDefaultsKey = PlayPauseShortcutPreferenceKey;
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PlayPauseShortcutPreferenceKey handler:^{
+        [self playButtonAction:nil];
+    }];
+    
+    NSLog(@"playpause value %@",[[NSUserDefaults standardUserDefaults] stringForKey:PlayPauseShortcutPreferenceKey]);
+    
+    self.nextShortcutView.associatedUserDefaultsKey = NextShortcutPreferenceKey;
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:NextShortcutPreferenceKey handler:^{
+        [self nextButtonAction:nil];
+    }];
+    
+    self.prevShortcutView.associatedUserDefaultsKey = PreviousShortcutPreferenceKey;
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PreviousShortcutPreferenceKey handler:^{
+        [self previousButtonAction:nil];
+    }];
     
     if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];

@@ -12,6 +12,7 @@
 #define CLIENT_ID @"909c2edcdbd7b312b48a04a3f1e6b40c"
 #import "AFNetworking.h"
 #import "LastFm.h"
+#import <SoundCloudAPI/SCAPI.h>
 
 @interface SharedAudioPlayer ()
 
@@ -254,6 +255,9 @@
             if (itemToPlay){
                 [self.itemsToPlay addObject:dict];
                 [itemsToPlay addObject:itemToPlay];
+            } else {
+                NSInteger indexOfItem = [collectionItems indexOfObject:dict];
+                [self insertItemsForDict:dict atIndex:indexOfItem];
             }
         }
         self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
@@ -393,4 +397,58 @@
     }
     return nil;
 }
+
+# pragma mark - Getting tracks of playlists
+
+- (void)insertItemsForDict:(NSDictionary *)dict atIndex:(NSInteger)indexToInsertFrom {
+    
+    if ([dict[@"type"] isEqualToString:@"playlist"]){
+        
+        SCAccount *account = [SCSoundCloud account];
+        NSURL *trackURI = [NSURL URLWithString:dict[@"origin"][@"tracks_uri"]];
+        [SCRequest performMethod:SCRequestMethodGET
+                      onResource:trackURI
+                 usingParameters:nil
+                     withAccount:account
+          sendingProgressHandler:nil
+                 responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                     // Handle the response
+                     if (error) {
+                         NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
+                     } else {
+                         NSLog(@"Got playlist");
+                         NSError *error;
+                         id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                         if (!error){
+                             if ([objectFromData isKindOfClass:[NSArray class]]) {
+                                 int i = 1;
+                                 for (NSDictionary *trackDict in objectFromData) {
+                                     NSDictionary *containeredTrack = @{@"type":@"track",@"comingFrom":@"playlist",@"origin":trackDict};
+                                     AVPlayerItem *itemToAdd = [self itemForDict:containeredTrack];
+                                     AVPlayerItem *itemToAddAfter = [self.audioPlayer.items objectAtIndex:indexToInsertFrom+i];
+                                     if (itemToAddAfter){
+                                         if (itemToAdd) {
+                                             [self.audioPlayer insertItem:itemToAdd afterItem:itemToAddAfter];
+                                             [self.itemsToPlay insertObject:containeredTrack atIndex:indexToInsertFrom+i];
+                                             i++;
+                                         }
+                                     } else {
+                                         if (itemToAdd){
+                                             AVPlayerItem *firstItem = [self.audioPlayer.items firstObject];
+                                             [self.audioPlayer insertItem:itemToAdd afterItem:firstItem];
+                                             [self.audioPlayer removeItem:firstItem];
+                                             [self.audioPlayer insertItem:firstItem afterItem:itemToAdd];
+                                             [self.itemsToPlay insertObject:containeredTrack atIndex:0];
+                                             i++;
+                                         }
+                                     }
+                                 }
+                             }
+                         }
+                         [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+                     }
+                 }];
+    }
+}
+
 @end

@@ -545,24 +545,6 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 }
 
 - (IBAction)lastFMUserPasswordFieldAction:(id)sender {
-    [[LastFm sharedInstance] getSessionForUser:self.lastFMUserNameField.stringValue password:self.lastFMPasswordField.stringValue successHandler:^(NSDictionary *result) {
-        NSLog(@"Got LastFM Session");
-        NSString *lastFMSessionKey = [result objectForKey:@"key"];
-        if (lastFMSessionKey){
-            [[NSUserDefaults standardUserDefaults] setObject:lastFMSessionKey forKey:@"lastFMSessionKey"];
-            [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Connected", nil)];
-            [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Scrobbling", nil)];
-        } else {
-            [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Not connected", nil)];
-            [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Not Scrobbling", nil)];
-            [self showAlertForLastFMFailure];
-        }
-    } failureHandler:^(NSError *error) {
-        NSLog(@"No LastFM Session");
-        [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Not connected", nil)];
-        [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Not Scrobbling", nil)];
-        [self showAlertForLastFMFailure];
-    }];
 
 }
 

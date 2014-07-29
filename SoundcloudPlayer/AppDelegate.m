@@ -64,15 +64,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
     
-//    // MediaKeys
-//    [AppleMediaKeyController sharedController] ;
-//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//    [center addObserver:self selector:@selector(playButtonAction:) name:MediaKeyPlayPauseNotification object:nil];
-//    [center addObserver:self selector:@selector(nextButtonAction:) name:MediaKeyNextNotification object:nil];
-//    [center addObserver:self selector:@selector(previousButtonAction:) name:MediaKeyPreviousNotification object:nil];
     
     //Global Shortcuts
-    
     // Shortcut view will follow and modify user preferences automatically
     self.playPauseShortcutView.associatedUserDefaultsKey = PlayPauseShortcutPreferenceKey;
     
@@ -93,6 +86,19 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PreviousShortcutPreferenceKey handler:^{
         [self previousButtonAction:nil];
     }];
+    
+    //Notification for MagicKeys
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotifiedAboutMagicKeys"]) {
+        NSAlert *magicKeysAlert = [NSAlert alertWithMessageText:@"To enable support for meda keys you need to install the MagicKeys Preference Pane. Do you want to install it now?" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"MagicKeys enables you to send the events from the media keys of your keyboard and headphones to any supported application and enables you to control which application starts when the play button is pressed. If you don't want to install just configure other hotkeys in the settings"];
+        [magicKeysAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode == 1) {
+                [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.treasurebox.hu/magickeys.html"]];
+            }
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotifiedAboutMagicKeys"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }];
+    }
     
     if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];

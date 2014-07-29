@@ -68,6 +68,8 @@
 		FD8F6AFA195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */; };
 		FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
 		FD8F6AFE195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
+		FDD0374C1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
+		FDD0374D1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
 		FDE51B14195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
 		FDE51B15195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
 		FDE51B18195C1F3A009B1F2D /* PlayPauseOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */; };
@@ -172,6 +174,8 @@
 		FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectButtonCell.m; sourceTree = "<group>"; };
 		FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBackgroundView.h; sourceTree = "<group>"; };
 		FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBackgroundView.m; sourceTree = "<group>"; };
+		FDD0374A1986AFDD00043BDC /* TrackCellForPlaylistItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCellForPlaylistItemView.h; sourceTree = "<group>"; };
+		FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCellForPlaylistItemView.m; sourceTree = "<group>"; };
 		FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseOverImageView.h; sourceTree = "<group>"; };
 		FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseOverImageView.m; sourceTree = "<group>"; };
 		FDE51B16195C1F3A009B1F2D /* PlayPauseOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayPauseOverlayView.h; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 			children = (
 				FD3BED5319597B4300B2D49A /* TrackCellView.h */,
 				FD3BED5419597B4300B2D49A /* TrackCellView.m */,
+				FDD0374A1986AFDD00043BDC /* TrackCellForPlaylistItemView.h */,
+				FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */,
 			);
 			name = "Custom Table View Cell";
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				FD8F6AF5195AE093004D4B61 /* VolumeButtonCell.m in Sources */,
 				FDE51B20195C2F32009B1F2D /* ProgressSliderCell.m in Sources */,
 				FD3BED5E1959883400B2D49A /* SeperatorView.m in Sources */,
+				FDD0374C1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */,
 				FDE51B24195C3A7B009B1F2D /* ProgressSliderView.m in Sources */,
 				FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD3BED501958389B00B2D49A /* PreviousButtonCell.m in Sources */,
@@ -581,6 +588,7 @@
 				FD7CD2BA1954396C002AC765 /* SoundcloudPlayerTests.m in Sources */,
 				FD3BED6519598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
 				FD8F6AEE1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */,
+				FDD0374D1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */,
 				FDE51B25195C3A7B009B1F2D /* ProgressSliderView.m in Sources */,
 				FDE51B15195C18E5009B1F2D /* MouseOverImageView.m in Sources */,
 			);

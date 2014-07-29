@@ -100,12 +100,18 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         }];
     }
     
+    
     if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
 
     } else {
         [self didFailToAuthenticate];
     }
+    
+    
+    [LastFm sharedInstance].apiKey = @"2473328884e701efe22e0491a9bbaeb6";
+    [LastFm sharedInstance].apiSecret = @"8c197f07a45e251288815154a1569978";
+    
 //    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"749b642d520ae57bfe9101ce28da075c"];
 //    [[BITHockeyManager sharedHockeyManager] startManager];
 //    
@@ -151,10 +157,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 //        NSLog(@"Error getting updates %@",error);
 //    }];
 //    
-    [LastFm sharedInstance].apiKey = @"2473328884e701efe22e0491a9bbaeb6";
-    [LastFm sharedInstance].apiSecret = @"8c197f07a45e251288815154a1569978";
-}
 
+}
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
     if (!flag){

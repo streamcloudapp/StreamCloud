@@ -26,6 +26,8 @@
 		FD3BED5F1959883400B2D49A /* SeperatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED5D1959883400B2D49A /* SeperatorView.m */; };
 		FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FD3BED6519598CBB00B2D49A /* AppleMediaKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */; };
+		FD4F53051987F1CC00FD73A9 /* ClickableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4F53041987F1CC00FD73A9 /* ClickableTextField.m */; };
+		FD4F53061987F1CC00FD73A9 /* ClickableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4F53041987F1CC00FD73A9 /* ClickableTextField.m */; };
 		FD4F678119618C8A008E8519 /* SoundcloudPlayer.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2DC19548A93002AC765 /* SoundcloudPlayer.entitlements */; };
 		FD7CD2901954396C002AC765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD28F1954396C002AC765 /* Cocoa.framework */; };
 		FD7CD29A1954396C002AC765 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2981954396C002AC765 /* InfoPlist.strings */; };
@@ -127,6 +129,8 @@
 		FD3BED6119598C9700B2D49A /* singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
 		FD3BED6219598CBB00B2D49A /* AppleMediaKeyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleMediaKeyController.h; sourceTree = "<group>"; };
 		FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleMediaKeyController.m; sourceTree = "<group>"; };
+		FD4F53031987F1CC00FD73A9 /* ClickableTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickableTextField.h; sourceTree = "<group>"; };
+		FD4F53041987F1CC00FD73A9 /* ClickableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickableTextField.m; sourceTree = "<group>"; };
 		FD7CD28C1954396C002AC765 /* StreamCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StreamCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD7CD28F1954396C002AC765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FD7CD2921954396C002AC765 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -270,6 +274,8 @@
 				FDE51B1F195C2F32009B1F2D /* ProgressSliderCell.m */,
 				FDE51B22195C3A7B009B1F2D /* ProgressSliderView.h */,
 				FDE51B23195C3A7B009B1F2D /* ProgressSliderView.m */,
+				FD4F53031987F1CC00FD73A9 /* ClickableTextField.h */,
+				FD4F53041987F1CC00FD73A9 /* ClickableTextField.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD4F53051987F1CC00FD73A9 /* ClickableTextField.m in Sources */,
 				FD3BED4C1958387300B2D49A /* NextButtonCell.m in Sources */,
 				FD7CD2A31954396C002AC765 /* AppDelegate.m in Sources */,
 				FDE51B14195C18E5009B1F2D /* MouseOverImageView.m in Sources */,
@@ -580,6 +587,7 @@
 				FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD3BED5F1959883400B2D49A /* SeperatorView.m in Sources */,
 				FD3BED5B195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
+				FD4F53061987F1CC00FD73A9 /* ClickableTextField.m in Sources */,
 				FD3BED5619597B4300B2D49A /* TrackCellView.m in Sources */,
 				FD1606661976839A00A63A71 /* StreamCloudApplication.m in Sources */,
 				FD8F6AFA195B1FD6004D4B61 /* ConnectButtonCell.m in Sources */,

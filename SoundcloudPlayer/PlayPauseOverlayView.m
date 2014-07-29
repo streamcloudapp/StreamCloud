@@ -25,7 +25,7 @@
 {
     [super drawRect:dirtyRect];
     BOOL playing = NO;
-    if ([SharedAudioPlayer sharedPlayer].positionInPlaylist == self.row && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
+    if ([[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] indexOfObject:[[SharedAudioPlayer sharedPlayer] currentItem]] == self.row && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
         playing = YES;
     }
     [StreamCloudStyles drawPlayPauseOverlayWithFrame:self.frame playing:playing];

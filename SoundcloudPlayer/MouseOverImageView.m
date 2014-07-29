@@ -66,7 +66,7 @@
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
-    if (self.row == [SharedAudioPlayer sharedPlayer].positionInPlaylist)
+    if (self.row == [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] indexOfObject:[[SharedAudioPlayer sharedPlayer] currentItem]])
         [[SharedAudioPlayer sharedPlayer] togglePlayPause];
     else {
         NSInteger clickedRow = self.row;

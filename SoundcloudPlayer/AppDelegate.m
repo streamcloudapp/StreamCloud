@@ -237,6 +237,14 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
             } else {
                 [viewforRow markAsPlaying:NO];
             }
+            if ([[itemForRow objectForKey:@"type"] isEqualToString:@"playlist"]){
+                NSDictionary *currentObject = [SharedAudioPlayer sharedPlayer].currentItem;
+                if ([currentObject objectForKey:@"playlist_track_is_from"] == itemForRow &&  [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
+                    [viewforRow markAsPlaying:YES];
+                } else {
+                    [viewforRow markAsPlaying:NO];
+                }
+            }
             return viewforRow;
         } else {
             TrackCellForPlaylistItemView *viewforRow = [tableView makeViewWithIdentifier:@"PlayListItemCell" owner:self];
@@ -368,6 +376,18 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     TrackCellView *cellForRow = [self.tableView viewAtColumn:0 row:rowForItem makeIfNecessary:NO];
     if (cellForRow){
         [cellForRow markAsPlaying:YES];
+    }
+    if ([currentItem objectForKey:@"playlist_track_is_from"]) {
+        NSDictionary *fromPlaylistDict = [currentItem objectForKey:@"playlist_track_is_from"];
+        NSUInteger rowForPlaylist = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView indexOfObject:fromPlaylistDict];
+        NSLog(@"Marking playlist row %lu",(unsigned long)rowForPlaylist);
+        NSTableRowView *playlistRowView = [self.tableView rowViewAtRow:rowForPlaylist makeIfNecessary:NO];
+        [playlistRowView setBackgroundColor:[StreamCloudStyles grayLight]];
+        TrackCellView *cellForPlaylistRow = [self.tableView viewAtColumn:0 row:rowForPlaylist makeIfNecessary:NO];
+        if (cellForPlaylistRow){
+            [cellForPlaylistRow markAsPlaying:YES];
+        }
+
     }
     [self.tableView scrollRowToVisible:rowForItem];
 }

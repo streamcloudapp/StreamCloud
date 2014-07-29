@@ -17,7 +17,7 @@
 @interface SharedAudioPlayer ()
 
 @property (nonatomic) id audioPlayerCallback;
-
+@property (nonatomic, strong) NSMutableArray *playlistsToLoad;
 @end
 
 @implementation SharedAudioPlayer
@@ -248,6 +248,8 @@
 
 - (void)insertItemsFromResponse:(NSDictionary *)response {
     NSArray *collectionItems = [response objectForKey:@"collection"];
+    self.playlistsToLoad = nil;
+    self.playlistsToLoad = [NSMutableArray array];
     self.nextStreamPartURL = [response objectForKey:@"next_href"];
     if (!_audioPlayer){
         NSMutableArray *itemsToPlay = [NSMutableArray array];
@@ -258,8 +260,12 @@
                 [self.itemsToShowInTableView addObject:dict];
                 [itemsToPlay addObject:itemToPlay];
             } else {
-                NSInteger indexOfItem = [collectionItems indexOfObject:dict];
-                [self insertItemsForDict:dict atIndex:indexOfItem];
+                NSDictionary *objectToInjectAfter = [self.itemsToPlay lastObject];
+                if (objectToInjectAfter) {
+                    [_playlistsToLoad addObject:@{@"playlist":dict,@"afterObject":objectToInjectAfter}];
+                } else {
+                    [_playlistsToLoad addObject:@{@"playlist":dict}];
+                }
             }
         }
         self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
@@ -296,13 +302,17 @@
                 [self.itemsToShowInTableView addObject:dict];
                 [self.audioPlayer insertItem:itemToPlay afterItem:nil];
             } else {
-                NSInteger indexOfItem = [collectionItems indexOfObject:dict];
-                [self insertItemsForDict:dict atIndex:indexOfItem];
-            }
+                NSDictionary *objectToInjectAfter = [self.itemsToPlay lastObject];
+                if (objectToInjectAfter) {
+                    [_playlistsToLoad addObject:@{@"playlist":dict,@"afterObject":objectToInjectAfter}];
+                } else {
+                    [_playlistsToLoad addObject:@{@"playlist":dict}];
+                }            }
         }
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
+    [self loadPlaylistsFromArray:_playlistsToLoad];
 }
 
 # pragma mark - KVO
@@ -406,58 +416,78 @@
 
 # pragma mark - Getting tracks of playlists
 
-- (void)insertItemsForDict:(NSDictionary *)dict atIndex:(NSInteger)indexToInsertFrom {
+- (void)loadPlaylistsFromArray:(NSArray *)playlists{
     
-    if ([dict[@"type"] isEqualToString:@"playlist"]){
-        
-        
-        SCAccount *account = [SCSoundCloud account];
-        NSURL *trackURI = [NSURL URLWithString:dict[@"origin"][@"tracks_uri"]];
-        [SCRequest performMethod:SCRequestMethodGET
-                      onResource:trackURI
-                 usingParameters:nil
-                     withAccount:account
-          sendingProgressHandler:nil
-                 responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-                     // Handle the response
-                     if (error) {
-                         NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
-                     } else {
-                         NSLog(@"Got playlist");
-                         NSError *error;
-                         id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                         if (!error){
-                             if ([objectFromData isKindOfClass:[NSArray class]]) {
-                                 [self.itemsToShowInTableView insertObject:dict atIndex:indexToInsertFrom];
-                                 int i = 0;
-                                 for (NSDictionary *trackDict in objectFromData) {
-                                     NSDictionary *containeredTrack = @{@"type":@"track",@"playlist_track_is_from":dict,@"origin":trackDict};
-                                     AVPlayerItem *itemToAdd = [self itemForDict:containeredTrack];
-                                     AVPlayerItem *itemToAddAfter = [self.audioPlayer.items objectAtIndex:indexToInsertFrom+i];
-                                     if (itemToAddAfter){
-                                         if (itemToAdd) {
-                                             [self.audioPlayer insertItem:itemToAdd afterItem:itemToAddAfter];
-                                             [self.itemsToPlay insertObject:containeredTrack atIndex:indexToInsertFrom+i];
-                                             [self.itemsToShowInTableView insertObject:containeredTrack atIndex:indexToInsertFrom+i+1];
-                                             i++;
-                                         }
+    for (NSDictionary *playlistContainerDict in playlists) {
+        NSDictionary *playlistDict = [playlistContainerDict objectForKey:@"playlist"];
+        NSDictionary *objectToInsertAfter = [playlistContainerDict objectForKey:@"afterObject"];
+        if ([playlistDict[@"type"] isEqualToString:@"playlist"]){
+            SCAccount *account = [SCSoundCloud account];
+            NSURL *trackURI = [NSURL URLWithString:playlistDict[@"origin"][@"tracks_uri"]];
+            [SCRequest performMethod:SCRequestMethodGET
+                          onResource:trackURI
+                     usingParameters:nil
+                         withAccount:account
+              sendingProgressHandler:nil
+                     responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                         // Handle the response
+                         if (error) {
+                             NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
+                         } else {
+                             NSLog(@"Got playlist");
+                             NSError *error;
+                             id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                             if (!error){
+                                 if ([objectFromData isKindOfClass:[NSArray class]]) {
+                                     if (!objectToInsertAfter){
+                                         [self.itemsToShowInTableView insertObject:playlistDict atIndex:0];
                                      } else {
-                                         if (itemToAdd){
-                                             AVPlayerItem *firstItem = [self.audioPlayer.items firstObject];
-                                             [self.audioPlayer insertItem:itemToAdd afterItem:firstItem];
-                                             [self.audioPlayer removeItem:firstItem];
-                                             [self.audioPlayer insertItem:firstItem afterItem:itemToAdd];
-                                             [self.itemsToPlay insertObject:containeredTrack atIndex:0];
-                                             [self.itemsToShowInTableView insertObject:containeredTrack atIndex:0];
-                                             i++;
-                                         }
+                                         [self.itemsToShowInTableView insertObject:playlistDict atIndex:[self.itemsToShowInTableView indexOfObject:objectToInsertAfter]+1];
                                      }
+                                     NSMutableArray *playlistCache = [NSMutableArray array];
+                                     for (NSDictionary *trackDict in objectFromData) {
+                                         NSDictionary *containeredTrack = @{@"type":@"track",@"playlist_track_is_from":playlistDict,@"origin":trackDict};
+                                         [playlistCache addObject:containeredTrack];
+                                     }
+                                     if (!objectToInsertAfter){
+                                         [self.itemsToPlay insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, playlistCache.count)]];
+                                         [self.itemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, playlistCache.count)]];
+                                     } else {
+                                         [self.itemsToPlay insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.itemsToPlay indexOfObject:objectToInsertAfter]+1, playlistCache.count)]];
+                                         [self.itemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.itemsToShowInTableView indexOfObject:objectToInsertAfter]+2, playlistCache.count)]];
+                                     }
+                                     if (self.playlistsToLoad.count == 1) {
+                                         [self rebuildAudioPlayList];
+                                     }
+                                     [self.playlistsToLoad removeObject:playlistContainerDict];
                                  }
                              }
                          }
-                         [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
-                     }
-                 }];
+                     }];
+        }
+    }
+}
+
+- (void)rebuildAudioPlayList {
+    
+    if (!self.audioPlayer.rate){
+        [self.audioPlayer removeAllItems];
+        
+        for (NSDictionary *item in self.itemsToPlay){
+            [self.audioPlayer insertItem:[self itemForDict:item] afterItem:nil];
+        }
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
+        [self setShuffleEnabled:_shuffleEnabled];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+    } else {
+        for (int i = 1; i < self.audioPlayer.items.count; i++){
+            [self.audioPlayer removeItem:[self.audioPlayer.items objectAtIndex:i]];
+        }
+        for (NSInteger i = self.positionInPlaylist+1; i < self.itemsToPlay.count; i++) {
+            NSDictionary *dictToInsert = [self.itemsToPlay objectAtIndex:i];
+            [self.audioPlayer insertItem:[self itemForDict:dictToInsert] afterItem:nil];
+        }
     }
 }
 

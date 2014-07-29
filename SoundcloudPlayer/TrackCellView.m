@@ -39,6 +39,15 @@
     }
 }
 
+- (void)mouseDown:(NSEvent *)theEvent {
+    NSPoint selfPoint = [self convertPoint:theEvent.locationInWindow fromView:nil];
+    if (CGRectContainsPoint(self.artistLabel.frame, selfPoint)) {
+        [self.artistLabel mouseDown:theEvent];
+    }
+    if (CGRectContainsPoint(self.titleLabel.frame, selfPoint)) {
+        [self.titleLabel mouseDown:theEvent];
+    }
+}
 
 
 @end

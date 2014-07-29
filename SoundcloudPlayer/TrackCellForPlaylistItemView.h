@@ -8,12 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MouseOverImageView.h"
-
+#import "ClickableTextField.h"
 @interface TrackCellForPlaylistItemView : NSTableCellView
 
-@property (nonatomic, strong) IBOutlet NSTextField *titleLabel;
+@property (nonatomic, strong) IBOutlet ClickableTextField *titleLabel;
 @property (nonatomic, strong) IBOutlet MouseOverImageView *artworkView;
-@property (nonatomic, strong) IBOutlet NSTextField *artistLabel;
+@property (nonatomic, strong) IBOutlet ClickableTextField *artistLabel;
 @property (nonatomic, strong) IBOutlet NSTextField *durationLabel;
 @property (nonatomic ,strong) IBOutlet NSButton *pausePlayButton;
 @property (nonatomic, strong) IBOutlet NSView *playingIndicatiorView;

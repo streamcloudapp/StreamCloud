@@ -64,7 +64,6 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
     
-    
     //Global Shortcuts
     // Shortcut view will follow and modify user preferences automatically
     self.playPauseShortcutView.associatedUserDefaultsKey = PlayPauseShortcutPreferenceKey;
@@ -189,7 +188,6 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     
 }
 
-
 # pragma mark - NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -232,7 +230,10 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 }
             }
             [viewforRow.titleLabel setStringValue:[originDict objectForKey:@"title"]];
+
             [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
+            [viewforRow.artistLabel setUrlToOpen:[userDict objectForKey:@"permalink_url"]];
+            [viewforRow.artistLabel sizeToFit];
             [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
             
             
@@ -286,6 +287,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
             }
             [viewforRow.titleLabel setStringValue:[originDict objectForKey:@"title"]];
             [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
+            [viewforRow.artistLabel setUrlToOpen:[userDict objectForKey:@"permalink_url"]];
+            [viewforRow.artistLabel sizeToFit];
             [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
 
             if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {

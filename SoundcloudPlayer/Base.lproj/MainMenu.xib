@@ -202,7 +202,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="422" height="722"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" rowSizeStyle="automatic" viewBased="YES" id="sdz-JV-mui">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" rowSizeStyle="automatic" viewBased="YES" id="sdz-JV-mui" customClass="ClickableTableView">
                                     <rect key="frame" x="0.0" y="0.0" width="422" height="722"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -230,7 +230,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="cIG-lQ-HQc"/>
                                                         </imageView>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="gip-Wf-m62">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="gip-Wf-m62" customClass="ClickableTextField">
                                                             <rect key="frame" x="75" y="16" width="256" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="8wC-yb-ais">
@@ -239,8 +239,8 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="nbg-iy-TSn">
-                                                            <rect key="frame" x="75" y="37" width="256" height="25"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="nbg-iy-TSn" customClass="ClickableTextField">
+                                                            <rect key="frame" x="75" y="40" width="256" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yb8-Yg-u1b">
                                                                 <font key="font" size="12" name="HelveticaNeue-Medium"/>
@@ -284,8 +284,8 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="JD2-xR-dKT"/>
                                                         </imageView>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="1LZ-0q-rBi">
-                                                            <rect key="frame" x="79" y="0.0" width="256" height="21"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="1LZ-0q-rBi" customClass="ClickableTextField">
+                                                            <rect key="frame" x="79" y="2" width="256" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="HWo-6i-QtQ">
                                                                 <font key="font" size="12" name="HelveticaNeue-Light"/>
@@ -293,8 +293,8 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Hb2-H8-PY1">
-                                                            <rect key="frame" x="79" y="12" width="256" height="25"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Hb2-H8-PY1" customClass="ClickableTextField">
+                                                            <rect key="frame" x="79" y="18" width="256" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="JQG-MG-epu">
                                                                 <font key="font" size="12" name="HelveticaNeue-Medium"/>

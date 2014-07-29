@@ -571,8 +571,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [lastFMAlert runModal];
 }
 
-- (IBAction)sendMailFromHelpMenuAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:streamcloudreview@icloud.com"]];
+- (IBAction)openWebsiteFromHelpMenuAction:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.streamcloud.cc"]];
 }
 
 # pragma mark - Helpers

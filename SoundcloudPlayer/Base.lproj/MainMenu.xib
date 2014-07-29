@@ -148,7 +148,7 @@
                         <items>
                             <menuItem title="StreamCloud Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                 <connections>
-                                    <action selector="sendMailFromHelpMenuAction:" target="Voe-Tx-rLC" id="zhF-el-Vfx"/>
+                                    <action selector="openWebsiteFromHelpMenuAction:" target="Voe-Tx-rLC" id="e9C-SF-NET"/>
                                 </connections>
                             </menuItem>
                         </items>

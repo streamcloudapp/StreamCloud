@@ -365,7 +365,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="xYy-p5-p6J">
-                                <rect key="frame" x="43" y="8" width="32" height="32"/>
+                                <rect key="frame" x="44" y="8" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DGK-dm-QjQ" customClass="PlayPauseButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -376,7 +376,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="hB1-4q-nEh">
-                                <rect key="frame" x="91" y="16" width="16" height="16"/>
+                                <rect key="frame" x="90" y="16" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H1R-Ap-6Db" customClass="NextButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -387,10 +387,10 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6dT-Qa-uCR">
-                                <rect key="frame" x="107" y="15" width="47" height="17"/>
+                                <rect key="frame" x="107" y="15" width="48" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="00:00" id="o2X-P7-wd7">
-                                    <font key="font" size="11" name="HelveticaNeue"/>
+                                    <font key="font" size="12" name="Avenir-Medium"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -404,16 +404,16 @@
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Xzd-Aq-Y3F">
-                                <rect key="frame" x="279" y="15" width="48" height="17"/>
+                                <rect key="frame" x="279" y="15" width="48" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="00:00" id="vJC-q7-cOG">
-                                    <font key="font" size="11" name="HelveticaNeue"/>
+                                    <font key="font" size="12" name="Avenir-Medium"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button id="X0h-rx-lLU">
-                                <rect key="frame" x="360" y="17" width="16" height="14"/>
+                                <rect key="frame" x="360" y="18" width="16" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4cg-yd-hLI" customClass="ShuffleButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -424,7 +424,7 @@
                                 </connections>
                             </button>
                             <button id="1FD-nG-Ad2">
-                                <rect key="frame" x="327" y="17" width="16" height="14"/>
+                                <rect key="frame" x="327" y="18" width="16" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3q2-k7-j70" customClass="VolumeButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -435,7 +435,7 @@
                                 </connections>
                             </button>
                             <button id="ovx-QB-42m">
-                                <rect key="frame" x="393" y="17" width="16" height="14"/>
+                                <rect key="frame" x="393" y="18" width="16" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcm-P4-Amv" customClass="RepeatButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

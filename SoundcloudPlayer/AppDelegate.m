@@ -572,7 +572,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 }
 
 - (IBAction)openWebsiteFromHelpMenuAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.streamcloud.cc"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://streamcloud.cc"]];
 }
 
 # pragma mark - Helpers

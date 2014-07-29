@@ -68,8 +68,16 @@
 - (void)mouseDown:(NSEvent *)theEvent {
     if (self.row == [SharedAudioPlayer sharedPlayer].positionInPlaylist)
         [[SharedAudioPlayer sharedPlayer] togglePlayPause];
-    else
-        [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:self.row];
+    else {
+        NSInteger clickedRow = self.row;
+        NSDictionary *clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow];
+        if ([[clickedDict objectForKey:@"type"] isEqualToString:@"playlist"]){
+            clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow+1];
+        }
+        
+        NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
+        [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
+    }
     [self.playPauseOverlayView setNeedsDisplay:YES];
 }
 

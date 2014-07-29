@@ -275,6 +275,60 @@
                                                         <outlet property="titleLabel" destination="gip-Wf-m62" id="7sV-2t-ZzS"/>
                                                     </connections>
                                                 </tableCellView>
+                                                <tableCellView identifier="PlayListItemCell" id="r6D-5R-vSn" customClass="TrackCellForPlaylistItemView">
+                                                    <rect key="frame" x="0.0" y="80" width="422" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="BTd-g8-4GL" customClass="MouseOverImageView">
+                                                            <rect key="frame" x="37" y="9" width="22" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="JD2-xR-dKT"/>
+                                                        </imageView>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="1LZ-0q-rBi">
+                                                            <rect key="frame" x="79" y="0.0" width="256" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="HWo-6i-QtQ">
+                                                                <font key="font" size="14" name="HelveticaNeue-Light"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Hb2-H8-PY1">
+                                                            <rect key="frame" x="79" y="12" width="256" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="JQG-MG-epu">
+                                                                <font key="font" size="12" name="HelveticaNeue-Medium"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <customView canDrawConcurrently="YES" id="08p-Ru-9eG" customClass="PlayingIndicatorView">
+                                                            <rect key="frame" x="411" y="0.0" width="12" height="41"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                                        </customView>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="VRK-0p-oNO">
+                                                            <rect key="frame" x="335" y="23" width="70" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="00:00:00" id="lqe-a1-cJp">
+                                                                <font key="font" size="12" name="HelveticaNeue"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <customView id="hFQ-Xq-lkN" customClass="SeperatorView">
+                                                            <rect key="frame" x="72" y="0.0" width="351" height="1"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                        </customView>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="artistLabel" destination="Hb2-H8-PY1" id="hSd-xR-aj3"/>
+                                                        <outlet property="artworkView" destination="BTd-g8-4GL" id="Cuf-H3-nDM"/>
+                                                        <outlet property="durationLabel" destination="VRK-0p-oNO" id="M9y-oh-KY1"/>
+                                                        <outlet property="playingIndicatiorView" destination="08p-Ru-9eG" id="HY1-jB-jzx"/>
+                                                        <outlet property="seperatorView" destination="hFQ-Xq-lkN" id="OKo-SO-t3i"/>
+                                                        <outlet property="titleLabel" destination="1LZ-0q-rBi" id="leu-wN-vGH"/>
+                                                    </connections>
+                                                </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>

@@ -20,6 +20,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) AVQueuePlayer *audioPlayer;
 @property (nonatomic, strong) NSMutableArray *itemsToPlay;
+@property (nonatomic, strong) NSMutableArray *itemsToShowInTableView;
 @property (nonatomic, strong) NSMutableArray *shuffledItemsToPlay;
 @property (nonatomic) BOOL shuffleEnabled;
 @property (nonatomic) NSInteger positionInPlaylist;

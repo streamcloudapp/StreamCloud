@@ -26,6 +26,7 @@
     self = [super init];
     if (self){
         self.itemsToPlay = [NSMutableArray array];
+        self.itemsToShowInTableView = [NSMutableArray array];
         self.positionInPlaylist = 0;
         [self setRepeatMode:RepeatModeNone];
         self.scrobbledItems = [NSMutableArray array];
@@ -254,6 +255,7 @@
             AVPlayerItem *itemToPlay = [self itemForDict:dict];
             if (itemToPlay){
                 [self.itemsToPlay addObject:dict];
+                [self.itemsToShowInTableView addObject:dict];
                 [itemsToPlay addObject:itemToPlay];
             } else {
                 NSInteger indexOfItem = [collectionItems indexOfObject:dict];
@@ -284,14 +286,18 @@
                 }
             }
         }];
-
+        
         [self.audioPlayer setActionAtItemEnd:AVPlayerActionAtItemEndAdvance];
     } else {
         for (NSDictionary *dict in collectionItems){
             AVPlayerItem *itemToPlay = [self itemForDict:dict];
             if (itemToPlay) {
                 [self.itemsToPlay addObject:dict];
+                [self.itemsToShowInTableView addObject:dict];
                 [self.audioPlayer insertItem:itemToPlay afterItem:nil];
+            } else {
+                NSInteger indexOfItem = [collectionItems indexOfObject:dict];
+                [self insertItemsForDict:dict atIndex:indexOfItem];
             }
         }
     }
@@ -404,6 +410,7 @@
     
     if ([dict[@"type"] isEqualToString:@"playlist"]){
         
+        
         SCAccount *account = [SCSoundCloud account];
         NSURL *trackURI = [NSURL URLWithString:dict[@"origin"][@"tracks_uri"]];
         [SCRequest performMethod:SCRequestMethodGET
@@ -421,15 +428,17 @@
                          id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                          if (!error){
                              if ([objectFromData isKindOfClass:[NSArray class]]) {
-                                 int i = 1;
+                                 [self.itemsToShowInTableView insertObject:dict atIndex:indexToInsertFrom];
+                                 int i = 0;
                                  for (NSDictionary *trackDict in objectFromData) {
-                                     NSDictionary *containeredTrack = @{@"type":@"track",@"comingFrom":@"playlist",@"origin":trackDict};
+                                     NSDictionary *containeredTrack = @{@"type":@"track",@"playlist_track_is_from":dict,@"origin":trackDict};
                                      AVPlayerItem *itemToAdd = [self itemForDict:containeredTrack];
                                      AVPlayerItem *itemToAddAfter = [self.audioPlayer.items objectAtIndex:indexToInsertFrom+i];
                                      if (itemToAddAfter){
                                          if (itemToAdd) {
                                              [self.audioPlayer insertItem:itemToAdd afterItem:itemToAddAfter];
                                              [self.itemsToPlay insertObject:containeredTrack atIndex:indexToInsertFrom+i];
+                                             [self.itemsToShowInTableView insertObject:containeredTrack atIndex:indexToInsertFrom+i+1];
                                              i++;
                                          }
                                      } else {
@@ -439,6 +448,7 @@
                                              [self.audioPlayer removeItem:firstItem];
                                              [self.audioPlayer insertItem:firstItem afterItem:itemToAdd];
                                              [self.itemsToPlay insertObject:containeredTrack atIndex:0];
+                                             [self.itemsToShowInTableView insertObject:containeredTrack atIndex:0];
                                              i++;
                                          }
                                      }

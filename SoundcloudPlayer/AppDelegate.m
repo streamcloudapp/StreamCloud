@@ -22,6 +22,7 @@
 #import "MASShortcutView+UserDefaults.h"
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
+#import "TrackCellForPlaylistItemView.h"
 
 NSString *const PlayPauseShortcutPreferenceKey = @"PlayPauseShortcut";
 NSString *const NextShortcutPreferenceKey = @"NextShortcut";
@@ -182,53 +183,100 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 # pragma mark - NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSDictionary *itemForRow = [[SharedAudioPlayer sharedPlayer].itemsToPlay objectAtIndex:row];
+    NSDictionary *itemForRow = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView objectAtIndex:row];
     NSDictionary *originDict = [itemForRow objectForKey:@"origin"];
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"MainColumn"]){
-        TrackCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
-        [viewforRow setRow:row];
-        [viewforRow.artworkView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
-        BOOL useAvatar = YES;
-        if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
-            if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
-                                                              isEqualToString:@"<null>"]){
-                useAvatar = NO;
-                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                manager.responseSerializer = [AFImageResponseSerializer serializer];
-                [manager GET:[originDict objectForKey:@"artwork_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    [viewforRow.artworkView setImage:responseObject];
-                    
-                    
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"Failed to get image %@",error);
-                }];
+        if (![itemForRow objectForKey:@"playlist_track_is_from"]) {
+            TrackCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
+            [viewforRow setRow:row];
+            [viewforRow.artworkView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
+            BOOL useAvatar = YES;
+            if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
+                if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
+                                                                  isEqualToString:@"<null>"]){
+                    useAvatar = NO;
+                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                    manager.responseSerializer = [AFImageResponseSerializer serializer];
+                    [manager GET:[originDict objectForKey:@"artwork_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        [viewforRow.artworkView setImage:responseObject];
+                        
+                        
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        NSLog(@"Failed to get image %@",error);
+                    }];
+                }
             }
-        }
-        NSDictionary *userDict = [originDict objectForKey:@"user"];
-        if ([[userDict objectForKey:@"avatar_url"] isKindOfClass:[NSString class]] && useAvatar) {
-            if ([userDict objectForKey:@"avatar_url"] && ![[userDict objectForKey:@"avatar_url"] isEqualToString:@"<null>"]){
-                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                manager.responseSerializer = [AFImageResponseSerializer serializer];
-                [manager GET:[userDict objectForKey:@"avatar_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    [viewforRow.artworkView setImage:responseObject];
-                    
-                    
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"Failed to get image %@",error);
-                }];
+            NSDictionary *userDict = [originDict objectForKey:@"user"];
+            if ([[userDict objectForKey:@"avatar_url"] isKindOfClass:[NSString class]] && useAvatar) {
+                if ([userDict objectForKey:@"avatar_url"] && ![[userDict objectForKey:@"avatar_url"] isEqualToString:@"<null>"]){
+                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                    manager.responseSerializer = [AFImageResponseSerializer serializer];
+                    [manager GET:[userDict objectForKey:@"avatar_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        [viewforRow.artworkView setImage:responseObject];
+                        
+                        
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        NSLog(@"Failed to get image %@",error);
+                    }];
+                }
             }
-        }
-        [viewforRow.titleLabel setStringValue:[originDict objectForKey:@"title"]];
-        [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
-        [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
-        
-        if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
-            [viewforRow markAsPlaying:YES];
+            [viewforRow.titleLabel setStringValue:[originDict objectForKey:@"title"]];
+            [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
+            [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
+            
+            
+            if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
+                [viewforRow markAsPlaying:YES];
+            } else {
+                [viewforRow markAsPlaying:NO];
+            }
+            return viewforRow;
         } else {
-            [viewforRow markAsPlaying:NO];
+            TrackCellForPlaylistItemView *viewforRow = [tableView makeViewWithIdentifier:@"PlayListItemCell" owner:self];
+            [viewforRow setRow:row];
+            [viewforRow.artworkView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
+            BOOL useAvatar = YES;
+            if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
+                if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
+                                                                  isEqualToString:@"<null>"]){
+                    useAvatar = NO;
+                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                    manager.responseSerializer = [AFImageResponseSerializer serializer];
+                    [manager GET:[originDict objectForKey:@"artwork_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        [viewforRow.artworkView setImage:responseObject];
+                        
+                        
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        NSLog(@"Failed to get image %@",error);
+                    }];
+                }
+            }
+            NSDictionary *userDict = [originDict objectForKey:@"user"];
+            if ([[userDict objectForKey:@"avatar_url"] isKindOfClass:[NSString class]] && useAvatar) {
+                if ([userDict objectForKey:@"avatar_url"] && ![[userDict objectForKey:@"avatar_url"] isEqualToString:@"<null>"]){
+                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                    manager.responseSerializer = [AFImageResponseSerializer serializer];
+                    [manager GET:[userDict objectForKey:@"avatar_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        [viewforRow.artworkView setImage:responseObject];
+                        
+                        
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        NSLog(@"Failed to get image %@",error);
+                    }];
+                }
+            }
+            [viewforRow.titleLabel setStringValue:[originDict objectForKey:@"title"]];
+            [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
+            [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
+
+            if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
+                [viewforRow markAsPlaying:YES];
+            } else {
+                [viewforRow markAsPlaying:NO];
+            }
+            return viewforRow;
         }
-        return viewforRow;
     }
     return nil;
 }
@@ -237,18 +285,32 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     return NO;
 }
 
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    NSDictionary *itemForRow = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView objectAtIndex:row];
+    if ([itemForRow objectForKey:@"playlist_track_is_from"]) {
+        return 40;
+    } else {
+        return 80;
+    }
+}
 # pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return [[SharedAudioPlayer sharedPlayer] itemsToPlay].count;
+    return [[SharedAudioPlayer sharedPlayer] itemsToShowInTableView].count;
 }
 
 # pragma mark - NSTableView Click Handling
 
 - (void)tableViewDoubleClick {
-    NSLog(@"i was clicked");
     NSInteger clickedRow = [self.tableView clickedRow];
-    [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:clickedRow];
+    NSDictionary *clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow];
+    if ([[clickedDict objectForKey:@"type"] isEqualToString:@"playlist"]){
+        clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow+1];
+    }
+    
+    NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
+    [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
+    
 }
 
 # pragma mark - NSTableView Scroll Handling
@@ -293,7 +355,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         [cellForRow markAsPlaying:NO];
     }];
     NSDictionary *currentItem = [SharedAudioPlayer sharedPlayer].currentItem;
-    NSUInteger rowForItem = [[SharedAudioPlayer sharedPlayer].itemsToPlay indexOfObject:currentItem];
+    NSUInteger rowForItem = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView indexOfObject:currentItem];
     NSLog(@"Now playing song in row %lu",(unsigned long)rowForItem);
     NSTableRowView *rowView = [self.tableView rowViewAtRow:rowForItem makeIfNecessary:NO];
     [rowView setBackgroundColor:[StreamCloudStyles grayLight]];

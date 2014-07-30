@@ -97,7 +97,7 @@
     [self.audioPlayer pause];
     [self.audioPlayer removeAllItems];
     
-    for (NSInteger i = item; i < self.itemsToPlay.count; i++){
+    for (NSInteger i = item; i < self.itemsToPlay.count && i < item+3; i++){
         NSDictionary *itemInList = [self.itemsToPlay objectAtIndex:i];
         [self.audioPlayer insertItem:[self itemForDict:itemInList] afterItem:nil];
     }
@@ -258,7 +258,9 @@
             if (itemToPlay){
                 [self.itemsToPlay addObject:dict];
                 [self.itemsToShowInTableView addObject:dict];
-                [itemsToPlay addObject:itemToPlay];
+                if (itemsToPlay.count < 3) {
+                    [itemsToPlay addObject:itemToPlay];
+                }
             } else {
                 NSDictionary *objectToInjectAfter = [self.itemsToPlay lastObject];
                 if (objectToInjectAfter) {
@@ -300,7 +302,9 @@
             if (itemToPlay) {
                 [self.itemsToPlay addObject:dict];
                 [self.itemsToShowInTableView addObject:dict];
-                [self.audioPlayer insertItem:itemToPlay afterItem:nil];
+                if (self.audioPlayer.items.count < 3) {
+                    [self.audioPlayer insertItem:itemToPlay afterItem:nil];
+                }
             } else {
                 NSDictionary *objectToInjectAfter = [self.itemsToPlay lastObject];
                 if (objectToInjectAfter) {
@@ -313,6 +317,47 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
     [self loadPlaylistsFromArray:_playlistsToLoad];
+}
+
+
+- (void)rebuildAudioPlayList {
+    
+    if (!self.audioPlayer.rate){
+        [self.audioPlayer removeAllItems];
+        
+        for (NSDictionary *item in [self.itemsToPlay objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)]]){
+            [self.audioPlayer insertItem:[self itemForDict:item] afterItem:nil];
+        }
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
+        [self setShuffleEnabled:_shuffleEnabled];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+    } else {
+        for (int i = 1; i < self.audioPlayer.items.count; i++){
+            [self.audioPlayer removeItem:[self.audioPlayer.items objectAtIndex:i]];
+        }
+        for (NSInteger i = self.positionInPlaylist+1; i < self.itemsToPlay.count && i < self.positionInPlaylist+4; i++) {
+            NSDictionary *dictToInsert = [self.itemsToPlay objectAtIndex:i];
+            [self.audioPlayer insertItem:[self itemForDict:dictToInsert] afterItem:nil];
+        }
+    }
+}
+
+- (void)loadNextTrackInPlayer {
+    NSDictionary *currentItem = [self currentItem];
+    if (self.shuffleEnabled){
+        NSInteger indexOfCurrentItem = [self.shuffledItemsToPlay indexOfObject:currentItem];
+        if (indexOfCurrentItem < self.shuffledItemsToPlay.count + 2) {
+            NSDictionary *nextItem = [self.shuffledItemsToPlay objectAtIndex:indexOfCurrentItem+1];
+            [self.audioPlayer insertItem:[self itemForDict:nextItem] afterItem:nil];
+        }
+    } else {
+        NSInteger indexOfCurrentItem = [self.itemsToPlay indexOfObject:currentItem];
+        if (indexOfCurrentItem < self.itemsToPlay.count + 2) {
+            NSDictionary *nextItem = [self.itemsToPlay objectAtIndex:indexOfCurrentItem+1];
+            [self.audioPlayer insertItem:[self itemForDict:nextItem] afterItem:nil];
+        }
+    }
 }
 
 # pragma mark - KVO
@@ -341,7 +386,7 @@
         self.positionInPlaylist++;
     }
     [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
-    if (self.positionInPlaylist == self.itemsToPlay.count-1) {
+    if (self.positionInPlaylist == self.itemsToPlay.count-2) {
         [self getNextSongs];
     }
     if (self.audioPlayer.items.count >= 2) {
@@ -386,6 +431,7 @@
             break;
         }
     }
+    [self loadNextTrackInPlayer];
     if (self.audioPlayer.items.count >= 2) {
         AVPlayerItem *nextItem = [[self.audioPlayer items] objectAtIndex:1];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
@@ -464,29 +510,8 @@
                              }
                          }
                      }];
-        }
-    }
-}
-
-- (void)rebuildAudioPlayList {
-    
-    if (!self.audioPlayer.rate){
-        [self.audioPlayer removeAllItems];
-        
-        for (NSDictionary *item in self.itemsToPlay){
-            [self.audioPlayer insertItem:[self itemForDict:item] afterItem:nil];
-        }
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
-        [self setShuffleEnabled:_shuffleEnabled];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
-    } else {
-        for (int i = 1; i < self.audioPlayer.items.count; i++){
-            [self.audioPlayer removeItem:[self.audioPlayer.items objectAtIndex:i]];
-        }
-        for (NSInteger i = self.positionInPlaylist+1; i < self.itemsToPlay.count; i++) {
-            NSDictionary *dictToInsert = [self.itemsToPlay objectAtIndex:i];
-            [self.audioPlayer insertItem:[self itemForDict:dictToInsert] afterItem:nil];
+        } else {
+            NSLog(@"Could not load dict %@",playlistDict);
         }
     }
 }

@@ -15,7 +15,7 @@
 #import "TrackCellView.h"
 //#import "AppleMediaKeyController.h"
 #import "SoundCloudAPIClient.h"
-//#import <HockeySDK/HockeySDK.h>
+#import <HockeySDK/HockeySDK.h>
 #import "AFNetworking.h"
 #import "LastFm.h"
 #import "MASShortcutView.h"
@@ -111,8 +111,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [LastFm sharedInstance].apiKey = @"2473328884e701efe22e0491a9bbaeb6";
     [LastFm sharedInstance].apiSecret = @"8c197f07a45e251288815154a1569978";
     
-//    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"749b642d520ae57bfe9101ce28da075c"];
-//    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"749b642d520ae57bfe9101ce28da075c"];
+    [[BITHockeyManager sharedHockeyManager] startManager];
 //    
 //    AFHTTPRequestOperationManager *betaRequest = [AFHTTPRequestOperationManager manager];
 //    [betaRequest setResponseSerializer:[AFPropertyListResponseSerializer serializer]];
@@ -131,31 +131,31 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //    }];
 //    
-//    AFHTTPRequestOperationManager *updateRequest = [AFHTTPRequestOperationManager manager];
-//    [updateRequest setResponseSerializer:[AFJSONResponseSerializer serializer]];
-//    [updateRequest setRequestSerializer:[AFJSONRequestSerializer serializer]];
-//    [updateRequest.requestSerializer setValue:@"b4fd6f9097c444e6ba32821c73b33b8d" forHTTPHeaderField:@"X-HockeyAppToken"];
-//    [updateRequest GET:@"https://rink.hockeyapp.net/api/2/apps/749b642d520ae57bfe9101ce28da075c/app_versions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-//            NSArray *appVersions = [responseObject objectForKey:@"app_versions"];
-//            NSDictionary *newestVersion = [appVersions firstObject];
-//            NSNumber *versionNumber = [newestVersion objectForKey:@"version"];
-//            NSString *downloadURL = [newestVersion objectForKey:@"download_url"];
-//            NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-//            NSString* version = [infoDict objectForKey:@"CFBundleVersion"];
-//            if (version.integerValue < versionNumber.integerValue) {
-//                NSAlert *updateAlert = [[NSAlert alloc]init];
-//                [updateAlert setMessageText:@"Their is a new BETA version available! Please update now!"];
-//                [updateAlert setAlertStyle:NSCriticalAlertStyle];
-//                [updateAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
-//                    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:downloadURL]];
-//                }];
-//            }
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error getting updates %@",error);
-//    }];
-//    
+    AFHTTPRequestOperationManager *updateRequest = [AFHTTPRequestOperationManager manager];
+    [updateRequest setResponseSerializer:[AFJSONResponseSerializer serializer]];
+    [updateRequest setRequestSerializer:[AFJSONRequestSerializer serializer]];
+    [updateRequest.requestSerializer setValue:@"b4fd6f9097c444e6ba32821c73b33b8d" forHTTPHeaderField:@"X-HockeyAppToken"];
+    [updateRequest GET:@"https://rink.hockeyapp.net/api/2/apps/749b642d520ae57bfe9101ce28da075c/app_versions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            NSArray *appVersions = [responseObject objectForKey:@"app_versions"];
+            NSDictionary *newestVersion = [appVersions firstObject];
+            NSNumber *versionNumber = [newestVersion objectForKey:@"version"];
+            NSString *downloadURL = [newestVersion objectForKey:@"download_url"];
+            NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+            NSString* version = [infoDict objectForKey:@"CFBundleVersion"];
+            if (version.integerValue < versionNumber.integerValue) {
+                NSAlert *updateAlert = [[NSAlert alloc]init];
+                [updateAlert setMessageText:@"Their is a new BETA version available! Please update now!"];
+                [updateAlert setAlertStyle:NSCriticalAlertStyle];
+                [updateAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
+                    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:downloadURL]];
+                }];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error getting updates %@",error);
+    }];
+    
 
 }
 

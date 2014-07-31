@@ -424,6 +424,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [[NSUserDefaults standardUserDefaults] setInteger:self.useLastFMButton.state forKey:@"useLastFM"];
     [[NSUserDefaults standardUserDefaults] setObject:self.lastFMUserNameField.stringValue forKey:@"lastFMUserName"];
     [[NSUserDefaults standardUserDefaults] setObject:self.lastFMPasswordField.stringValue forKey:@"lastFMPassword"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
@@ -506,8 +507,10 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [self.settingsPanel makeKeyAndOrderFront:sender];
     NSLog(@"Open");
     [self.useLastFMButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"useLastFM"]];
-    [self.lastFMUserNameField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
-    [self.lastFMPasswordField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMPassword"]];
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"])
+        [self.lastFMUserNameField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMPassword"])
+        [self.lastFMPasswordField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMPassword"]];
     if (self.useLastFMButton.state > 0){
         [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Scrobbling", nil)];
     } else {

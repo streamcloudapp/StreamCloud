@@ -263,12 +263,19 @@
                 if (itemsToPlay.count < 3) {
                     [itemsToPlay addObject:itemToPlay];
                 }
-            } else {
-                NSDictionary *objectToInjectAfter = [self.itemsToPlay lastObject];
-                if (objectToInjectAfter) {
-                    [_playlistsToLoad addObject:@{@"playlist":dict,@"afterObject":objectToInjectAfter}];
-                } else {
-                    [_playlistsToLoad addObject:@{@"playlist":dict}];
+            } else if ([dict objectForKey:@"playlist"]) {
+                [self.itemsToShowInTableView addObject:dict];
+                NSArray *tracksArray = dict[@"playlist"][@"tracks"];
+                for (NSDictionary *track in tracksArray){
+                    NSDictionary *containeredTrack = @{@"track":track,@"playlist_track_is_from":dict};
+                    AVPlayerItem *itemToPlay = [self itemForDict:containeredTrack];
+                    if (itemToPlay){
+                        [self.itemsToPlay addObject:containeredTrack];
+                        [self.itemsToShowInTableView addObject:containeredTrack];
+                        if (itemsToPlay.count < 3) {
+                            [itemsToPlay addObject:itemToPlay];
+                        }
+                    }
                 }
             }
         }
@@ -307,18 +314,22 @@
                 if (self.audioPlayer.items.count < 3) {
                     [self.audioPlayer insertItem:itemToPlay afterItem:nil];
                 }
-            } else {
-                NSDictionary *objectToInjectAfter = [self.itemsToPlay lastObject];
-                if (objectToInjectAfter) {
-                    [_playlistsToLoad addObject:@{@"playlist":dict,@"afterObject":objectToInjectAfter}];
-                } else {
-                    [_playlistsToLoad addObject:@{@"playlist":dict}];
-                }            }
+            } else if ([dict objectForKey:@"playlist"]) {
+                [self.itemsToShowInTableView addObject:dict];
+                NSArray *tracksArray = dict[@"playlist"][@"tracks"];
+                for (NSDictionary *track in tracksArray){
+                    NSDictionary *containeredTrack = @{@"track":track,@"playlist_track_is_from":dict};
+                    AVPlayerItem *itemToPlay = [self itemForDict:containeredTrack];
+                    if (itemToPlay){
+                        [self.itemsToPlay addObject:containeredTrack];
+                        [self.itemsToShowInTableView addObject:containeredTrack];
+                    }
+                }
+            }
         }
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
-    [self loadPlaylistsFromArray:_playlistsToLoad];
 }
 
 

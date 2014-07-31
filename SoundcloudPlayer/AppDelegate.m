@@ -239,7 +239,6 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
             [viewforRow.artistLabel sizeToFit];
             [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
             
-            NSLog(@"itemForRow: %@ currentItem: %@",itemForRow,[SharedAudioPlayer sharedPlayer].currentItem);
             NSString *itemForRowUUID = [itemForRow objectForKey:@"uuid"];
             NSString *currentItemUUID = [[SharedAudioPlayer sharedPlayer].currentItem objectForKey:@"uuid"];
             if ([itemForRowUUID isEqualToString:currentItemUUID] && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {

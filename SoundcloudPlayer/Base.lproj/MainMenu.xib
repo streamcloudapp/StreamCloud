@@ -354,7 +354,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" id="Csf-qN-68n">
-                                <rect key="frame" x="14" y="16" width="16" height="16"/>
+                                <rect key="frame" x="16" y="17" width="14" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SS8-yg-JrH" customClass="PreviousButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -365,7 +365,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="xYy-p5-p6J">
-                                <rect key="frame" x="44" y="8" width="32" height="32"/>
+                                <rect key="frame" x="37" y="8" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DGK-dm-QjQ" customClass="PlayPauseButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -376,7 +376,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" id="hB1-4q-nEh">
-                                <rect key="frame" x="90" y="16" width="16" height="16"/>
+                                <rect key="frame" x="76" y="17" width="14" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H1R-Ap-6Db" customClass="NextButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -387,7 +387,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="6dT-Qa-uCR">
-                                <rect key="frame" x="107" y="15" width="48" height="20"/>
+                                <rect key="frame" x="101" y="15" width="48" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="00:00" id="o2X-P7-wd7">
                                     <font key="font" size="12" name="Avenir-Medium"/>
@@ -396,7 +396,7 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" id="b9W-DM-2Ce" customClass="ProgressSliderView">
-                                <rect key="frame" x="158" y="14" width="117" height="20"/>
+                                <rect key="frame" x="152" y="14" width="117" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="M7S-Xp-lhR" customClass="ProgressSliderCell"/>
                                 <connections>
@@ -404,7 +404,7 @@
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Xzd-Aq-Y3F">
-                                <rect key="frame" x="279" y="15" width="48" height="20"/>
+                                <rect key="frame" x="273" y="15" width="48" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="00:00" id="vJC-q7-cOG">
                                     <font key="font" size="12" name="Avenir-Medium"/>
@@ -457,7 +457,7 @@
                 <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
                     <rect key="frame" x="4" y="3" width="20" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" sliderType="linear" id="dMG-C9-CMS"/>
                     <connections>
                         <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
                     </connections>

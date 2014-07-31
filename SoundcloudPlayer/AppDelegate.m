@@ -15,7 +15,7 @@
 #import "TrackCellView.h"
 //#import "AppleMediaKeyController.h"
 #import "SoundCloudAPIClient.h"
-//#import <HockeySDK/HockeySDK.h>
+#import <HockeySDK/HockeySDK.h>
 #import "AFNetworking.h"
 #import "LastFm.h"
 #import "MASShortcutView.h"
@@ -111,8 +111,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [LastFm sharedInstance].apiKey = @"2473328884e701efe22e0491a9bbaeb6";
     [LastFm sharedInstance].apiSecret = @"8c197f07a45e251288815154a1569978";
     
-//    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"749b642d520ae57bfe9101ce28da075c"];
-//    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"749b642d520ae57bfe9101ce28da075c"];
+    [[BITHockeyManager sharedHockeyManager] startManager];
 //    
 //    AFHTTPRequestOperationManager *betaRequest = [AFHTTPRequestOperationManager manager];
 //    [betaRequest setResponseSerializer:[AFPropertyListResponseSerializer serializer]];

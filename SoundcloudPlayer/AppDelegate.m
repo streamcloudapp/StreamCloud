@@ -192,7 +192,10 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSDictionary *itemForRow = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView objectAtIndex:row];
-    NSDictionary *originDict = [itemForRow objectForKey:@"origin"];
+    NSDictionary *originDict = [itemForRow objectForKey:@"track"];
+    if (!originDict){
+        originDict = [itemForRow objectForKey:@"playlist"];
+    }
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"MainColumn"]){
         if (![itemForRow objectForKey:@"playlist_track_is_from"]) {
@@ -236,13 +239,15 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
             [viewforRow.artistLabel sizeToFit];
             [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
             
-            
-            if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
+            NSLog(@"itemForRow: %@ currentItem: %@",itemForRow,[SharedAudioPlayer sharedPlayer].currentItem);
+            NSString *itemForRowUUID = [itemForRow objectForKey:@"uuid"];
+            NSString *currentItemUUID = [[SharedAudioPlayer sharedPlayer].currentItem objectForKey:@"uuid"];
+            if ([itemForRowUUID isEqualToString:currentItemUUID] && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
                 [viewforRow markAsPlaying:YES];
             } else {
                 [viewforRow markAsPlaying:NO];
             }
-            if ([[itemForRow objectForKey:@"type"] isEqualToString:@"playlist"]){
+            if (![itemForRow objectForKey:@"track"]){
                 NSDictionary *currentObject = [SharedAudioPlayer sharedPlayer].currentItem;
                 if ([currentObject objectForKey:@"playlist_track_is_from"] == itemForRow &&  [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
                     [viewforRow markAsPlaying:YES];

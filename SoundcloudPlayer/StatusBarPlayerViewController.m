@@ -21,7 +21,7 @@
 
 - (void)reloadImage {
     NSDictionary *currentObject = [SharedAudioPlayer sharedPlayer].currentItem;
-    NSDictionary *originDict = [currentObject objectForKey:@"origin"];
+    NSDictionary *originDict = [currentObject objectForKey:@"track"];
     [self.trackLabel setStringValue:[originDict objectForKey:@"title"]];
     BOOL useAvatar = YES;
     if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {

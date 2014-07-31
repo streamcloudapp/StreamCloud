@@ -120,8 +120,10 @@
 }
 
 - (NSDictionary *)currentItem {
-    if (self.itemsToPlay.count)
-        return [self.itemsToPlay objectAtIndex:_positionInPlaylist];
+    if (self.itemsToPlay.count) {
+        NSDictionary *itemToReturn = [self.itemsToPlay objectAtIndex:_positionInPlaylist];
+        return itemToReturn;
+    }   
     else
         return nil;
 }
@@ -176,7 +178,7 @@
 
 - (void)postNotificationForCurrentItem {
     NSDictionary *currentItem = [self currentItem];
-    NSDictionary *originDict = [currentItem objectForKey:@"origin"];
+    NSDictionary *originDict = [currentItem objectForKey:@"track"];
     NSDictionary *userDict = [originDict objectForKey:@"user"];
     NSString *title = [originDict objectForKey:@"title"];
     NSString *name = [userDict objectForKey:@"username"];
@@ -277,7 +279,7 @@
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedAudioPlayerUpdatedTimePlayed" object:[NSNumber numberWithFloat:CMTimeGetSeconds(time)]];
                 float seconds = CMTimeGetSeconds(time);
                 NSDictionary *currentItem = [[SharedAudioPlayer sharedPlayer] currentItem];
-                NSDictionary *originItem = [currentItem objectForKey:@"origin"];
+                NSDictionary *originItem = [currentItem objectForKey:@"track"];
                 NSNumber *duration = [originItem objectForKey:@"duration"];
                 BOOL doScrobble = [[NSUserDefaults standardUserDefaults] boolForKey:@"useLastFM"];
                 if ((seconds > 240 || seconds > (duration.floatValue/1000)*0.3) && ![[SharedAudioPlayer sharedPlayer].scrobbledItems containsObject:currentItem] && doScrobble) {
@@ -448,8 +450,8 @@
 # pragma mark - Creating AVPlayerItems
 
 - (AVPlayerItem *)itemForDict:(NSDictionary *)dict {
-    if ([dict[@"type"] isEqualToString:@"track"] && [dict[@"origin"][@"streamable"] boolValue]) {
-        NSDictionary *originDict = dict[@"origin"];
+    if ([dict[@"track"][@"streamable"] boolValue]) {
+        NSDictionary *originDict = dict[@"track"];
         NSString *streamURLString = originDict[@"stream_url"];
         streamURLString = [streamURLString stringByAppendingString:[NSString stringWithFormat:@"?client_id=%@&allow_redirects=False",CLIENT_ID]];
         NSURL *streamURL = [NSURL URLWithString:streamURLString];
@@ -469,7 +471,7 @@
         NSDictionary *objectToInsertAfter = [playlistContainerDict objectForKey:@"afterObject"];
         if ([playlistDict[@"type"] isEqualToString:@"playlist"]){
             SCAccount *account = [SCSoundCloud account];
-            NSURL *trackURI = [NSURL URLWithString:playlistDict[@"origin"][@"tracks_uri"]];
+            NSURL *trackURI = [NSURL URLWithString:playlistDict[@"playlist"][@"tracks_uri"]];
             [SCRequest performMethod:SCRequestMethodGET
                           onResource:trackURI
                      usingParameters:nil
@@ -492,7 +494,7 @@
                                      }
                                      NSMutableArray *playlistCache = [NSMutableArray array];
                                      for (NSDictionary *trackDict in objectFromData) {
-                                         NSDictionary *containeredTrack = @{@"type":@"track",@"playlist_track_is_from":playlistDict,@"origin":trackDict};
+                                         NSDictionary *containeredTrack = @{@"type":@"track",@"playlist_track_is_from":playlistDict,@"track":trackDict};
                                          [playlistCache addObject:containeredTrack];
                                      }
                                      if (!objectToInsertAfter){

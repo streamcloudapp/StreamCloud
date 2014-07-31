@@ -64,14 +64,7 @@
             [self getNextSongs];
         }
     } else {
-        if (self.audioPlayer.items.count >= 2) {
-            [self jumpedToNextItem];
-            [self.audioPlayer advanceToNextItem];
-        } else {
-            [self jumpToItemAtIndex:0];
-        }
-        if (self.audioPlayer.rate)
-            [self postNotificationForCurrentItem];
+        [self jumpToItemAtIndex:self.positionInPlaylist+1];
     }
 }
 

@@ -9,13 +9,23 @@
 #import "StatusBarPlayerViewController.h"
 #import "SharedAudioPlayer.h"
 #import "AFNetworking.h"
+#import "NSImage+RoundedCorners.h"
 #import "StreamCloudStyles.h"
 
 @implementation StatusBarPlayerViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self){
+
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
     [self.coverArtImageView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 320, 320)]];
     [self.overlayImageView setImage:[StreamCloudStyles imageOfImageOverlayGradientViewWithFrame:NSMakeRect(0, 0, 320, 320)]];
+
     [self reloadImage];
 }
 
@@ -33,7 +43,7 @@
             NSString *artworkURL = [originDict objectForKey:@"artwork_url"];
             artworkURL = [artworkURL stringByReplacingOccurrencesOfString:@"large" withString:@"t500x500"];
             [manager GET:artworkURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                [self.coverArtImageView setImage:responseObject];
+                [self.coverArtImageView setImage:[responseObject roundCornersImageCornerRadius:4]];
                 
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -50,7 +60,7 @@
             NSString *avatarURL = [userDict objectForKey:@"avatar_url"];
             avatarURL = [avatarURL stringByReplacingOccurrencesOfString:@"large" withString:@"t500x500"];
             [manager GET:avatarURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                [self.coverArtImageView setImage:responseObject];
+                [self.coverArtImageView setImage:[responseObject roundCornersImageCornerRadius:4]];
                 
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

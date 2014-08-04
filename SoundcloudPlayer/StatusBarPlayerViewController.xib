@@ -101,7 +101,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="bPh-JP-xZT">
-                    <rect key="frame" x="8" y="64" width="224" height="24"/>
+                    <rect key="frame" x="8" y="56" width="224" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="TrackLabel" id="X87-EL-wLD">
                         <font key="font" size="16" name="Avenir-Book"/>

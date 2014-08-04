@@ -74,6 +74,8 @@
 		FD8F6AFE195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
 		FD92A977198FB8F900271E93 /* LoadSpeakerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */; };
 		FD92A978198FB8F900271E93 /* LoadSpeakerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */; };
+		FD92A97B19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
+		FD92A97C19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
 		FDD0374C1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
 		FDD0374D1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
 		FDE51B14195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
@@ -186,6 +188,8 @@
 		FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBackgroundView.m; sourceTree = "<group>"; };
 		FD92A975198FB8F900271E93 /* LoadSpeakerOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadSpeakerOverlayView.h; sourceTree = "<group>"; };
 		FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadSpeakerOverlayView.m; sourceTree = "<group>"; };
+		FD92A97919901D6000271E93 /* NSImage+RoundedCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+RoundedCorners.h"; sourceTree = "<group>"; };
+		FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+RoundedCorners.m"; sourceTree = "<group>"; };
 		FDD0374A1986AFDD00043BDC /* TrackCellForPlaylistItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCellForPlaylistItemView.h; sourceTree = "<group>"; };
 		FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCellForPlaylistItemView.m; sourceTree = "<group>"; };
 		FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseOverImageView.h; sourceTree = "<group>"; };
@@ -388,6 +392,8 @@
 				FD7CD29B1954396C002AC765 /* main.m */,
 				FD7CD29D1954396C002AC765 /* SoundcloudPlayer-Prefix.pch */,
 				FD7CD29E1954396C002AC765 /* Credits.rtf */,
+				FD92A97919901D6000271E93 /* NSImage+RoundedCorners.h */,
+				FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				FD8F6AF1195AD16D004D4B61 /* SoundCloudAPIClient.m in Sources */,
 				FD7ECBC01955BE05005828CF /* SharedAudioPlayer.m in Sources */,
 				FD1606651976839A00A63A71 /* StreamCloudApplication.m in Sources */,
+				FD92A97B19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */,
 				FD7CD29C1954396C002AC765 /* main.m in Sources */,
 				FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
 				FD8F6AE61959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */,
@@ -603,6 +610,7 @@
 				FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */,
 				FD3BED5F1959883400B2D49A /* SeperatorView.m in Sources */,
 				FD3BED5B195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
+				FD92A97C19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */,
 				FD4F53061987F1CC00FD73A9 /* ClickableTextField.m in Sources */,
 				FD3BED5619597B4300B2D49A /* TrackCellView.m in Sources */,
 				FD1606661976839A00A63A71 /* StreamCloudApplication.m in Sources */,

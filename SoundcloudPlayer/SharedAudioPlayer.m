@@ -441,7 +441,7 @@
 # pragma mark - Creating AVPlayerItems
 
 - (AVPlayerItem *)itemForDict:(NSDictionary *)dict {
-    if ([dict[@"type"] isEqualToString:@"track"] && [dict[@"origin"][@"streamable"] boolValue]) {
+    if ([dict[@"type"] isEqualToString:@"track"] && [dict[@"origin"][@"streamable"] boolValue] && [dict[@"origin"][@"state"] isEqualToString:@"finished"] && [dict[@"origin"][@"sharing"] isEqualToString:@"public"]) {
         NSDictionary *originDict = dict[@"origin"];
         NSString *streamURLString = originDict[@"stream_url"];
         streamURLString = [streamURLString stringByAppendingString:[NSString stringWithFormat:@"?client_id=%@&allow_redirects=False",CLIENT_ID]];
@@ -485,8 +485,10 @@
                                      }
                                      NSMutableArray *playlistCache = [NSMutableArray array];
                                      for (NSDictionary *trackDict in objectFromData) {
-                                         NSDictionary *containeredTrack = @{@"type":@"track",@"playlist_track_is_from":playlistDict,@"origin":trackDict};
-                                         [playlistCache addObject:containeredTrack];
+                                         if ([[trackDict objectForKey:@"streamable"] boolValue] && [[trackDict objectForKey:@"state"] isEqualToString:@"finished"]  && [trackDict[@"sharing"] isEqualToString:@"public"]) {
+                                             NSDictionary *containeredTrack = @{@"type":@"track",@"playlist_track_is_from":playlistDict,@"origin":trackDict};
+                                             [playlistCache addObject:containeredTrack];
+                                         }
                                      }
                                      if (!objectToInsertAfter){
                                          [self.itemsToPlay insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, playlistCache.count)]];

@@ -47,6 +47,10 @@
     [self.playPauseOverlayView setHidden:YES];
     [self.playPauseOverlayView setRow:self.row];
     [self addSubview:self.playPauseOverlayView];
+    [self setWantsLayer: YES];  // edit: enable the layer for the view.  Thanks omz
+    
+    self.layer.cornerRadius = 2.0;
+    self.layer.masksToBounds = YES;
 }
 
 - (void)drawRect:(NSRect)dirtyRect

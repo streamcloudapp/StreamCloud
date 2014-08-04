@@ -50,17 +50,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     id clipView = [[self.tableView enclosingScrollView] contentView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tableViewDidScroll:) name:NSViewBoundsDidChangeNotification object:clipView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFailToAuthenticate) name:@"SoundCloudAPIClientDidFailToAuthenticate" object:nil];
-    
-    INAppStoreWindow *aWindow = (INAppStoreWindow*)[self window];
-    aWindow.titleBarHeight = 28.0;
-    
-    NSView *titleBarView = [(INAppStoreWindow *)self.window titleBarView];
-    NSSize buttonSize = NSMakeSize(28, 28);
-    NSRect titleViewFrame = NSMakeRect(NSMidX(titleBarView.bounds) - (buttonSize.width / 2.f), NSMidY(titleBarView.bounds) - (buttonSize.height / 2.f), buttonSize.width, buttonSize.height);
-    NSImageView *imageView = [[NSImageView alloc] initWithFrame:titleViewFrame];
-    [imageView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
-    [imageView setAutoresizingMask:NSViewMinXMargin|NSViewMaxXMargin];
-    [titleBarView addSubview:imageView];
+
     
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
     

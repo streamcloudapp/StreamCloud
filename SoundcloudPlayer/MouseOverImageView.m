@@ -9,12 +9,14 @@
 #import "MouseOverImageView.h"
 #import "PlayPauseOverlayView.h"
 #import "SharedAudioPlayer.h"
+#import "LoadSpeakerOverlayView.h"
 
 @interface MouseOverImageView ()
 
 @property (nonatomic, strong) NSTrackingArea *trackingArea;
 @property (nonatomic) BOOL mouseOver;
 @property (nonatomic, strong) PlayPauseOverlayView *playPauseOverlayView;
+@property (nonatomic, strong) LoadSpeakerOverlayView *loadSpeakerOverlayView;
 
 @end
 
@@ -40,6 +42,7 @@
 - (void)setRow:(NSInteger)row {
     _row = row;
     [self.playPauseOverlayView setRow:row];
+    [self didFinishItem:nil];
 }
 
 - (void)commonInit {
@@ -47,8 +50,15 @@
     [self.playPauseOverlayView setHidden:YES];
     [self.playPauseOverlayView setRow:self.row];
     [self addSubview:self.playPauseOverlayView];
-    [self setWantsLayer: YES];
+
+    self.loadSpeakerOverlayView = [[LoadSpeakerOverlayView alloc] initWithFrame:NSMakeRect(0, 0, self.frame.size.width, self.frame.size.height)];
+    [self.loadSpeakerOverlayView setHidden:YES];
+    [self addSubview:self.loadSpeakerOverlayView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishItem:) name:@"SharedPlayerDidFinishObject" object:nil];
+
+    
+    [self setWantsLayer: YES];
     self.layer.cornerRadius = 2.0;
     self.layer.masksToBounds = YES;
 }
@@ -64,14 +74,33 @@
     [self.playPauseOverlayView setShowLargeIcons:showLargePlayPauseView];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+# pragma mark - PlayerWatch
+
+- (void)didFinishItem:(NSNotification *)notification {
+    if (self.row == [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] indexOfObject:[[SharedAudioPlayer sharedPlayer] currentItem]] && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
+        [self.loadSpeakerOverlayView setHidden:NO];
+    } else {
+        [self.loadSpeakerOverlayView setHidden:YES];
+    }
+
+}
+
+# pragma mark - Mouse Handling
+
 - (void)mouseEntered:(NSEvent *)theEvent {
     self.mouseOver = YES;
     [self.playPauseOverlayView setHidden:NO];
+    [self.loadSpeakerOverlayView setHidden:YES];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
     self.mouseOver = NO;
     [self.playPauseOverlayView setHidden:YES];
+    [self didFinishItem:nil];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {

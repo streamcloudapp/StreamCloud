@@ -41,7 +41,7 @@
 + (void)drawTrackRepostWithFrame: (NSRect)frame;
 + (void)drawTrackLikeWithFrame: (NSRect)frame;
 + (void)drawSeperatorViewWithFrame: (NSRect)frame;
-+ (void)drawPlayingOverlay;
++ (void)drawPlayingOverlayWithFrame: (NSRect)frame;
 + (void)drawLargePlayPauseOverlayWithFrame: (NSRect)frame playing: (BOOL)playing;
 + (void)drawLoginButtonWithFrame: (NSRect)frame;
 + (void)drawSoundCloudLogoWithFrame: (NSRect)frame;

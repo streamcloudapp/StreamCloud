@@ -234,6 +234,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
             [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
             [viewforRow.artistLabel setUrlToOpen:[userDict objectForKey:@"permalink_url"]];
             [viewforRow.artistLabel sizeToFit];
+            [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
             [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
             
             
@@ -289,6 +290,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
             [viewforRow.artistLabel setStringValue:[userDict objectForKey:@"username"]];
             [viewforRow.artistLabel setUrlToOpen:[userDict objectForKey:@"permalink_url"]];
             [viewforRow.artistLabel sizeToFit];
+            [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
             [viewforRow.durationLabel setStringValue:[self stringForSeconds:[[originDict objectForKey:@"duration"] longValue]/1000]];
 
             if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {

@@ -33,7 +33,11 @@
     if ([[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] indexOfObject:[[SharedAudioPlayer sharedPlayer] currentItem]] == self.row && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
         playing = YES;
     }
-    [StreamCloudStyles drawPlayPauseOverlayWithFrame:self.frame playing:playing];
+    if (self.showLargeIcons){
+        [StreamCloudStyles drawLargePlayPauseOverlayWithFrame:self.frame playing:playing];
+    } else {
+        [StreamCloudStyles drawPlayPauseOverlayWithFrame:self.frame playing:playing];
+    }
 }
 
 @end

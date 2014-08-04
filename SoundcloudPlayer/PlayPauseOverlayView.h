@@ -11,4 +11,5 @@
 @interface PlayPauseOverlayView : NSView
 
 @property (nonatomic) NSInteger row;
+@property (nonatomic) BOOL showLargeIcons;
 @end

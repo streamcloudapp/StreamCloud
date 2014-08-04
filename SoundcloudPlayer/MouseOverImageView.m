@@ -47,12 +47,21 @@
     [self.playPauseOverlayView setHidden:YES];
     [self.playPauseOverlayView setRow:self.row];
     [self addSubview:self.playPauseOverlayView];
+    [self setWantsLayer: YES];
+    
+    self.layer.cornerRadius = 2.0;
+    self.layer.masksToBounds = YES;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
     
+}
+
+- (void)setShowLargePlayPauseView:(BOOL)showLargePlayPauseView {
+    _showLargePlayPauseView = showLargePlayPauseView;
+    [self.playPauseOverlayView setShowLargeIcons:showLargePlayPauseView];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {

@@ -309,7 +309,8 @@
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
-    [self loadPlaylistsFromArray:_playlistsToLoad];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+    [self loadPlaylists];
 }
 
 
@@ -321,10 +322,6 @@
         for (NSDictionary *item in [self.itemsToPlay objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)]]){
             [self.audioPlayer insertItem:[self itemForDict:item] afterItem:nil];
         }
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
-        [self setShuffleEnabled:_shuffleEnabled];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
     } else {
         for (int i = 1; i < self.audioPlayer.items.count; i++){
             [self.audioPlayer removeItem:[self.audioPlayer.items objectAtIndex:i]];
@@ -334,6 +331,9 @@
             [self.audioPlayer insertItem:[self itemForDict:dictToInsert] afterItem:nil];
         }
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
+    [self setShuffleEnabled:_shuffleEnabled];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
 }
 
 - (void)loadNextTrackInPlayer {
@@ -455,9 +455,9 @@
 
 # pragma mark - Getting tracks of playlists
 
-- (void)loadPlaylistsFromArray:(NSArray *)playlists{
+- (void)loadPlaylists{
     
-    for (NSDictionary *playlistContainerDict in playlists) {
+    for (NSDictionary *playlistContainerDict in _playlistsToLoad) {
         NSDictionary *playlistDict = [playlistContainerDict objectForKey:@"playlist"];
         NSDictionary *objectToInsertAfter = [playlistContainerDict objectForKey:@"afterObject"];
         if ([playlistDict[@"type"] isEqualToString:@"playlist"] && [playlistDict[@"origin"][@"duration"] doubleValue]){
@@ -497,10 +497,7 @@
                                          [self.itemsToPlay insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.itemsToPlay indexOfObject:objectToInsertAfter]+1, playlistCache.count)]];
                                          [self.itemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.itemsToShowInTableView indexOfObject:objectToInsertAfter]+2, playlistCache.count)]];
                                      }
-                                     if (self.playlistsToLoad.count == 1) {
-                                         [self rebuildAudioPlayList];
-                                     }
-                                     [self.playlistsToLoad removeObject:playlistContainerDict];
+                                    [self rebuildAudioPlayList];
                                  }
                              }
                          }

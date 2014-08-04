@@ -81,9 +81,7 @@
                          if ([objectFromData isKindOfClass:[NSDictionary class]]) {
                              [[SharedAudioPlayer sharedPlayer]insertItemsFromResponse:objectFromData];
                              
-                         }
-                         [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
-                     }
+                         }                     }
                  }
              }];
 }
@@ -110,7 +108,6 @@
                              [[SharedAudioPlayer sharedPlayer]insertItemsFromResponse:objectFromData];
                          }
                      }
-                     [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
                  }
              }];
 

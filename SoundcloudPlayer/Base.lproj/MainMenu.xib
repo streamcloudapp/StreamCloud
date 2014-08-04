@@ -435,7 +435,7 @@
                                 </connections>
                             </button>
                             <button id="ovx-QB-42m">
-                                <rect key="frame" x="393" y="18" width="16" height="14"/>
+                                <rect key="frame" x="393" y="18" width="16" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcm-P4-Amv" customClass="RepeatButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -457,7 +457,7 @@
                 <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
                     <rect key="frame" x="4" y="3" width="20" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" sliderType="linear" id="dMG-C9-CMS"/>
                     <connections>
                         <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
                     </connections>

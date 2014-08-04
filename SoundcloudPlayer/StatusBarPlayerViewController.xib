@@ -70,7 +70,7 @@
                     </connections>
                 </button>
                 <button id="R2J-KQ-fEU">
-                    <rect key="frame" x="204" y="16" width="16" height="16"/>
+                    <rect key="frame" x="204" y="16" width="16" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VW5-Sd-qPW" customClass="RepeatButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

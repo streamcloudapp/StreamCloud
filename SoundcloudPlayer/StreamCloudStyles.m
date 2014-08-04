@@ -329,97 +329,86 @@ static NSGradient* _orangeGradient = nil;
     NSGradient* colorForTrackRepeatSymbol = repeatMode == 3 ? StreamCloudStyles.orangeGradient : translucentFakeGradient;
     NSGradient* colorToUseForSingleRepeatSymbol = repeatMode < 3 ? colorForSingleRepeatSymbol : translucentFakeGradient;
 
-
-    //// Subframes
-    NSRect group6 = NSMakeRect(NSMinX(frame), NSMinY(frame), NSWidth(frame) - 1.9, NSHeight(frame) - 0.1);
-    NSRect group = NSMakeRect(NSMinX(frame), NSMinY(frame), floor((NSWidth(frame)) * 0.84615 + 0.5), floor((NSHeight(frame)) * 1.00000 + 0.5));
-
-
-    //// Group 6
-    {
-        //// Bezier 13 Drawing
-        NSBezierPath* bezier13Path = NSBezierPath.bezierPath;
-        [bezier13Path moveToPoint: NSMakePoint(NSMinX(group6) + 0.12461 * NSWidth(group6), NSMinY(group6) + 0.50167 * NSHeight(group6))];
-        [bezier13Path curveToPoint: NSMakePoint(NSMinX(group6) + 0.34268 * NSWidth(group6), NSMinY(group6) + 0.26756 * NSHeight(group6)) controlPoint1: NSMakePoint(NSMinX(group6) + 0.12461 * NSWidth(group6), NSMinY(group6) + 0.37124 * NSHeight(group6)) controlPoint2: NSMakePoint(NSMinX(group6) + 0.22118 * NSWidth(group6), NSMinY(group6) + 0.26756 * NSHeight(group6))];
-        [bezier13Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.62305 * NSWidth(group6), NSMinY(group6) + 0.26756 * NSHeight(group6))];
-        [bezier13Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.62305 * NSWidth(group6), NSMinY(group6) + 0.40134 * NSHeight(group6))];
-        [bezier13Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.90343 * NSWidth(group6), NSMinY(group6) + 0.20067 * NSHeight(group6))];
-        [bezier13Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.62305 * NSWidth(group6), NSMinY(group6) + 0.00000 * NSHeight(group6))];
-        [bezier13Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.62305 * NSWidth(group6), NSMinY(group6) + 0.13378 * NSHeight(group6))];
-        [bezier13Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.34268 * NSWidth(group6), NSMinY(group6) + 0.13378 * NSHeight(group6))];
-        [bezier13Path curveToPoint: NSMakePoint(NSMinX(group6) + 0.00000 * NSWidth(group6), NSMinY(group6) + 0.50167 * NSHeight(group6)) controlPoint1: NSMakePoint(NSMinX(group6) + 0.15265 * NSWidth(group6), NSMinY(group6) + 0.13378 * NSHeight(group6)) controlPoint2: NSMakePoint(NSMinX(group6) + 0.00000 * NSWidth(group6), NSMinY(group6) + 0.29766 * NSHeight(group6))];
-        [bezier13Path curveToPoint: NSMakePoint(NSMinX(group6) + 0.02492 * NSWidth(group6), NSMinY(group6) + 0.64214 * NSHeight(group6)) controlPoint1: NSMakePoint(NSMinX(group6) + 0.00000 * NSWidth(group6), NSMinY(group6) + 0.55184 * NSHeight(group6)) controlPoint2: NSMakePoint(NSMinX(group6) + 0.00935 * NSWidth(group6), NSMinY(group6) + 0.59866 * NSHeight(group6))];
-        [bezier13Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.12461 * NSWidth(group6), NSMinY(group6) + 0.53512 * NSHeight(group6))];
-        [bezier13Path curveToPoint: NSMakePoint(NSMinX(group6) + 0.12461 * NSWidth(group6), NSMinY(group6) + 0.50167 * NSHeight(group6)) controlPoint1: NSMakePoint(NSMinX(group6) + 0.12461 * NSWidth(group6), NSMinY(group6) + 0.52174 * NSHeight(group6)) controlPoint2: NSMakePoint(NSMinX(group6) + 0.12461 * NSWidth(group6), NSMinY(group6) + 0.51171 * NSHeight(group6))];
-        [bezier13Path closePath];
-        [bezier13Path setMiterLimit: 4];
-        [colorToUseForSingleRepeatSymbol drawInBezierPath: bezier13Path angle: 90];
-
-
-        //// Bezier 14 Drawing
-        NSBezierPath* bezier14Path = NSBezierPath.bezierPath;
-        [bezier14Path moveToPoint: NSMakePoint(NSMinX(group6) + 0.97196 * NSWidth(group6), NSMinY(group6) + 0.36120 * NSHeight(group6))];
-        [bezier14Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.87227 * NSWidth(group6), NSMinY(group6) + 0.46823 * NSHeight(group6))];
-        [bezier14Path curveToPoint: NSMakePoint(NSMinX(group6) + 0.87539 * NSWidth(group6), NSMinY(group6) + 0.49833 * NSHeight(group6)) controlPoint1: NSMakePoint(NSMinX(group6) + 0.87227 * NSWidth(group6), NSMinY(group6) + 0.47826 * NSHeight(group6)) controlPoint2: NSMakePoint(NSMinX(group6) + 0.87539 * NSWidth(group6), NSMinY(group6) + 0.48829 * NSHeight(group6))];
-        [bezier14Path curveToPoint: NSMakePoint(NSMinX(group6) + 0.65732 * NSWidth(group6), NSMinY(group6) + 0.73244 * NSHeight(group6)) controlPoint1: NSMakePoint(NSMinX(group6) + 0.87539 * NSWidth(group6), NSMinY(group6) + 0.62876 * NSHeight(group6)) controlPoint2: NSMakePoint(NSMinX(group6) + 0.77882 * NSWidth(group6), NSMinY(group6) + 0.73244 * NSHeight(group6))];
-        [bezier14Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.37695 * NSWidth(group6), NSMinY(group6) + 0.73244 * NSHeight(group6))];
-        [bezier14Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.37695 * NSWidth(group6), NSMinY(group6) + 0.59866 * NSHeight(group6))];
-        [bezier14Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.09657 * NSWidth(group6), NSMinY(group6) + 0.79933 * NSHeight(group6))];
-        [bezier14Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.37695 * NSWidth(group6), NSMinY(group6) + 1.00000 * NSHeight(group6))];
-        [bezier14Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.37695 * NSWidth(group6), NSMinY(group6) + 0.86622 * NSHeight(group6))];
-        [bezier14Path lineToPoint: NSMakePoint(NSMinX(group6) + 0.65732 * NSWidth(group6), NSMinY(group6) + 0.86622 * NSHeight(group6))];
-        [bezier14Path curveToPoint: NSMakePoint(NSMinX(group6) + 1.00000 * NSWidth(group6), NSMinY(group6) + 0.49833 * NSHeight(group6)) controlPoint1: NSMakePoint(NSMinX(group6) + 0.84735 * NSWidth(group6), NSMinY(group6) + 0.86622 * NSHeight(group6)) controlPoint2: NSMakePoint(NSMinX(group6) + 1.00000 * NSWidth(group6), NSMinY(group6) + 0.70234 * NSHeight(group6))];
-        [bezier14Path curveToPoint: NSMakePoint(NSMinX(group6) + 0.97196 * NSWidth(group6), NSMinY(group6) + 0.36120 * NSHeight(group6)) controlPoint1: NSMakePoint(NSMinX(group6) + 0.99688 * NSWidth(group6), NSMinY(group6) + 0.45151 * NSHeight(group6)) controlPoint2: NSMakePoint(NSMinX(group6) + 0.98754 * NSWidth(group6), NSMinY(group6) + 0.40468 * NSHeight(group6))];
-        [bezier14Path closePath];
-        [bezier14Path setMiterLimit: 4];
-        [colorToUseForSingleRepeatSymbol drawInBezierPath: bezier14Path angle: 90];
-    }
-
-
     //// Group
     {
-        //// Bezier Drawing
-        NSBezierPath* bezierPath = NSBezierPath.bezierPath;
-        [bezierPath moveToPoint: NSMakePoint(NSMinX(group) + 0.78056 * NSWidth(group), NSMinY(group) + 0.54023 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.56113 * NSWidth(group), NSMinY(group) + 0.27203 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.65831 * NSWidth(group), NSMinY(group) + 0.54023 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.56113 * NSWidth(group), NSMinY(group) + 0.42146 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.78056 * NSWidth(group), NSMinY(group) + 0.00383 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.56113 * NSWidth(group), NSMinY(group) + 0.12261 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.65831 * NSWidth(group), NSMinY(group) + 0.00383 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 1.00000 * NSWidth(group), NSMinY(group) + 0.27203 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.90282 * NSWidth(group), NSMinY(group) + 0.00383 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 1.00000 * NSWidth(group), NSMinY(group) + 0.12261 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.78056 * NSWidth(group), NSMinY(group) + 0.54023 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 1.00000 * NSWidth(group), NSMinY(group) + 0.42146 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.90282 * NSWidth(group), NSMinY(group) + 0.54023 * NSHeight(group))];
-        [bezierPath closePath];
-        [bezierPath moveToPoint: NSMakePoint(NSMinX(group) + 0.81191 * NSWidth(group), NSMinY(group) + 0.11877 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.78056 * NSWidth(group), NSMinY(group) + 0.11877 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.75862 * NSWidth(group), NSMinY(group) + 0.15709 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.78056 * NSWidth(group), NSMinY(group) + 0.12644 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.77429 * NSWidth(group), NSMinY(group) + 0.14559 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.71787 * NSWidth(group), NSMinY(group) + 0.16858 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.74922 * NSWidth(group), NSMinY(group) + 0.16475 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.72414 * NSWidth(group), NSMinY(group) + 0.16858 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.71787 * NSWidth(group), NSMinY(group) + 0.20690 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.77116 * NSWidth(group), NSMinY(group) + 0.20690 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.77116 * NSWidth(group), NSMinY(group) + 0.42529 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.81191 * NSWidth(group), NSMinY(group) + 0.42529 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.81191 * NSWidth(group), NSMinY(group) + 0.11877 * NSHeight(group))];
-        [bezierPath closePath];
-        [bezierPath moveToPoint: NSMakePoint(NSMinX(group) + 0.34169 * NSWidth(group), NSMinY(group) + 0.15326 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.12226 * NSWidth(group), NSMinY(group) + 0.42529 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.21944 * NSWidth(group), NSMinY(group) + 0.15326 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.12226 * NSWidth(group), NSMinY(group) + 0.27586 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.12539 * NSWidth(group), NSMinY(group) + 0.45977 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.12226 * NSWidth(group), NSMinY(group) + 0.43678 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.12226 * NSWidth(group), NSMinY(group) + 0.44828 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.02508 * NSWidth(group), NSMinY(group) + 0.58238 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.00000 * NSWidth(group), NSMinY(group) + 0.42146 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.00940 * NSWidth(group), NSMinY(group) + 0.53257 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.00000 * NSWidth(group), NSMinY(group) + 0.47893 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.34483 * NSWidth(group), NSMinY(group) + 0.00000 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.00000 * NSWidth(group), NSMinY(group) + 0.18774 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.15361 * NSWidth(group), NSMinY(group) + 0.00000 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.60502 * NSWidth(group), NSMinY(group) + 0.00000 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.51724 * NSWidth(group), NSMinY(group) + 0.15326 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.56426 * NSWidth(group), NSMinY(group) + 0.03831 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.53292 * NSWidth(group), NSMinY(group) + 0.09195 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.34169 * NSWidth(group), NSMinY(group) + 0.15326 * NSHeight(group))];
-        [bezierPath closePath];
-        [bezierPath moveToPoint: NSMakePoint(NSMinX(group) + 0.37304 * NSWidth(group), NSMinY(group) + 0.69349 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.65517 * NSWidth(group), NSMinY(group) + 0.69349 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.81191 * NSWidth(group), NSMinY(group) + 0.61303 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.71473 * NSWidth(group), NSMinY(group) + 0.69349 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.77116 * NSWidth(group), NSMinY(group) + 0.66284 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.99687 * NSWidth(group), NSMinY(group) + 0.49425 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.88401 * NSWidth(group), NSMinY(group) + 0.60536 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.94984 * NSWidth(group), NSMinY(group) + 0.55939 * NSHeight(group))];
-        [bezierPath curveToPoint: NSMakePoint(NSMinX(group) + 0.65831 * NSWidth(group), NSMinY(group) + 0.84674 * NSHeight(group)) controlPoint1: NSMakePoint(NSMinX(group) + 0.96865 * NSWidth(group), NSMinY(group) + 0.69349 * NSHeight(group)) controlPoint2: NSMakePoint(NSMinX(group) + 0.82759 * NSWidth(group), NSMinY(group) + 0.84674 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.37618 * NSWidth(group), NSMinY(group) + 0.84674 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.37618 * NSWidth(group), NSMinY(group) + 1.00000 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.09404 * NSWidth(group), NSMinY(group) + 0.77011 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.37618 * NSWidth(group), NSMinY(group) + 0.54023 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.37304 * NSWidth(group), NSMinY(group) + 0.69349 * NSHeight(group))];
-        [bezierPath lineToPoint: NSMakePoint(NSMinX(group) + 0.37304 * NSWidth(group), NSMinY(group) + 0.69349 * NSHeight(group))];
-        [bezierPath closePath];
-        [bezierPath setMiterLimit: 4];
-        [colorForTrackRepeatSymbol drawInBezierPath: bezierPath angle: 90];
+        //// Repeat Title Drawing
+        NSBezierPath* repeatTitlePath = NSBezierPath.bezierPath;
+        [repeatTitlePath moveToPoint: NSMakePoint(NSMinX(frame) + 25, NSMinY(frame) + 16.05)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 18, NSMinY(frame) + 9.03) controlPoint1: NSMakePoint(NSMinX(frame) + 21.1, NSMinY(frame) + 16.05) controlPoint2: NSMakePoint(NSMinX(frame) + 18, NSMinY(frame) + 12.94)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 25, NSMinY(frame) + 2) controlPoint1: NSMakePoint(NSMinX(frame) + 18, NSMinY(frame) + 5.11) controlPoint2: NSMakePoint(NSMinX(frame) + 21.1, NSMinY(frame) + 2)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 9.03) controlPoint1: NSMakePoint(NSMinX(frame) + 28.9, NSMinY(frame) + 2) controlPoint2: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 5.11)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 25, NSMinY(frame) + 16.05) controlPoint1: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 12.94) controlPoint2: NSMakePoint(NSMinX(frame) + 28.9, NSMinY(frame) + 16.05)];
+        [repeatTitlePath closePath];
+        [repeatTitlePath moveToPoint: NSMakePoint(NSMinX(frame) + 26, NSMinY(frame) + 6.01)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 25.1, NSMinY(frame) + 6.01)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 24.8, NSMinY(frame) + 6.62) controlPoint1: NSMakePoint(NSMinX(frame) + 25.1, NSMinY(frame) + 6.22) controlPoint2: NSMakePoint(NSMinX(frame) + 25, NSMinY(frame) + 6.52)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 24.3, NSMinY(frame) + 7.02) controlPoint1: NSMakePoint(NSMinX(frame) + 24.7, NSMinY(frame) + 6.82) controlPoint2: NSMakePoint(NSMinX(frame) + 24.5, NSMinY(frame) + 6.92)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 23.7, NSMinY(frame) + 7.22) controlPoint1: NSMakePoint(NSMinX(frame) + 24.1, NSMinY(frame) + 7.12) controlPoint2: NSMakePoint(NSMinX(frame) + 23.9, NSMinY(frame) + 7.22)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 23, NSMinY(frame) + 7.32) controlPoint1: NSMakePoint(NSMinX(frame) + 23.5, NSMinY(frame) + 7.22) controlPoint2: NSMakePoint(NSMinX(frame) + 23.2, NSMinY(frame) + 7.32)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 23, NSMinY(frame) + 8.32)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 24.7, NSMinY(frame) + 8.32)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 24.7, NSMinY(frame) + 12.04)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 26, NSMinY(frame) + 12.04)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 26, NSMinY(frame) + 6.01)];
+        [repeatTitlePath closePath];
+        [repeatTitlePath moveToPoint: NSMakePoint(NSMinX(frame) + 11, NSMinY(frame) + 8.02)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 4, NSMinY(frame) + 15.05) controlPoint1: NSMakePoint(NSMinX(frame) + 7.1, NSMinY(frame) + 8.02) controlPoint2: NSMakePoint(NSMinX(frame) + 4, NSMinY(frame) + 11.13)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 4.1, NSMinY(frame) + 15.95) controlPoint1: NSMakePoint(NSMinX(frame) + 4, NSMinY(frame) + 15.35) controlPoint2: NSMakePoint(NSMinX(frame) + 4.1, NSMinY(frame) + 15.65)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.8, NSMinY(frame) + 19.26)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame), NSMinY(frame) + 15.05) controlPoint1: NSMakePoint(NSMinX(frame) + 0.3, NSMinY(frame) + 17.96) controlPoint2: NSMakePoint(NSMinX(frame), NSMinY(frame) + 16.55)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 11, NSMinY(frame) + 4.01) controlPoint1: NSMakePoint(NSMinX(frame), NSMinY(frame) + 8.92) controlPoint2: NSMakePoint(NSMinX(frame) + 4.9, NSMinY(frame) + 4.01)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 17.5, NSMinY(frame) + 4.01)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 16, NSMinY(frame) + 8.02) controlPoint1: NSMakePoint(NSMinX(frame) + 16.7, NSMinY(frame) + 5.21) controlPoint2: NSMakePoint(NSMinX(frame) + 16.2, NSMinY(frame) + 6.52)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 11, NSMinY(frame) + 8.02)];
+        [repeatTitlePath closePath];
+        [repeatTitlePath moveToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 22.07)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 21, NSMinY(frame) + 22.07)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 27.5, NSMinY(frame) + 17.66) controlPoint1: NSMakePoint(NSMinX(frame) + 23.9, NSMinY(frame) + 22.07) controlPoint2: NSMakePoint(NSMinX(frame) + 26.4, NSMinY(frame) + 20.27)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 14.65) controlPoint1: NSMakePoint(NSMinX(frame) + 29.3, NSMinY(frame) + 17.15) controlPoint2: NSMakePoint(NSMinX(frame) + 30.9, NSMinY(frame) + 16.05)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 14.95) controlPoint1: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 14.75) controlPoint2: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 14.85)];
+        [repeatTitlePath curveToPoint: NSMakePoint(NSMinX(frame) + 21, NSMinY(frame) + 25.99) controlPoint1: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 21.07) controlPoint2: NSMakePoint(NSMinX(frame) + 27.1, NSMinY(frame) + 25.99)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 25.99)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 30)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 3, NSMinY(frame) + 23.98)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 17.96)];
+        [repeatTitlePath lineToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 22.07)];
+        [repeatTitlePath closePath];
+        [repeatTitlePath setMiterLimit: 4];
+        [repeatTitlePath setWindingRule: NSEvenOddWindingRule];
+        [colorForTrackRepeatSymbol drawInBezierPath: repeatTitlePath angle: 90];
+
+
+        //// Repeat Drawing
+        NSBezierPath* repeatPath = NSBezierPath.bezierPath;
+        [repeatPath moveToPoint: NSMakePoint(NSMinX(frame) + 21, NSMinY(frame) + 26)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 26)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 30)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 3, NSMinY(frame) + 24)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 18)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 12, NSMinY(frame) + 22)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 21, NSMinY(frame) + 22)];
+        [repeatPath curveToPoint: NSMakePoint(NSMinX(frame) + 28, NSMinY(frame) + 15) controlPoint1: NSMakePoint(NSMinX(frame) + 24.9, NSMinY(frame) + 22) controlPoint2: NSMakePoint(NSMinX(frame) + 28, NSMinY(frame) + 18.9)];
+        [repeatPath curveToPoint: NSMakePoint(NSMinX(frame) + 27.9, NSMinY(frame) + 14.1) controlPoint1: NSMakePoint(NSMinX(frame) + 28, NSMinY(frame) + 14.7) controlPoint2: NSMakePoint(NSMinX(frame) + 27.9, NSMinY(frame) + 14.4)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 31.2, NSMinY(frame) + 10.8)];
+        [repeatPath curveToPoint: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 15) controlPoint1: NSMakePoint(NSMinX(frame) + 31.7, NSMinY(frame) + 12.1) controlPoint2: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 13.5)];
+        [repeatPath curveToPoint: NSMakePoint(NSMinX(frame) + 21, NSMinY(frame) + 26) controlPoint1: NSMakePoint(NSMinX(frame) + 32, NSMinY(frame) + 21.1) controlPoint2: NSMakePoint(NSMinX(frame) + 27.1, NSMinY(frame) + 26)];
+        [repeatPath closePath];
+        [repeatPath moveToPoint: NSMakePoint(NSMinX(frame) + 20, NSMinY(frame) + 8)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 11, NSMinY(frame) + 8)];
+        [repeatPath curveToPoint: NSMakePoint(NSMinX(frame) + 4, NSMinY(frame) + 15) controlPoint1: NSMakePoint(NSMinX(frame) + 7.1, NSMinY(frame) + 8) controlPoint2: NSMakePoint(NSMinX(frame) + 4, NSMinY(frame) + 11.1)];
+        [repeatPath curveToPoint: NSMakePoint(NSMinX(frame) + 4.1, NSMinY(frame) + 15.9) controlPoint1: NSMakePoint(NSMinX(frame) + 4, NSMinY(frame) + 15.3) controlPoint2: NSMakePoint(NSMinX(frame) + 4.1, NSMinY(frame) + 15.6)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 0.8, NSMinY(frame) + 19.2)];
+        [repeatPath curveToPoint: NSMakePoint(NSMinX(frame), NSMinY(frame) + 15) controlPoint1: NSMakePoint(NSMinX(frame) + 0.3, NSMinY(frame) + 17.9) controlPoint2: NSMakePoint(NSMinX(frame), NSMinY(frame) + 16.5)];
+        [repeatPath curveToPoint: NSMakePoint(NSMinX(frame) + 11, NSMinY(frame) + 4) controlPoint1: NSMakePoint(NSMinX(frame), NSMinY(frame) + 8.9) controlPoint2: NSMakePoint(NSMinX(frame) + 4.9, NSMinY(frame) + 4)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 20, NSMinY(frame) + 4)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 20, NSMinY(frame))];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 29, NSMinY(frame) + 6)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 20, NSMinY(frame) + 12)];
+        [repeatPath lineToPoint: NSMakePoint(NSMinX(frame) + 20, NSMinY(frame) + 8)];
+        [repeatPath closePath];
+        [repeatPath setMiterLimit: 4];
+        [repeatPath setWindingRule: NSEvenOddWindingRule];
+        [colorToUseForSingleRepeatSymbol drawInBezierPath: repeatPath angle: 90];
     }
 }
 
@@ -1418,7 +1407,7 @@ static NSGradient* _orangeGradient = nil;
 
 + (NSImage*)imageOfRepeatButtonWithFrame: (NSRect)frame repeatMode: (CGFloat)repeatMode;
 {
-    NSImage* imageOfRepeatButton = [NSImage.alloc initWithSize: NSMakeSize(39, 30)];
+    NSImage* imageOfRepeatButton = [NSImage.alloc initWithSize: NSMakeSize(32, 30)];
     [imageOfRepeatButton lockFocus];
     [StreamCloudStyles drawRepeatButtonWithFrame: frame repeatMode: repeatMode];
     [imageOfRepeatButton unlockFocus];

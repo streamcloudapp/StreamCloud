@@ -460,7 +460,7 @@
     for (NSDictionary *playlistContainerDict in playlists) {
         NSDictionary *playlistDict = [playlistContainerDict objectForKey:@"playlist"];
         NSDictionary *objectToInsertAfter = [playlistContainerDict objectForKey:@"afterObject"];
-        if ([playlistDict[@"type"] isEqualToString:@"playlist"]){
+        if ([playlistDict[@"type"] isEqualToString:@"playlist"] && [playlistDict[@"origin"][@"duration"] doubleValue]){
             SCAccount *account = [SCSoundCloud account];
             NSURL *trackURI = [NSURL URLWithString:playlistDict[@"origin"][@"tracks_uri"]];
             [SCRequest performMethod:SCRequestMethodGET

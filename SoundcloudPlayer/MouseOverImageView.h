@@ -12,4 +12,5 @@
 
 @property (nonatomic) NSInteger row;
 @property (nonatomic) BOOL showLargePlayPauseView;
+@property (nonatomic) BOOL playing;
 @end

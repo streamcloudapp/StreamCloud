@@ -31,6 +31,7 @@
     return self;
 }
 
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self){
@@ -42,7 +43,11 @@
 - (void)setRow:(NSInteger)row {
     _row = row;
     [self.playPauseOverlayView setRow:row];
-    [self didFinishItem:nil];
+}
+
+- (void)setPlaying:(BOOL)playing {
+    _playing = playing;
+    [self.loadSpeakerOverlayView setHidden:!playing];
 }
 
 - (void)commonInit {
@@ -55,7 +60,6 @@
     [self.loadSpeakerOverlayView setHidden:YES];
     [self addSubview:self.loadSpeakerOverlayView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishItem:) name:@"SharedPlayerDidFinishObject" object:nil];
 
     
     [self setWantsLayer: YES];
@@ -78,16 +82,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-# pragma mark - PlayerWatch
-
-- (void)didFinishItem:(NSNotification *)notification {
-    if (self.row == [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] indexOfObject:[[SharedAudioPlayer sharedPlayer] currentItem]] && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
-        [self.loadSpeakerOverlayView setHidden:NO];
-    } else {
-        [self.loadSpeakerOverlayView setHidden:YES];
-    }
-
-}
 
 # pragma mark - Mouse Handling
 
@@ -95,12 +89,13 @@
     self.mouseOver = YES;
     [self.playPauseOverlayView setHidden:NO];
     [self.loadSpeakerOverlayView setHidden:YES];
+    [self.playPauseOverlayView setNeedsDisplay:YES];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
     self.mouseOver = NO;
     [self.playPauseOverlayView setHidden:YES];
-    [self didFinishItem:nil];
+    [self setPlaying:_playing];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {

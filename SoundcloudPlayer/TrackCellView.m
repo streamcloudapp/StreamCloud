@@ -51,6 +51,7 @@
     } else {
         [self.playingIndicatiorView setHidden:YES];
     }
+    [self.artworkView setPlaying:playing];
     [self setMarkedAsPlaying:playing];
 }
 

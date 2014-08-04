@@ -11,4 +11,8 @@
 
 @implementation TrackCellForPlaylistItemView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.artworkView setShowLargePlayPauseView:YES];
+}
 @end

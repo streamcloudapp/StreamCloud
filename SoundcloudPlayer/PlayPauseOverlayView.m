@@ -21,6 +21,11 @@
     return self;
 }
 
+- (void)setShowLargeIcons:(BOOL)showLargeIcons {
+    _showLargeIcons = showLargeIcons;
+    [self setNeedsDisplay:YES];
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];

@@ -11,5 +11,5 @@
 @interface MouseOverImageView : NSImageView
 
 @property (nonatomic) NSInteger row;
-
+@property (nonatomic) BOOL showLargePlayPauseView;
 @end

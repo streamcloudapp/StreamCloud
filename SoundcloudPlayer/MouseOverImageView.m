@@ -101,6 +101,8 @@
 - (void)mouseDown:(NSEvent *)theEvent {
     if (self.row == [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] indexOfObject:[[SharedAudioPlayer sharedPlayer] currentItem]])
         [[SharedAudioPlayer sharedPlayer] togglePlayPause];
+    else if ([[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] objectForKey:@"playlist_track_is_from"]] == self.row)
+             [[SharedAudioPlayer sharedPlayer] togglePlayPause];
     else {
         NSInteger clickedRow = self.row;
         NSDictionary *clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow];

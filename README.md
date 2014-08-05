@@ -1,13 +1,13 @@
-StreamCloud
-===========
+# StreamCloud
 
-A Mac OS X player for SoundCloud Stream
+A Mac OS X player for SoundCloud
 
-How to build
-------------
+## How to build
 
-* Clone the repository
-* git submodule init
-* git submodule update
-* Open Workspace file
-* Build
+```
+$ git clone git@github.com:plaetzchen/StreamCloud.git  
+$ cd StreamCloud  
+$ pod install  
+$ pod update  
+$ open SoundcloudPlayer.xcworkspace  
+```

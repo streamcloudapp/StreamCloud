@@ -58,13 +58,16 @@
 
 - (void)nextItem {
     if (self.shuffleEnabled) {
-        [self jumpToItemAtIndex:[self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:self.positionInPlaylist]]];
+        [self jumpToItemAtIndex:[self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:self.positionInPlaylist]]startPlaying:YES resetShuffle:NO];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
         if (self.positionInPlaylist == self.itemsToPlay.count-1) {
             [self getNextSongs];
         }
     } else {
-        [self jumpToItemAtIndex:self.positionInPlaylist+1];
+        if (self.positionInPlaylist == self.itemsToPlay.count-1 && self.repeatMode == RepeatModeAll) {
+            [self jumpToItemAtIndex:0];
+        } else if (self.positionInPlaylist != self.itemsToPlay.count-1)
+            [self jumpToItemAtIndex:self.positionInPlaylist+1];
     }
 }
 
@@ -87,6 +90,11 @@
 }
 
 - (void)jumpToItemAtIndex:(NSInteger)item startPlaying:(BOOL)start{
+    [self jumpToItemAtIndex:item startPlaying:start resetShuffle:YES];
+}
+
+- (void)jumpToItemAtIndex:(NSInteger)item startPlaying:(BOOL)start resetShuffle:(BOOL)resetShuffle{
+
     [self.audioPlayer pause];
     [self.audioPlayer removeAllItems];
     
@@ -102,6 +110,8 @@
     if (start){
         [self postNotificationForCurrentItem];
     }
+    if (resetShuffle)
+        [self setShuffleEnabled:_shuffleEnabled];
 }
 
 - (void)advanceToTime:(float)timeToGo {
@@ -142,6 +152,7 @@
             NSUInteger n = (arc4random() % nElements) + i;
             [self.shuffledItemsToPlay exchangeObjectAtIndex:i withObjectAtIndex:n];
         }
+        self.positionInPlaylist = 0;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayShuffleStarted" object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayShuffleEnded" object:nil];
@@ -373,7 +384,7 @@
     if (self.shuffleEnabled){
         if (_positionInPlaylist <= self.itemsToPlay.count) {
             self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
-            [self jumpToItemAtIndex: _positionInPlaylist];
+            [self jumpToItemAtIndex: _positionInPlaylist startPlaying:YES resetShuffle:NO];
         }
     } else {
         self.positionInPlaylist++;
@@ -407,7 +418,7 @@
         }
         default: {
             if (self.shuffleEnabled){
-                if (_positionInPlaylist <= self.itemsToPlay.count) {
+                if (_positionInPlaylist < self.shuffledItemsToPlay.count-1) {
                     self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
                     [self jumpToItemAtIndex: _positionInPlaylist];
                 }

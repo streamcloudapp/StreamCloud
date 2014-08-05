@@ -56,6 +56,7 @@
     }
 }
 
+
 - (void)nextItem {
     if (self.shuffleEnabled) {
         NSDictionary *currentShuffledItem = [self.shuffledItemsToPlay objectAtIndex:self.positionInPlaylist];

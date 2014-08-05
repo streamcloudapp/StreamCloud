@@ -58,10 +58,13 @@
 
 - (void)nextItem {
     if (self.shuffleEnabled) {
-        [self jumpToItemAtIndex:[self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:self.positionInPlaylist]]startPlaying:YES resetShuffle:NO];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
-        if (self.positionInPlaylist == self.itemsToPlay.count-1) {
-            [self getNextSongs];
+        NSDictionary *currentShuffledItem = [self.shuffledItemsToPlay objectAtIndex:self.positionInPlaylist];
+        if (currentShuffledItem) {
+            [self jumpToItemAtIndex:[self.itemsToPlay indexOfObject:currentShuffledItem]startPlaying:YES resetShuffle:NO];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+            if (self.positionInPlaylist == self.itemsToPlay.count-1) {
+                [self getNextSongs];
+            }
         }
     } else {
         if (self.positionInPlaylist == self.itemsToPlay.count-1 && self.repeatMode == RepeatModeAll) {

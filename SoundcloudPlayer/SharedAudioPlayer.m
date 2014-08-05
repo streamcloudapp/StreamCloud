@@ -346,7 +346,7 @@
         }
     } else {
         NSInteger indexOfCurrentItem = [self.itemsToPlay indexOfObject:currentItem];
-        if (indexOfCurrentItem < self.itemsToPlay.count + 2) {
+        if (indexOfCurrentItem < self.itemsToPlay.count - 2) {
             NSDictionary *nextItem = [self.itemsToPlay objectAtIndex:indexOfCurrentItem+1];
             [self.audioPlayer insertItem:[self itemForDict:nextItem] afterItem:nil];
         }

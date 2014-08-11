@@ -360,6 +360,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Previous Track"/>
                                 <connections>
                                     <action selector="previousButtonAction:" target="Voe-Tx-rLC" id="y46-q2-3WR"/>
                                 </connections>
@@ -371,6 +372,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Toggle Play Pause"/>
                                 <connections>
                                     <action selector="playButtonAction:" target="Voe-Tx-rLC" id="5k2-1Q-Uoe"/>
                                 </connections>
@@ -382,6 +384,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Next Track"/>
                                 <connections>
                                     <action selector="nextButtonAction:" target="Voe-Tx-rLC" id="9nK-55-q4U"/>
                                 </connections>
@@ -399,6 +402,7 @@
                                 <rect key="frame" x="154" y="18" width="120" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="M7S-Xp-lhR" customClass="ProgressSliderCell"/>
+                                <accessibility description="Time Scrobble"/>
                                 <connections>
                                     <action selector="sliderUpdate:" target="Voe-Tx-rLC" id="kXV-rA-uDb"/>
                                 </connections>
@@ -419,6 +423,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Shuffle"/>
                                 <connections>
                                     <action selector="shuffleButtonAction:" target="Voe-Tx-rLC" id="xLJ-Fz-7s6"/>
                                 </connections>
@@ -430,6 +435,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Volume"/>
                                 <connections>
                                     <action selector="volumeButtonAction:" target="Voe-Tx-rLC" id="3Or-ce-Vm8"/>
                                 </connections>
@@ -441,6 +447,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Repeat"/>
                                 <connections>
                                     <action selector="repeatButtonAction:" target="Voe-Tx-rLC" id="uXb-b9-eFg"/>
                                 </connections>
@@ -457,7 +464,7 @@
                 <slider horizontalHuggingPriority="750" id="cE3-R7-2CJ">
                     <rect key="frame" x="4" y="3" width="20" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="dMG-C9-CMS"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="left" sliderType="linear" id="dMG-C9-CMS"/>
                     <connections>
                         <action selector="volumeSliderUpdate:" target="Voe-Tx-rLC" id="eJN-Pq-qSy"/>
                     </connections>

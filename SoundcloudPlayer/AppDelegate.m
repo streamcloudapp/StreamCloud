@@ -78,16 +78,16 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     
     //Notification for MagicKeys
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotifiedAboutMagicKeys"]) {
-        NSAlert *magicKeysAlert = [NSAlert alertWithMessageText:@"To enable support for meda keys you need to install the MagicKeys Preference Pane. Do you want to install it now?" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"MagicKeys enables you to send the events from the media keys of your keyboard and headphones to any supported application and enables you to control which application starts when the play button is pressed. If you don't want to install just configure other hotkeys in the settings"];
-        [magicKeysAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
-            if (returnCode == 1) {
-                [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.treasurebox.hu/magickeys.html"]];
-            }
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotifiedAboutMagicKeys"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }];
-    }
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotifiedAboutMagicKeys"]) {
+//        NSAlert *magicKeysAlert = [NSAlert alertWithMessageText:@"To enable support for meda keys you need to install the MagicKeys Preference Pane. Do you want to install it now?" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"MagicKeys enables you to send the events from the media keys of your keyboard and headphones to any supported application and enables you to control which application starts when the play button is pressed. If you don't want to install just configure other hotkeys in the settings"];
+//        [magicKeysAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
+//            if (returnCode == 1) {
+//                [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.treasurebox.hu/magickeys.html"]];
+//            }
+//            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotifiedAboutMagicKeys"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//        }];
+//    }
     
     
     if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {

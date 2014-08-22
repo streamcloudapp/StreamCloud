@@ -43,6 +43,7 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <accessibility description="Toggle Play Pause"/>
                     <connections>
                         <action selector="playPauseButtonAction:" target="-2" id="lwD-th-aza"/>
                     </connections>
@@ -54,6 +55,7 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <accessibility description="Previous Track"/>
                     <connections>
                         <action selector="previousButtonAction:" target="-2" id="stn-TW-CUb"/>
                     </connections>
@@ -65,6 +67,7 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <accessibility description="Shuffle"/>
                     <connections>
                         <action selector="shuffleButtonAction:" target="-2" id="xkw-PB-uVR"/>
                     </connections>
@@ -76,6 +79,7 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <accessibility description="Repeat"/>
                     <connections>
                         <action selector="repeatButtonAction:" target="-2" id="V2h-Ng-iRZ"/>
                     </connections>
@@ -87,6 +91,7 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <accessibility description="Next Track"/>
                     <connections>
                         <action selector="nextButtonAction:" target="-2" id="C8O-Tp-Cgp"/>
                     </connections>

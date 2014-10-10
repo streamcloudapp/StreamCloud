@@ -1242,8 +1242,13 @@ static NSGradient* _orangeGradient = nil;
     [followerPath fill];
 }
 
-+ (void)drawIconTracksWithFrame: (NSRect)frame;
++ (void)drawIconTracksWithFrame: (NSRect)frame active: (BOOL)active;
 {
+    //// Color Declarations
+    NSColor* statusItemActiveColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
+
+    //// Variable Declarations
+    NSColor* colorForTabIcon = active ? statusItemActiveColor : StreamCloudStyles.grayDark;
 
     //// Bezier Drawing
     NSBezierPath* bezierPath = NSBezierPath.bezierPath;
@@ -1289,7 +1294,7 @@ static NSGradient* _orangeGradient = nil;
     [bezierPath closePath];
     [bezierPath setMiterLimit: 4];
     [bezierPath setWindingRule: NSEvenOddWindingRule];
-    [StreamCloudStyles.grayDark setFill];
+    [colorForTabIcon setFill];
     [bezierPath fill];
 }
 
@@ -1463,11 +1468,11 @@ static NSGradient* _orangeGradient = nil;
     return imageOfMenuBarIcon;
 }
 
-+ (NSImage*)imageOfIconTracksWithFrame: (NSRect)frame;
++ (NSImage*)imageOfIconTracksWithFrame: (NSRect)frame active: (BOOL)active;
 {
     NSImage* imageOfIconTracks = [NSImage.alloc initWithSize: NSMakeSize(26, 24)];
     [imageOfIconTracks lockFocus];
-    [StreamCloudStyles drawIconTracksWithFrame: frame];
+    [StreamCloudStyles drawIconTracksWithFrame: frame active: active];
     [imageOfIconTracks unlockFocus];
 
     return imageOfIconTracks;

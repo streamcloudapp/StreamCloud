@@ -51,7 +51,7 @@
 + (void)drawProgressIndicatorViewWithPercentShown: (CGFloat)percentShown;
 + (void)drawProgressSliderKnobWithFrame: (NSRect)frame;
 + (void)drawIconFollowerWithFrame: (NSRect)frame;
-+ (void)drawIconTracksWithFrame: (NSRect)frame;
++ (void)drawIconTracksWithFrame: (NSRect)frame active: (BOOL)active;
 + (void)drawTabTracksWithFrame: (NSRect)frame;
 + (void)drawTabProfileWithFrame: (NSRect)frame;
 
@@ -65,6 +65,6 @@
 + (NSImage*)imageOfImageOverlayGradientViewWithFrame: (NSRect)frame;
 + (NSImage*)imageOfSoundCloudLogoWithFrame: (NSRect)frame;
 + (NSImage*)imageOfMenuBarIconWithActive: (BOOL)active;
-+ (NSImage*)imageOfIconTracksWithFrame: (NSRect)frame;
++ (NSImage*)imageOfIconTracksWithFrame: (NSRect)frame active: (BOOL)active;
 
 @end

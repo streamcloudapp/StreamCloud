@@ -461,16 +461,17 @@
                         <size key="minSize" width="67" height="25"/>
                         <size key="maxSize" width="103" height="38"/>
                         <segmentedControl key="view" verticalHuggingPriority="750" id="fef-yY-jaY">
-                            <rect key="frame" x="5" y="14" width="99" height="25"/>
+                            <rect key="frame" x="3" y="14" width="103" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="Yac-z6-jbo">
+                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="selectOne" id="Yac-z6-jbo">
                                 <font key="font" metaFont="system"/>
                                 <segments>
-                                    <segment width="48" selected="YES">
+                                    <segment toolTip="Stream" width="48" selected="YES">
                                         <nil key="label"/>
                                     </segment>
-                                    <segment label="Likes" width="48" tag="1"/>
+                                    <segment label="Likes" toolTip="Favorites" width="48" tag="1"/>
                                 </segments>
+                                <accessibility description="Switch Stream Favorites" help="Switch between your stream and favorites"/>
                             </segmentedCell>
                             <connections>
                                 <action selector="switchStreamLikesChangedAction:" target="Voe-Tx-rLC" id="jnR-Lx-nJ7"/>

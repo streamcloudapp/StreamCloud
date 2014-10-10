@@ -302,6 +302,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     return NO;
 }
 
+
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
     NSDictionary *itemForRow = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:row];
     if ([itemForRow objectForKey:@"playlist_track_is_from"]) {

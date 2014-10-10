@@ -76,6 +76,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         [self previousButtonAction:nil];
     }];
     
+    [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 22, 22)] forSegment:0];
+    
     //Notification for MagicKeys
     
 //    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotifiedAboutMagicKeys"]) {

@@ -466,7 +466,9 @@
                             <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="Yac-z6-jbo">
                                 <font key="font" metaFont="system"/>
                                 <segments>
-                                    <segment label="Stream" width="48" selected="YES"/>
+                                    <segment width="48" selected="YES">
+                                        <nil key="label"/>
+                                    </segment>
                                     <segment label="Likes" width="48" tag="1"/>
                                 </segments>
                             </segmentedCell>

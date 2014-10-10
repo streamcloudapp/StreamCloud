@@ -1386,15 +1386,15 @@ static NSGradient* _orangeGradient = nil;
 
     //// Love Drawing
     NSBezierPath* lovePath = NSBezierPath.bezierPath;
-    [lovePath moveToPoint: NSMakePoint(NSMinX(frame) + 0.79195 * NSWidth(frame), NSMinY(frame) + 0.48861 * NSHeight(frame))];
-    [lovePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.50000 * NSWidth(frame), NSMinY(frame) + 0.16667 * NSHeight(frame))];
-    [lovePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.20805 * NSWidth(frame), NSMinY(frame) + 0.48861 * NSHeight(frame))];
-    [lovePath curveToPoint: NSMakePoint(NSMinX(frame) + 0.20805 * NSWidth(frame), NSMinY(frame) + 0.77411 * NSHeight(frame)) controlPoint1: NSMakePoint(NSMinX(frame) + 0.13578 * NSWidth(frame), NSMinY(frame) + 0.56758 * NSHeight(frame)) controlPoint2: NSMakePoint(NSMinX(frame) + 0.13578 * NSWidth(frame), NSMinY(frame) + 0.69514 * NSHeight(frame))];
-    [lovePath curveToPoint: NSMakePoint(NSMinX(frame) + 0.46820 * NSWidth(frame), NSMinY(frame) + 0.77411 * NSHeight(frame)) controlPoint1: NSMakePoint(NSMinX(frame) + 0.28031 * NSWidth(frame), NSMinY(frame) + 0.85308 * NSHeight(frame)) controlPoint2: NSMakePoint(NSMinX(frame) + 0.39594 * NSWidth(frame), NSMinY(frame) + 0.85308 * NSHeight(frame))];
-    [lovePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.50000 * NSWidth(frame), NSMinY(frame) + 0.73766 * NSHeight(frame))];
-    [lovePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.53180 * NSWidth(frame), NSMinY(frame) + 0.77411 * NSHeight(frame))];
-    [lovePath curveToPoint: NSMakePoint(NSMinX(frame) + 0.79195 * NSWidth(frame), NSMinY(frame) + 0.77411 * NSHeight(frame)) controlPoint1: NSMakePoint(NSMinX(frame) + 0.60406 * NSWidth(frame), NSMinY(frame) + 0.85308 * NSHeight(frame)) controlPoint2: NSMakePoint(NSMinX(frame) + 0.71969 * NSWidth(frame), NSMinY(frame) + 0.85308 * NSHeight(frame))];
-    [lovePath curveToPoint: NSMakePoint(NSMinX(frame) + 0.79195 * NSWidth(frame), NSMinY(frame) + 0.48861 * NSHeight(frame)) controlPoint1: NSMakePoint(NSMinX(frame) + 0.86422 * NSWidth(frame), NSMinY(frame) + 0.69514 * NSHeight(frame)) controlPoint2: NSMakePoint(NSMinX(frame) + 0.86422 * NSWidth(frame), NSMinY(frame) + 0.56758 * NSHeight(frame))];
+    [lovePath moveToPoint: NSMakePoint(NSMinX(frame) + 0.75952 * NSWidth(frame), NSMinY(frame) + 0.49003 * NSHeight(frame))];
+    [lovePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.50000 * NSWidth(frame), NSMinY(frame) + 0.20833 * NSHeight(frame))];
+    [lovePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.24048 * NSWidth(frame), NSMinY(frame) + 0.49003 * NSHeight(frame))];
+    [lovePath curveToPoint: NSMakePoint(NSMinX(frame) + 0.24048 * NSWidth(frame), NSMinY(frame) + 0.73984 * NSHeight(frame)) controlPoint1: NSMakePoint(NSMinX(frame) + 0.17625 * NSWidth(frame), NSMinY(frame) + 0.55913 * NSHeight(frame)) controlPoint2: NSMakePoint(NSMinX(frame) + 0.17625 * NSWidth(frame), NSMinY(frame) + 0.67075 * NSHeight(frame))];
+    [lovePath curveToPoint: NSMakePoint(NSMinX(frame) + 0.47174 * NSWidth(frame), NSMinY(frame) + 0.73984 * NSHeight(frame)) controlPoint1: NSMakePoint(NSMinX(frame) + 0.30472 * NSWidth(frame), NSMinY(frame) + 0.80894 * NSHeight(frame)) controlPoint2: NSMakePoint(NSMinX(frame) + 0.40750 * NSWidth(frame), NSMinY(frame) + 0.80894 * NSHeight(frame))];
+    [lovePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.50000 * NSWidth(frame), NSMinY(frame) + 0.70795 * NSHeight(frame))];
+    [lovePath lineToPoint: NSMakePoint(NSMinX(frame) + 0.52826 * NSWidth(frame), NSMinY(frame) + 0.73984 * NSHeight(frame))];
+    [lovePath curveToPoint: NSMakePoint(NSMinX(frame) + 0.75952 * NSWidth(frame), NSMinY(frame) + 0.73984 * NSHeight(frame)) controlPoint1: NSMakePoint(NSMinX(frame) + 0.59250 * NSWidth(frame), NSMinY(frame) + 0.80894 * NSHeight(frame)) controlPoint2: NSMakePoint(NSMinX(frame) + 0.69528 * NSWidth(frame), NSMinY(frame) + 0.80894 * NSHeight(frame))];
+    [lovePath curveToPoint: NSMakePoint(NSMinX(frame) + 0.75952 * NSWidth(frame), NSMinY(frame) + 0.49003 * NSHeight(frame)) controlPoint1: NSMakePoint(NSMinX(frame) + 0.82375 * NSWidth(frame), NSMinY(frame) + 0.67075 * NSHeight(frame)) controlPoint2: NSMakePoint(NSMinX(frame) + 0.82375 * NSWidth(frame), NSMinY(frame) + 0.55913 * NSHeight(frame))];
     [lovePath closePath];
     [lovePath setMiterLimit: 4];
     [colorForTabIcon setFill];

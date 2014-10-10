@@ -14,4 +14,7 @@
 @property (nonatomic) NSDictionary *objectToPlay;
 @property (nonatomic) BOOL showLargePlayPauseView;
 @property (nonatomic) BOOL playing;
+
+- (void)cursorEntered;
+- (void)cursorExited;
 @end

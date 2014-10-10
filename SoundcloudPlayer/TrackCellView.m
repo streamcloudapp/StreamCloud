@@ -112,14 +112,14 @@
     if ([self.playingIndicatiorView isHidden]){
         [self setMouseInside:YES];
     }
-    [self.artworkView mouseEntered:theEvent];
+    [self.artworkView cursorEntered];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
     if ([self.playingIndicatiorView isHidden]){
         [self setMouseInside:NO];
     }
-    [self.artworkView mouseExited:theEvent];
+    [self.artworkView cursorExited];
 }
 
 

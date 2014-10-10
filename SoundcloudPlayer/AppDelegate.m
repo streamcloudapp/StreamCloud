@@ -190,9 +190,9 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     if ([identifier isEqualToString:@"MainColumn"]){
         if (![itemForRow objectForKey:@"playlist_track_is_from"]) {
             TrackCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
+            [viewforRow.artworkView setImage:nil];
             [viewforRow setRow:row];
             [viewforRow.artworkView setObjectToPlay:itemForRow];
-            [viewforRow.artworkView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
             BOOL useAvatar = YES;
             if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
                 if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
@@ -249,7 +249,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         } else {
             TrackCellForPlaylistItemView *viewforRow = [tableView makeViewWithIdentifier:@"PlayListItemCell" owner:self];
             [viewforRow setRow:row];
-            [viewforRow.artworkView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
+            [viewforRow.artworkView setImage:nil];
             BOOL useAvatar = YES;
             if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
                 if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]

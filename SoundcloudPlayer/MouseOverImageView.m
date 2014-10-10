@@ -90,14 +90,14 @@
 
 # pragma mark - Mouse Handling
 
-- (void)mouseEntered:(NSEvent *)theEvent {
+- (void)cursorEntered {
     self.mouseOver = YES;
     [self.playPauseOverlayView setHidden:NO];
     [self.loadSpeakerOverlayView setHidden:YES];
     [self.playPauseOverlayView setNeedsDisplay:YES];
 }
 
-- (void)mouseExited:(NSEvent *)theEvent {
+- (void)cursorExited {
     self.mouseOver = NO;
     [self.playPauseOverlayView setHidden:YES];
     [self setPlaying:_playing];
@@ -123,22 +123,10 @@
         
         NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
         [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
+        [self.playPauseOverlayView setHidden:YES];
     }
     [self.playPauseOverlayView setNeedsDisplay:YES];
 }
 
--(void)updateTrackingAreas
-{
-    if(self.trackingArea != nil) {
-        [self removeTrackingArea:self.trackingArea];
-    }
-    
-    int opts = (NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways);
-    self.trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
-                                                 options:opts
-                                                   owner:self
-                                                userInfo:nil];
-    [self addTrackingArea:self.trackingArea];
-}
 
 @end

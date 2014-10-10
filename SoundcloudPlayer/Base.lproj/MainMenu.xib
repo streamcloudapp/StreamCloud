@@ -469,7 +469,9 @@
                                     <segment toolTip="Stream" width="48" selected="YES">
                                         <nil key="label"/>
                                     </segment>
-                                    <segment label="Likes" toolTip="Favorites" width="48" tag="1"/>
+                                    <segment toolTip="Favorites" width="48" tag="1">
+                                        <nil key="label"/>
+                                    </segment>
                                 </segments>
                                 <accessibility description="Switch Stream Favorites" help="Switch between your stream and favorites"/>
                             </segmentedCell>

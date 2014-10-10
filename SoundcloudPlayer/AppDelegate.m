@@ -76,7 +76,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         [self previousButtonAction:nil];
     }];
     
-    [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 22, 22) active:YES] forSegment:0];
+    [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 26, 24) active:YES] forSegment:0];
+    [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconFavoritesWithFrame:NSMakeRect(0, 0, 26, 24) active:NO] forSegment:1];
     
     //Notification for MagicKeys
     
@@ -568,9 +569,11 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 - (IBAction)switchStreamLikesChangedAction:(id)sender {
     [self setCurrentlySelectedStream:self.switchStreamLikesSegmentedControl.selectedSegment];
     if (self.switchStreamLikesSegmentedControl.selectedSegment == 0){
-        [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 22, 22) active:YES] forSegment:0];
+        [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 26, 24) active:YES] forSegment:0];
+        [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconFavoritesWithFrame:NSMakeRect(0, 0, 26, 24) active:NO] forSegment:1];
     } else {
-        [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 22, 22) active:NO] forSegment:0];
+        [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 26, 24) active:NO] forSegment:0];
+        [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconFavoritesWithFrame:NSMakeRect(0, 0, 26, 24) active:YES] forSegment:1];
     }
 }
 # pragma mark - Helpers

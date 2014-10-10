@@ -54,6 +54,7 @@
 + (void)drawIconTracksWithFrame: (NSRect)frame active: (BOOL)active;
 + (void)drawTabTracksWithFrame: (NSRect)frame;
 + (void)drawTabProfileWithFrame: (NSRect)frame;
++ (void)drawIconFavoritesWithFrame: (NSRect)frame active: (BOOL)active;
 
 // Generated Images
 + (NSImage*)imageOfPlayPauseButtonWithFrame: (NSRect)frame playing: (BOOL)playing;
@@ -66,5 +67,6 @@
 + (NSImage*)imageOfSoundCloudLogoWithFrame: (NSRect)frame;
 + (NSImage*)imageOfMenuBarIconWithActive: (BOOL)active;
 + (NSImage*)imageOfIconTracksWithFrame: (NSRect)frame active: (BOOL)active;
++ (NSImage*)imageOfIconFavoritesWithFrame: (NSRect)frame active: (BOOL)active;
 
 @end

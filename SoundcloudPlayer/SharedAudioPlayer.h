@@ -14,22 +14,30 @@ typedef enum : NSUInteger {
     RepeatModeTrack,
 } RepeatMode;
 
+typedef enum : NSUInteger {
+    CurrentSourceTypeStream,
+    CurrentSourceTypeFavorites,
+} CurrentSourceType;
+
 @import AVFoundation;
 
 @interface SharedAudioPlayer : NSObject <AVAudioPlayerDelegate, NSUserNotificationCenterDelegate>
 
 @property (nonatomic, strong) AVQueuePlayer *audioPlayer;
 @property (nonatomic, strong) NSMutableArray *itemsToPlay;
-@property (nonatomic, strong) NSMutableArray *itemsToShowInTableView;
+@property (nonatomic, strong) NSMutableArray *streamItemsToShowInTableView;
+@property (nonatomic, strong) NSMutableArray *favoriteItemsToShowInTableView;
 @property (nonatomic, strong) NSMutableArray *shuffledItemsToPlay;
 @property (nonatomic) BOOL shuffleEnabled;
 @property (nonatomic) NSInteger positionInPlaylist;
 @property (nonatomic, strong) NSString *nextStreamPartURL;
 @property (nonatomic) RepeatMode repeatMode;
+@property (nonatomic) CurrentSourceType sourceType;
 @property (nonatomic ,strong) NSMutableArray *scrobbledItems;
 
 + (SharedAudioPlayer *)sharedPlayer;
 - (void)insertItemsFromResponse:(NSDictionary *)response;
+- (void)insertFavoriteItemsFromResponse:(NSDictionary *)response;
 - (void)togglePlayPause;
 - (void)previousItem;
 - (void)nextItem;
@@ -39,4 +47,6 @@ typedef enum : NSUInteger {
 - (void)getNextSongs;
 - (void)toggleRepeatMode;
 - (void)reset;
+- (void)switchToFavorites;
+- (void)switchToStream;
 @end

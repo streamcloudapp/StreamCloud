@@ -54,8 +54,8 @@
 		FD8F6AD91959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; };
 		FD8F6ADA1959996D004D4B61 /* OAuth2Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
 		FD8F6ADB1959996D004D4B61 /* OAuth2Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
-		FD8F6ADC195999B6004D4B61 /* SoundCloudAPI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; };
-		FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
+		FD8F6ADC195999B6004D4B61 /* SoundCloudAPI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		FD8F6AE01959A454004D4B61 /* ShuffleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6ADF1959A454004D4B61 /* ShuffleButtonCell.m */; };
 		FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */; };
 		FD8F6AE61959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AE51959AB8D004D4B61 /* StatusBarPlayerViewController.m */; };
@@ -463,7 +463,7 @@
 		FD7CD2841954396C002AC765 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Call a Nerd";
 				TargetAttributes = {
 					FD7CD28B1954396C002AC765 = {

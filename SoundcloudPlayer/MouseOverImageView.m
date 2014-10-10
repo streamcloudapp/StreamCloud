@@ -45,6 +45,11 @@
     [self.playPauseOverlayView setRow:row];
 }
 
+- (void)setObjectToPlay:(NSDictionary *)objectToPlay {
+    _objectToPlay = objectToPlay;
+    [self.playPauseOverlayView setObjectToShow:objectToPlay];
+}
+
 - (void)setPlaying:(BOOL)playing {
     _playing = playing;
     [self.loadSpeakerOverlayView setHidden:!playing];
@@ -99,15 +104,21 @@
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
-    if (self.row == [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] indexOfObject:[[SharedAudioPlayer sharedPlayer] currentItem]])
+    if (self.objectToPlay == [[SharedAudioPlayer sharedPlayer] currentItem])
         [[SharedAudioPlayer sharedPlayer] togglePlayPause];
-    else if ([[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] objectForKey:@"playlist_track_is_from"]] == self.row)
+    else if ([[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] objectForKey:@"playlist_track_is_from"]] == self.row)
              [[SharedAudioPlayer sharedPlayer] togglePlayPause];
     else {
+        if ([[SharedAudioPlayer sharedPlayer].streamItemsToShowInTableView containsObject:self.objectToPlay] && [SharedAudioPlayer sharedPlayer].sourceType != CurrentSourceTypeStream){
+            [[SharedAudioPlayer sharedPlayer] switchToStream];
+        } else if ([[SharedAudioPlayer sharedPlayer].favoriteItemsToShowInTableView containsObject:self.objectToPlay] && [SharedAudioPlayer sharedPlayer].sourceType != CurrentSourceTypeFavorites) {
+            [[SharedAudioPlayer sharedPlayer] switchToFavorites];
+        }
+    
         NSInteger clickedRow = self.row;
-        NSDictionary *clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow];
+        NSDictionary *clickedDict = self.objectToPlay;
         if ([[clickedDict objectForKey:@"type"] isEqualToString:@"playlist"]){
-            clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow+1];
+            clickedDict = [[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView] objectAtIndex:clickedRow+1];
         }
         
         NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];

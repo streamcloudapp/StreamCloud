@@ -30,9 +30,9 @@
 {
     [super drawRect:dirtyRect];
     BOOL playing = NO;
-    if ([[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] indexOfObject:[[SharedAudioPlayer sharedPlayer] currentItem]] == self.row && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
+    if ([[SharedAudioPlayer sharedPlayer] currentItem] == self.objectToShow && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
         playing = YES;
-    } else if ([[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] objectForKey:@"playlist_track_is_from"]] == self.row && [SharedAudioPlayer sharedPlayer].audioPlayer.rate ) {
+    } else if ([[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] objectForKey:@"playlist_track_is_from"]] == self.row && [SharedAudioPlayer sharedPlayer].audioPlayer.rate ) {
         playing = YES;
     }
     if (self.showLargeIcons){

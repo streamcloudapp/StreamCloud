@@ -26,7 +26,8 @@
     self = [super init];
     if (self){
         self.itemsToPlay = [NSMutableArray array];
-        self.itemsToShowInTableView = [NSMutableArray array];
+        self.streamItemsToShowInTableView = [NSMutableArray array];
+        self.favoriteItemsToShowInTableView = [NSMutableArray array];
         self.positionInPlaylist = 0;
         [self setRepeatMode:RepeatModeNone];
         self.scrobbledItems = [NSMutableArray array];
@@ -168,11 +169,33 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayerChangedRepeatMode" object:nil];
 }
 
+- (void)switchToFavorites {
+    self.sourceType = CurrentSourceTypeFavorites;
+    self.itemsToPlay = nil;
+    self.itemsToPlay = [NSMutableArray arrayWithCapacity:self.favoriteItemsToShowInTableView.count];
+    for (NSDictionary *item in self.favoriteItemsToShowInTableView) {
+        [self.itemsToPlay addObject:item];
+    }
+}
+
+- (void)switchToStream {
+    self.sourceType = CurrentSourceTypeStream;
+    self.itemsToPlay = nil;
+    self.itemsToPlay = [NSMutableArray arrayWithCapacity:self.streamItemsToShowInTableView.count];
+    for (NSDictionary *item in self.streamItemsToShowInTableView) {
+        if (![[item objectForKey:@"type"] isEqualToString:@"playlist"])
+            [self.itemsToPlay addObject:item];
+    }
+}
+
 - (void)reset {
     [self.audioPlayer pause];
     [self.audioPlayer removeAllItems];
     [self.itemsToPlay removeAllObjects];
     [self.shuffledItemsToPlay removeAllObjects];
+    [self.streamItemsToShowInTableView removeAllObjects];
+    [self.favoriteItemsToShowInTableView removeAllObjects];
+    self.positionInPlaylist = 0;
     self.audioPlayer = nil;
     self.shuffledItemsToPlay = nil;
     self.itemsToPlay = nil;
@@ -265,7 +288,7 @@
             AVPlayerItem *itemToPlay = [self itemForDict:dict];
             if (itemToPlay){
                 [self.itemsToPlay addObject:dict];
-                [self.itemsToShowInTableView addObject:dict];
+                [self.streamItemsToShowInTableView addObject:dict];
                 if (itemsToPlay.count < 3) {
                     [itemsToPlay addObject:itemToPlay];
                 }
@@ -309,7 +332,7 @@
             AVPlayerItem *itemToPlay = [self itemForDict:dict];
             if (itemToPlay) {
                 [self.itemsToPlay addObject:dict];
-                [self.itemsToShowInTableView addObject:dict];
+                [self.streamItemsToShowInTableView addObject:dict];
                 if (self.audioPlayer.items.count < 3) {
                     [self.audioPlayer insertItem:itemToPlay afterItem:nil];
                 }
@@ -328,6 +351,65 @@
     [self loadPlaylists];
 }
 
+- (void)insertFavoriteItemsFromResponse:(NSArray *)response {
+    if (!_audioPlayer){
+        NSMutableArray *itemsToPlay = [NSMutableArray array];
+        for (NSDictionary *dict in response){
+            NSDictionary *dictForItemCreation = @{@"type":@"track",@"origin":dict};
+            AVPlayerItem *itemToPlay = [self itemForDict:dictForItemCreation];
+            if (itemToPlay){
+                [self.favoriteItemsToShowInTableView addObject:dictForItemCreation];
+                if (itemsToPlay.count < 3) {
+                    [itemsToPlay addObject:itemToPlay];
+                }
+            }
+        }
+        self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
+        [self.audioPlayer addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
+        self.audioPlayerCallback = [self.audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1.0, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
+            if (!isnan(CMTimeGetSeconds(time))) {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedAudioPlayerUpdatedTimePlayed" object:[NSNumber numberWithFloat:CMTimeGetSeconds(time)]];
+                float seconds = CMTimeGetSeconds(time);
+                NSDictionary *currentItem = [[SharedAudioPlayer sharedPlayer] currentItem];
+                NSDictionary *originItem = [currentItem objectForKey:@"origin"];
+                NSNumber *duration = [originItem objectForKey:@"duration"];
+                BOOL doScrobble = [[NSUserDefaults standardUserDefaults] boolForKey:@"useLastFM"];
+                if ((seconds > 240 || seconds > (duration.floatValue/1000)*0.3) && ![[SharedAudioPlayer sharedPlayer].scrobbledItems containsObject:currentItem] && doScrobble) {
+                    NSLog(@"Scrobble!");
+                    [[LastFm sharedInstance] setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
+                    [[LastFm sharedInstance] setSession:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMSessionKey"]];
+                    NSDictionary *userDict = [originItem objectForKey:@"user"];
+                    [[LastFm sharedInstance] sendScrobbledTrack:[originItem objectForKey:@"title"] byArtist:[userDict objectForKey:@"username"] onAlbum:nil withDuration:duration.doubleValue/1000 atTimestamp:[[NSDate date] timeIntervalSince1970] successHandler:^(NSDictionary *result) {
+                        NSLog(@"Success %@",result);
+                    } failureHandler:^(NSError *error) {
+                        NSLog(@"Error scrobbling %@",error);
+                    }];
+                    [[SharedAudioPlayer sharedPlayer].scrobbledItems addObject:currentItem];
+                }
+            }
+        }];
+        
+        [self.audioPlayer setActionAtItemEnd:AVPlayerActionAtItemEndAdvance];
+    } else {
+        for (NSDictionary *dict in response){
+            NSDictionary *dictForItemCreation = @{@"type":@"track",@"origin":dict};
+            AVPlayerItem *itemToPlay = [self itemForDict:dictForItemCreation];
+            if (itemToPlay) {
+                [self.favoriteItemsToShowInTableView addObject:dictForItemCreation];
+                if (self.audioPlayer.items.count < 3) {
+                    [self.audioPlayer insertItem:itemToPlay afterItem:nil];
+                }
+            }
+        }
+    }
+    if (self.sourceType == CurrentSourceTypeFavorites){
+        [self switchToFavorites];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
+    [self setShuffleEnabled:_shuffleEnabled];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+    [self loadPlaylists];
+}
 
 - (void)rebuildAudioPlayList {
     
@@ -494,9 +576,9 @@
                              if (!error){
                                  if ([objectFromData isKindOfClass:[NSArray class]]) {
                                      if (!objectToInsertAfter){
-                                         [self.itemsToShowInTableView insertObject:playlistDict atIndex:0];
+                                         [self.streamItemsToShowInTableView insertObject:playlistDict atIndex:0];
                                      } else {
-                                         [self.itemsToShowInTableView insertObject:playlistDict atIndex:[self.itemsToShowInTableView indexOfObject:objectToInsertAfter]+1];
+                                         [self.streamItemsToShowInTableView insertObject:playlistDict atIndex:[self.streamItemsToShowInTableView indexOfObject:objectToInsertAfter]+1];
                                      }
                                      NSMutableArray *playlistCache = [NSMutableArray array];
                                      for (NSDictionary *trackDict in objectFromData) {
@@ -507,10 +589,10 @@
                                      }
                                      if (!objectToInsertAfter){
                                          [self.itemsToPlay insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, playlistCache.count)]];
-                                         [self.itemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, playlistCache.count)]];
+                                         [self.streamItemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, playlistCache.count)]];
                                      } else {
                                          [self.itemsToPlay insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.itemsToPlay indexOfObject:objectToInsertAfter]+1, playlistCache.count)]];
-                                         [self.itemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.itemsToShowInTableView indexOfObject:objectToInsertAfter]+2, playlistCache.count)]];
+                                         [self.streamItemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.streamItemsToShowInTableView indexOfObject:objectToInsertAfter]+2, playlistCache.count)]];
                                      }
                                     [self rebuildAudioPlayList];
                                  }

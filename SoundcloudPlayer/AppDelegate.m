@@ -181,13 +181,14 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 # pragma mark - NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSDictionary *itemForRow = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView objectAtIndex:row];
+    NSDictionary *itemForRow = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:row];
     NSDictionary *originDict = [itemForRow objectForKey:@"origin"];
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"MainColumn"]){
         if (![itemForRow objectForKey:@"playlist_track_is_from"]) {
             TrackCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
             [viewforRow setRow:row];
+            [viewforRow.artworkView setObjectToPlay:itemForRow];
             [viewforRow.artworkView setImage:[StreamCloudStyles imageOfSoundCloudLogoWithFrame:NSMakeRect(0, 0, 40, 18)]];
             BOOL useAvatar = YES;
             if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
@@ -299,7 +300,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-    NSDictionary *itemForRow = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView objectAtIndex:row];
+    NSDictionary *itemForRow = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:row];
     if ([itemForRow objectForKey:@"playlist_track_is_from"]) {
         return 40;
     } else {
@@ -309,21 +310,28 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 # pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return [[SharedAudioPlayer sharedPlayer] itemsToShowInTableView].count;
+    return [self sourceArrayForCurrentlySelectedStream].count;
 }
 
 # pragma mark - NSTableView Click Handling
 
 - (void)tableViewDoubleClick {
     NSInteger clickedRow = [self.tableView clickedRow];
-    NSDictionary *clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow];
-    if ([[clickedDict objectForKey:@"type"] isEqualToString:@"playlist"]){
-        clickedDict = [[[SharedAudioPlayer sharedPlayer] itemsToShowInTableView] objectAtIndex:clickedRow+1];
+    if (_currentlySelectedStream == 0){
+        [[SharedAudioPlayer sharedPlayer] switchToStream];
+        NSDictionary *clickedDict = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow];
+        if ([[clickedDict objectForKey:@"type"] isEqualToString:@"playlist"]){
+            clickedDict = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow+1];
+        }
+        
+        NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
+        [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
+    } else if (_currentlySelectedStream == 1) {
+        [[SharedAudioPlayer sharedPlayer] switchToFavorites];
+        NSDictionary *clickedDict = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow];
+        NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
+        [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
     }
-    
-    NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
-    [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
-    
 }
 
 # pragma mark - NSTableView Scroll Handling
@@ -368,7 +376,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         [cellForRow markAsPlaying:NO];
     }];
     NSDictionary *currentItem = [SharedAudioPlayer sharedPlayer].currentItem;
-    NSUInteger rowForItem = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView indexOfObject:currentItem];
+    NSUInteger rowForItem = [[self sourceArrayForCurrentlySelectedStream] indexOfObject:currentItem];
     NSLog(@"Now playing song in row %lu",(unsigned long)rowForItem);
     NSTableRowView *rowView = [self.tableView rowViewAtRow:rowForItem makeIfNecessary:NO];
     [rowView setBackgroundColor:[StreamCloudStyles grayLight]];
@@ -378,7 +386,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     }
     if ([currentItem objectForKey:@"playlist_track_is_from"]) {
         NSDictionary *fromPlaylistDict = [currentItem objectForKey:@"playlist_track_is_from"];
-        NSUInteger rowForPlaylist = [[SharedAudioPlayer sharedPlayer].itemsToShowInTableView indexOfObject:fromPlaylistDict];
+        NSUInteger rowForPlaylist = [[self sourceArrayForCurrentlySelectedStream] indexOfObject:fromPlaylistDict];
         NSLog(@"Marking playlist row %lu",(unsigned long)rowForPlaylist);
         NSTableRowView *playlistRowView = [self.tableView rowViewAtRow:rowForPlaylist makeIfNecessary:NO];
         [playlistRowView setBackgroundColor:[StreamCloudStyles grayLight]];
@@ -488,7 +496,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 }
 
 - (IBAction)reloadMenuAction:(id)sender {
-    [[SoundCloudAPIClient sharedClient] reloadTracks];
+    [[SoundCloudAPIClient sharedClient] reloadStream];
 }
 
 - (IBAction)showAboutMenuAction:(id)sender {
@@ -555,6 +563,9 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://streamcloud.cc"]];
 }
 
+- (IBAction)switchStreamLikesChangedAction:(id)sender {
+    [self setCurrentlySelectedStream:self.switchStreamLikesSegmentedControl.selectedSegment];
+}
 # pragma mark - Helpers
 
 - (NSString *)stringForSeconds:(NSUInteger)elapsedSeconds {
@@ -568,6 +579,26 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     } else {
         NSString *formattedTime = [NSString stringWithFormat:@"%02lu:%02lu",(unsigned long)m, (unsigned long)s];
         return formattedTime;
+    }
+}
+
+- (NSMutableArray *)sourceArrayForCurrentlySelectedStream {
+    if (_currentlySelectedStream == 0) {
+        return [[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView];
+    } else {
+        return [[SharedAudioPlayer sharedPlayer] favoriteItemsToShowInTableView];
+    }
+}
+
+# pragma mark - Custom Setters
+
+- (void)setCurrentlySelectedStream:(NSInteger)currentlySelectedStream {
+    if (_currentlySelectedStream != currentlySelectedStream){
+        _currentlySelectedStream = currentlySelectedStream;
+        if (_currentlySelectedStream == 1 && [self sourceArrayForCurrentlySelectedStream].count <= 0) {
+            [[SoundCloudAPIClient sharedClient] getInitialFavoriteSongs];
+        }
+        [self.tableView reloadData];
     }
 }
 

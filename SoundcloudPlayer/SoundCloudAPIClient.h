@@ -16,5 +16,7 @@
 - (BOOL)isLoggedIn;
 - (void)getInitialStreamSongs;
 - (void)getStreamSongsWithURL:(NSString *)url;
-- (void)reloadTracks;
+- (void)getInitialFavoriteSongs;
+- (void)reloadStream;
+- (void)reloadFavorites;
 @end

@@ -26,6 +26,8 @@
 @property (nonatomic, strong) StatusBarPlayerViewController *statusBarPlayerViewController;
 @property (nonatomic) BOOL atBottom;
 @property (nonatomic, strong) IBOutlet NSPanel *aboutPanel;
+@property (nonatomic, strong) IBOutlet NSSegmentedControl *switchStreamLikesSegmentedControl;
+@property (nonatomic) NSInteger currentlySelectedStream;
 
 @property (nonatomic, strong) IBOutlet NSPanel *settingsPanel;
 @property (nonatomic, strong) IBOutlet NSTextField *lastFMUserNameField;

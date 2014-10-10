@@ -56,9 +56,10 @@
     }
 }
 
-- (void)reloadTracks {
+- (void)reloadStream {
     [[SharedAudioPlayer sharedPlayer] reset];
     [self getInitialStreamSongs];
+    [self getInitialFavoriteSongs];
 }
 
 - (void)getInitialStreamSongs {
@@ -112,5 +113,32 @@
              }];
 
 }
+
+- (void)getInitialFavoriteSongs {
+    SCAccount *account = [SCSoundCloud account];
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:@"https://api.soundcloud.com/me/favorites"]
+             usingParameters:nil
+                 withAccount:account
+      sendingProgressHandler:nil
+             responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                 // Handle the response
+                 if (error) {
+                     NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
+                 } else {
+                     NSLog(@"Got data, yeah");
+                     NSError *error;
+                     id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                     if (!error){
+                         if ([objectFromData isKindOfClass:[NSArray class]]) {
+                             [[SharedAudioPlayer sharedPlayer]insertFavoriteItemsFromResponse:objectFromData];
+                             
+                         }                     }
+                 }
+             }];
+
+}
+
 
 @end

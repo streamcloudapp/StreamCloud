@@ -78,6 +78,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     
     [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 26, 24) active:YES] forSegment:0];
     [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconFavoritesWithFrame:NSMakeRect(0, 0, 26, 24) active:NO] forSegment:1];
+
     
     //Notification for MagicKeys
     
@@ -356,6 +357,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     } else if (currentPosition < tableViewHeight - 100) {
         self.atBottom = NO;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SongTableViewDidScroll" object:nil];
 }
 
 # pragma mark - Update UI 
@@ -420,6 +422,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     self.statusItemPopup = nil;
     self.statusBarPlayerViewController = nil;
 }
+
 
 # pragma mark - NSWindowDelegate
 

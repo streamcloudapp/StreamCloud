@@ -29,9 +29,13 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self){
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTrackingAreas) name:@"SongTableViewDidScroll" object:nil];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setRow:(NSInteger)row {
@@ -94,18 +98,30 @@
 
 # pragma mark - Mouse Over Managment
 
-- (void)ensureTrackingArea {
-    if (_trackingArea == nil) {
-        _trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect options:NSTrackingInVisibleRect | NSTrackingActiveAlways | NSTrackingMouseEnteredAndExited owner:self userInfo:nil];
+- (void) createTrackingArea {
+    int opts = (NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways);
+    _trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
+                                                  options:opts
+                                                    owner:self
+                                                 userInfo:nil];
+    [self addTrackingArea:_trackingArea];
+    
+    NSPoint mouseLocation = [[self window] mouseLocationOutsideOfEventStream];
+    mouseLocation = [self convertPoint: mouseLocation fromView: nil];
+    
+    if (NSPointInRect(mouseLocation, self.bounds)){
+        [self mouseEntered:nil];
+    } else {
+        [self mouseExited:nil];
     }
+    
 }
 
+
 - (void)updateTrackingAreas {
+    [self removeTrackingArea:_trackingArea];
+    [self createTrackingArea];
     [super updateTrackingAreas];
-    [self ensureTrackingArea];
-    if (![[self trackingAreas] containsObject:_trackingArea]) {
-        [self addTrackingArea:_trackingArea];
-    }
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {

@@ -391,7 +391,7 @@
                                 <rect key="frame" x="102" y="23" width="48" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="00:00" usesSingleLineMode="YES" id="o2X-P7-wd7">
-                                    <font key="font" size="10" name="Avenir-Heavy"/>
+                                    <font key="font" size="10" name="HelveticaNeue-Medium"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -409,7 +409,7 @@
                                 <rect key="frame" x="278" y="23" width="48" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="00:00" usesSingleLineMode="YES" id="vJC-q7-cOG">
-                                    <font key="font" size="10" name="Avenir-Heavy"/>
+                                    <font key="font" size="10" name="HelveticaNeue-Medium"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

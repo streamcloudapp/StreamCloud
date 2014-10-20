@@ -231,19 +231,19 @@
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="cIG-lQ-HQc"/>
                                                         </imageView>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="gip-Wf-m62" customClass="ClickableTextField">
-                                                            <rect key="frame" x="77" y="23" width="256" height="28"/>
+                                                            <rect key="frame" x="77" y="16" width="256" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="8wC-yb-ais">
-                                                                <font key="font" size="18" name="Avenir-Medium"/>
+                                                                <font key="font" size="18" name="HelveticaNeue"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="nbg-iy-TSn" customClass="ClickableTextField">
-                                                            <rect key="frame" x="77" y="43" width="256" height="20"/>
+                                                            <rect key="frame" x="77" y="44" width="256" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yb8-Yg-u1b">
-                                                                <font key="font" size="12" name="Avenir-Heavy"/>
+                                                                <font key="font" size="12" name="HelveticaNeue"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -252,7 +252,7 @@
                                                             <rect key="frame" x="344" y="42" width="64" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="00:00:00" id="dVx-FK-MOy">
-                                                                <font key="font" size="11" name="Avenir-Heavy"/>
+                                                                <font key="font" size="11" name="HelveticaNeue-Medium"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -285,19 +285,19 @@
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="JD2-xR-dKT"/>
                                                         </imageView>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="1LZ-0q-rBi" customClass="ClickableTextField">
-                                                            <rect key="frame" x="77" y="5" width="256" height="20"/>
+                                                            <rect key="frame" x="77" y="3" width="256" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="HWo-6i-QtQ">
-                                                                <font key="font" size="10" name="Avenir-Medium"/>
+                                                                <font key="font" size="10" name="HelveticaNeue-Medium"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Hb2-H8-PY1" customClass="ClickableTextField">
-                                                            <rect key="frame" x="77" y="21" width="256" height="18"/>
+                                                            <rect key="frame" x="77" y="22" width="256" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="JQG-MG-epu">
-                                                                <font key="font" size="8" name="Avenir-Heavy"/>
+                                                                <font key="font" size="8" name="HelveticaNeue-Medium"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -310,7 +310,7 @@
                                                             <rect key="frame" x="344" y="18" width="64" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="00:00:00" id="lqe-a1-cJp">
-                                                                <font key="font" size="11" name="Avenir-Medium"/>
+                                                                <font key="font" size="11" name="HelveticaNeue-Medium"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -391,7 +391,7 @@
                                 <rect key="frame" x="102" y="23" width="48" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="00:00" usesSingleLineMode="YES" id="o2X-P7-wd7">
-                                    <font key="font" size="10" name="Avenir-Heavy"/>
+                                    <font key="font" size="10" name="HelveticaNeue-Medium"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -409,7 +409,7 @@
                                 <rect key="frame" x="278" y="23" width="48" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="00:00" usesSingleLineMode="YES" id="vJC-q7-cOG">
-                                    <font key="font" size="10" name="Avenir-Heavy"/>
+                                    <font key="font" size="10" name="HelveticaNeue-Medium"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

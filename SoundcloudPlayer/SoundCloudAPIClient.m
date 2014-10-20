@@ -15,7 +15,7 @@
 - (id)init {
     self = [super init];
     if (self){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTracks) name:SCSoundCloudAccountDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadStream) name:SCSoundCloudAccountDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFailToAuthenticate) name:SCSoundCloudDidFailToRequestAccessNotification object:nil];
     }
     return self;

@@ -53,7 +53,8 @@
     } else {
         [self.audioPlayer play];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
-        [self postNotificationForCurrentItem];
+        if (CMTimeGetSeconds(self.audioPlayer.currentItem.currentTime) <= 3)
+            [self postNotificationForCurrentItem];
     }
 }
 
@@ -526,6 +527,7 @@
         AVPlayerItem *nextItem = [[self.audioPlayer items] objectAtIndex:1];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
     }
+    [self postNotificationForCurrentItem];
 }
 
 - (void)getNextSongs {

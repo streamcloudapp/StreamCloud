@@ -52,7 +52,7 @@ CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef 
     if([nsEvent subtype] != 8)
         return event;
     
-    int data = [nsEvent data1];
+    int data = (int)[nsEvent data1];
     int keyCode = (data & 0xFFFF0000) >> 16;
     int keyFlags = (data & 0xFFFF);
     int keyState = (keyFlags & 0xFF00) >> 8;

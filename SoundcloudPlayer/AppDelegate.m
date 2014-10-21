@@ -367,11 +367,12 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 - (void)updateSlider {
     float timeGone = CMTimeGetSeconds([SharedAudioPlayer sharedPlayer].audioPlayer.currentTime);
     float durationOfItem = CMTimeGetSeconds([SharedAudioPlayer sharedPlayer].audioPlayer.currentItem.duration);
-    //float timeToGo = durationOfItem - timeGone;
-    [self.timeToGoLabel setStringValue:[self stringForSeconds:durationOfItem]];
-    [self.timeGoneLabel setStringValue:[self stringForSeconds:timeGone]];
-    if (!self.playerTimeSlider.clicked)
-        [self.playerTimeSlider setDoubleValue:(timeGone/durationOfItem)*100];
+    if (timeGone != NAN && timeGone != INFINITY && timeGone < DBL_MAX){
+        [self.timeToGoLabel setStringValue:[self stringForSeconds:durationOfItem]];
+        [self.timeGoneLabel setStringValue:[self stringForSeconds:timeGone]];
+        if (!self.playerTimeSlider.clicked)
+            [self.playerTimeSlider setDoubleValue:(timeGone/durationOfItem)*100];
+    }
 }
 
 - (void)updatePlayingItem {

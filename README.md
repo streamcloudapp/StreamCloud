@@ -13,6 +13,10 @@ StreamCloud is a free SoundCloud app for Mac.
     $ pod update
     $ open SoundcloudPlayer.xcworkspace
 
+## Contributing
+
+If you want to push StreamCloud to the next level take a look at our [contribution guide](https://github.com/plaetzchen/StreamCloud/blob/master/CONTRIBUTING.md).
+
 ## Copyright & License
 
 Copyright (c) 2014-2015 Peter Amende, Philip Brechler - Released under the [MIT license](https://github.com/plaetzchen/StreamCloud/blob/master/LICENSE).

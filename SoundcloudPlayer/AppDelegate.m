@@ -338,6 +338,12 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
                 [viewforRow.durationLabel setStringValue:[self stringForSeconds:playlistForRow.duration]];
                 
+                if (playlistForRow.repostBy) {
+                    IsRepostedLabelView *repostedLabelView = [[IsRepostedLabelView alloc]initWithFrame:NSMakeRect(viewforRow.artistLabel.frame.origin.x+viewforRow.artistLabel.frame.size.width+2, viewforRow.artistLabel.frame.origin.y+1, viewforRow.frame.size.width - viewforRow.artistLabel.frame.size.width- 77 - viewforRow.durationLabel.frame.size.width-16, 15)];
+                    [viewforRow addSubview:repostedLabelView];
+                    [repostedLabelView setReposterName:playlistForRow.repostBy.username];
+                    [repostedLabelView setAutoresizingMask:NSViewWidthSizable];
+                }
                 
                 if (itemForRow == [SharedAudioPlayer sharedPlayer].currentItem && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
                     [viewforRow markAsPlaying:YES];

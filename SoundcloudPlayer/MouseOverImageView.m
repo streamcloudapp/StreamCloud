@@ -106,7 +106,7 @@
 - (void)mouseDown:(NSEvent *)theEvent {
     if (self.objectToPlay == [[SharedAudioPlayer sharedPlayer] currentItem])
         [[SharedAudioPlayer sharedPlayer] togglePlayPause];
-    else if ([[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] objectForKey:@"playlist_track_is_from"]] == self.row)
+    else if ([[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] playlistTrackIsFrom]] == self.row)
              [[SharedAudioPlayer sharedPlayer] togglePlayPause];
     else {
         if ([[SharedAudioPlayer sharedPlayer].streamItemsToShowInTableView containsObject:self.objectToPlay] && [SharedAudioPlayer sharedPlayer].sourceType != CurrentSourceTypeStream){
@@ -116,13 +116,23 @@
         }
     
         NSInteger clickedRow = self.row;
-        NSDictionary *clickedDict = self.objectToPlay;
-        if ([[clickedDict objectForKey:@"type"] isEqualToString:@"playlist"]){
-            clickedDict = [[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView] objectAtIndex:clickedRow+1];
+        id clickedItem = self.objectToPlay;
+        if ([SharedAudioPlayer sharedPlayer].sourceType == CurrentSourceTypeStream) {
+            if ([clickedItem isKindOfClass:[SoundCloudPlaylist class]]){
+                clickedItem = [[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView] objectAtIndex:clickedRow+1];
+            }
+            
+            NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView] indexOfObject:clickedItem];
+            [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
+        } else if ([SharedAudioPlayer sharedPlayer].sourceType == CurrentSourceTypeFavorites) {
+            if ([clickedItem isKindOfClass:[SoundCloudPlaylist class]]){
+                clickedItem = [[[SharedAudioPlayer sharedPlayer] favoriteItemsToShowInTableView] objectAtIndex:clickedRow+1];
+            }
+            
+            NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] favoriteItemsToShowInTableView] indexOfObject:clickedItem];
+            [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
+
         }
-        
-        NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
-        [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
         [self.playPauseOverlayView setHidden:YES];
     }
     [self.playPauseOverlayView setNeedsDisplay:YES];

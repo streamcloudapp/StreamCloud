@@ -9,6 +9,9 @@
 #import "SharedAudioPlayer.h"
 #import <math.h>
 #import "SoundCloudAPIClient.h"
+#import "SoundCloudItem.h"
+#import "SoundCloudTrack.h"
+#import "SoundCloudPlaylist.h"
 #define CLIENT_ID @"909c2edcdbd7b312b48a04a3f1e6b40c"
 #import "AFNetworking.h"
 #import "LastFm.h"
@@ -104,9 +107,34 @@
     [self.audioPlayer pause];
     [self.audioPlayer removeAllItems];
     
-    for (NSInteger i = item; i < self.itemsToPlay.count && i < item+3; i++){
-        NSDictionary *itemInList = [self.itemsToPlay objectAtIndex:i];
-        [self.audioPlayer insertItem:[self itemForDict:itemInList] afterItem:nil];
+    NSInteger i = item;
+    BOOL done = NO;
+    while(!done){
+        if (self.sourceType == CurrentSourceTypeStream) {
+            if (i < self.streamItemsToShowInTableView.count &&[[self.streamItemsToShowInTableView objectAtIndex:i] isKindOfClass:[SoundCloudTrack class]]) {
+                SoundCloudTrack *itemInList = [self.streamItemsToShowInTableView objectAtIndex:i];
+                [self.audioPlayer insertItem:itemInList.playerItem afterItem:nil];
+                i++;
+                if ( i > item+3)
+                    done = YES;
+            } else if (i < self.streamItemsToShowInTableView.count) {
+                i++;
+            } else {
+                done = YES;
+            }
+        } else {
+            if (i < self.favoriteItemsToShowInTableView.count && [[self.favoriteItemsToShowInTableView objectAtIndex:i] isKindOfClass:[SoundCloudTrack class]]) {
+                SoundCloudTrack *itemInList = [self.favoriteItemsToShowInTableView objectAtIndex:i];
+                [self.audioPlayer insertItem:itemInList.playerItem afterItem:nil];
+                i++;
+                if ( i > item+3)
+                    done = YES;
+            } else if (i < self.favoriteItemsToShowInTableView.count) {
+                i++;
+            } else {
+                done = YES;
+            }
+        }
     }
     self.positionInPlaylist = item;
     if (start)
@@ -128,11 +156,17 @@
     }];
 }
 
-- (NSDictionary *)currentItem {
-    if (self.itemsToPlay.count)
-        return [self.itemsToPlay objectAtIndex:_positionInPlaylist];
-    else
-        return nil;
+- (SoundCloudTrack *)currentItem {
+    if (self.sourceType == CurrentSourceTypeStream) {
+        NSArray *tracksOnlyArray = [self.streamItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudTrack class]]];
+        NSArray *tracksForCurrentItem = [tracksOnlyArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"playerItem == %@",self.audioPlayer.currentItem]];
+        return [tracksForCurrentItem firstObject];
+    } else if (self.sourceType == CurrentSourceTypeFavorites) {
+        NSArray *tracksOnlyArray = [self.favoriteItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudTrack class]]];
+        NSArray *tracksForCurrentItem = [tracksOnlyArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"playerItem == %@",self.audioPlayer.currentItem]];
+        return [tracksForCurrentItem firstObject];
+    }
+    return nil;
 }
 
 - (void)toggleRepeatMode {
@@ -182,16 +216,12 @@
 - (void)switchToStream {
     self.sourceType = CurrentSourceTypeStream;
     self.itemsToPlay = nil;
-    self.itemsToPlay = [NSMutableArray arrayWithCapacity:self.streamItemsToShowInTableView.count];
-    for (NSDictionary *item in self.streamItemsToShowInTableView) {
-        if (![[item objectForKey:@"type"] isEqualToString:@"playlist"])
-            [self.itemsToPlay addObject:item];
-    }
 }
 
 - (void)reset {
     [self.audioPlayer pause];
     [self.audioPlayer removeAllItems];
+    [self.audioPlayer removeObserver:self forKeyPath:@"rate"];
     [self.itemsToPlay removeAllObjects];
     [self.shuffledItemsToPlay removeAllObjects];
     [self.streamItemsToShowInTableView removeAllObjects];
@@ -207,67 +237,61 @@
 # pragma mark - Posting user notifications
 
 - (void)postNotificationForCurrentItem {
-    NSDictionary *currentItem = [self currentItem];
-    NSDictionary *originDict = [currentItem objectForKey:@"origin"];
-    NSDictionary *userDict = [originDict objectForKey:@"user"];
-    NSString *title = [originDict objectForKey:@"title"];
-    NSString *name = [userDict objectForKey:@"username"];
+    SoundCloudTrack *currentItem = [self currentItem];
+    NSString *title = currentItem.title;
+    NSString *name = currentItem.user.username;
     BOOL useAvatar = YES;
-    if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
-        if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
-                                                          isEqualToString:@"<null>"]){
-            useAvatar = NO;
-            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            manager.responseSerializer = [AFImageResponseSerializer serializer];
-            [manager GET:[originDict objectForKey:@"artwork_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
-                NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
-                [defaultCenter setDelegate:self];
-                [nowPlayingNotification setTitle:name];
-                [nowPlayingNotification setInformativeText:title];
-                [nowPlayingNotification setHasActionButton:NO];
-                if ([nowPlayingNotification respondsToSelector:@selector(setContentImage:)]) {
-                    [nowPlayingNotification setContentImage:responseObject];
-                }
-                [defaultCenter deliverNotification:nowPlayingNotification];
-                
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
-                NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
-                [defaultCenter setDelegate:self];
-                [nowPlayingNotification setTitle:name];
-                [nowPlayingNotification setInformativeText:title];
-                [nowPlayingNotification setHasActionButton:NO];
-                [defaultCenter deliverNotification:nowPlayingNotification];
-            }];
-        }
+    if (currentItem.artworkUrl) {
+        useAvatar = NO;
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFImageResponseSerializer serializer];
+        [manager GET:currentItem.artworkUrl.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+            NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
+            [defaultCenter setDelegate:self];
+            [nowPlayingNotification setTitle:name];
+            [nowPlayingNotification setInformativeText:title];
+            [nowPlayingNotification setHasActionButton:NO];
+            if ([nowPlayingNotification respondsToSelector:@selector(setContentImage:)]) {
+                [nowPlayingNotification setContentImage:responseObject];
+            }
+            [defaultCenter deliverNotification:nowPlayingNotification];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+            NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
+            [defaultCenter setDelegate:self];
+            [nowPlayingNotification setTitle:name];
+            [nowPlayingNotification setInformativeText:title];
+            [nowPlayingNotification setHasActionButton:NO];
+            [defaultCenter deliverNotification:nowPlayingNotification];
+        }];
     }
-    if ([[userDict objectForKey:@"avatar_url"] isKindOfClass:[NSString class]] && useAvatar) {
-        if ([userDict objectForKey:@"avatar_url"] && ![[userDict objectForKey:@"avatar_url"] isEqualToString:@"<null>"]){
-            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            manager.responseSerializer = [AFImageResponseSerializer serializer];
-            [manager GET:[userDict objectForKey:@"avatar_url"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
-                NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
-                [defaultCenter setDelegate:self];
-                [nowPlayingNotification setTitle:name];
-                [nowPlayingNotification setInformativeText:title];
-                [nowPlayingNotification setHasActionButton:NO];
-                if ([nowPlayingNotification respondsToSelector:@selector(setContentImage:)]) {
-                    [nowPlayingNotification setContentImage:responseObject];
-                }
-                [defaultCenter deliverNotification:nowPlayingNotification];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
-                NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
-                [defaultCenter setDelegate:self];
-                [nowPlayingNotification setTitle:name];
-                [nowPlayingNotification setInformativeText:title];
-                [nowPlayingNotification setHasActionButton:NO];
-                [defaultCenter deliverNotification:nowPlayingNotification];
-            }];
-        }
+    else if (currentItem.user.avatarUrl) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFImageResponseSerializer serializer];
+        [manager GET:currentItem.user.avatarUrl.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+            NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
+            [defaultCenter setDelegate:self];
+            [nowPlayingNotification setTitle:name];
+            [nowPlayingNotification setInformativeText:title];
+            [nowPlayingNotification setHasActionButton:NO];
+            if ([nowPlayingNotification respondsToSelector:@selector(setContentImage:)]) {
+                [nowPlayingNotification setContentImage:responseObject];
+            }
+            [defaultCenter deliverNotification:nowPlayingNotification];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSUserNotificationCenter *defaultCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+            NSUserNotification *nowPlayingNotification = [[NSUserNotification alloc]init];
+            [defaultCenter setDelegate:self];
+            [nowPlayingNotification setTitle:name];
+            [nowPlayingNotification setInformativeText:title];
+            [nowPlayingNotification setHasActionButton:NO];
+            [defaultCenter deliverNotification:nowPlayingNotification];
+        }];
     }
+    
 }
 
 # pragma mark - NSUserNotificationCenterDelegate
@@ -278,27 +302,31 @@
 
 # pragma mark - Inserting new items
 
-- (void)insertItemsFromResponse:(NSDictionary *)response {
-    NSArray *collectionItems = [response objectForKey:@"collection"];
-    self.playlistsToLoad = nil;
-    self.playlistsToLoad = [NSMutableArray array];
-    self.nextStreamPartURL = [response objectForKey:@"next_href"];
+
+- (void)insertStreamItems:(NSArray *)items {
+    SoundCloudItem *lastItem = [items lastObject];
+    self.nextStreamPartURL = lastItem.nextHref;
     if (!_audioPlayer){
         NSMutableArray *itemsToPlay = [NSMutableArray array];
-        for (NSDictionary *dict in collectionItems){
-            AVPlayerItem *itemToPlay = [self itemForDict:dict];
-            if (itemToPlay){
-                [self.itemsToPlay addObject:dict];
-                [self.streamItemsToShowInTableView addObject:dict];
-                if (itemsToPlay.count < 3) {
-                    [itemsToPlay addObject:itemToPlay];
+        for (SoundCloudItem *item in items){
+            if (item.type == SoundCloudItemTypeTrack || item.type == SoundCloudItemTypeTrackRepost) {
+                SoundCloudTrack *trackForItem = item.item;
+                if (trackForItem.playerItem) {
+                    [self.streamItemsToShowInTableView addObject:trackForItem];
+                    if (itemsToPlay.count < 3) {
+                        [itemsToPlay addObject:trackForItem.playerItem];
+                    }
                 }
-            } else {
-                NSDictionary *objectToInjectAfter = [self.itemsToPlay lastObject];
-                if (objectToInjectAfter) {
-                    [_playlistsToLoad addObject:@{@"playlist":dict,@"afterObject":objectToInjectAfter}];
-                } else {
-                    [_playlistsToLoad addObject:@{@"playlist":dict}];
+            } else if (item.type == SoundCloudItemTypePlaylist || item.type == SoundCloudItemTypePlaylistRepost){
+                SoundCloudPlaylist *playlistForItem = item.item;
+                if (playlistForItem.streamable) {
+                    [self.streamItemsToShowInTableView addObject:playlistForItem];
+                    for (SoundCloudTrack *playlistTrack in playlistForItem.tracks) {
+                        [self.streamItemsToShowInTableView addObject:playlistTrack];
+                        if (itemsToPlay.count < 3) {
+                            [itemsToPlay addObject:playlistTrack.playerItem];
+                        }
+                    }
                 }
             }
         }
@@ -308,16 +336,13 @@
             if (!isnan(CMTimeGetSeconds(time))) {
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedAudioPlayerUpdatedTimePlayed" object:[NSNumber numberWithFloat:CMTimeGetSeconds(time)]];
                 float seconds = CMTimeGetSeconds(time);
-                NSDictionary *currentItem = [[SharedAudioPlayer sharedPlayer] currentItem];
-                NSDictionary *originItem = [currentItem objectForKey:@"origin"];
-                NSNumber *duration = [originItem objectForKey:@"duration"];
+                SoundCloudTrack *currentItem = [[SharedAudioPlayer sharedPlayer] currentItem];
                 BOOL doScrobble = [[NSUserDefaults standardUserDefaults] boolForKey:@"useLastFM"];
-                if ((seconds > 240 || seconds > (duration.floatValue/1000)*0.3) && ![[SharedAudioPlayer sharedPlayer].scrobbledItems containsObject:currentItem] && doScrobble) {
+                if (doScrobble && (seconds > 240 || seconds > currentItem.duration*0.3) && ![[SharedAudioPlayer sharedPlayer].scrobbledItems containsObject:currentItem]) {
                     NSLog(@"Scrobble!");
                     [[LastFm sharedInstance] setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
                     [[LastFm sharedInstance] setSession:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMSessionKey"]];
-                    NSDictionary *userDict = [originItem objectForKey:@"user"];
-                    [[LastFm sharedInstance] sendScrobbledTrack:[originItem objectForKey:@"title"] byArtist:[userDict objectForKey:@"username"] onAlbum:nil withDuration:duration.doubleValue/1000 atTimestamp:[[NSDate date] timeIntervalSince1970] successHandler:^(NSDictionary *result) {
+                    [[LastFm sharedInstance] sendScrobbledTrack:currentItem.title byArtist:currentItem.user.username onAlbum:nil withDuration:currentItem.duration atTimestamp:[[NSDate date] timeIntervalSince1970] successHandler:^(NSDictionary *result) {
                         NSLog(@"Success %@",result);
                     } failureHandler:^(NSError *error) {
                         NSLog(@"Error scrobbling %@",error);
@@ -329,87 +354,56 @@
         
         [self.audioPlayer setActionAtItemEnd:AVPlayerActionAtItemEndAdvance];
     } else {
-        for (NSDictionary *dict in collectionItems){
-            AVPlayerItem *itemToPlay = [self itemForDict:dict];
-            if (itemToPlay) {
-                [self.itemsToPlay addObject:dict];
-                [self.streamItemsToShowInTableView addObject:dict];
-                if (self.audioPlayer.items.count < 3) {
-                    [self.audioPlayer insertItem:itemToPlay afterItem:nil];
+        for (SoundCloudItem *item in items){
+            if (item.type == SoundCloudItemTypeTrack || item.type == SoundCloudItemTypeTrackRepost) {
+                SoundCloudTrack *trackForItem = item.item;
+                if (trackForItem.playerItem) {
+                    [self.streamItemsToShowInTableView addObject:trackForItem];
+                    if (self.itemsToPlay.count < 3) {
+                        [self.itemsToPlay addObject:trackForItem.playerItem];
+                    }
                 }
-            } else {
-                NSDictionary *objectToInjectAfter = [self.itemsToPlay lastObject];
-                if (objectToInjectAfter) {
-                    [_playlistsToLoad addObject:@{@"playlist":dict,@"afterObject":objectToInjectAfter}];
-                } else {
-                    [_playlistsToLoad addObject:@{@"playlist":dict}];
-                }            }
+            } else if (item.type == SoundCloudItemTypePlaylist || item.type == SoundCloudItemTypePlaylistRepost){
+                SoundCloudPlaylist *playlistForItem = item.item;
+                if (playlistForItem.streamable) {
+                    [self.streamItemsToShowInTableView addObject:item];
+                    for (SoundCloudTrack *playlistTrack in playlistForItem.tracks) {
+                        [self.streamItemsToShowInTableView addObject:playlistTrack];
+                        if (self.itemsToPlay.count < 3) {
+                            [self.itemsToPlay addObject:playlistTrack.playerItem];
+                        }
+                    }
+                }
+            }
         }
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
-    [self loadPlaylists];
 }
 
-- (void)insertFavoriteItemsFromResponse:(NSArray *)response {
-    if (!_audioPlayer){
-        NSMutableArray *itemsToPlay = [NSMutableArray array];
-        for (NSDictionary *dict in response){
-            NSDictionary *dictForItemCreation = @{@"type":@"track",@"origin":dict};
-            AVPlayerItem *itemToPlay = [self itemForDict:dictForItemCreation];
-            if (itemToPlay){
-                [self.favoriteItemsToShowInTableView addObject:dictForItemCreation];
-                if (itemsToPlay.count < 3) {
-                    [itemsToPlay addObject:itemToPlay];
-                }
-            }
-        }
-        self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
-        [self.audioPlayer addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
-        self.audioPlayerCallback = [self.audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1.0, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
-            if (!isnan(CMTimeGetSeconds(time))) {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedAudioPlayerUpdatedTimePlayed" object:[NSNumber numberWithFloat:CMTimeGetSeconds(time)]];
-                float seconds = CMTimeGetSeconds(time);
-                NSDictionary *currentItem = [[SharedAudioPlayer sharedPlayer] currentItem];
-                NSDictionary *originItem = [currentItem objectForKey:@"origin"];
-                NSNumber *duration = [originItem objectForKey:@"duration"];
-                BOOL doScrobble = [[NSUserDefaults standardUserDefaults] boolForKey:@"useLastFM"];
-                if ((seconds > 240 || seconds > (duration.floatValue/1000)*0.3) && ![[SharedAudioPlayer sharedPlayer].scrobbledItems containsObject:currentItem] && doScrobble) {
-                    NSLog(@"Scrobble!");
-                    [[LastFm sharedInstance] setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
-                    [[LastFm sharedInstance] setSession:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMSessionKey"]];
-                    NSDictionary *userDict = [originItem objectForKey:@"user"];
-                    [[LastFm sharedInstance] sendScrobbledTrack:[originItem objectForKey:@"title"] byArtist:[userDict objectForKey:@"username"] onAlbum:nil withDuration:duration.doubleValue/1000 atTimestamp:[[NSDate date] timeIntervalSince1970] successHandler:^(NSDictionary *result) {
-                        NSLog(@"Success %@",result);
-                    } failureHandler:^(NSError *error) {
-                        NSLog(@"Error scrobbling %@",error);
-                    }];
-                    [[SharedAudioPlayer sharedPlayer].scrobbledItems addObject:currentItem];
-                }
-            }
-        }];
-        
-        [self.audioPlayer setActionAtItemEnd:AVPlayerActionAtItemEndAdvance];
-    } else {
-        for (NSDictionary *dict in response){
-            NSDictionary *dictForItemCreation = @{@"type":@"track",@"origin":dict};
-            AVPlayerItem *itemToPlay = [self itemForDict:dictForItemCreation];
-            if (itemToPlay) {
-                [self.favoriteItemsToShowInTableView addObject:dictForItemCreation];
-                if (self.audioPlayer.items.count < 3) {
-                    [self.audioPlayer insertItem:itemToPlay afterItem:nil];
-                }
+- (void)insertFavoriteItems:(NSArray *)items {
+
+    for (SoundCloudItem *item in items){
+        if (item.type == SoundCloudItemTypeTrack || item.type == SoundCloudItemTypeTrackRepost) {
+            SoundCloudTrack *trackFromItem = item.item;
+            [self.favoriteItemsToShowInTableView addObject:trackFromItem];
+        } else if (item.type == SoundCloudItemTypePlaylist || item.type == SoundCloudItemTypePlaylistRepost) {
+            SoundCloudPlaylist *playlistFromItem = item.item;
+            [self.favoriteItemsToShowInTableView addObject:playlistFromItem];
+            for (SoundCloudTrack *playlistTrack in playlistFromItem.tracks){
+                [self.favoriteItemsToShowInTableView addObject:playlistTrack];
             }
         }
     }
+    
     if (self.sourceType == CurrentSourceTypeFavorites){
         [self switchToFavorites];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
-    [self loadPlaylists];
+
 }
 
 - (void)rebuildAudioPlayList {
@@ -435,18 +429,18 @@
 }
 
 - (void)loadNextTrackInPlayer {
-    NSDictionary *currentItem = [self currentItem];
+    SoundCloudTrack *currentItem = [self currentItem];
     if (self.shuffleEnabled){
         NSInteger indexOfCurrentItem = [self.shuffledItemsToPlay indexOfObject:currentItem];
         if (indexOfCurrentItem < self.shuffledItemsToPlay.count + 2) {
-            NSDictionary *nextItem = [self.shuffledItemsToPlay objectAtIndex:indexOfCurrentItem+1];
-            [self.audioPlayer insertItem:[self itemForDict:nextItem] afterItem:nil];
+            SoundCloudTrack *nextItem = [self.shuffledItemsToPlay objectAtIndex:indexOfCurrentItem+1];
+            [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
         }
     } else {
         NSInteger indexOfCurrentItem = [self.itemsToPlay indexOfObject:currentItem];
         if (indexOfCurrentItem < self.itemsToPlay.count - 2) {
-            NSDictionary *nextItem = [self.itemsToPlay objectAtIndex:indexOfCurrentItem+1];
-            [self.audioPlayer insertItem:[self itemForDict:nextItem] afterItem:nil];
+            SoundCloudTrack *nextItem = [self.itemsToPlay objectAtIndex:indexOfCurrentItem+1];
+            [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
         }
     }
 }
@@ -532,7 +526,7 @@
 
 - (void)getNextSongs {
     if (self.nextStreamPartURL){
-        [[SoundCloudAPIClient sharedClient] getStreamSongsWithURL:self.nextStreamPartURL];
+        [[SoundCloudAPIClient sharedClient] getStreamSongsWithURL:self.nextStreamPartURL.absoluteString];
     }
 }
 
@@ -550,61 +544,6 @@
         return itemToReturn;
     }
     return nil;
-}
-
-# pragma mark - Getting tracks of playlists
-
-- (void)loadPlaylists{
-    
-    for (NSDictionary *playlistContainerDict in _playlistsToLoad) {
-        NSDictionary *playlistDict = [playlistContainerDict objectForKey:@"playlist"];
-        NSDictionary *objectToInsertAfter = [playlistContainerDict objectForKey:@"afterObject"];
-        if ([playlistDict[@"type"] isEqualToString:@"playlist"] && [playlistDict[@"origin"][@"duration"] doubleValue]){
-            SCAccount *account = [SCSoundCloud account];
-            NSURL *trackURI = [NSURL URLWithString:playlistDict[@"origin"][@"tracks_uri"]];
-            [SCRequest performMethod:SCRequestMethodGET
-                          onResource:trackURI
-                     usingParameters:nil
-                         withAccount:account
-              sendingProgressHandler:nil
-                     responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-                         // Handle the response
-                         if (error) {
-                             NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
-                         } else {
-                             NSLog(@"Got playlist");
-                             NSError *error;
-                             id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                             if (!error){
-                                 if ([objectFromData isKindOfClass:[NSArray class]]) {
-                                     if (!objectToInsertAfter){
-                                         [self.streamItemsToShowInTableView insertObject:playlistDict atIndex:0];
-                                     } else {
-                                         [self.streamItemsToShowInTableView insertObject:playlistDict atIndex:[self.streamItemsToShowInTableView indexOfObject:objectToInsertAfter]+1];
-                                     }
-                                     NSMutableArray *playlistCache = [NSMutableArray array];
-                                     for (NSDictionary *trackDict in objectFromData) {
-                                         if ([[trackDict objectForKey:@"streamable"] boolValue] && [[trackDict objectForKey:@"state"] isEqualToString:@"finished"]  && [trackDict[@"sharing"] isEqualToString:@"public"]) {
-                                             NSDictionary *containeredTrack = @{@"type":@"track",@"playlist_track_is_from":playlistDict,@"origin":trackDict};
-                                             [playlistCache addObject:containeredTrack];
-                                         }
-                                     }
-                                     if (!objectToInsertAfter){
-                                         [self.itemsToPlay insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, playlistCache.count)]];
-                                         [self.streamItemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, playlistCache.count)]];
-                                     } else {
-                                         [self.itemsToPlay insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.itemsToPlay indexOfObject:objectToInsertAfter]+1, playlistCache.count)]];
-                                         [self.streamItemsToShowInTableView insertObjects:playlistCache atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange([self.streamItemsToShowInTableView indexOfObject:objectToInsertAfter]+2, playlistCache.count)]];
-                                     }
-                                    [self rebuildAudioPlayList];
-                                 }
-                             }
-                         }
-                     }];
-        } else {
-            NSLog(@"Could not load dict %@",playlistDict);
-        }
-    }
 }
 
 @end

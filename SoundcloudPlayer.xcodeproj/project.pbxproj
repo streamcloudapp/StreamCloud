@@ -10,6 +10,10 @@
 		BCD81D31C48D4057B89AA34E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 447911DAA4764A358869B8CF /* libPods.a */; };
 		FD1606651976839A00A63A71 /* StreamCloudApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1606641976839A00A63A71 /* StreamCloudApplication.m */; };
 		FD1606661976839A00A63A71 /* StreamCloudApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1606641976839A00A63A71 /* StreamCloudApplication.m */; };
+		FD3468491A66FC9D006B645B /* SoundCloudTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3468481A66FC9D006B645B /* SoundCloudTrack.m */; };
+		FD34684C1A66FDF3006B645B /* SoundCloudPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = FD34684B1A66FDF3006B645B /* SoundCloudPlaylist.m */; };
+		FD34684F1A670379006B645B /* SoundCloudItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FD34684E1A670379006B645B /* SoundCloudItem.m */; };
+		FD3468521A67042C006B645B /* SoundCloudUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3468511A67042C006B645B /* SoundCloudUser.m */; };
 		FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
 		FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
 		FD3BED481958364200B2D49A /* PlayPauseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED471958364200B2D49A /* PlayPauseButtonCell.m */; };
@@ -119,6 +123,14 @@
 		447911DAA4764A358869B8CF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD1606631976839A00A63A71 /* StreamCloudApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamCloudApplication.h; sourceTree = "<group>"; };
 		FD1606641976839A00A63A71 /* StreamCloudApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamCloudApplication.m; sourceTree = "<group>"; };
+		FD3468471A66FC9D006B645B /* SoundCloudTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudTrack.h; sourceTree = "<group>"; };
+		FD3468481A66FC9D006B645B /* SoundCloudTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudTrack.m; sourceTree = "<group>"; };
+		FD34684A1A66FDF3006B645B /* SoundCloudPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudPlaylist.h; sourceTree = "<group>"; };
+		FD34684B1A66FDF3006B645B /* SoundCloudPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudPlaylist.m; sourceTree = "<group>"; };
+		FD34684D1A670379006B645B /* SoundCloudItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudItem.h; sourceTree = "<group>"; };
+		FD34684E1A670379006B645B /* SoundCloudItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudItem.m; sourceTree = "<group>"; };
+		FD3468501A67042C006B645B /* SoundCloudUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudUser.h; sourceTree = "<group>"; };
+		FD3468511A67042C006B645B /* SoundCloudUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudUser.m; sourceTree = "<group>"; };
 		FD3BED41195833E800B2D49A /* StreamCloudStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamCloudStyles.h; path = SoundcloudPlayer/StreamCloudStyles.h; sourceTree = "<group>"; };
 		FD3BED42195833E800B2D49A /* StreamCloudStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamCloudStyles.m; path = SoundcloudPlayer/StreamCloudStyles.m; sourceTree = "<group>"; };
 		FD3BED461958364100B2D49A /* PlayPauseButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayPauseButtonCell.h; sourceTree = "<group>"; };
@@ -243,6 +255,21 @@
 				394177B8647BC1C32BFD8B33 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FD3468461A66FC77006B645B /* Data Objects */ = {
+			isa = PBXGroup;
+			children = (
+				FD34684D1A670379006B645B /* SoundCloudItem.h */,
+				FD34684E1A670379006B645B /* SoundCloudItem.m */,
+				FD3468501A67042C006B645B /* SoundCloudUser.h */,
+				FD3468511A67042C006B645B /* SoundCloudUser.m */,
+				FD34684A1A66FDF3006B645B /* SoundCloudPlaylist.h */,
+				FD34684B1A66FDF3006B645B /* SoundCloudPlaylist.m */,
+				FD3468471A66FC9D006B645B /* SoundCloudTrack.h */,
+				FD3468481A66FC9D006B645B /* SoundCloudTrack.m */,
+			);
+			name = "Data Objects";
 			sourceTree = "<group>";
 		};
 		FD3BED451958355500B2D49A /* CustomButtons */ = {
@@ -382,6 +409,7 @@
 				FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */,
 				FD8F6AEF195AD16D004D4B61 /* SoundCloudAPIClient.h */,
 				FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */,
+				FD3468461A66FC77006B645B /* Data Objects */,
 				FD3BED6019598C8800B2D49A /* MediaKeys */,
 				FD3BED57195981BC00B2D49A /* CustomViews */,
 				FD3BED5219597B2300B2D49A /* Custom Table View Cell */,
@@ -594,12 +622,15 @@
 				FD3BED5519597B4300B2D49A /* TrackCellView.m in Sources */,
 				FDE51B18195C1F3A009B1F2D /* PlayPauseOverlayView.m in Sources */,
 				FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */,
+				FD34684C1A66FDF3006B645B /* SoundCloudPlaylist.m in Sources */,
 				FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */,
 				FD3BED5A195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
 				FD8F6AED1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */,
 				FD8F6AF5195AE093004D4B61 /* VolumeButtonCell.m in Sources */,
 				FDE51B20195C2F32009B1F2D /* ProgressSliderCell.m in Sources */,
 				FD3BED5E1959883400B2D49A /* SeperatorView.m in Sources */,
+				FD3468491A66FC9D006B645B /* SoundCloudTrack.m in Sources */,
+				FD3468521A67042C006B645B /* SoundCloudUser.m in Sources */,
 				FDD0374C1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */,
 				FDE51B24195C3A7B009B1F2D /* ProgressSliderView.m in Sources */,
 				FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */,
@@ -609,6 +640,7 @@
 				FD7ECBC01955BE05005828CF /* SharedAudioPlayer.m in Sources */,
 				FD1606651976839A00A63A71 /* StreamCloudApplication.m in Sources */,
 				FD92A97B19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */,
+				FD34684F1A670379006B645B /* SoundCloudItem.m in Sources */,
 				FD7CD29C1954396C002AC765 /* main.m in Sources */,
 				FD3BED6419598CBB00B2D49A /* AppleMediaKeyController.m in Sources */,
 				FD8F6AE61959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */,

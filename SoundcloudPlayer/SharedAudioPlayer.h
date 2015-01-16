@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SoundCloudItem.h"
+#import "SoundCloudTrack.h"
+#import "SoundCloudPlaylist.h"
+#import "SoundCloudUser.h"
 
 typedef enum : NSUInteger {
     RepeatModeNone,
@@ -30,20 +34,20 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSMutableArray *shuffledItemsToPlay;
 @property (nonatomic) BOOL shuffleEnabled;
 @property (nonatomic) NSInteger positionInPlaylist;
-@property (nonatomic, strong) NSString *nextStreamPartURL;
+@property (nonatomic, strong) NSURL *nextStreamPartURL;
 @property (nonatomic) RepeatMode repeatMode;
 @property (nonatomic) CurrentSourceType sourceType;
 @property (nonatomic ,strong) NSMutableArray *scrobbledItems;
 
 + (SharedAudioPlayer *)sharedPlayer;
-- (void)insertItemsFromResponse:(NSDictionary *)response;
-- (void)insertFavoriteItemsFromResponse:(NSDictionary *)response;
+- (void)insertStreamItems:(NSArray *)items;
+- (void)insertFavoriteItems:(NSArray *)items;
 - (void)togglePlayPause;
 - (void)previousItem;
 - (void)nextItem;
 - (void)jumpToItemAtIndex:(NSInteger)item;
 - (void)advanceToTime:(float)timeToGo;
-- (NSDictionary *)currentItem;
+- (SoundCloudTrack *)currentItem;
 - (void)getNextSongs;
 - (void)toggleRepeatMode;
 - (void)reset;

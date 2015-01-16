@@ -9,6 +9,7 @@
 #import "SoundCloudAPIClient.h"
 #import <SoundCloudAPI/SCAPI.h>
 #import "SharedAudioPlayer.h"
+#import "SoundCloudItem.h"
 
 @implementation SoundCloudAPIClient
 
@@ -66,7 +67,7 @@
     SCAccount *account = [SCSoundCloud account];
     
     [SCRequest performMethod:SCRequestMethodGET
-                  onResource:[NSURL URLWithString:@"https://api.soundcloud.com/me/activities/all"]
+                  onResource:[NSURL URLWithString:@"https://api-v2.soundcloud.com/stream?limit=25"]
              usingParameters:nil
                  withAccount:account
       sendingProgressHandler:nil
@@ -79,12 +80,35 @@
                      NSError *error;
                      id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                      if (!error){
-                         if ([objectFromData isKindOfClass:[NSDictionary class]]) {
-                             [[SharedAudioPlayer sharedPlayer]insertItemsFromResponse:objectFromData];
-                             
-                         }                     }
+                         NSArray *itemsFromResponse = [SoundCloudItem soundCloudItemsFromResponse:objectFromData];
+                         [[SharedAudioPlayer sharedPlayer] insertStreamItems:itemsFromResponse];
+                     }
                  }
              }];
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:@"https://api.soundcloud.com/me"]
+             usingParameters:nil
+                 withAccount:account
+      sendingProgressHandler:nil
+             responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                 // Handle the response
+                 if (error) {
+                     NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
+                 } else {
+                     NSLog(@"Got data, yeah");
+                     NSError *error;
+                     id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                     if (!error){
+                         if ([objectFromData isKindOfClass:[NSDictionary class]]){
+                             NSNumber *userId = [objectFromData objectForKey:@"id"];
+                             [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"scUserId"];
+                             [[NSUserDefaults standardUserDefaults] synchronize];
+                         }
+                     }
+                 }
+             }];
+
 }
 
 
@@ -106,7 +130,8 @@
                      id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                      if (!error){
                          if ([objectFromData isKindOfClass:[NSDictionary class]]) {
-                             [[SharedAudioPlayer sharedPlayer]insertItemsFromResponse:objectFromData];
+                             NSArray *itemsToInsert = [SoundCloudItem soundCloudItemsFromResponse:objectFromData];
+                             [[SharedAudioPlayer sharedPlayer]insertStreamItems:itemsToInsert];
                          }
                      }
                  }
@@ -118,7 +143,7 @@
     SCAccount *account = [SCSoundCloud account];
     
     [SCRequest performMethod:SCRequestMethodGET
-                  onResource:[NSURL URLWithString:@"https://api.soundcloud.com/me/favorites"]
+                  onResource:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-v2.soundcloud.com/users/%@/track_likes?limit=12&offset=0&linked_partitioning=1",[[NSUserDefaults standardUserDefaults] objectForKey:@"scUserId"]]]
              usingParameters:nil
                  withAccount:account
       sendingProgressHandler:nil
@@ -131,8 +156,9 @@
                      NSError *error;
                      id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                      if (!error){
-                         if ([objectFromData isKindOfClass:[NSArray class]]) {
-                             [[SharedAudioPlayer sharedPlayer]insertFavoriteItemsFromResponse:objectFromData];
+                         if ([objectFromData isKindOfClass:[NSDictionary class]]) {
+                             NSArray *itemsToInsert = [SoundCloudItem soundCloudItemsFromResponse:objectFromData];
+                             [[SharedAudioPlayer sharedPlayer]insertFavoriteItems:itemsToInsert];
                              
                          }                     }
                  }

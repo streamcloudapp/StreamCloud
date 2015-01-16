@@ -11,6 +11,8 @@
 #import "AFNetworking.h"
 #import "NSImage+RoundedCorners.h"
 #import "StreamCloudStyles.h"
+#import "SoundCloudTrack.h"
+#import "SoundCloudUser.h"
 
 @implementation StatusBarPlayerViewController
 
@@ -30,17 +32,15 @@
 }
 
 - (void)reloadImage {
-    NSDictionary *currentObject = [SharedAudioPlayer sharedPlayer].currentItem;
-    NSDictionary *originDict = [currentObject objectForKey:@"origin"];
-    [self.trackLabel setStringValue:[originDict objectForKey:@"title"]];
-    BOOL useAvatar = YES;
-    if ([[originDict objectForKey:@"artwork_url"] isKindOfClass:[NSString class]]) {
-        if ([originDict objectForKey:@"artwork_url"] && ![[originDict objectForKey:@"artwork_url"]
-                                                          isEqualToString:@"<null>"]){
+    SoundCloudTrack *currentObject = [SharedAudioPlayer sharedPlayer].currentItem;
+    if (currentObject) {
+        [self.trackLabel setStringValue:currentObject.title];
+        BOOL useAvatar = YES;
+        if (currentObject.artworkUrl){
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
             manager.responseSerializer = [AFImageResponseSerializer serializer];
             useAvatar = NO;
-            NSString *artworkURL = [originDict objectForKey:@"artwork_url"];
+            NSString *artworkURL = currentObject.artworkUrl.absoluteString;
             artworkURL = [artworkURL stringByReplacingOccurrencesOfString:@"large" withString:@"t500x500"];
             [manager GET:artworkURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [self.coverArtImageView setImage:[responseObject roundCornersImageCornerRadius:4]];
@@ -49,15 +49,13 @@
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"Failed to get image %@",error);
             }];
+            
         }
-    }
-    NSDictionary *userDict = [originDict objectForKey:@"user"];
-    [self.artistLabel setStringValue:[userDict objectForKey:@"username"]];
-    if ([[userDict objectForKey:@"avatar_url"] isKindOfClass:[NSString class]] && useAvatar) {
-        if ([userDict objectForKey:@"avatar_url"] && ![[userDict objectForKey:@"avatar_url"] isEqualToString:@"<null>"]){
+        [self.artistLabel setStringValue:currentObject.user.username];
+        if (useAvatar && currentObject.user.avatarUrl){
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
             manager.responseSerializer = [AFImageResponseSerializer serializer];
-            NSString *avatarURL = [userDict objectForKey:@"avatar_url"];
+            NSString *avatarURL = currentObject.user.avatarUrl.absoluteString;
             avatarURL = [avatarURL stringByReplacingOccurrencesOfString:@"large" withString:@"t500x500"];
             [manager GET:avatarURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [self.coverArtImageView setImage:[responseObject roundCornersImageCornerRadius:4]];
@@ -68,7 +66,7 @@
             }];
         }
     }
-
+    
 }
 
 # pragma mark - IBActions

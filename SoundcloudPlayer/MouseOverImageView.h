@@ -7,11 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SoundCloudTrack.h"
+#import "SoundCloudPlaylist.h"
 
 @interface MouseOverImageView : NSImageView
 
 @property (nonatomic) NSInteger row;
-@property (nonatomic) NSDictionary *objectToPlay;
+@property (nonatomic) id objectToPlay;
 @property (nonatomic) BOOL showLargePlayPauseView;
 @property (nonatomic) BOOL playing;
 

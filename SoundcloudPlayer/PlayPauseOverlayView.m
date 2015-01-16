@@ -9,6 +9,8 @@
 #import "PlayPauseOverlayView.h"
 #import "StreamCloudStyles.h"
 #import "SharedAudioPlayer.h"
+#import "SoundCloudPlaylist.h"
+#import "SoundCloudTrack.h"
 
 @implementation PlayPauseOverlayView
 
@@ -32,7 +34,7 @@
     BOOL playing = NO;
     if ([[SharedAudioPlayer sharedPlayer] currentItem] == self.objectToShow && [SharedAudioPlayer sharedPlayer].audioPlayer.rate) {
         playing = YES;
-    } else if ([[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] objectForKey:@"playlist_track_is_from"]] == self.row && [SharedAudioPlayer sharedPlayer].audioPlayer.rate ) {
+    } else if ([[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView]indexOfObject:[[[SharedAudioPlayer sharedPlayer]currentItem] playlistTrackIsFrom]] == self.row && [SharedAudioPlayer sharedPlayer].audioPlayer.rate ) {
         playing = YES;
     }
     if (self.showLargeIcons){

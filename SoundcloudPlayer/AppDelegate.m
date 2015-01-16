@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import <SoundCloudAPI/SCAPI.h>
 #import "SharedAudioPlayer.h"
-#import "INAppStoreWindow.h"
 #import "StreamCloudStyles.h"
 #import "AFNetworking.h"
 #import "TrackCellView.h"

@@ -1,6 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-pod 'INAppStoreWindow', '~> 1.4'
 pod 'AFNetworking', '~> 2.3'
 pod 'AXStatusItemPopup',  :git => 'https://github.com/plaetzchen/AXStatusItemPopup.git', :tag => '0.0.5'
 pod 'LastFm', :inhibit_warnings => true

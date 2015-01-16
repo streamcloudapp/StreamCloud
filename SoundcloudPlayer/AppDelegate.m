@@ -27,7 +27,6 @@
 #import "SoundCloudTrack.h"
 #import "IsRepostedLabelView.h"
 
-#define kTagForIsRepostedView 321
 
 NSString *const PlayPauseShortcutPreferenceKey = @"PlayPauseShortcut";
 NSString *const NextShortcutPreferenceKey = @"NextShortcut";
@@ -236,6 +235,11 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     [viewforRow.artistLabel sizeToFit];
                     [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
                     
+                    [viewforRow.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                        if ([obj isKindOfClass:[IsRepostedLabelView class]]){
+                            [obj removeFromSuperview];
+                        }
+                    }];
                     if (trackForRow.repostedBy) {
                         IsRepostedLabelView *repostedLabelView = [[IsRepostedLabelView alloc]initWithFrame:NSMakeRect(viewforRow.artistLabel.frame.origin.x+viewforRow.artistLabel.frame.size.width+2, viewforRow.artistLabel.frame.origin.y+1, viewforRow.frame.size.width - viewforRow.artistLabel.frame.size.width- 77 - viewforRow.durationLabel.frame.size.width-16, 15)];
                         [viewforRow addSubview:repostedLabelView];
@@ -337,6 +341,12 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 [viewforRow.artistLabel sizeToFit];
                 [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
                 [viewforRow.durationLabel setStringValue:[self stringForSeconds:playlistForRow.duration]];
+                
+                [viewforRow.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    if ([obj isKindOfClass:[IsRepostedLabelView class]]){
+                        [obj removeFromSuperview];
+                    }
+                }];
                 
                 if (playlistForRow.repostBy) {
                     IsRepostedLabelView *repostedLabelView = [[IsRepostedLabelView alloc]initWithFrame:NSMakeRect(viewforRow.artistLabel.frame.origin.x+viewforRow.artistLabel.frame.size.width+2, viewforRow.artistLabel.frame.origin.y+1, viewforRow.frame.size.width - viewforRow.artistLabel.frame.size.width- 77 - viewforRow.durationLabel.frame.size.width-16, 15)];

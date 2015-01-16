@@ -177,8 +177,10 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         if (!self.statusBarPlayerViewController){
             // Status Item
             self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];
-            NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];;
+            NSImage *normalImageForStatusBar = [NSImage imageNamed:@"menuBarIcon"];
+            [normalImageForStatusBar setTemplate:YES];
             NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
+            [activeImageForStatusBar setTemplate:YES];
             self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
         }
     }

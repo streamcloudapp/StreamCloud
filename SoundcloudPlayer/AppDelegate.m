@@ -402,17 +402,17 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     NSInteger clickedRow = [self.tableView clickedRow];
     if (_currentlySelectedStream == 0){
         [[SharedAudioPlayer sharedPlayer] switchToStream];
-        NSDictionary *clickedDict = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow];
-        if ([[clickedDict objectForKey:@"type"] isEqualToString:@"playlist"]){
-            clickedDict = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow+1];
+        id clickedItem = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow];
+        if ([clickedItem isKindOfClass:[SoundCloudPlaylist class]]){
+            clickedItem = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow+1];
         }
         
-        NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
+        NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] streamItemsToShowInTableView] indexOfObject:clickedItem];
         [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
     } else if (_currentlySelectedStream == 1) {
         [[SharedAudioPlayer sharedPlayer] switchToFavorites];
-        NSDictionary *clickedDict = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow];
-        NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] itemsToPlay] indexOfObject:clickedDict];
+        id clickedItem = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:clickedRow];
+        NSInteger objectToPlay = [[[SharedAudioPlayer sharedPlayer] favoriteItemsToShowInTableView] indexOfObject:clickedItem];
         [[SharedAudioPlayer sharedPlayer] jumpToItemAtIndex:objectToPlay];
     }
 }

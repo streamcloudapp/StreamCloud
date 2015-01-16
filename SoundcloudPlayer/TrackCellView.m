@@ -52,8 +52,11 @@
     if (playing){
         [self.playingIndicatiorView setHidden:NO];
         [self.playingIndicatiorView setNeedsDisplay:YES];
+        [self.titleLabel setTextColor:[StreamCloudStyles orangeDark]];
     } else {
         [self.playingIndicatiorView setHidden:YES];
+        [self.titleLabel setTextColor:[NSColor blackColor]];
+
     }
     [self.artworkView setPlaying:playing];
     [self setMarkedAsPlaying:playing];
@@ -71,10 +74,7 @@
 {
     NSRect bounds = [self bounds];
     
-    if (_markedAsPlaying) {
-        [[NSColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1] set];
-    }
-    else if (_mouseInside){
+    if (_mouseInside){
         [[NSColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1] set];
     } else {
         [[NSColor colorWithRed:1 green:1 blue:1 alpha:1] set];

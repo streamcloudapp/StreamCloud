@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -258,7 +258,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <customView canDrawConcurrently="YES" id="vAn-OL-IdT" customClass="PlayingIndicatorView">
-                                                            <rect key="frame" x="411" y="1" width="12" height="81"/>
+                                                            <rect key="frame" x="418" y="1" width="4" height="81"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
                                                         </customView>
                                                         <customView id="cdw-Ts-Guv" customClass="SeperatorView">
@@ -303,7 +303,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <customView canDrawConcurrently="YES" id="08p-Ru-9eG" customClass="PlayingIndicatorView">
-                                                            <rect key="frame" x="411" y="0.0" width="12" height="41"/>
+                                                            <rect key="frame" x="418" y="0.0" width="4" height="41"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
                                                         </customView>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="VRK-0p-oNO">

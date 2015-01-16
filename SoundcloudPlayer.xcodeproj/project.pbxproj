@@ -80,6 +80,7 @@
 		FD92A978198FB8F900271E93 /* LoadSpeakerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */; };
 		FD92A97B19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
 		FD92A97C19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
+		FDC67EA11A6956530014485B /* IsRepostedLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC67EA01A6956530014485B /* IsRepostedLabelView.m */; };
 		FDD0374C1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
 		FDD0374D1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
 		FDE51B14195C18E5009B1F2D /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
@@ -203,6 +204,8 @@
 		FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadSpeakerOverlayView.m; sourceTree = "<group>"; };
 		FD92A97919901D6000271E93 /* NSImage+RoundedCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+RoundedCorners.h"; sourceTree = "<group>"; };
 		FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+RoundedCorners.m"; sourceTree = "<group>"; };
+		FDC67E9F1A6956530014485B /* IsRepostedLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsRepostedLabelView.h; sourceTree = "<group>"; };
+		FDC67EA01A6956530014485B /* IsRepostedLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsRepostedLabelView.m; sourceTree = "<group>"; };
 		FDD0374A1986AFDD00043BDC /* TrackCellForPlaylistItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCellForPlaylistItemView.h; sourceTree = "<group>"; };
 		FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCellForPlaylistItemView.m; sourceTree = "<group>"; };
 		FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseOverImageView.h; sourceTree = "<group>"; };
@@ -311,9 +314,9 @@
 				FD3BED59195981D300B2D49A /* PlayingIndicatorView.m */,
 				FD3BED5C1959883400B2D49A /* SeperatorView.h */,
 				FD3BED5D1959883400B2D49A /* SeperatorView.m */,
-				FD8F6AEB1959CB6E004D4B61 /* ProgressIndicatorView.h */,
 				FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */,
 				FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */,
+				FD8F6AEB1959CB6E004D4B61 /* ProgressIndicatorView.h */,
 				FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */,
 				FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */,
 				FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */,
@@ -329,6 +332,8 @@
 				FD4F53041987F1CC00FD73A9 /* ClickableTextField.m */,
 				FD4F530F1987FC9600FD73A9 /* ClickableTableView.h */,
 				FD4F53101987FC9600FD73A9 /* ClickableTableView.m */,
+				FDC67E9F1A6956530014485B /* IsRepostedLabelView.h */,
+				FDC67EA01A6956530014485B /* IsRepostedLabelView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD4F53051987F1CC00FD73A9 /* ClickableTextField.m in Sources */,
+				FDC67EA11A6956530014485B /* IsRepostedLabelView.m in Sources */,
 				FD3BED4C1958387300B2D49A /* NextButtonCell.m in Sources */,
 				FD7CD2A31954396C002AC765 /* AppDelegate.m in Sources */,
 				FDE51B14195C18E5009B1F2D /* MouseOverImageView.m in Sources */,

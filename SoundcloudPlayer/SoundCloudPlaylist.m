@@ -34,7 +34,7 @@
         NSArray *trackArray = [dict objectForKey:@"tracks"];
         NSMutableArray *trackCacheArray = [NSMutableArray array];
         for (NSDictionary *trackDict in trackArray){
-            [trackCacheArray addObject:[SoundCloudTrack trackForDict:trackDict withPlaylist:self]];
+            [trackCacheArray addObject:[SoundCloudTrack trackForDict:trackDict withPlaylist:self repostedBy:nil]];
         }
         self.tracks = [NSArray arrayWithArray:trackCacheArray];
         self.user = [SoundCloudUser userForDict:[dict objectForKey:@"user"]];
@@ -42,8 +42,10 @@
     return self;
 }
 
-+ (SoundCloudPlaylist *)playlistForDict:(NSDictionary *)dict {
++ (SoundCloudPlaylist *)playlistForDict:(NSDictionary *)dict repostedBy:(SoundCloudUser *)repostedBy {
     SoundCloudPlaylist *playlistToReturn = [[SoundCloudPlaylist alloc]initWithDict:dict];
+    if (repostedBy)
+        playlistToReturn.repostBy = repostedBy;
     return playlistToReturn;
 }
 @end

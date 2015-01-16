@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSNumber *trackCount;
 @property (nonatomic, strong) NSArray *tracks;
 @property (nonatomic, strong) SoundCloudUser *user;
+@property (nonatomic, strong) SoundCloudUser *repostBy;
 
-+ (SoundCloudPlaylist *)playlistForDict:(NSDictionary *)dict;
++ (SoundCloudPlaylist *)playlistForDict:(NSDictionary *)dict repostedBy:(SoundCloudUser *)repostedBy;
 @end

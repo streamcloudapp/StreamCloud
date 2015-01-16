@@ -57,9 +57,10 @@
     return self;
 }
 
-+ (SoundCloudTrack *)trackForDict:(NSDictionary *)dict withPlaylist:(SoundCloudPlaylist *)playlist {
++ (SoundCloudTrack *)trackForDict:(NSDictionary *)dict withPlaylist:(SoundCloudPlaylist *)playlist repostedBy:(SoundCloudUser *)repostedBy {
     SoundCloudTrack *trackToReturn = [[SoundCloudTrack alloc]initWithDict:dict];
     trackToReturn.playlistTrackIsFrom = playlist;
+    trackToReturn.repostedBy = repostedBy;
     return trackToReturn;
 }
 

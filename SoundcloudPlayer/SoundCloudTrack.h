@@ -39,9 +39,10 @@
 @property (nonatomic, strong) NSURL *uri;
 @property (nonatomic, strong) SoundCloudUser *user;
 @property (nonatomic ,strong) NSURL *waveformUrl;
+@property (nonatomic, strong) SoundCloudUser *repostedBy;
 
 @property (nonatomic, strong) SoundCloudPlaylist *playlistTrackIsFrom;
 
-+ (SoundCloudTrack *)trackForDict:(NSDictionary *)dict withPlaylist:(SoundCloudPlaylist *)playlist;
++ (SoundCloudTrack *)trackForDict:(NSDictionary *)dict withPlaylist:(SoundCloudPlaylist *)playlist repostedBy:(SoundCloudUser *)repostedBy;
 
 @end

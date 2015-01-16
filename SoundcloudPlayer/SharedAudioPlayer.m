@@ -437,10 +437,20 @@
             [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
         }
     } else {
-        NSInteger indexOfCurrentItem = [self.itemsToPlay indexOfObject:currentItem];
-        if (indexOfCurrentItem < self.itemsToPlay.count - 2) {
-            SoundCloudTrack *nextItem = [self.itemsToPlay objectAtIndex:indexOfCurrentItem+1];
-            [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+        if (self.sourceType == CurrentSourceTypeStream){
+        NSInteger indexOfCurrentItem = [self.streamItemsToShowInTableView indexOfObject:currentItem];
+            if (indexOfCurrentItem < self.streamItemsToShowInTableView.count - 2) {
+                SoundCloudTrack *nextItem = [self.streamItemsToShowInTableView objectAtIndex:indexOfCurrentItem+1];
+                if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
+                    [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+            }
+        } else if (self.sourceType == CurrentSourceTypeFavorites){
+            NSInteger indexOfCurrentItem = [self.favoriteItemsToShowInTableView indexOfObject:currentItem];
+            if (indexOfCurrentItem < self.favoriteItemsToShowInTableView.count - 2) {
+                SoundCloudTrack *nextItem = [self.favoriteItemsToShowInTableView objectAtIndex:indexOfCurrentItem+1];
+                if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
+                    [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+            }
         }
     }
 }
@@ -522,6 +532,9 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
     }
     [self postNotificationForCurrentItem];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+    });
 }
 
 - (void)getNextSongs {

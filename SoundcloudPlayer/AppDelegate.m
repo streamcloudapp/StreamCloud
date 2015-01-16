@@ -25,6 +25,9 @@
 #import "SoundCloudPlaylist.h"
 #import "SoundCloudUser.h"
 #import "SoundCloudTrack.h"
+#import "IsRepostedLabelView.h"
+
+#define kTagForIsRepostedView 321
 
 NSString *const PlayPauseShortcutPreferenceKey = @"PlayPauseShortcut";
 NSString *const NextShortcutPreferenceKey = @"NextShortcut";
@@ -232,6 +235,14 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     [viewforRow.artistLabel setUrlToOpen:trackForRow.user.userUri.absoluteString];
                     [viewforRow.artistLabel sizeToFit];
                     [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
+                    
+                    if (trackForRow.repostedBy) {
+                        IsRepostedLabelView *repostedLabelView = [[IsRepostedLabelView alloc]initWithFrame:NSMakeRect(viewforRow.artistLabel.frame.origin.x+viewforRow.artistLabel.frame.size.width+2, viewforRow.artistLabel.frame.origin.y+1, viewforRow.frame.size.width - viewforRow.artistLabel.frame.size.width- 77 - viewforRow.durationLabel.frame.size.width-16, 15)];
+                        [viewforRow addSubview:repostedLabelView];
+                        [repostedLabelView setReposterName:trackForRow.repostedBy.username];
+                        [repostedLabelView setAutoresizingMask:NSViewWidthSizable];
+                    }
+                    
                     [viewforRow.durationLabel setStringValue:[self stringForSeconds:trackForRow.duration]];
                     
                     

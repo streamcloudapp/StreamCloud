@@ -20,30 +20,31 @@
         self.type = SoundCloudItemTypeUnknown;
         NSString *typeString = [dict objectForKey:@"type"];
         NSString *kindString = [dict objectForKey:@"kind"];
+        self.user = [SoundCloudUser userForDict:[dict objectForKey:@"user"]];
+
         if (kindString && [kindString isEqualToString:@"like"]){
             if ([dict objectForKey:@"track"]){
                 self.type = SoundCloudItemTypeTrack;
-                self.item = [SoundCloudTrack trackForDict:[dict objectForKey:@"track"] withPlaylist:nil];
+                self.item = [SoundCloudTrack trackForDict:[dict objectForKey:@"track"] withPlaylist:nil repostedBy:nil];
             } else if ([dict objectForKey:@"playlist"]){
                 self.type = SoundCloudItemTypePlaylist;
-                self.item = [SoundCloudPlaylist playlistForDict:[dict objectForKey:@"playlist"]];
+                self.item = [SoundCloudPlaylist playlistForDict:[dict objectForKey:@"playlist"] repostedBy:nil];
             }
         } else {
             if ([typeString isEqualToString:@"track"]) {
                 self.type = SoundCloudItemTypeTrack;
-                self.item = [SoundCloudTrack trackForDict:[dict objectForKey:@"track"] withPlaylist:nil];
+                self.item = [SoundCloudTrack trackForDict:[dict objectForKey:@"track"] withPlaylist:nil repostedBy:nil];
             } else if ([typeString isEqualToString:@"track-repost"]) {
                 self.type = SoundCloudItemTypeTrackRepost;
-                self.item = [SoundCloudTrack trackForDict:[dict objectForKey:@"track"] withPlaylist:nil];
+                self.item = [SoundCloudTrack trackForDict:[dict objectForKey:@"track"] withPlaylist:nil repostedBy:self.user];
             } else if ([typeString isEqualToString:@"playlist"]){
                 self.type = SoundCloudItemTypePlaylist;
-                self.item = [SoundCloudPlaylist playlistForDict:[dict objectForKey:@"playlist"]];
+                self.item = [SoundCloudPlaylist playlistForDict:[dict objectForKey:@"playlist"] repostedBy:nil];
             } else if ([typeString isEqualToString:@"playlist-repost"]) {
                 self.type = SoundCloudItemTypePlaylistRepost;
-                self.item = [SoundCloudPlaylist playlistForDict:[dict objectForKey:@"playlist"]];
+                self.item = [SoundCloudPlaylist playlistForDict:[dict objectForKey:@"playlist"] repostedBy:self.user];
             }
             self.uuid = [dict objectForKey:@"uuid"];
-            self.user = [SoundCloudUser userForDict:[dict objectForKey:@"user"]];
         }
     }
     return self;

@@ -188,6 +188,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     
 }
 
+
 # pragma mark - NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -482,6 +483,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
             
         }
         [self.tableView scrollRowToVisible:rowForItem];
+        [self.trackNameDockMenuItem setTitle:[NSString stringWithFormat:@"%@ - %@",currentItem.title,currentItem.user.username]];
     }
 }
 

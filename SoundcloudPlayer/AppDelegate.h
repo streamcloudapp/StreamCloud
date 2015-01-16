@@ -38,4 +38,6 @@
 @property (nonatomic, strong) IBOutlet MASShortcutView *prevShortcutView;
 @property (nonatomic, strong) IBOutlet MASShortcutView *nextShortcutView;
 
+@property (nonatomic, strong) IBOutlet NSMenuItem *trackNameDockMenuItem;
+
 @end

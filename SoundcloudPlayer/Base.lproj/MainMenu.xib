@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
             <connections>
                 <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+                <outlet property="dockMenu" destination="kua-Wh-t8R" id="gZp-m7-KKO"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -28,6 +29,7 @@
                 <outlet property="tableView" destination="sdz-JV-mui" id="242-40-xKD"/>
                 <outlet property="timeGoneLabel" destination="6dT-Qa-uCR" id="7yc-lF-zst"/>
                 <outlet property="timeToGoLabel" destination="Xzd-Aq-Y3F" id="xuE-vm-wjZ"/>
+                <outlet property="trackNameDockMenuItem" destination="bZA-G1-zje" id="6NP-kJ-bqr"/>
                 <outlet property="useLastFMButton" destination="xso-pQ-lsb" id="rul-DU-hno"/>
                 <outlet property="volumeButton" destination="1FD-nG-Ad2" id="vbs-vF-uAg"/>
                 <outlet property="volumePopover" destination="R2K-QH-3Ex" id="DhQ-xy-ScA"/>
@@ -764,6 +766,34 @@
                 <outlet property="delegate" destination="Voe-Tx-rLC" id="L3s-nt-I35"/>
             </connections>
         </window>
+        <menu id="kua-Wh-t8R">
+            <items>
+                <menuItem title=" " id="bZA-G1-zje">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="Vwn-nu-cPd"/>
+                <menuItem title="Play/Pause" id="RW3-Cs-NTt">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playButtonAction:" target="Voe-Tx-rLC" id="Ood-R8-RIf"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="Fnn-rm-Ior"/>
+                <menuItem title="Next" id="izf-2E-aWE">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="nextButtonAction:" target="Voe-Tx-rLC" id="BRX-kG-4ag"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Previous" id="ClF-pN-E0d">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="previousButtonAction:" target="Voe-Tx-rLC" id="3mi-W6-2dy"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-34" y="596.5"/>
+        </menu>
     </objects>
     <resources>
         <image name="AppIcon" width="128" height="128"/>

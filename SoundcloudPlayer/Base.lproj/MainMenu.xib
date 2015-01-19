@@ -198,10 +198,10 @@
                         <rect key="frame" x="0.0" y="55" width="422" height="1"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     </customView>
-                    <scrollView canDrawConcurrently="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="80" horizontalPageScroll="10" verticalLineScroll="80" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" scrollerKnobStyle="dark" id="2dY-Lj-jPa">
+                    <scrollView wantsLayer="YES" canDrawConcurrently="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="80" horizontalPageScroll="10" verticalLineScroll="80" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" scrollerKnobStyle="dark" id="2dY-Lj-jPa">
                         <rect key="frame" x="0.0" y="56" width="422" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" canDrawConcurrently="YES" id="jpA-t5-Wbq">
+                        <clipView key="contentView" wantsLayer="YES" canDrawConcurrently="YES" id="jpA-t5-Wbq">
                             <rect key="frame" x="0.0" y="0.0" width="422" height="716"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>

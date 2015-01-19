@@ -264,7 +264,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
                                                         </customView>
                                                         <customView id="cdw-Ts-Guv" customClass="SeperatorView">
-                                                            <rect key="frame" x="16" y="0.0" width="406" height="1"/>
+                                                            <rect key="frame" x="80" y="0.0" width="342" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         </customView>
                                                     </subviews>
@@ -318,7 +318,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <customView id="hFQ-Xq-lkN" customClass="SeperatorView">
-                                                            <rect key="frame" x="40" y="0.0" width="382" height="1"/>
+                                                            <rect key="frame" x="80" y="0.0" width="342" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         </customView>
                                                         <customView hidden="YES" id="UuC-Qq-7fU" customClass="LowerShadowView">

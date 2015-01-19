@@ -21,9 +21,9 @@
     NSRect bounds = [self bounds];
     
     if (super.mouseInside){
-        [[NSColor colorWithWhite:0.956 alpha:1.000]set];
+        [[NSColor colorWithWhite:0.92 alpha:1.000]set];
     } else {
-        [[NSColor colorWithWhite:0.956 alpha:1.000]set];
+        [[NSColor colorWithWhite:0.96 alpha:1.000]set];
     }
     
     NSRectFill(bounds);

@@ -976,12 +976,12 @@ static NSGradient* _orangeGradient = nil;
 + (void)drawPlaylistUpperShadowOverlayWithFrame: (NSRect)frame
 {
     //// Color Declarations
-    NSColor* playlistShadowOverlayGradientColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.355];
+    NSColor* playlistShadowOverlayGradientColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.102];
 
     //// Gradient Declarations
     NSGradient* playlistShadowOverlayGradient = [NSGradient.alloc initWithColorsAndLocations: 
         playlistShadowOverlayGradientColor, 0.0, 
-        [playlistShadowOverlayGradientColor blendedColorWithFraction: 0.5 ofColor: NSColor.clearColor], 0.33, 
+        [playlistShadowOverlayGradientColor blendedColorWithFraction: 0.5 ofColor: NSColor.clearColor], 0.50, 
         NSColor.clearColor, 1.0, nil];
 
     //// Rectangle Drawing
@@ -992,12 +992,12 @@ static NSGradient* _orangeGradient = nil;
 + (void)drawPlaylistLowerShadowOverlayWithFrame: (NSRect)frame
 {
     //// Color Declarations
-    NSColor* playlistShadowOverlayGradientColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.355];
+    NSColor* playlistShadowOverlayGradientColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0.102];
 
     //// Gradient Declarations
     NSGradient* playlistShadowOverlayGradient = [NSGradient.alloc initWithColorsAndLocations: 
         playlistShadowOverlayGradientColor, 0.0, 
-        [playlistShadowOverlayGradientColor blendedColorWithFraction: 0.5 ofColor: NSColor.clearColor], 0.33, 
+        [playlistShadowOverlayGradientColor blendedColorWithFraction: 0.5 ofColor: NSColor.clearColor], 0.50, 
         NSColor.clearColor, 1.0, nil];
 
     //// Rectangle Drawing

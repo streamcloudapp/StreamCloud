@@ -63,6 +63,7 @@
 
 - (void)setMarkedAsPlaying:(BOOL)markedAsPlaying {
     _markedAsPlaying = markedAsPlaying;
+    self.mouseInside = _mouseInside;
     [self setNeedsDisplay:YES];
 }
 
@@ -74,10 +75,10 @@
     NSRect bounds = [self bounds];
     
     if (_mouseInside){
-        [[NSColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1] set];
+        [[NSColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1] set];
     } else {
         [[NSColor colorWithRed:1 green:1 blue:1 alpha:1] set];
-    }
+    } 
     
     NSRectFill(bounds);
     
@@ -124,16 +125,14 @@
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
-    if ([self.playingIndicatiorView isHidden]){
-        [self setMouseInside:YES];
-    }
+    [self setMouseInside:YES];
+    [self setNeedsDisplay:YES];
     [self.artworkView cursorEntered];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
-    if ([self.playingIndicatiorView isHidden]){
-        [self setMouseInside:NO];
-    }
+    [self setMouseInside:NO];
+    [self setNeedsDisplay:YES];
     [self.artworkView cursorExited];
 }
 

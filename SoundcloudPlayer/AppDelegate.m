@@ -256,6 +256,11 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     } else {
                         [viewforRow markAsPlaying:NO];
                     }
+                    
+                    // Shadows for Playlists only!
+                    
+                    viewforRow.seperatorView.hidden = NO;
+                    
                     return viewforRow;
                 } else {
                     TrackCellForPlaylistItemView *viewforRow = [tableView makeViewWithIdentifier:@"PlayListItemCell" owner:self];

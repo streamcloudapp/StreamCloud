@@ -200,6 +200,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 SoundCloudTrack *trackForRow = itemForRow;
                 if (!trackForRow.playlistTrackIsFrom) {
                     TrackCellView *viewforRow = [tableView makeViewWithIdentifier:@"MainCell" owner:self];
+                    [viewforRow.artworkView.loadSpeakerOverlayView setHidden:YES];
+                    [viewforRow.playingIndicatiorView setHidden:YES];
                     [viewforRow.artworkView setImage:nil];
                     [viewforRow setRow:row];
                     [viewforRow.artworkView setObjectToPlay:trackForRow];
@@ -244,7 +246,9 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     [viewforRow setRow:row];
                     [viewforRow.artworkView setObjectToPlay:trackForRow];
                     [viewforRow.artworkView setImage:nil];
-
+                    [viewforRow.artworkView.loadSpeakerOverlayView setHidden:YES];
+                    [viewforRow.playingIndicatiorView setHidden:YES];
+                    
                     [viewforRow.artworkView loadArtworkImageWithURL:trackForRow.artworkUrl];
                     
                     [viewforRow.titleLabel setStringValue:trackForRow.title];
@@ -284,7 +288,9 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 [viewforRow.artworkView setImage:nil];
                 [viewforRow setRow:row];
                 [viewforRow.artworkView setObjectToPlay:itemForRow];
-                
+                [viewforRow.artworkView.loadSpeakerOverlayView setHidden:YES];
+                [viewforRow.playingIndicatiorView setHidden:YES];
+            
                 [viewforRow.artworkView loadArtworkImageWithURL:playlistForRow.artworkUrl];
                 
                 [viewforRow.titleLabel setStringValue:playlistForRow.title];

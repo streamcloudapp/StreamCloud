@@ -17,8 +17,7 @@
 
 @property (nonatomic, strong) NSTrackingArea *trackingArea;
 @property (nonatomic) BOOL mouseOver;
-@property (nonatomic, strong) PlayPauseOverlayView *playPauseOverlayView;
-@property (nonatomic, strong) LoadSpeakerOverlayView *loadSpeakerOverlayView;
+
 @property (nonatomic, strong) ArtworkOverlayView *artworkOverlayView;
 
 @end

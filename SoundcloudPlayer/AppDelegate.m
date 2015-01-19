@@ -439,26 +439,28 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     if (currentItem) {
         NSUInteger rowForItem = [[self sourceArrayForCurrentlySelectedStream] indexOfObject:currentItem];
         NSLog(@"Now playing song in row %lu",(unsigned long)rowForItem);
-        NSTableRowView *rowView = [self.tableView rowViewAtRow:rowForItem makeIfNecessary:NO];
-        [rowView setBackgroundColor:[StreamCloudStyles grayLight]];
-        TrackCellView *cellForRow = [self.tableView viewAtColumn:0 row:rowForItem makeIfNecessary:NO];
-        if (cellForRow){
-            [cellForRow markAsPlaying:YES];
-        }
-        if (currentItem.playlistTrackIsFrom) {
-            SoundCloudPlaylist *playlistTrackIsFrom = currentItem.playlistTrackIsFrom;
-            NSUInteger rowForPlaylist = [[self sourceArrayForCurrentlySelectedStream] indexOfObject:playlistTrackIsFrom];
-            NSLog(@"Marking playlist row %lu",(unsigned long)rowForPlaylist);
-            NSTableRowView *playlistRowView = [self.tableView rowViewAtRow:rowForPlaylist makeIfNecessary:NO];
-            [playlistRowView setBackgroundColor:[StreamCloudStyles grayLight]];
-            TrackCellView *cellForPlaylistRow = [self.tableView viewAtColumn:0 row:rowForPlaylist makeIfNecessary:NO];
-            if (cellForPlaylistRow){
-                [cellForPlaylistRow markAsPlaying:YES];
+        if (rowForItem != NSNotFound){
+            NSTableRowView *rowView = [self.tableView rowViewAtRow:rowForItem makeIfNecessary:NO];
+            [rowView setBackgroundColor:[StreamCloudStyles grayLight]];
+            TrackCellView *cellForRow = [self.tableView viewAtColumn:0 row:rowForItem makeIfNecessary:NO];
+            if (cellForRow){
+                [cellForRow markAsPlaying:YES];
             }
-            
+            if (currentItem.playlistTrackIsFrom) {
+                SoundCloudPlaylist *playlistTrackIsFrom = currentItem.playlistTrackIsFrom;
+                NSUInteger rowForPlaylist = [[self sourceArrayForCurrentlySelectedStream] indexOfObject:playlistTrackIsFrom];
+                NSLog(@"Marking playlist row %lu",(unsigned long)rowForPlaylist);
+                NSTableRowView *playlistRowView = [self.tableView rowViewAtRow:rowForPlaylist makeIfNecessary:NO];
+                [playlistRowView setBackgroundColor:[StreamCloudStyles grayLight]];
+                TrackCellView *cellForPlaylistRow = [self.tableView viewAtColumn:0 row:rowForPlaylist makeIfNecessary:NO];
+                if (cellForPlaylistRow){
+                    [cellForPlaylistRow markAsPlaying:YES];
+                }
+                
+            }
+            [self.tableView scrollRowToVisible:rowForItem];
+            [self.trackNameDockMenuItem setTitle:[NSString stringWithFormat:@"%@ - %@",currentItem.title,currentItem.user.username]];
         }
-        [self.tableView scrollRowToVisible:rowForItem];
-        [self.trackNameDockMenuItem setTitle:[NSString stringWithFormat:@"%@ - %@",currentItem.title,currentItem.user.username]];
     }
 }
 

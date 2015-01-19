@@ -184,7 +184,10 @@
 - (void)setShuffleEnabled:(BOOL)shuffleEnabled {
     _shuffleEnabled = shuffleEnabled;
     if (shuffleEnabled) {
-        self.shuffledItemsToPlay = [NSMutableArray arrayWithArray:self.itemsToPlay];
+        if (self.sourceType == CurrentSourceTypeStream)
+            self.shuffledItemsToPlay = [NSMutableArray arrayWithArray:self.streamItemsToShowInTableView];
+        else if (self.sourceType == CurrentSourceTypeFavorites)
+            self.shuffledItemsToPlay = [NSMutableArray arrayWithArray:self.favoriteItemsToShowInTableView];
         NSUInteger count = [self.shuffledItemsToPlay count];
         for (NSUInteger i = 0; i < count; ++i) {
             // Select a random element between i and end of array to swap with.
@@ -511,7 +514,11 @@
         default: {
             if (self.shuffleEnabled){
                 if (_positionInPlaylist < self.shuffledItemsToPlay.count-1) {
-                    self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
+                    if (self.sourceType == CurrentSourceTypeStream) {
+                        self.positionInPlaylist = [self.streamItemsToShowInTableView indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
+                    } else if (self.sourceType == CurrentSourceTypeFavorites){
+                        self.positionInPlaylist = [self.favoriteItemsToShowInTableView indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
+                    }
                     [self jumpToItemAtIndex: _positionInPlaylist];
                 }
             } else if (self.audioPlayer.items.count > 1) {

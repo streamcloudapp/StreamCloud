@@ -439,7 +439,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     if (currentItem) {
         NSUInteger rowForItem = [[self sourceArrayForCurrentlySelectedStream] indexOfObject:currentItem];
         NSLog(@"Now playing song in row %lu",(unsigned long)rowForItem);
-        if (rowForItem != NSNotFound){
+        if (rowForItem != NSNotFound && rowForItem < self.tableView.numberOfRows){
             NSTableRowView *rowView = [self.tableView rowViewAtRow:rowForItem makeIfNecessary:NO];
             [rowView setBackgroundColor:[StreamCloudStyles grayLight]];
             TrackCellView *cellForRow = [self.tableView viewAtColumn:0 row:rowForItem makeIfNecessary:NO];

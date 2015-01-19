@@ -459,7 +459,24 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 }
 
 - (void)didGetNewSongs:(NSNotification *)notification {
-    [self.tableView reloadData];
+    if (notification.object) {
+        NSDictionary *notificationObject = notification.object;
+        NSString *insertedIn = [notificationObject objectForKey:@"type"];
+        NSNumber *countOfNewObject = [notificationObject objectForKey:@"count"];
+        if (countOfNewObject > 0) {
+            [self.tableView beginUpdates];
+            if ([insertedIn isEqualToString:@"stream"] && self.currentlySelectedStream == 0) {
+                NSIndexSet *insertIndexSet = [[NSIndexSet alloc]initWithIndexesInRange:NSMakeRange(self.tableView.numberOfRows, [countOfNewObject doubleValue])];
+                [self.tableView insertRowsAtIndexes:insertIndexSet withAnimation:NSTableViewAnimationEffectFade];
+            } else if ([insertedIn isEqualToString:@"favorites"] && self.currentlySelectedStream == 1) {
+                NSIndexSet *insertIndexSet = [[NSIndexSet alloc]initWithIndexesInRange:NSMakeRange(self.tableView.numberOfRows, [countOfNewObject doubleValue])];
+                [self.tableView insertRowsAtIndexes:insertIndexSet withAnimation:NSTableViewAnimationEffectFade];
+            }
+            [self.tableView endUpdates];
+        }
+    } else {
+        [self.tableView reloadData];
+    }
     if (!self.statusItemPopup){
         // Status Item
         self.statusBarPlayerViewController = [[StatusBarPlayerViewController alloc] initWithNibName:@"StatusBarPlayerViewController" bundle:nil];

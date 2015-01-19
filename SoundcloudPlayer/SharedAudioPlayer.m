@@ -379,7 +379,7 @@
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:@{@"type": @"stream", @"count":@(items.count)}];
 }
 
 - (void)insertFavoriteItems:(NSArray *)items {
@@ -402,7 +402,7 @@
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:@{@"type": @"favorites", @"count":@(items.count)}];
 
 }
 

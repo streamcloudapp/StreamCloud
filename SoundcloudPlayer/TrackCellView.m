@@ -33,6 +33,10 @@
     return self;
 }
 
+- (BOOL)canDrawSubviewsIntoLayer {
+    return YES;
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

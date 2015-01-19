@@ -14,6 +14,7 @@
 		FD34684C1A66FDF3006B645B /* SoundCloudPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = FD34684B1A66FDF3006B645B /* SoundCloudPlaylist.m */; };
 		FD34684F1A670379006B645B /* SoundCloudItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FD34684E1A670379006B645B /* SoundCloudItem.m */; };
 		FD3468521A67042C006B645B /* SoundCloudUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3468511A67042C006B645B /* SoundCloudUser.m */; };
+		FD35CC571A6D86A900B62FC2 /* ArtworkOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD35CC561A6D86A900B62FC2 /* ArtworkOverlayView.m */; };
 		FD3BED43195833E800B2D49A /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
 		FD3BED44195833E800B2D49A /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
 		FD3BED481958364200B2D49A /* PlayPauseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED471958364200B2D49A /* PlayPauseButtonCell.m */; };
@@ -134,6 +135,8 @@
 		FD34684E1A670379006B645B /* SoundCloudItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudItem.m; sourceTree = "<group>"; };
 		FD3468501A67042C006B645B /* SoundCloudUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudUser.h; sourceTree = "<group>"; };
 		FD3468511A67042C006B645B /* SoundCloudUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudUser.m; sourceTree = "<group>"; };
+		FD35CC551A6D86A900B62FC2 /* ArtworkOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtworkOverlayView.h; sourceTree = "<group>"; };
+		FD35CC561A6D86A900B62FC2 /* ArtworkOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtworkOverlayView.m; sourceTree = "<group>"; };
 		FD3BED41195833E800B2D49A /* StreamCloudStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamCloudStyles.h; path = SoundcloudPlayer/StreamCloudStyles.h; sourceTree = "<group>"; };
 		FD3BED42195833E800B2D49A /* StreamCloudStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamCloudStyles.m; path = SoundcloudPlayer/StreamCloudStyles.m; sourceTree = "<group>"; };
 		FD3BED461958364100B2D49A /* PlayPauseButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayPauseButtonCell.h; sourceTree = "<group>"; };
@@ -281,6 +284,21 @@
 			name = "Data Objects";
 			sourceTree = "<group>";
 		};
+		FD35CC581A6D87E100B62FC2 /* List Track Artwork Image */ = {
+			isa = PBXGroup;
+			children = (
+				FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */,
+				FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */,
+				FD35CC551A6D86A900B62FC2 /* ArtworkOverlayView.h */,
+				FD35CC561A6D86A900B62FC2 /* ArtworkOverlayView.m */,
+				FDE51B16195C1F3A009B1F2D /* PlayPauseOverlayView.h */,
+				FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */,
+				FD92A975198FB8F900271E93 /* LoadSpeakerOverlayView.h */,
+				FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */,
+			);
+			name = "List Track Artwork Image";
+			sourceTree = "<group>";
+		};
 		FD3BED451958355500B2D49A /* CustomButtons */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +334,7 @@
 		FD3BED57195981BC00B2D49A /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				FD35CC581A6D87E100B62FC2 /* List Track Artwork Image */,
 				FD3BED58195981D300B2D49A /* PlayingIndicatorView.h */,
 				FD3BED59195981D300B2D49A /* PlayingIndicatorView.m */,
 				FD3BED5C1959883400B2D49A /* SeperatorView.h */,
@@ -328,12 +347,6 @@
 				FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */,
 				FD8F6AEB1959CB6E004D4B61 /* ProgressIndicatorView.h */,
 				FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */,
-				FDE51B12195C18E5009B1F2D /* MouseOverImageView.h */,
-				FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */,
-				FDE51B16195C1F3A009B1F2D /* PlayPauseOverlayView.h */,
-				FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */,
-				FD92A975198FB8F900271E93 /* LoadSpeakerOverlayView.h */,
-				FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */,
 				FDE51B1E195C2F32009B1F2D /* ProgressSliderCell.h */,
 				FDE51B1F195C2F32009B1F2D /* ProgressSliderCell.m */,
 				FDE51B22195C3A7B009B1F2D /* ProgressSliderView.h */,
@@ -642,6 +655,7 @@
 				FD34684C1A66FDF3006B645B /* SoundCloudPlaylist.m in Sources */,
 				FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */,
 				FD3BED5A195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
+				FD35CC571A6D86A900B62FC2 /* ArtworkOverlayView.m in Sources */,
 				FD8F6AED1959CB6E004D4B61 /* ProgressIndicatorView.m in Sources */,
 				FD8F6AF5195AE093004D4B61 /* VolumeButtonCell.m in Sources */,
 				FDE51B20195C2F32009B1F2D /* ProgressSliderCell.m in Sources */,

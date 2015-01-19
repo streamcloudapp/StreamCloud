@@ -19,4 +19,5 @@
 
 - (void)cursorEntered;
 - (void)cursorExited;
+- (void)loadArtworkImageWithURL:(NSURL *)artworkURL;
 @end

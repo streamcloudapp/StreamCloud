@@ -203,31 +203,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     [viewforRow.artworkView setImage:nil];
                     [viewforRow setRow:row];
                     [viewforRow.artworkView setObjectToPlay:trackForRow];
-                    BOOL useAvatar = YES;
-                    if (trackForRow.artworkUrl){
-                        useAvatar = NO;
-                        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                        manager.responseSerializer = [AFImageResponseSerializer serializer];
-                        [manager GET:trackForRow.artworkUrl.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [viewforRow.artworkView setImage:responseObject];
-                            
-                            
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            NSLog(@"Failed to get image %@",error);
-                        }];
-                    }
                     
-                    if (useAvatar && trackForRow.user.avatarUrl){
-                        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                        manager.responseSerializer = [AFImageResponseSerializer serializer];
-                        [manager GET:trackForRow.user.avatarUrl.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [viewforRow.artworkView setImage:responseObject];
-                            
-                            
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            NSLog(@"Failed to get image %@",error);
-                        }];
-                    }
+                    [viewforRow.artworkView loadArtworkImageWithURL:trackForRow.artworkUrl];
                     
                     [viewforRow.titleLabel setStringValue:trackForRow.title];
                     
@@ -267,32 +244,9 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     [viewforRow setRow:row];
                     [viewforRow.artworkView setObjectToPlay:trackForRow];
                     [viewforRow.artworkView setImage:nil];
-                    BOOL useAvatar = YES;
-                    if (trackForRow.artworkUrl){
-                        useAvatar = NO;
-                        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                        manager.responseSerializer = [AFImageResponseSerializer serializer];
-                        [manager GET:trackForRow.artworkUrl.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [viewforRow.artworkView setImage:responseObject];
-                            
-                            
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            NSLog(@"Failed to get image %@",error);
-                        }];
-                        
-                    }
-                    if (trackForRow.user.avatarUrl) {
-                        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                        manager.responseSerializer = [AFImageResponseSerializer serializer];
-                        [manager GET:trackForRow.user.avatarUrl.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [viewforRow.artworkView setImage:responseObject];
-                            
-                            
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            NSLog(@"Failed to get image %@",error);
-                        }];
-                        
-                    }
+
+                    [viewforRow.artworkView loadArtworkImageWithURL:trackForRow.artworkUrl];
+                    
                     [viewforRow.titleLabel setStringValue:trackForRow.title];
                     [viewforRow.artistLabel setStringValue:trackForRow.user.username];
                     [viewforRow.artistLabel setUrlToOpen:trackForRow.user.permalinkUrl.absoluteString];
@@ -330,31 +284,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 [viewforRow.artworkView setImage:nil];
                 [viewforRow setRow:row];
                 [viewforRow.artworkView setObjectToPlay:itemForRow];
-                BOOL useAvatar = YES;
-                if (playlistForRow.artworkUrl){
-                    useAvatar = NO;
-                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                    manager.responseSerializer = [AFImageResponseSerializer serializer];
-                    [manager GET:playlistForRow.artworkUrl.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        [viewforRow.artworkView setImage:responseObject];
-                        
-                        
-                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        NSLog(@"Failed to get image %@",error);
-                    }];
-                }
                 
-                if (useAvatar && playlistForRow.user.avatarUrl){
-                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                    manager.responseSerializer = [AFImageResponseSerializer serializer];
-                    [manager GET:playlistForRow.user.avatarUrl.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        [viewforRow.artworkView setImage:responseObject];
-                        
-                        
-                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        NSLog(@"Failed to get image %@",error);
-                    }];
-                }
+                [viewforRow.artworkView loadArtworkImageWithURL:playlistForRow.artworkUrl];
                 
                 [viewforRow.titleLabel setStringValue:playlistForRow.title];
                 
@@ -409,6 +340,12 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     return NO;
 }
 
+- (void)tableView:(NSTableView *)tableView didRemoveRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+    if ([rowView isKindOfClass:[TrackCellView class]]){
+        TrackCellView *viewForRow = (TrackCellView *)rowView;
+        [viewForRow.artworkView setImage:nil];
+    }
+}
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
     SoundCloudTrack *itemForRow = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:row];

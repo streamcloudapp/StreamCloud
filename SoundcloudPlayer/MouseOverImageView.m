@@ -10,6 +10,8 @@
 #import "PlayPauseOverlayView.h"
 #import "SharedAudioPlayer.h"
 #import "LoadSpeakerOverlayView.h"
+#import "AFNetworking.h"
+#import "ArtworkOverlayView.h"
 
 @interface MouseOverImageView ()
 
@@ -17,6 +19,7 @@
 @property (nonatomic) BOOL mouseOver;
 @property (nonatomic, strong) PlayPauseOverlayView *playPauseOverlayView;
 @property (nonatomic, strong) LoadSpeakerOverlayView *loadSpeakerOverlayView;
+@property (nonatomic, strong) ArtworkOverlayView *artworkOverlayView;
 
 @end
 
@@ -40,22 +43,11 @@
     return self;
 }
 
-- (void)setRow:(NSInteger)row {
-    _row = row;
-    [self.playPauseOverlayView setRow:row];
-}
-
-- (void)setObjectToPlay:(NSDictionary *)objectToPlay {
-    _objectToPlay = objectToPlay;
-    [self.playPauseOverlayView setObjectToShow:objectToPlay];
-}
-
-- (void)setPlaying:(BOOL)playing {
-    _playing = playing;
-    [self.loadSpeakerOverlayView setHidden:!playing];
-}
-
 - (void)commonInit {
+    
+    self.artworkOverlayView = [[ArtworkOverlayView alloc] initWithFrame:NSMakeRect(0, 0, self.frame.size.width, self.frame.size.height)];
+    [self addSubview:self.artworkOverlayView];
+
     self.playPauseOverlayView = [[PlayPauseOverlayView alloc] initWithFrame:NSMakeRect(0, 0, self.frame.size.width, self.frame.size.height)];
     [self.playPauseOverlayView setHidden:YES];
     [self.playPauseOverlayView setRow:self.row];
@@ -65,7 +57,6 @@
     [self.loadSpeakerOverlayView setHidden:YES];
     [self addSubview:self.loadSpeakerOverlayView];
     
-
     
     [self setWantsLayer: YES];
     self.layer.cornerRadius = 2.0;
@@ -87,6 +78,46 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+# pragma mark - Setters
+
+- (void)setImage:(NSImage *)image {
+    if (image){
+        [super setImage:image];
+    } else {
+        [self.artworkOverlayView setHidden:NO];
+    }
+}
+
+
+- (void)setRow:(NSInteger)row {
+    _row = row;
+    [self.playPauseOverlayView setRow:row];
+}
+
+- (void)setObjectToPlay:(NSDictionary *)objectToPlay {
+    _objectToPlay = objectToPlay;
+    [self.playPauseOverlayView setObjectToShow:objectToPlay];
+}
+
+- (void)setPlaying:(BOOL)playing {
+    _playing = playing;
+    [self.loadSpeakerOverlayView setHidden:!playing];
+}
+
+# pragma mark - Loading Artwork
+
+- (void)loadArtworkImageWithURL:(NSURL *)artworkURL {
+    if (artworkURL){
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFImageResponseSerializer serializer];
+        [manager GET:artworkURL.absoluteString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self setImage:responseObject];
+            [self.artworkOverlayView hideWithFadeOut];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Failed to get image %@",error);
+        }];
+    }
+}
 
 # pragma mark - Mouse Handling
 

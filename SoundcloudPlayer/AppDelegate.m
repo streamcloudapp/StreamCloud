@@ -354,11 +354,15 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-    SoundCloudTrack *itemForRow = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:row];
-    if ([itemForRow isKindOfClass:[SoundCloudTrack class]] && itemForRow.playlistTrackIsFrom) {
-        return 40;
+    if ([self sourceArrayForCurrentlySelectedStream].count > row) {
+        SoundCloudTrack *itemForRow = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:row];
+        if ([itemForRow isKindOfClass:[SoundCloudTrack class]] && itemForRow.playlistTrackIsFrom) {
+            return 40;
+        } else {
+            return 80;
+        }
     } else {
-        return 80;
+        return 0;
     }
 }
 # pragma mark - NSTableViewDataSource

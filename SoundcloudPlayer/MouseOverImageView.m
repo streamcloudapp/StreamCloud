@@ -101,6 +101,7 @@
 - (void)setPlaying:(BOOL)playing {
     _playing = playing;
     [self.loadSpeakerOverlayView setHidden:!playing];
+    [self.playPauseOverlayView setHidden:YES];
 }
 
 # pragma mark - Loading Artwork

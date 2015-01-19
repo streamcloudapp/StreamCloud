@@ -232,6 +232,7 @@
     self.itemsToPlay = nil;
     self.shuffledItemsToPlay = [NSMutableArray array];
     self.itemsToPlay = [NSMutableArray array];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
 }
 
 # pragma mark - Posting user notifications

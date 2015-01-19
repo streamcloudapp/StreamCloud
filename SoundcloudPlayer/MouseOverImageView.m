@@ -56,7 +56,7 @@
     self.loadSpeakerOverlayView = [[LoadSpeakerOverlayView alloc] initWithFrame:NSMakeRect(0, 0, self.frame.size.width, self.frame.size.height)];
     [self.loadSpeakerOverlayView setHidden:YES];
     [self addSubview:self.loadSpeakerOverlayView];
-    
+
     
     [self setWantsLayer: YES];
     self.layer.cornerRadius = 2.0;
@@ -81,10 +81,10 @@
 # pragma mark - Setters
 
 - (void)setImage:(NSImage *)image {
-    if (image){
-        [super setImage:image];
-    } else {
+    [super setImage:image];
+    if (!image){
         [self.artworkOverlayView setHidden:NO];
+        [self.artworkOverlayView setAlphaValue:1.0];
     }
 }
 

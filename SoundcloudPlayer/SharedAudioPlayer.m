@@ -366,7 +366,7 @@
             } else if (item.type == SoundCloudItemTypePlaylist || item.type == SoundCloudItemTypePlaylistRepost){
                 SoundCloudPlaylist *playlistForItem = item.item;
                 if (playlistForItem.streamable) {
-                    [self.streamItemsToShowInTableView addObject:item];
+                    [self.streamItemsToShowInTableView addObject:playlistForItem];
                     for (SoundCloudTrack *playlistTrack in playlistForItem.tracks) {
                         [self.streamItemsToShowInTableView addObject:playlistTrack];
                         if (self.itemsToPlay.count < 3) {

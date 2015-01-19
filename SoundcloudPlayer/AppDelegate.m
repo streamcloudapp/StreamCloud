@@ -232,7 +232,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     [viewforRow.titleLabel setStringValue:trackForRow.title];
                     
                     [viewforRow.artistLabel setStringValue:trackForRow.user.username];
-                    [viewforRow.artistLabel setUrlToOpen:trackForRow.user.userUri.absoluteString];
+                    [viewforRow.artistLabel setUrlToOpen:trackForRow.user.permalinkUrl.absoluteString];
                     [viewforRow.artistLabel sizeToFit];
                     [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
                     
@@ -290,7 +290,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     }
                     [viewforRow.titleLabel setStringValue:trackForRow.title];
                     [viewforRow.artistLabel setStringValue:trackForRow.user.username];
-                    [viewforRow.artistLabel setUrlToOpen:trackForRow.user.userUri.absoluteString];
+                    [viewforRow.artistLabel setUrlToOpen:trackForRow.user.permalinkUrl.absoluteString];
                     [viewforRow.artistLabel sizeToFit];
                     [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
                     [viewforRow.durationLabel setStringValue:[self stringForSeconds:trackForRow.duration]];
@@ -338,7 +338,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 [viewforRow.titleLabel setStringValue:playlistForRow.title];
                 
                 [viewforRow.artistLabel setStringValue:playlistForRow.user.username];
-                [viewforRow.artistLabel setUrlToOpen:playlistForRow.user.userUri.absoluteString];
+                [viewforRow.artistLabel setUrlToOpen:playlistForRow.user.permalinkUrl.absoluteString];
                 [viewforRow.artistLabel sizeToFit];
                 [viewforRow.artistLabel setAutoresizingMask:NSViewNotSizable];
                 [viewforRow.durationLabel setStringValue:[self stringForSeconds:playlistForRow.duration]];

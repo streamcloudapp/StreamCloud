@@ -322,11 +322,11 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         </customView>
                                                         <customView hidden="YES" id="UuC-Qq-7fU" customClass="LowerShadowView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="422" height="8"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="422" height="4"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         </customView>
                                                         <customView hidden="YES" id="JZv-j3-Dpc" customClass="UpperShadowView">
-                                                            <rect key="frame" x="0.0" y="32" width="422" height="8"/>
+                                                            <rect key="frame" x="0.0" y="36" width="422" height="4"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         </customView>
                                                     </subviews>

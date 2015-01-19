@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "SoundCloudTrack.h"
 #import "SoundCloudPlaylist.h"
+#import "PlayPauseOverlayView.h"
+#import "SharedAudioPlayer.h"
+#import "LoadSpeakerOverlayView.h"
 
 @interface MouseOverImageView : NSImageView
 
@@ -16,6 +19,8 @@
 @property (nonatomic) id objectToPlay;
 @property (nonatomic) BOOL showLargePlayPauseView;
 @property (nonatomic) BOOL playing;
+@property (nonatomic, strong) PlayPauseOverlayView *playPauseOverlayView;
+@property (nonatomic, strong) LoadSpeakerOverlayView *loadSpeakerOverlayView;
 
 - (void)cursorEntered;
 - (void)cursorExited;

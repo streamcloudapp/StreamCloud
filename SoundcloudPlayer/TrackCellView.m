@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) NSTrackingArea *trackingArea;
 
-@property (nonatomic) BOOL mouseInside;
 @property (nonatomic) BOOL markedAsPlaying;
 
 @end

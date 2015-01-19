@@ -19,6 +19,7 @@
 @property (nonatomic, strong) IBOutlet NSView *playingIndicatiorView;
 @property (nonatomic, strong) IBOutlet NSView *seperatorView;
 @property (nonatomic) NSInteger row;
+@property (nonatomic) BOOL mouseInside;
 
 - (void)markAsPlaying:(BOOL)playing;
 @end

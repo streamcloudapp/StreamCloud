@@ -52,6 +52,8 @@
 		FD7CD2D719543C4B002AC765 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D619543C4B002AC765 /* Security.framework */; };
 		FD7CD2D919543C51002AC765 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D819543C51002AC765 /* CoreGraphics.framework */; };
 		FD7CD2DB19543C55002AC765 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2DA19543C55002AC765 /* CoreText.framework */; };
+		FD7D119F1A6D1BF900E238CF /* UpperShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7D119E1A6D1BF900E238CF /* UpperShadowView.m */; };
+		FD7D11A21A6D1C4B00E238CF /* LowerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7D11A11A6D1C4B00E238CF /* LowerShadowView.m */; };
 		FD7ECBC01955BE05005828CF /* SharedAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */; };
 		FD7ECBC11955BE05005828CF /* SharedAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */; };
 		FD8F6AD81959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; };
@@ -179,6 +181,10 @@
 		FD7CD2D819543C51002AC765 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FD7CD2DA19543C55002AC765 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		FD7CD2DC19548A93002AC765 /* SoundcloudPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SoundcloudPlayer.entitlements; sourceTree = "<group>"; };
+		FD7D119D1A6D1BF900E238CF /* UpperShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpperShadowView.h; sourceTree = "<group>"; };
+		FD7D119E1A6D1BF900E238CF /* UpperShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpperShadowView.m; sourceTree = "<group>"; };
+		FD7D11A01A6D1C4B00E238CF /* LowerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LowerShadowView.h; sourceTree = "<group>"; };
+		FD7D11A11A6D1C4B00E238CF /* LowerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LowerShadowView.m; sourceTree = "<group>"; };
 		FD7ECBBE1955BE05005828CF /* SharedAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedAudioPlayer.h; sourceTree = "<group>"; };
 		FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedAudioPlayer.m; sourceTree = "<group>"; };
 		FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundCloudAPI.framework; path = SoundcloudPlayer/SoundCloudAPI.framework; sourceTree = "<group>"; };
@@ -314,6 +320,10 @@
 				FD3BED59195981D300B2D49A /* PlayingIndicatorView.m */,
 				FD3BED5C1959883400B2D49A /* SeperatorView.h */,
 				FD3BED5D1959883400B2D49A /* SeperatorView.m */,
+				FD7D119D1A6D1BF900E238CF /* UpperShadowView.h */,
+				FD7D119E1A6D1BF900E238CF /* UpperShadowView.m */,
+				FD7D11A01A6D1C4B00E238CF /* LowerShadowView.h */,
+				FD7D11A11A6D1C4B00E238CF /* LowerShadowView.m */,
 				FD8F6AFB195B21A6004D4B61 /* WhiteBackgroundView.h */,
 				FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */,
 				FD8F6AEB1959CB6E004D4B61 /* ProgressIndicatorView.h */,
@@ -628,6 +638,7 @@
 				FD3BED5519597B4300B2D49A /* TrackCellView.m in Sources */,
 				FDE51B18195C1F3A009B1F2D /* PlayPauseOverlayView.m in Sources */,
 				FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */,
+				FD7D11A21A6D1C4B00E238CF /* LowerShadowView.m in Sources */,
 				FD34684C1A66FDF3006B645B /* SoundCloudPlaylist.m in Sources */,
 				FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */,
 				FD3BED5A195981D300B2D49A /* PlayingIndicatorView.m in Sources */,
@@ -652,6 +663,7 @@
 				FD8F6AE61959AB8D004D4B61 /* StatusBarPlayerViewController.m in Sources */,
 				FD3BED481958364200B2D49A /* PlayPauseButtonCell.m in Sources */,
 				FD8F6AE01959A454004D4B61 /* ShuffleButtonCell.m in Sources */,
+				FD7D119F1A6D1BF900E238CF /* UpperShadowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

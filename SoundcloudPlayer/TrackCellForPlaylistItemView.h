@@ -8,9 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "TrackCellView.h"
+#import "SeperatorView.h"
+#import "UpperShadowView.h"
+#import "LowerShadowView.h"
 
 @interface TrackCellForPlaylistItemView : TrackCellView
 
-
+@property (nonatomic, strong) IBOutlet SeperatorView *seperatorView;
+@property (nonatomic, strong) IBOutlet UpperShadowView *upperShadowView;
+@property (nonatomic, strong) IBOutlet LowerShadowView *lowerShadowView;
 
 @end

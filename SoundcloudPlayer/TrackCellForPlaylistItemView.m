@@ -15,4 +15,19 @@
     [super awakeFromNib];
     [self.artworkView setShowLargePlayPauseView:YES];
 }
+
+- (void)drawRect:(NSRect)dirtyRect
+{
+    NSRect bounds = [self bounds];
+    
+    if (super.mouseInside){
+        [[NSColor colorWithWhite:0.956 alpha:1.000]set];
+    } else {
+        [[NSColor colorWithWhite:0.956 alpha:1.000]set];
+    }
+    
+    NSRectFill(bounds);
+    
+}
+
 @end

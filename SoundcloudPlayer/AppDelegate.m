@@ -300,6 +300,22 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                     } else {
                         [viewforRow markAsPlaying:NO];
                     }
+                    
+                    // Showing shadows for first and last row
+                    
+                    viewforRow.upperShadowView.hidden = YES;
+                    viewforRow.lowerShadowView.hidden = YES;
+                    viewforRow.seperatorView.hidden = NO;
+
+                    SoundCloudPlaylist *playlistForTrack = trackForRow.playlistTrackIsFrom;
+                    NSArray *tracksOfPlaylistForTrack = playlistForTrack.tracks;
+                    if (tracksOfPlaylistForTrack.firstObject == trackForRow) {
+                        viewforRow.upperShadowView.hidden = NO;
+                    } else if (tracksOfPlaylistForTrack.lastObject == trackForRow){
+                        viewforRow.lowerShadowView.hidden = NO;
+                        viewforRow.seperatorView.hidden = YES;
+                    }
+                    
                     return viewforRow;
                 }
             } else if ([itemForRow isKindOfClass:[SoundCloudPlaylist class]]){
@@ -361,7 +377,11 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 } else {
                     [viewforRow markAsPlaying:NO];
                 }
-                return viewforRow;
+                
+                // Hide seperator view for playlists
+                
+                viewforRow.seperatorView.hidden = YES;
+                
                 
                 
                 SoundCloudTrack *currentObject = [SharedAudioPlayer sharedPlayer].currentItem;
@@ -370,6 +390,9 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
                 } else {
                     [viewforRow markAsPlaying:NO];
                 }
+                
+                return viewforRow;
+
             }
             
         }

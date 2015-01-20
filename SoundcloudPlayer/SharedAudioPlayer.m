@@ -105,6 +105,10 @@
 - (void)jumpToItemAtIndex:(NSInteger)item startPlaying:(BOOL)start resetShuffle:(BOOL)resetShuffle{
 
     [self.audioPlayer pause];
+    [self.audioPlayer cancelPendingPrerolls];
+    int32_t timeScale = self.audioPlayer.currentItem.asset.duration.timescale;
+    CMTime time = CMTimeMakeWithSeconds(0, timeScale);
+    [self.audioPlayer seekToTime:time];
     [self.audioPlayer removeAllItems];
     
     NSInteger i = item;
@@ -113,7 +117,8 @@
         if (self.sourceType == CurrentSourceTypeStream) {
             if (i < self.streamItemsToShowInTableView.count &&[[self.streamItemsToShowInTableView objectAtIndex:i] isKindOfClass:[SoundCloudTrack class]]) {
                 SoundCloudTrack *itemInList = [self.streamItemsToShowInTableView objectAtIndex:i];
-                [self.audioPlayer insertItem:itemInList.playerItem afterItem:nil];
+                if ([self.audioPlayer canInsertItem:itemInList.playerItem afterItem:nil])
+                    [self.audioPlayer insertItem:itemInList.playerItem afterItem:nil];
                 i++;
                 if ( i > item+3)
                     done = YES;
@@ -125,7 +130,8 @@
         } else {
             if (i < self.favoriteItemsToShowInTableView.count && [[self.favoriteItemsToShowInTableView objectAtIndex:i] isKindOfClass:[SoundCloudTrack class]]) {
                 SoundCloudTrack *itemInList = [self.favoriteItemsToShowInTableView objectAtIndex:i];
-                [self.audioPlayer insertItem:itemInList.playerItem afterItem:nil];
+                if ([self.audioPlayer canInsertItem:itemInList.playerItem afterItem:nil])
+                    [self.audioPlayer insertItem:itemInList.playerItem afterItem:nil];
                 i++;
                 if ( i > item+3)
                     done = YES;
@@ -158,8 +164,9 @@
 
 - (SoundCloudTrack *)currentItem {
     if (self.sourceType == CurrentSourceTypeStream) {
+        AVPlayerItem *currentPlayerItem = self.audioPlayer.currentItem;
         NSArray *tracksOnlyArray = [self.streamItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudTrack class]]];
-        NSArray *tracksForCurrentItem = [tracksOnlyArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"playerItem == %@",self.audioPlayer.currentItem]];
+        NSArray *tracksForCurrentItem = [tracksOnlyArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"playerItem == %@",currentPlayerItem]];
         return [tracksForCurrentItem firstObject];
     } else if (self.sourceType == CurrentSourceTypeFavorites) {
         NSArray *tracksOnlyArray = [self.favoriteItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudTrack class]]];
@@ -223,6 +230,10 @@
 
 - (void)reset {
     [self.audioPlayer pause];
+    [self.audioPlayer cancelPendingPrerolls];
+    int32_t timeScale = self.audioPlayer.currentItem.asset.duration.timescale;
+    CMTime time = CMTimeMakeWithSeconds(0, timeScale);
+    [self.audioPlayer seekToTime:time];
     [self.audioPlayer removeAllItems];
     [self.audioPlayer removeObserver:self forKeyPath:@"rate"];
     [self.itemsToPlay removeAllObjects];
@@ -436,9 +447,10 @@
     SoundCloudTrack *currentItem = [self currentItem];
     if (self.shuffleEnabled){
         NSInteger indexOfCurrentItem = [self.shuffledItemsToPlay indexOfObject:currentItem];
-        if (indexOfCurrentItem < self.shuffledItemsToPlay.count + 2) {
+        if (indexOfCurrentItem < (self.shuffledItemsToPlay.count + 2)) {
             SoundCloudTrack *nextItem = [self.shuffledItemsToPlay objectAtIndex:indexOfCurrentItem+1];
-            [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+            if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
+                [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
         }
     } else {
         if (self.sourceType == CurrentSourceTypeStream){
@@ -476,7 +488,7 @@
 
 
 - (void)jumpedToNextItem {
-    if (self.shuffleEnabled){
+    if (self.shuffleEnabled && self.repeatMode != RepeatModeTrack){
         if (_positionInPlaylist <= self.itemsToPlay.count) {
             self.positionInPlaylist = [self.itemsToPlay indexOfObject:[self.shuffledItemsToPlay objectAtIndex:_positionInPlaylist+1]];
             [self jumpToItemAtIndex: _positionInPlaylist startPlaying:YES resetShuffle:NO];
@@ -498,12 +510,17 @@
     [self.scrobbledItems removeObject:self.currentItem];
     switch (self.repeatMode) {
         case RepeatModeTrack: {
-            [self jumpToItemAtIndex:self.positionInPlaylist];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+            [self.audioPlayer pause];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self jumpToItemAtIndex:self.positionInPlaylist];
+            });
             break;
         }
         case RepeatModeAll: {
-            if (self.positionInPlaylist < self.itemsToPlay.count-1) {
+            NSInteger itemCount = self.sourceType == CurrentSourceTypeStream ? self.streamItemsToShowInTableView.count : self.favoriteItemsToShowInTableView.count;
+            if (self.shuffleEnabled)
+                itemCount = self.shuffledItemsToPlay.count;
+            if (self.positionInPlaylist < itemCount-1) {
                 self.positionInPlaylist++;
             } else {
                 [self jumpToItemAtIndex:0];

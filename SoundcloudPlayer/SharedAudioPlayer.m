@@ -517,8 +517,23 @@
     switch (self.repeatMode) {
         case RepeatModeTrack: {
             [self.audioPlayer pause];
+            NSInteger indexOfFinishedItem = NSNotFound;
+            AVPlayerItem *itemFromNotification = notification.object;
+            if (self.sourceType == CurrentSourceTypeStream){
+                NSArray *tracksOnlyArray = [self.streamItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudTrack class]]];
+                NSArray *tracksForCurrentItem = [tracksOnlyArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"playerItem == %@",itemFromNotification]];
+                SoundCloudTrack *finishedTrack = [tracksForCurrentItem firstObject];
+                indexOfFinishedItem = [self.streamItemsToShowInTableView indexOfObject:finishedTrack];
+            } else if (self.sourceType == CurrentSourceTypeFavorites){
+                NSArray *tracksOnlyArray = [self.favoriteItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudTrack class]]];
+                NSArray *tracksForCurrentItem = [tracksOnlyArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"playerItem == %@",itemFromNotification]];
+                SoundCloudTrack *finishedTrack = [tracksForCurrentItem firstObject];
+                indexOfFinishedItem = [self.favoriteItemsToShowInTableView indexOfObject:finishedTrack];
+            }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self jumpToItemAtIndex:self.positionInPlaylist];
+                if (indexOfFinishedItem != NSNotFound)
+                    [self jumpToItemAtIndex:indexOfFinishedItem];
+                
             });
             break;
         }

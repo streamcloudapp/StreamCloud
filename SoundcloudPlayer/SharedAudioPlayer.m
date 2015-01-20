@@ -449,23 +449,29 @@
         NSInteger indexOfCurrentItem = [self.shuffledItemsToPlay indexOfObject:currentItem];
         if (indexOfCurrentItem < (self.shuffledItemsToPlay.count + 2)) {
             SoundCloudTrack *nextItem = [self.shuffledItemsToPlay objectAtIndex:indexOfCurrentItem+1];
-            if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
-                [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+            if ([nextItem respondsToSelector:@selector(playerItem)]) {
+                if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
+                    [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+            }
         }
     } else {
         if (self.sourceType == CurrentSourceTypeStream){
-        NSInteger indexOfCurrentItem = [self.streamItemsToShowInTableView indexOfObject:currentItem];
+            NSInteger indexOfCurrentItem = [self.streamItemsToShowInTableView indexOfObject:currentItem];
             if (indexOfCurrentItem < self.streamItemsToShowInTableView.count - 2) {
                 SoundCloudTrack *nextItem = [self.streamItemsToShowInTableView objectAtIndex:indexOfCurrentItem+1];
-                if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
-                    [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+                if ([nextItem respondsToSelector:@selector(playerItem)]) {
+                    if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
+                        [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+                }
             }
         } else if (self.sourceType == CurrentSourceTypeFavorites){
             NSInteger indexOfCurrentItem = [self.favoriteItemsToShowInTableView indexOfObject:currentItem];
             if (indexOfCurrentItem < self.favoriteItemsToShowInTableView.count - 2) {
                 SoundCloudTrack *nextItem = [self.favoriteItemsToShowInTableView objectAtIndex:indexOfCurrentItem+1];
-                if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
-                    [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+                if ([nextItem respondsToSelector:@selector(playerItem)]) {
+                    if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
+                        [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
+                }
             }
         }
     }

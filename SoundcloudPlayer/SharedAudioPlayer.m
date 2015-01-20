@@ -81,9 +81,8 @@
 }
 
 - (void)previousItem {
+    [self advanceToTime:0];
     if (CMTimeGetSeconds(self.audioPlayer.currentTime) > 5) {
-        [self advanceToTime:0];
-    } else {
         if (self.positionInPlaylist >= 1) {
             if (self.shuffleEnabled){
                 [self jumpToItemAtIndex:[self.shuffledItemsToPlay indexOfObject:[self.itemsToPlay objectAtIndex:self.positionInPlaylist]]-1 startPlaying:self.audioPlayer.rate];

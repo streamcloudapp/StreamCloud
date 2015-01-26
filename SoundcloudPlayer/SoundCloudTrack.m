@@ -44,7 +44,10 @@
             self.streamingUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=%@&allow_redirects=False",[dict objectForKey:@"stream_url"],CLIENT_ID]];
         self.streamable = [[dict objectForKey:@"streamable"] boolValue];
         self.tagList = [dict objectForKey:@"tag_list"];
-        self.title = [dict objectForKey:@"title"];
+        if ([dict objectForKey:@"title"])
+            self.title = [dict objectForKey:@"title"];
+        else
+            self.title = @"";
         self.updatedAt = [NSDate date];
         if ([[dict objectForKey:@"uri"] isKindOfClass:[NSString class]])
             self.uri = [NSURL URLWithString:[dict objectForKey:@"uri"]];

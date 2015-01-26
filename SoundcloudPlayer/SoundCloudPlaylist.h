@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSNumber *trackCount;
 @property (nonatomic, strong) NSArray *tracks;
+@property (nonatomic, strong) NSNumber *identifier;
 @property (nonatomic, strong) SoundCloudUser *user;
 @property (nonatomic, strong) SoundCloudUser *repostBy;
 

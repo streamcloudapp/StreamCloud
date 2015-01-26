@@ -34,6 +34,9 @@
         self.positionInPlaylist = 0;
         [self setRepeatMode:RepeatModeNone];
         self.scrobbledItems = [NSMutableArray array];
+        self.playlistsToLoad = [NSMutableArray array];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failedToLoadTracksForPlaylists:) name:@"SoundCloudPlaylistFailedToLoadTracks" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadPlaylistTracks:) name:@"SoundCloudPlaylistTracksLoaded" object:nil];
 
     }
     return self;
@@ -474,6 +477,41 @@
             }
         }
     }
+}
+
+- (void)failedToLoadTracksForPlaylists:(NSNotification *)notification {
+    SoundCloudPlaylist *playlistTracksLoadedFor = notification.object;
+    [self.streamItemsToShowInTableView removeObject:playlistTracksLoadedFor];
+    [self.favoriteItemsToShowInTableView removeObject:playlistTracksLoadedFor];
+}
+
+- (void)didLoadPlaylistTracks:(NSNotification *)notification {
+    NSArray *playlistsInStream = [self.streamItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudPlaylist class]]];
+    NSArray *emptyPlaylistsInStream = [playlistsInStream filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tracks == nil"]];
+    if (emptyPlaylistsInStream.count == 0 && playlistsInStream.count > 0){
+        NSLog(@"Got all playlists");
+        for (SoundCloudPlaylist *playlist in playlistsInStream){
+            SoundCloudTrack *firstTrack = playlist.tracks.firstObject;
+            if (firstTrack && ![self.streamItemsToShowInTableView containsObject:firstTrack]){
+                NSUInteger indexOfPlaylist = [self.streamItemsToShowInTableView indexOfObject:playlist];
+                [self.streamItemsToShowInTableView insertObjects:playlist.tracks atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexOfPlaylist+1, playlist.tracks.count)]];
+            }
+        }
+    }
+    NSArray *playlistsInFavorites = [self.favoriteItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudPlaylist class]]];
+    NSArray *emptyPlaylistsInFavorites = [playlistsInFavorites filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tracks == nil"]];
+    if (emptyPlaylistsInFavorites.count == 0 && playlistsInFavorites.count > 0){
+        NSLog(@"Got all playlists");
+        for (SoundCloudPlaylist *playlist in playlistsInFavorites){
+            SoundCloudTrack *firstTrack = playlist.tracks.firstObject;
+            if (firstTrack && ![self.favoriteItemsToShowInTableView containsObject:firstTrack]){
+                NSUInteger indexOfPlaylist = [self.favoriteItemsToShowInTableView indexOfObject:playlist];
+                [self.favoriteItemsToShowInTableView insertObjects:playlist.tracks atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexOfPlaylist+1, playlist.tracks.count)]];
+            }
+        }
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
+    
 }
 
 # pragma mark - KVO

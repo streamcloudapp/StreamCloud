@@ -54,7 +54,6 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     id clipView = [[self.tableView enclosingScrollView] contentView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tableViewDidScroll:) name:NSViewBoundsDidChangeNotification object:clipView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFailToAuthenticate) name:@"SoundCloudAPIClientDidFailToAuthenticate" object:nil];
-
     
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
     

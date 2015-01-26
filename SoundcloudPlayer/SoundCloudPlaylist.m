@@ -9,6 +9,7 @@
 #import "SoundCloudPlaylist.h"
 #import "SoundCloudUser.h"
 #import "SoundCloudTrack.h"
+#import <SoundCloudAPI/SCAPI.h>
 
 @implementation SoundCloudPlaylist
 
@@ -31,12 +32,7 @@
         self.tagList = [dict objectForKey:@"tag_list"];
         self.title = [dict objectForKey:@"title"];
         self.trackCount = [dict objectForKey:@"track_count"];
-        NSArray *trackArray = [dict objectForKey:@"tracks"];
-        NSMutableArray *trackCacheArray = [NSMutableArray array];
-        for (NSDictionary *trackDict in trackArray){
-            [trackCacheArray addObject:[SoundCloudTrack trackForDict:trackDict withPlaylist:self repostedBy:nil]];
-        }
-        self.tracks = [NSArray arrayWithArray:trackCacheArray];
+        self.identifier = [dict objectForKey:@"id"];
         self.user = [SoundCloudUser userForDict:[dict objectForKey:@"user"]];
     }
     return self;
@@ -44,8 +40,44 @@
 
 + (SoundCloudPlaylist *)playlistForDict:(NSDictionary *)dict repostedBy:(SoundCloudUser *)repostedBy {
     SoundCloudPlaylist *playlistToReturn = [[SoundCloudPlaylist alloc]initWithDict:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudPlaylistTracksWillLoad" object:playlistToReturn];
+    [playlistToReturn loadTracksForPlaylist];
     if (repostedBy)
         playlistToReturn.repostBy = repostedBy;
     return playlistToReturn;
+}
+
+- (void)loadTracksForPlaylist {
+    SCAccount *account = [SCSoundCloud account];
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.soundcloud.com/playlists/%@",self.identifier]]
+             usingParameters:nil
+                 withAccount:account
+      sendingProgressHandler:nil
+             responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                 // Handle the response
+                 if (error) {
+                     NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
+                 } else {
+                     NSLog(@"Got data, yeah");
+                     NSError *error;
+                     id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                     if (!error){
+                         if ([objectFromData isKindOfClass:[NSDictionary class]]){
+                             if ([objectFromData objectForKey:@"tracks"]){
+                                 NSMutableArray *tracksCache = [NSMutableArray array];
+                                 for (NSDictionary *track in [objectFromData objectForKey:@"tracks"]) {
+                                     [tracksCache addObject:[SoundCloudTrack trackForDict:track withPlaylist:self repostedBy:nil]];
+                                 }
+                                 self.tracks = [NSArray arrayWithArray:tracksCache];
+                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudPlaylistTracksLoaded" object:self];
+                             }
+                         }
+                     } else {
+                         [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudPlaylistFailedToLoadTracks" object:self];
+                     }
+                 }
+             }];
 }
 @end

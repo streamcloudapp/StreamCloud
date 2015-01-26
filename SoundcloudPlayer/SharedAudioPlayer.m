@@ -506,6 +506,7 @@
                 [self.streamItemsToShowInTableView insertObjects:playlist.tracks atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexOfPlaylist+1, playlist.tracks.count)]];
             }
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
     }
     NSArray *playlistsInFavorites = [self.favoriteItemsToShowInTableView filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class == %@",[SoundCloudPlaylist class]]];
     NSArray *emptyPlaylistsInFavorites = [playlistsInFavorites filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tracks == nil"]];
@@ -518,8 +519,8 @@
                 [self.favoriteItemsToShowInTableView insertObjects:playlist.tracks atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexOfPlaylist+1, playlist.tracks.count)]];
             }
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
     
 }
 

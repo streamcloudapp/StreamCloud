@@ -67,12 +67,14 @@
 
 - (void)nextItem {
     if (self.shuffleEnabled) {
-        NSDictionary *currentShuffledItem = [self.shuffledItemsToPlay objectAtIndex:self.positionInPlaylist];
+        SoundCloudTrack *currentShuffledItem = [self.shuffledItemsToPlay objectAtIndex:self.positionInPlaylist];
         if (currentShuffledItem) {
-            [self jumpToItemAtIndex:[self.itemsToPlay indexOfObject:currentShuffledItem]startPlaying:YES resetShuffle:NO];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
-            if (self.positionInPlaylist == self.itemsToPlay.count-1) {
-                [self getNextSongs];
+            if (self.sourceType == CurrentSourceTypeStream){
+                [self jumpToItemAtIndex:[self.streamItemsToShowInTableView indexOfObject:currentShuffledItem]startPlaying:YES resetShuffle:NO];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+            }else {
+                [self jumpToItemAtIndex:[self.streamItemsToShowInTableView indexOfObject:currentShuffledItem]startPlaying:YES resetShuffle:NO];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
             }
         }
     } else {
@@ -88,7 +90,11 @@
     if (CMTimeGetSeconds(self.audioPlayer.currentTime) < 5) {
         if (self.positionInPlaylist >= 1) {
             if (self.shuffleEnabled){
-                [self jumpToItemAtIndex:[self.shuffledItemsToPlay indexOfObject:[self.itemsToPlay objectAtIndex:self.positionInPlaylist]]-1 startPlaying:self.audioPlayer.rate];
+                if (self.sourceType == CurrentSourceTypeStream) {
+                    [self jumpToItemAtIndex:[self.shuffledItemsToPlay indexOfObject:[self.streamItemsToShowInTableView objectAtIndex:self.positionInPlaylist]]-1 startPlaying:self.audioPlayer.rate];
+                } else {
+                    [self jumpToItemAtIndex:[self.shuffledItemsToPlay indexOfObject:[self.favoriteItemsToShowInTableView objectAtIndex:self.positionInPlaylist]]-1 startPlaying:self.audioPlayer.rate];
+                }
             } else {
                 [self jumpToItemAtIndex:self.positionInPlaylist-1 startPlaying:self.audioPlayer.rate];
             }
@@ -154,6 +160,9 @@
     }
     if (resetShuffle)
         [self setShuffleEnabled:_shuffleEnabled];
+    if (start && _shuffleEnabled){
+        [self setShuffleEnabled:_shuffleEnabled];
+    }
 }
 
 - (void)advanceToTime:(float)timeToGo {

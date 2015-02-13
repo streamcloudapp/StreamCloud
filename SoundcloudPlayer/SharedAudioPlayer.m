@@ -151,8 +151,12 @@
         }
     }
     self.positionInPlaylist = item;
-    if (start)
+    if (start) {
+        CMTime time = CMTimeMakeWithSeconds(0, timeScale);
+        [self.audioPlayer seekToTime:time];
         [self.audioPlayer play];
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
     if (start){
@@ -403,6 +407,7 @@
             }
         }
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:@{@"type": @"stream", @"count":@(items.count)}];
@@ -426,6 +431,7 @@
     if (self.sourceType == CurrentSourceTypeFavorites){
         [self switchToFavorites];
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:@{@"type": @"favorites", @"count":@(items.count)}];
@@ -449,6 +455,7 @@
             [self.audioPlayer insertItem:[self itemForDict:dictToInsert] afterItem:nil];
         }
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.audioPlayer currentItem]];
     [self setShuffleEnabled:_shuffleEnabled];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundCloudAPIClientDidLoadSongs" object:nil];
@@ -458,7 +465,7 @@
     SoundCloudTrack *currentItem = [self currentItem];
     if (self.shuffleEnabled){
         NSInteger indexOfCurrentItem = [self.shuffledItemsToPlay indexOfObject:currentItem];
-        if (indexOfCurrentItem < (self.shuffledItemsToPlay.count + 2)) {
+        if (indexOfCurrentItem+1 < self.shuffledItemsToPlay.count) {
             SoundCloudTrack *nextItem = [self.shuffledItemsToPlay objectAtIndex:indexOfCurrentItem+1];
             if ([nextItem respondsToSelector:@selector(playerItem)]) {
                 if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
@@ -555,6 +562,7 @@
     }
     if (self.audioPlayer.items.count >= 2) {
         AVPlayerItem *nextItem = [[self.audioPlayer items] objectAtIndex:1];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
     }
 }
@@ -577,11 +585,12 @@
                 SoundCloudTrack *finishedTrack = [tracksForCurrentItem firstObject];
                 indexOfFinishedItem = [self.favoriteItemsToShowInTableView indexOfObject:finishedTrack];
             }
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (indexOfFinishedItem != NSNotFound)
-                    [self jumpToItemAtIndex:indexOfFinishedItem];
-                
+                    [self jumpToItemAtIndex:indexOfFinishedItem startPlaying:YES resetShuffle:NO];
             });
+
+                
             break;
         }
         case RepeatModeAll: {
@@ -622,11 +631,12 @@
     [self loadNextTrackInPlayer];
     if (self.audioPlayer.items.count >= 2) {
         AVPlayerItem *nextItem = [[self.audioPlayer items] objectAtIndex:1];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
     }
-    [self postNotificationForCurrentItem];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+        [self postNotificationForCurrentItem];
     });
 }
 

@@ -23,10 +23,10 @@
         self.user = [SoundCloudUser userForDict:[dict objectForKey:@"user"]];
 
         if (kindString && [kindString isEqualToString:@"like"]){
-            if ([dict objectForKey:@"track"]){
+            if ([dict objectForKey:@"track"] && [[dict objectForKey:@"track"] isKindOfClass:[NSDictionary class]]){
                 self.type = SoundCloudItemTypeTrack;
                 self.item = [SoundCloudTrack trackForDict:[dict objectForKey:@"track"] withPlaylist:nil repostedBy:nil];
-            } else if ([dict objectForKey:@"playlist"]){
+            } else if ([dict objectForKey:@"playlist"] && [[dict objectForKey:@"playlist"] isKindOfClass:[NSDictionary class]]){
                 self.type = SoundCloudItemTypePlaylist;
                 self.item = [SoundCloudPlaylist playlistForDict:[dict objectForKey:@"playlist"] repostedBy:nil];
             }

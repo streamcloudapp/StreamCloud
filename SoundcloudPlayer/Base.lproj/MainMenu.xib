@@ -19,6 +19,8 @@
                 <outlet property="lastFMConnectionStateField" destination="H6R-Kn-dHx" id="IRu-U4-Sur"/>
                 <outlet property="lastFMPasswordField" destination="Nyt-27-x5C" id="a9d-IT-xZr"/>
                 <outlet property="lastFMUserNameField" destination="dld-TT-S2u" id="bdk-le-EJW"/>
+                <outlet property="loginButton" destination="5C4-zw-ZJX" id="ewn-4y-xeo"/>
+                <outlet property="loginTextField" destination="kA2-Ak-kaG" id="ikd-ld-mx3"/>
                 <outlet property="nextShortcutView" destination="PDH-VL-SyJ" id="oL4-Xe-ZrD"/>
                 <outlet property="playPauseShortcutView" destination="wO7-UA-2JF" id="FcO-gr-pjL"/>
                 <outlet property="playerTimeSlider" destination="b9W-DM-2Ce" id="4WN-hQ-iCb"/>
@@ -175,7 +177,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="kA2-Ak-kaG">
-                        <rect key="frame" x="84" y="400" width="255" height="62"/>
+                        <rect key="frame" x="84" y="400" width="255" height="110"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Connect with SoundCloud® to get your Stream" id="WtW-QK-d4G">
                             <font key="font" size="20" name="HelveticaNeue-Light"/>

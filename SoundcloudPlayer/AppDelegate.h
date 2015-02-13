@@ -40,4 +40,7 @@
 
 @property (nonatomic, strong) IBOutlet NSMenuItem *trackNameDockMenuItem;
 
+@property (nonatomic, strong) IBOutlet NSTextField *loginTextField;
+@property (nonatomic, strong) IBOutlet NSButton *loginButton;
+
 @end

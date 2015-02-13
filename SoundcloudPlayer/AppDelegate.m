@@ -472,6 +472,15 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         NSImage *activeImageForStatusBar = [NSImage imageNamed:@"menuBarIcon_active"];
         self.statusItemPopup = [[AXStatusItemPopup alloc]initWithViewController:_statusBarPlayerViewController image:normalImageForStatusBar alternateImage:activeImageForStatusBar];
     }
+    if ([self sourceArrayForCurrentlySelectedStream].count == 0 && [[SoundCloudAPIClient sharedClient] isLoggedIn]){
+        [self.tableView.enclosingScrollView setHidden:YES];
+        [self.loginButton setHidden:YES];
+        [self.loginTextField setStringValue:NSLocalizedString(@"Follow some people or like some tracks on SoundCloud to see them here",nil)];
+    } else {
+        [self.tableView.enclosingScrollView setHidden:NO];
+        [self.loginButton setHidden:NO];
+        [self.loginTextField setStringValue:NSLocalizedString(@"Connect with SoundCloud® to get your Stream", nil)];
+    }
 }
 
 - (void)didFailToAuthenticate {
@@ -557,6 +566,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 }
 
 - (IBAction)logoutMenuAction:(id)sender {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     [[SoundCloudAPIClient sharedClient] logout];
 }
 

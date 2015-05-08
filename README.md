@@ -19,7 +19,7 @@ You can find all planned features in detail at the [issues](https://github.com/p
 
 ## Testuser
 
-**Username:** StreamCloud
+**Username:** StreamCloud  
 **Password:** Uc4s/$q?Kjrv6%Kg2YW2EL+b>2b3Guf,Lkdf>8XA)u6nKiC4(8
 
 ## Contributing

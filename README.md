@@ -24,7 +24,7 @@ You can find all planned features in detail at the [issues](https://github.com/p
 
 ## Contributing
 
-If you want to push StreamCloud to the next level take a look at our [contribution guide](https://github.com/plaetzchen/StreamCloud/blob/master/CONTRIBUTING.md).
+If you want to push StreamCloud to the next level say hi on [Twitter](https://twitter.com/StreamCloudApp) or via [email](mailto:mail@streamcloud.cc) and take a look at our [contribution guide](https://github.com/plaetzchen/StreamCloud/blob/master/CONTRIBUTING.md).
 
 ## Copyright & License
 

@@ -17,11 +17,6 @@ You can find all planned features in detail at the [issues](https://github.com/p
     $ pod update
     $ open SoundcloudPlayer.xcworkspace
 
-## Testuser
-
-**Username:** StreamCloud  
-**Password:** Uc4s/$q?Kjrv6%Kg2YW2EL+b>2b3Guf,Lkdf>8XA)u6nKiC4(8
-
 ## Contributing
 
 If you want to push StreamCloud to the next level say hi on [Twitter](https://twitter.com/StreamCloudApp) or via [email](mailto:mail@streamcloud.cc) and take a look at our [contribution guide](https://github.com/plaetzchen/StreamCloud/blob/master/CONTRIBUTING.md).

@@ -18,7 +18,17 @@
 
 @implementation SettingsViewController
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewWillAppear) name:@"MainWindowOpenSettings" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidDisappear) name:@"MainWindowCloseSettings" object:nil];
+    }
+    return self;
+}
+
 - (void)viewWillAppear {
+    [super viewWillAppear];
     [self.useLastFMButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"useLastFM"]];
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"])
         [self.lastFMUserNameField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
@@ -44,6 +54,7 @@
 }
 
 - (void)viewDidDisappear {
+    [super viewDidDisappear];
     [[NSUserDefaults standardUserDefaults] setInteger:self.useLastFMButton.state forKey:@"useLastFM"];
     [[NSUserDefaults standardUserDefaults] setObject:self.lastFMUserNameField.stringValue forKey:@"lastFMUserName"];
     [[NSUserDefaults standardUserDefaults] setObject:self.lastFMPasswordField.stringValue forKey:@"lastFMPassword"];

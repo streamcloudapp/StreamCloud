@@ -47,7 +47,7 @@
                 <outlet property="lastFMConnectionStateField" destination="H6R-Kn-dHx" id="afh-Y4-235"/>
                 <outlet property="lastFMPasswordField" destination="Nyt-27-x5C" id="08T-1j-u5z"/>
                 <outlet property="lastFMUserNameField" destination="dld-TT-S2u" id="26X-gZ-Ve5"/>
-                <outlet property="nextShortcutView" destination="wO7-UA-2JF" id="Fet-jp-UvO"/>
+                <outlet property="nextShortcutView" destination="PDH-VL-SyJ" id="4hR-D7-abl"/>
                 <outlet property="playPauseShortcutView" destination="wO7-UA-2JF" id="xlE-7i-W8s"/>
                 <outlet property="prevShortcutView" destination="xfO-U0-Hcw" id="z38-YT-Pyp"/>
                 <outlet property="useLastFMButton" destination="xso-pQ-lsb" id="2Le-7a-8tp"/>

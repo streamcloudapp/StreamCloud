@@ -527,7 +527,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 
 - (IBAction)showSettingsMenuAction:(id)sender {
     [self.settingsPanel makeKeyAndOrderFront:sender];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MainWindowOpenSettings" object:nil];
 }
 
 - (IBAction)openWebsiteFromHelpMenuAction:(id)sender {
@@ -543,6 +543,12 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
         [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 26, 24) active:NO] forSegment:0];
         [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconFavoritesWithFrame:NSMakeRect(0, 0, 26, 24) active:YES] forSegment:1];
     }
+}
+
+# pragma mark - Window managment
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MainWindowCloseSettings" object:nil];
 }
 # pragma mark - Helpers
 

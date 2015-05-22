@@ -10,7 +10,6 @@
 #import "AXStatusItemPopup.h"
 #import "StatusBarPlayerViewController.h"
 #import "ProgressSliderView.h"
-#import "MASShortcutView.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate,NSWindowDelegate>
 
@@ -30,17 +29,14 @@
 @property (nonatomic) NSInteger currentlySelectedStream;
 
 @property (nonatomic, strong) IBOutlet NSPanel *settingsPanel;
-@property (nonatomic, strong) IBOutlet NSTextField *lastFMUserNameField;
-@property (nonatomic, strong) IBOutlet NSTextField *lastFMPasswordField;
-@property (nonatomic, strong) IBOutlet NSButton *useLastFMButton;
-@property (nonatomic, strong) IBOutlet NSTextField *lastFMConnectionStateField;
-@property (nonatomic, strong) IBOutlet MASShortcutView *playPauseShortcutView;
-@property (nonatomic, strong) IBOutlet MASShortcutView *prevShortcutView;
-@property (nonatomic, strong) IBOutlet MASShortcutView *nextShortcutView;
 
 @property (nonatomic, strong) IBOutlet NSMenuItem *trackNameDockMenuItem;
 
 @property (nonatomic, strong) IBOutlet NSTextField *loginTextField;
 @property (nonatomic, strong) IBOutlet NSButton *loginButton;
+
+- (IBAction)playButtonAction:(id)sender;
+- (IBAction)nextButtonAction:(id)sender;
+- (IBAction)previousButtonAction:(id)sender;
 
 @end

@@ -17,10 +17,10 @@
 #import <HockeySDK/HockeySDK.h>
 #import "AFNetworking.h"
 #import "LastFm.h"
-#import "MASShortcutView.h"
-#import "MASShortcutView+UserDefaults.h"
+
 #import "MASShortcut+UserDefaults.h"
 #import "MASShortcut+Monitoring.h"
+
 #import "TrackCellForPlaylistItemView.h"
 #import "SoundCloudPlaylist.h"
 #import "SoundCloudUser.h"
@@ -31,7 +31,6 @@
 NSString *const PlayPauseShortcutPreferenceKey = @"PlayPauseShortcut";
 NSString *const NextShortcutPreferenceKey = @"NextShortcut";
 NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
-
 
 @implementation AppDelegate
 
@@ -57,45 +56,10 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     
     [self.tableView setDoubleAction:@selector(tableViewDoubleClick)];
     
-    //Global Shortcuts
-    // Shortcut view will follow and modify user preferences automatically
-    self.playPauseShortcutView.associatedUserDefaultsKey = PlayPauseShortcutPreferenceKey;
-    
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PlayPauseShortcutPreferenceKey handler:^{
-        [self playButtonAction:nil];
-    }];
-    
-    NSLog(@"playpause value %@",[[NSUserDefaults standardUserDefaults] stringForKey:PlayPauseShortcutPreferenceKey]);
-    
-    self.nextShortcutView.associatedUserDefaultsKey = NextShortcutPreferenceKey;
-    
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:NextShortcutPreferenceKey handler:^{
-        [self nextButtonAction:nil];
-    }];
-    
-    self.prevShortcutView.associatedUserDefaultsKey = PreviousShortcutPreferenceKey;
-    
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PreviousShortcutPreferenceKey handler:^{
-        [self previousButtonAction:nil];
-    }];
     
     [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconTracksWithFrame:NSMakeRect(0, 0, 26, 24) active:YES] forSegment:0];
     [self.switchStreamLikesSegmentedControl setImage:[StreamCloudStyles imageOfIconFavoritesWithFrame:NSMakeRect(0, 0, 26, 24) active:NO] forSegment:1];
 
-    
-    //Notification for MagicKeys
-    
-//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotifiedAboutMagicKeys"]) {
-//        NSAlert *magicKeysAlert = [NSAlert alertWithMessageText:@"To enable support for meda keys you need to install the MagicKeys Preference Pane. Do you want to install it now?" defaultButton:@"Yes" alternateButton:@"No" otherButton:nil informativeTextWithFormat:@"MagicKeys enables you to send the events from the media keys of your keyboard and headphones to any supported application and enables you to control which application starts when the play button is pressed. If you don't want to install just configure other hotkeys in the settings"];
-//        [magicKeysAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
-//            if (returnCode == 1) {
-//                [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.treasurebox.hu/magickeys.html"]];
-//            }
-//            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotifiedAboutMagicKeys"];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
-//        }];
-//    }
-    
     
     if ([[SoundCloudAPIClient sharedClient] isLoggedIn]) {
         [[SoundCloudAPIClient sharedClient] getInitialStreamSongs];
@@ -111,32 +75,19 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"749b642d520ae57bfe9101ce28da075c"];
     [[BITHockeyManager sharedHockeyManager] startManager];
  
-//    AFHTTPRequestOperationManager *updateRequest = [AFHTTPRequestOperationManager manager];
-//    [updateRequest setResponseSerializer:[AFJSONResponseSerializer serializer]];
-//    [updateRequest setRequestSerializer:[AFJSONRequestSerializer serializer]];
-//    [updateRequest.requestSerializer setValue:@"b4fd6f9097c444e6ba32821c73b33b8d" forHTTPHeaderField:@"X-HockeyAppToken"];
-//    [updateRequest GET:@"https://rink.hockeyapp.net/api/2/apps/749b642d520ae57bfe9101ce28da075c/app_versions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-//            NSArray *appVersions = [responseObject objectForKey:@"app_versions"];
-//            NSDictionary *newestVersion = [appVersions firstObject];
-//            NSNumber *versionNumber = [newestVersion objectForKey:@"version"];
-//            NSString *downloadURL = [newestVersion objectForKey:@"download_url"];
-//            NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-//            NSString* version = [infoDict objectForKey:@"CFBundleVersion"];
-//            if (version.integerValue < versionNumber.integerValue) {
-//                NSAlert *updateAlert = [[NSAlert alloc]init];
-//                [updateAlert setMessageText:@"Their is a new BETA version available! Please update now!"];
-//                [updateAlert setAlertStyle:NSCriticalAlertStyle];
-//                [updateAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
-//                    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:downloadURL]];
-//                }];
-//            }
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error getting updates %@",error);
-//    }];
     
-
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PlayPauseShortcutPreferenceKey handler:^{
+        [self playButtonAction:nil];
+    }];
+    
+    
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:NextShortcutPreferenceKey handler:^{
+        [self nextButtonAction:nil];
+    }];
+        
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PreviousShortcutPreferenceKey handler:^{
+        [self previousButtonAction:nil];
+    }];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
@@ -490,18 +441,6 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     self.statusBarPlayerViewController = nil;
 }
 
-
-# pragma mark - NSWindowDelegate
-
-- (void)windowWillClose:(NSNotification *)notification {
-    NSLog(@"Close");
-    [[NSUserDefaults standardUserDefaults] setInteger:self.useLastFMButton.state forKey:@"useLastFM"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.lastFMUserNameField.stringValue forKey:@"lastFMUserName"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.lastFMPasswordField.stringValue forKey:@"lastFMPassword"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-}
-
 # pragma mark - Hotkeys
 
 - (void)spaceBarPressed:(NSEvent *)event {
@@ -580,58 +519,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 
 - (IBAction)showSettingsMenuAction:(id)sender {
     [self.settingsPanel makeKeyAndOrderFront:sender];
-    NSLog(@"Open");
-    [self.useLastFMButton setState:[[NSUserDefaults standardUserDefaults] integerForKey:@"useLastFM"]];
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"])
-        [self.lastFMUserNameField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMPassword"])
-        [self.lastFMPasswordField setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMPassword"]];
-    if (self.useLastFMButton.state > 0){
-        [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Scrobbling", nil)];
-    } else {
-        [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Not Scrobbling", nil)];
-    }
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMSessionKey"]){
-        [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Connected", nil)];
-    } else {
-        [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Not connected", nil)];
-    }
-}
-
-- (IBAction)scrobbleStateSwitchAction:(id)sender {
-    if (self.useLastFMButton.state == 0) {
-        [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Not connected", nil)];
-        [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Not Scrobbling", nil)];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastFMSessionKey"];
-    } else {
-        [[LastFm sharedInstance] getSessionForUser:self.lastFMUserNameField.stringValue password:self.lastFMPasswordField.stringValue successHandler:^(NSDictionary *result) {
-            NSLog(@"Got LastFM Session");
-            NSString *lastFMSessionKey = [result objectForKey:@"key"];
-            if (lastFMSessionKey){
-                [[NSUserDefaults standardUserDefaults] setObject:lastFMSessionKey forKey:@"lastFMSessionKey"];
-                [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Connected", nil)];
-                [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Scrobbling", nil)];
-            } else {
-                [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Not connected", nil)];
-                [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Not Scrobbling", nil)];
-                [self showAlertForLastFMFailure];
-            }
-        } failureHandler:^(NSError *error) {
-            NSLog(@"No LastFM Session");
-            [self.lastFMConnectionStateField setStringValue:NSLocalizedString(@"Not connected", nil)];
-            [self.useLastFMButton.cell setTitle:NSLocalizedString(@"Not Scrobbling", nil)];
-            [self showAlertForLastFMFailure];
-        }];
-    }
-}
-
-- (IBAction)lastFMUserPasswordFieldAction:(id)sender {
-
-}
-
-- (void)showAlertForLastFMFailure {
-    NSAlert *lastFMAlert = [NSAlert alertWithMessageText:NSLocalizedString(@"Could not get access to Last.FM!", nil) defaultButton:NSLocalizedString(@"Damn!", nil) alternateButton:nil otherButton:nil informativeTextWithFormat:@"Maybe you entered a wrong username or password?"];
-    [lastFMAlert runModal];
+    
 }
 
 - (IBAction)openWebsiteFromHelpMenuAction:(id)sender {

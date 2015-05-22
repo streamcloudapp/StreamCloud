@@ -16,23 +16,16 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="aboutPanel" destination="FdX-Zp-Xfx" id="m1G-v0-jNF"/>
-                <outlet property="lastFMConnectionStateField" destination="H6R-Kn-dHx" id="IRu-U4-Sur"/>
-                <outlet property="lastFMPasswordField" destination="Nyt-27-x5C" id="a9d-IT-xZr"/>
-                <outlet property="lastFMUserNameField" destination="dld-TT-S2u" id="bdk-le-EJW"/>
                 <outlet property="loginButton" destination="5C4-zw-ZJX" id="ewn-4y-xeo"/>
                 <outlet property="loginTextField" destination="kA2-Ak-kaG" id="ikd-ld-mx3"/>
-                <outlet property="nextShortcutView" destination="PDH-VL-SyJ" id="oL4-Xe-ZrD"/>
-                <outlet property="playPauseShortcutView" destination="wO7-UA-2JF" id="FcO-gr-pjL"/>
                 <outlet property="playerTimeSlider" destination="b9W-DM-2Ce" id="4WN-hQ-iCb"/>
                 <outlet property="playerVolumeSlider" destination="cE3-R7-2CJ" id="yaq-av-08a"/>
-                <outlet property="prevShortcutView" destination="xfO-U0-Hcw" id="6Pj-JX-cAu"/>
                 <outlet property="settingsPanel" destination="jPL-6b-gCr" id="dl8-ga-HWM"/>
                 <outlet property="switchStreamLikesSegmentedControl" destination="fef-yY-jaY" id="Xo4-tH-Nmh"/>
                 <outlet property="tableView" destination="sdz-JV-mui" id="242-40-xKD"/>
                 <outlet property="timeGoneLabel" destination="6dT-Qa-uCR" id="7yc-lF-zst"/>
                 <outlet property="timeToGoLabel" destination="Xzd-Aq-Y3F" id="xuE-vm-wjZ"/>
                 <outlet property="trackNameDockMenuItem" destination="bZA-G1-zje" id="6NP-kJ-bqr"/>
-                <outlet property="useLastFMButton" destination="xso-pQ-lsb" id="rul-DU-hno"/>
                 <outlet property="volumeButton" destination="1FD-nG-Ad2" id="vbs-vF-uAg"/>
                 <outlet property="volumePopover" destination="R2K-QH-3Ex" id="DhQ-xy-ScA"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -49,6 +42,17 @@
                 <outlet property="contentViewController" destination="G0O-ho-qsH" id="7MM-7X-CzK"/>
             </connections>
         </popover>
+        <viewController id="JfW-ho-3NK" customClass="SettingsViewController">
+            <connections>
+                <outlet property="lastFMConnectionStateField" destination="H6R-Kn-dHx" id="afh-Y4-235"/>
+                <outlet property="lastFMPasswordField" destination="Nyt-27-x5C" id="08T-1j-u5z"/>
+                <outlet property="lastFMUserNameField" destination="dld-TT-S2u" id="26X-gZ-Ve5"/>
+                <outlet property="nextShortcutView" destination="wO7-UA-2JF" id="Fet-jp-UvO"/>
+                <outlet property="playPauseShortcutView" destination="wO7-UA-2JF" id="xlE-7i-W8s"/>
+                <outlet property="prevShortcutView" destination="xfO-U0-Hcw" id="z38-YT-Pyp"/>
+                <outlet property="useLastFMButton" destination="xso-pQ-lsb" id="2Le-7a-8tp"/>
+            </connections>
+        </viewController>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="StreamCloud" id="1Xt-HY-uBw">
@@ -637,7 +641,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="scrobbleStateSwitchAction:" target="Voe-Tx-rLC" id="hBE-P8-ShA"/>
+                            <action selector="scrobbleStateSwitchAction:" target="JfW-ho-3NK" id="F9N-BJ-qmM"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="dld-TT-S2u">
@@ -648,9 +652,6 @@
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
-                        <connections>
-                            <action selector="lastFMUserPasswordFieldAction:" target="Voe-Tx-rLC" id="31L-tF-m3V"/>
-                        </connections>
                     </textField>
                     <secureTextField verticalHuggingPriority="750" id="Nyt-27-x5C">
                         <rect key="frame" x="97" y="54" width="207" height="22"/>
@@ -664,7 +665,7 @@
                             </allowedInputSourceLocales>
                         </secureTextFieldCell>
                         <connections>
-                            <action selector="lastFMUserPasswordFieldAction:" target="Voe-Tx-rLC" id="gg7-KM-YRb"/>
+                            <action selector="lastFMUserPasswordFieldAction:" target="JfW-ho-3NK" id="a1z-0z-WV6"/>
                         </connections>
                     </secureTextField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="b5t-kK-dta">

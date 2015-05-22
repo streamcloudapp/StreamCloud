@@ -83,6 +83,7 @@
 		FD92A978198FB8F900271E93 /* LoadSpeakerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */; };
 		FD92A97B19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
 		FD92A97C19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
+		FDB84BDA1B0F340700B94229 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB84BD91B0F340700B94229 /* SettingsViewController.m */; };
 		FDC67EA11A6956530014485B /* IsRepostedLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC67EA01A6956530014485B /* IsRepostedLabelView.m */; };
 		FDD0374C1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
 		FDD0374D1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
@@ -213,6 +214,8 @@
 		FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadSpeakerOverlayView.m; sourceTree = "<group>"; };
 		FD92A97919901D6000271E93 /* NSImage+RoundedCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+RoundedCorners.h"; sourceTree = "<group>"; };
 		FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+RoundedCorners.m"; sourceTree = "<group>"; };
+		FDB84BD81B0F340700B94229 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		FDB84BD91B0F340700B94229 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FDC67E9F1A6956530014485B /* IsRepostedLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsRepostedLabelView.h; sourceTree = "<group>"; };
 		FDC67EA01A6956530014485B /* IsRepostedLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsRepostedLabelView.m; sourceTree = "<group>"; };
 		FDD0374A1986AFDD00043BDC /* TrackCellForPlaylistItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCellForPlaylistItemView.h; sourceTree = "<group>"; };
@@ -427,10 +430,12 @@
 			isa = PBXGroup;
 			children = (
 				FD7CD2DC19548A93002AC765 /* SoundcloudPlayer.entitlements */,
-				FD7CD2A11954396C002AC765 /* AppDelegate.h */,
-				FD7CD2A21954396C002AC765 /* AppDelegate.m */,
 				FD1606631976839A00A63A71 /* StreamCloudApplication.h */,
 				FD1606641976839A00A63A71 /* StreamCloudApplication.m */,
+				FD7CD2A11954396C002AC765 /* AppDelegate.h */,
+				FD7CD2A21954396C002AC765 /* AppDelegate.m */,
+				FDB84BD81B0F340700B94229 /* SettingsViewController.h */,
+				FDB84BD91B0F340700B94229 /* SettingsViewController.m */,
 				FD8F6AE41959AB8D004D4B61 /* StatusBarPlayerViewController.h */,
 				FD8F6AE51959AB8D004D4B61 /* StatusBarPlayerViewController.m */,
 				FD7ECBBE1955BE05005828CF /* SharedAudioPlayer.h */,
@@ -652,6 +657,7 @@
 				FDE51B18195C1F3A009B1F2D /* PlayPauseOverlayView.m in Sources */,
 				FD8F6AFD195B21A6004D4B61 /* WhiteBackgroundView.m in Sources */,
 				FD7D11A21A6D1C4B00E238CF /* LowerShadowView.m in Sources */,
+				FDB84BDA1B0F340700B94229 /* SettingsViewController.m in Sources */,
 				FD34684C1A66FDF3006B645B /* SoundCloudPlaylist.m in Sources */,
 				FD8F6AE31959A483004D4B61 /* RepeatButtonCell.m in Sources */,
 				FD3BED5A195981D300B2D49A /* PlayingIndicatorView.m in Sources */,

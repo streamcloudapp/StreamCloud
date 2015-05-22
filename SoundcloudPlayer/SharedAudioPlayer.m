@@ -366,17 +366,19 @@
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedAudioPlayerUpdatedTimePlayed" object:[NSNumber numberWithFloat:CMTimeGetSeconds(time)]];
                 float seconds = CMTimeGetSeconds(time);
                 SoundCloudTrack *currentItem = [[SharedAudioPlayer sharedPlayer] currentItem];
+                if (currentItem) {
                 BOOL doScrobble = [[NSUserDefaults standardUserDefaults] boolForKey:@"useLastFM"];
-                if (doScrobble && (seconds > 240 || seconds > currentItem.duration*0.3) && ![[SharedAudioPlayer sharedPlayer].scrobbledItems containsObject:currentItem]) {
-                    NSLog(@"Scrobble!");
-                    [[LastFm sharedInstance] setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
-                    [[LastFm sharedInstance] setSession:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMSessionKey"]];
-                    [[LastFm sharedInstance] sendScrobbledTrack:currentItem.title byArtist:currentItem.user.username onAlbum:nil withDuration:currentItem.duration atTimestamp:[[NSDate date] timeIntervalSince1970] successHandler:^(NSDictionary *result) {
-                        NSLog(@"Success %@",result);
-                    } failureHandler:^(NSError *error) {
-                        NSLog(@"Error scrobbling %@",error);
-                    }];
-                    [[SharedAudioPlayer sharedPlayer].scrobbledItems addObject:currentItem];
+                    if (doScrobble && (seconds > 240 || seconds > currentItem.duration*0.3) && ![[SharedAudioPlayer sharedPlayer].scrobbledItems containsObject:currentItem]) {
+                        NSLog(@"Scrobble!");
+                        [[LastFm sharedInstance] setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMUserName"]];
+                        [[LastFm sharedInstance] setSession:[[NSUserDefaults standardUserDefaults] stringForKey:@"lastFMSessionKey"]];
+                        [[LastFm sharedInstance] sendScrobbledTrack:currentItem.title byArtist:currentItem.user.username onAlbum:nil withDuration:currentItem.duration atTimestamp:[[NSDate date] timeIntervalSince1970] successHandler:^(NSDictionary *result) {
+                            NSLog(@"Success %@",result);
+                        } failureHandler:^(NSError *error) {
+                            NSLog(@"Error scrobbling %@",error);
+                        }];
+                        [[SharedAudioPlayer sharedPlayer].scrobbledItems addObject:currentItem];
+                    }
                 }
             }
         }];

@@ -593,7 +593,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Czj-bC-v2H">
                         <rect key="frame" x="79" y="141" width="60" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1.4" id="6F6-MX-jAV">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1.4.1" id="6F6-MX-jAV">
                             <font key="font" size="11" name="HelveticaNeue-Light"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

@@ -125,10 +125,11 @@
         if (self.sourceType == CurrentSourceTypeStream) {
             if (i < self.streamItemsToShowInTableView.count &&[[self.streamItemsToShowInTableView objectAtIndex:i] isKindOfClass:[SoundCloudTrack class]]) {
                 SoundCloudTrack *itemInList = [self.streamItemsToShowInTableView objectAtIndex:i];
-                if ([self.audioPlayer canInsertItem:itemInList.playerItem afterItem:nil])
+                if ([self.audioPlayer canInsertItem:itemInList.playerItem afterItem:nil]) {
                     [self.audioPlayer insertItem:itemInList.playerItem afterItem:nil];
-                i++;
-                if ( i > item+3)
+                    i++;
+                }
+                if ( i > item+1)
                     done = YES;
             } else if (i < self.streamItemsToShowInTableView.count) {
                 i++;
@@ -138,10 +139,11 @@
         } else {
             if (i < self.favoriteItemsToShowInTableView.count && [[self.favoriteItemsToShowInTableView objectAtIndex:i] isKindOfClass:[SoundCloudTrack class]]) {
                 SoundCloudTrack *itemInList = [self.favoriteItemsToShowInTableView objectAtIndex:i];
-                if ([self.audioPlayer canInsertItem:itemInList.playerItem afterItem:nil])
+                if ([self.audioPlayer canInsertItem:itemInList.playerItem afterItem:nil]) {
                     [self.audioPlayer insertItem:itemInList.playerItem afterItem:nil];
-                i++;
-                if ( i > item+3)
+                    i++;
+                }
+                if ( i > item+1)
                     done = YES;
             } else if (i < self.favoriteItemsToShowInTableView.count) {
                 i++;
@@ -464,8 +466,8 @@
     SoundCloudTrack *currentItem = [self currentItem];
     if (self.shuffleEnabled){
         NSInteger indexOfCurrentItem = [self.shuffledItemsToPlay indexOfObject:currentItem];
-        if (indexOfCurrentItem+1 < self.shuffledItemsToPlay.count) {
-            SoundCloudTrack *nextItem = [self.shuffledItemsToPlay objectAtIndex:indexOfCurrentItem+1];
+        if (indexOfCurrentItem+2 < self.shuffledItemsToPlay.count) {
+            SoundCloudTrack *nextItem = [self.shuffledItemsToPlay objectAtIndex:indexOfCurrentItem+2];
             if ([nextItem respondsToSelector:@selector(playerItem)]) {
                 if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
                     [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
@@ -474,8 +476,8 @@
     } else {
         if (self.sourceType == CurrentSourceTypeStream){
             NSInteger indexOfCurrentItem = [self.streamItemsToShowInTableView indexOfObject:currentItem];
-            if (indexOfCurrentItem < self.streamItemsToShowInTableView.count - 2) {
-                SoundCloudTrack *nextItem = [self.streamItemsToShowInTableView objectAtIndex:indexOfCurrentItem+1];
+            if (indexOfCurrentItem+2 < self.streamItemsToShowInTableView.count) {
+                SoundCloudTrack *nextItem = [self.streamItemsToShowInTableView objectAtIndex:indexOfCurrentItem+2];
                 if ([nextItem respondsToSelector:@selector(playerItem)]) {
                     if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
                         [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
@@ -483,8 +485,8 @@
             }
         } else if (self.sourceType == CurrentSourceTypeFavorites){
             NSInteger indexOfCurrentItem = [self.favoriteItemsToShowInTableView indexOfObject:currentItem];
-            if (indexOfCurrentItem < self.favoriteItemsToShowInTableView.count - 2) {
-                SoundCloudTrack *nextItem = [self.favoriteItemsToShowInTableView objectAtIndex:indexOfCurrentItem+1];
+            if (indexOfCurrentItem+2 < self.favoriteItemsToShowInTableView.count) {
+                SoundCloudTrack *nextItem = [self.favoriteItemsToShowInTableView objectAtIndex:indexOfCurrentItem+2];
                 if ([nextItem respondsToSelector:@selector(playerItem)]) {
                     if ([self.audioPlayer canInsertItem:nextItem.playerItem afterItem:nil])
                         [self.audioPlayer insertItem:nextItem.playerItem afterItem:nil];
@@ -628,7 +630,7 @@
         }
     }
     [self loadNextTrackInPlayer];
-    if (self.audioPlayer.items.count >= 2) {
+    if (self.audioPlayer.items.count > 1) {
         AVPlayerItem *nextItem = [[self.audioPlayer items] objectAtIndex:1];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:nextItem];

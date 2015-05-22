@@ -40,9 +40,9 @@
 
 
 - (void)logout {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     [SCSoundCloud removeAccess];
     [self didFailToAuthenticate];
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 - (void)didFailToAuthenticate {
@@ -51,7 +51,7 @@
 }
 - (BOOL)isLoggedIn {
     SCAccount *account = [SCSoundCloud account];
-    if (!account) {
+    if (!account.identifier) {
         return NO;
     } else {
         return YES;

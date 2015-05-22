@@ -94,6 +94,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
     [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PreviousShortcutPreferenceKey handler:^{
         [self previousButtonAction:nil];
     }];
+    
+    [self setCurrentlySelectedStream:CurrentSourceTypeStream];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {

@@ -231,16 +231,10 @@
 
 - (void)switchToFavorites {
     self.sourceType = CurrentSourceTypeFavorites;
-    self.itemsToPlay = nil;
-    self.itemsToPlay = [NSMutableArray arrayWithCapacity:self.favoriteItemsToShowInTableView.count];
-    for (NSDictionary *item in self.favoriteItemsToShowInTableView) {
-        [self.itemsToPlay addObject:item];
-    }
 }
 
 - (void)switchToStream {
     self.sourceType = CurrentSourceTypeStream;
-    self.itemsToPlay = nil;
 }
 
 - (void)reset {
@@ -414,7 +408,12 @@
 }
 
 - (void)insertFavoriteItems:(NSArray *)items {
-
+    SoundCloudItem *lastItem = [items lastObject];
+    if (lastItem.nextHref){
+        self.nextFavoritesPartURL = lastItem.nextHref;
+    } else {
+        self.nextFavoritesPartURL = nil;
+    }
     for (SoundCloudItem *item in items){
         if (item.type == SoundCloudItemTypeTrack || item.type == SoundCloudItemTypeTrackRepost) {
             SoundCloudTrack *trackFromItem = item.item;
@@ -641,8 +640,11 @@
 }
 
 - (void)getNextSongs {
-    if (self.nextStreamPartURL){
+    if (self.nextStreamPartURL && self.sourceType == CurrentSourceTypeStream){
         [[SoundCloudAPIClient sharedClient] getStreamSongsWithURL:self.nextStreamPartURL.absoluteString];
+    }
+    if (self.nextFavoritesPartURL && self.sourceType == CurrentSourceTypeFavorites) {
+        [[SoundCloudAPIClient sharedClient] getFavoriteSongsWithURL:self.nextFavoritesPartURL.absoluteString];
     }
 }
 

@@ -35,6 +35,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) BOOL shuffleEnabled;
 @property (nonatomic) NSInteger positionInPlaylist;
 @property (nonatomic, strong) NSURL *nextStreamPartURL;
+@property (nonatomic, strong) NSURL *nextFavoritesPartURL;
 @property (nonatomic) RepeatMode repeatMode;
 @property (nonatomic) CurrentSourceType sourceType;
 @property (nonatomic ,strong) NSMutableArray *scrobbledItems;

@@ -42,6 +42,7 @@
 - (void)logout {
     [SCSoundCloud removeAccess];
     [self didFailToAuthenticate];
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 - (void)didFailToAuthenticate {
@@ -58,6 +59,7 @@
 }
 
 - (void)reloadStream {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     [[SharedAudioPlayer sharedPlayer] reset];
     [self getInitialStreamSongs];
     [self getInitialFavoriteSongs];
@@ -160,11 +162,37 @@
                              NSArray *itemsToInsert = [SoundCloudItem soundCloudItemsFromResponse:objectFromData];
                              [[SharedAudioPlayer sharedPlayer]insertFavoriteItems:itemsToInsert];
                              
-                         }                     }
+                         }
+                     }
                  }
              }];
 
 }
 
+- (void)getFavoriteSongsWithURL:(NSString *)url {
+    SCAccount *account = [SCSoundCloud account];
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:nil
+                 withAccount:account
+      sendingProgressHandler:nil
+             responseHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                 // Handle the response
+                 if (error) {
+                     NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
+                 } else {
+                     NSLog(@"Got data, yeah");
+                     NSError *error;
+                     id objectFromData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                     if (!error){
+                         if ([objectFromData isKindOfClass:[NSDictionary class]]) {
+                             NSArray *itemsToInsert = [SoundCloudItem soundCloudItemsFromResponse:objectFromData];
+                             [[SharedAudioPlayer sharedPlayer]insertFavoriteItems:itemsToInsert];
+                         }
+                     }
+                 }
+             }];
+}
 
 @end

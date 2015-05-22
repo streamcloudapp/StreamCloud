@@ -17,5 +17,6 @@
 - (void)getInitialStreamSongs;
 - (void)getStreamSongsWithURL:(NSString *)url;
 - (void)getInitialFavoriteSongs;
+- (void)getFavoriteSongsWithURL:(NSString *)url;
 - (void)reloadStream;
 @end

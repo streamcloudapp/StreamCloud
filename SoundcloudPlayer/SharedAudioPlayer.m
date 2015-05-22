@@ -57,10 +57,12 @@
     if ([_audioPlayer rate] != 0.0) {
         [self.audioPlayer pause];
     } else {
-        [self.audioPlayer play];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
-        if (CMTimeGetSeconds(self.audioPlayer.currentItem.currentTime) <= 3)
-            [self postNotificationForCurrentItem];
+        if (self.audioPlayer.status == AVPlayerStatusReadyToPlay){
+            [self.audioPlayer play];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedPlayerDidFinishObject" object:nil];
+            if (CMTimeGetSeconds(self.audioPlayer.currentItem.currentTime) <= 3)
+                [self postNotificationForCurrentItem];
+        }
     }
 }
 
@@ -358,6 +360,7 @@
         }
         self.audioPlayer = [AVQueuePlayer queuePlayerWithItems:itemsToPlay];
         [self.audioPlayer addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
+        [self.audioPlayer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
         self.audioPlayerCallback = [self.audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1.0, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
             if (!isnan(CMTimeGetSeconds(time))) {
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"SharedAudioPlayerUpdatedTimePlayed" object:[NSNumber numberWithFloat:CMTimeGetSeconds(time)]];
@@ -377,7 +380,6 @@
                 }
             }
         }];
-        
         [self.audioPlayer setActionAtItemEnd:AVPlayerActionAtItemEndAdvance];
     } else {
         for (SoundCloudItem *item in items){
@@ -541,6 +543,16 @@
         }
         else {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"SharedAudioPlayerIsPausing" object:nil];
+        }
+    }
+    if ([keyPath isEqualToString:@"status"]){
+        if (self.audioPlayer.status == AVPlayerStatusReadyToPlay){
+            [self.audioPlayer prerollAtRate:1.0 completionHandler:^(BOOL finished) {
+                NSLog(@"Finsshed Prerolling: %@", finished ? @"YES" : @"NO");
+            }];
+        }
+        if (self.audioPlayer.status == AVPlayerStatusFailed){
+            [self reset];
         }
     }
 }

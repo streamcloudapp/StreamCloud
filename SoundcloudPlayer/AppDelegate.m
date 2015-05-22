@@ -38,8 +38,8 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 {
  
 #if IS_BETA
-    [SCSoundCloud  setClientID:@"909c2edcdbd7b312b48a04a3f1e6b40c"
-                        secret:@"bb9505cbb4c3f56e7926025e51a6371e"
+    [SCSoundCloud  setClientID:@"03c7205228575a03ec71606e083507af"
+                        secret:@"b373772f7a7b030c23fc543c32e90eac"
                    redirectURL:[NSURL URLWithString:@"streamcloudbeta://soundcloud/callback"]];
 #else
     [SCSoundCloud  setClientID:@"909c2edcdbd7b312b48a04a3f1e6b40c"

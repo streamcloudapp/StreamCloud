@@ -133,7 +133,7 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 # pragma mark - NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    if ([self sourceArrayForCurrentlySelectedStream].count >= row){
+    if ([self sourceArrayForCurrentlySelectedStream].count > row){
         id itemForRow = [[self sourceArrayForCurrentlySelectedStream] objectAtIndex:row];
         NSString *identifier = [tableColumn identifier];
         if ([identifier isEqualToString:@"MainColumn"]){

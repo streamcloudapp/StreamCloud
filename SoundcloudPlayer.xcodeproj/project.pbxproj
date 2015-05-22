@@ -84,6 +84,62 @@
 		FD92A97B19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
 		FD92A97C19901D6000271E93 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
 		FDB84BDA1B0F340700B94229 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB84BD91B0F340700B94229 /* SettingsViewController.m */; };
+		FDB84BDF1B0F3A2400B94229 /* ClickableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4F53041987F1CC00FD73A9 /* ClickableTextField.m */; };
+		FDB84BE01B0F3A2400B94229 /* IsRepostedLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC67EA01A6956530014485B /* IsRepostedLabelView.m */; };
+		FDB84BE11B0F3A2400B94229 /* NextButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED4B1958387300B2D49A /* NextButtonCell.m */; };
+		FDB84BE21B0F3A2400B94229 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7CD2A21954396C002AC765 /* AppDelegate.m */; };
+		FDB84BE31B0F3A2400B94229 /* MouseOverImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B13195C18E5009B1F2D /* MouseOverImageView.m */; };
+		FDB84BE41B0F3A2400B94229 /* ClickableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4F53101987FC9600FD73A9 /* ClickableTableView.m */; };
+		FDB84BE51B0F3A2400B94229 /* ConnectButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF8195B1FD6004D4B61 /* ConnectButtonCell.m */; };
+		FDB84BE61B0F3A2400B94229 /* TrackCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED5419597B4300B2D49A /* TrackCellView.m */; };
+		FDB84BE71B0F3A2400B94229 /* PlayPauseOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B17195C1F3A009B1F2D /* PlayPauseOverlayView.m */; };
+		FDB84BE81B0F3A2400B94229 /* WhiteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AFC195B21A6004D4B61 /* WhiteBackgroundView.m */; };
+		FDB84BE91B0F3A2400B94229 /* LowerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7D11A11A6D1C4B00E238CF /* LowerShadowView.m */; };
+		FDB84BEA1B0F3A2400B94229 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB84BD91B0F340700B94229 /* SettingsViewController.m */; };
+		FDB84BEB1B0F3A2400B94229 /* SoundCloudPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = FD34684B1A66FDF3006B645B /* SoundCloudPlaylist.m */; };
+		FDB84BEC1B0F3A2400B94229 /* RepeatButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AE21959A483004D4B61 /* RepeatButtonCell.m */; };
+		FDB84BED1B0F3A2400B94229 /* PlayingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED59195981D300B2D49A /* PlayingIndicatorView.m */; };
+		FDB84BEE1B0F3A2400B94229 /* ArtworkOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD35CC561A6D86A900B62FC2 /* ArtworkOverlayView.m */; };
+		FDB84BEF1B0F3A2400B94229 /* ProgressIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AEC1959CB6E004D4B61 /* ProgressIndicatorView.m */; };
+		FDB84BF01B0F3A2400B94229 /* VolumeButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF4195AE093004D4B61 /* VolumeButtonCell.m */; };
+		FDB84BF11B0F3A2400B94229 /* ProgressSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B1F195C2F32009B1F2D /* ProgressSliderCell.m */; };
+		FDB84BF21B0F3A2400B94229 /* SeperatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED5D1959883400B2D49A /* SeperatorView.m */; };
+		FDB84BF31B0F3A2400B94229 /* SoundCloudTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3468481A66FC9D006B645B /* SoundCloudTrack.m */; };
+		FDB84BF41B0F3A2400B94229 /* SoundCloudUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3468511A67042C006B645B /* SoundCloudUser.m */; };
+		FDB84BF51B0F3A2400B94229 /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
+		FDB84BF61B0F3A2400B94229 /* ProgressSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE51B23195C3A7B009B1F2D /* ProgressSliderView.m */; };
+		FDB84BF71B0F3A2400B94229 /* StreamCloudStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED42195833E800B2D49A /* StreamCloudStyles.m */; };
+		FDB84BF81B0F3A2400B94229 /* PreviousButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED4F1958389B00B2D49A /* PreviousButtonCell.m */; };
+		FDB84BF91B0F3A2400B94229 /* LoadSpeakerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A976198FB8F900271E93 /* LoadSpeakerOverlayView.m */; };
+		FDB84BFA1B0F3A2400B94229 /* SoundCloudAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AF0195AD16D004D4B61 /* SoundCloudAPIClient.m */; };
+		FDB84BFB1B0F3A2400B94229 /* SharedAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7ECBBF1955BE05005828CF /* SharedAudioPlayer.m */; };
+		FDB84BFC1B0F3A2400B94229 /* StreamCloudApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1606641976839A00A63A71 /* StreamCloudApplication.m */; };
+		FDB84BFD1B0F3A2400B94229 /* NSImage+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */; };
+		FDB84BFE1B0F3A2400B94229 /* SoundCloudItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FD34684E1A670379006B645B /* SoundCloudItem.m */; };
+		FDB84BFF1B0F3A2400B94229 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7CD29B1954396C002AC765 /* main.m */; };
+		FDB84C001B0F3A2400B94229 /* AppleMediaKeyController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED6319598CBB00B2D49A /* AppleMediaKeyController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FDB84C011B0F3A2400B94229 /* StatusBarPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6AE51959AB8D004D4B61 /* StatusBarPlayerViewController.m */; };
+		FDB84C021B0F3A2400B94229 /* PlayPauseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3BED471958364200B2D49A /* PlayPauseButtonCell.m */; };
+		FDB84C031B0F3A2400B94229 /* ShuffleButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8F6ADF1959A454004D4B61 /* ShuffleButtonCell.m */; };
+		FDB84C041B0F3A2400B94229 /* UpperShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7D119E1A6D1BF900E238CF /* UpperShadowView.m */; };
+		FDB84C061B0F3A2400B94229 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2DA19543C55002AC765 /* CoreText.framework */; };
+		FDB84C071B0F3A2400B94229 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D819543C51002AC765 /* CoreGraphics.framework */; };
+		FDB84C081B0F3A2400B94229 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D619543C4B002AC765 /* Security.framework */; };
+		FDB84C091B0F3A2400B94229 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D419543C46002AC765 /* CoreLocation.framework */; };
+		FDB84C0A1B0F3A2400B94229 /* OAuth2Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; };
+		FDB84C0B1B0F3A2400B94229 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D219543C3A002AC765 /* AddressBook.framework */; };
+		FDB84C0C1B0F3A2400B94229 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD2D019543C35002AC765 /* QuartzCore.framework */; };
+		FDB84C0D1B0F3A2400B94229 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7CD28F1954396C002AC765 /* Cocoa.framework */; };
+		FDB84C0E1B0F3A2400B94229 /* SoundCloudAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; };
+		FDB84C0F1B0F3A2400B94229 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 447911DAA4764A358869B8CF /* libPods.a */; };
+		FDB84C111B0F3A2400B94229 /* SoundcloudPlayer.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2DC19548A93002AC765 /* SoundcloudPlayer.entitlements */; };
+		FDB84C121B0F3A2400B94229 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2981954396C002AC765 /* InfoPlist.strings */; };
+		FDB84C131B0F3A2400B94229 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2A71954396C002AC765 /* Images.xcassets */; };
+		FDB84C141B0F3A2400B94229 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD29E1954396C002AC765 /* Credits.rtf */; };
+		FDB84C151B0F3A2400B94229 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7CD2A41954396C002AC765 /* MainMenu.xib */; };
+		FDB84C161B0F3A2400B94229 /* StatusBarPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD8F6AE81959AC0C004D4B61 /* StatusBarPlayerViewController.xib */; };
+		FDB84C181B0F3A2400B94229 /* SoundCloudAPI.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD61959996D004D4B61 /* SoundCloudAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		FDB84C191B0F3A2400B94229 /* OAuth2Client.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FD8F6AD71959996D004D4B61 /* OAuth2Client.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		FDC67EA11A6956530014485B /* IsRepostedLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC67EA01A6956530014485B /* IsRepostedLabelView.m */; };
 		FDD0374C1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
 		FDD0374D1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD0374B1986AFDD00043BDC /* TrackCellForPlaylistItemView.m */; };
@@ -116,6 +172,18 @@
 			files = (
 				FD8F6ADC195999B6004D4B61 /* SoundCloudAPI.framework in Copy Frameworks */,
 				FD8F6ADD195999B6004D4B61 /* OAuth2Client.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB84C171B0F3A2400B94229 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FDB84C181B0F3A2400B94229 /* SoundCloudAPI.framework in Copy Frameworks */,
+				FDB84C191B0F3A2400B94229 /* OAuth2Client.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +284,8 @@
 		FD92A97A19901D6000271E93 /* NSImage+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+RoundedCorners.m"; sourceTree = "<group>"; };
 		FDB84BD81B0F340700B94229 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		FDB84BD91B0F340700B94229 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		FDB84C1E1B0F3A2400B94229 /* StreamCloud Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StreamCloud Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDB84C1F1B0F3A2400B94229 /* StreamCloud copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "StreamCloud copy-Info.plist"; path = "/Users/philip.brechler/Desktop/StreamCloud/StreamCloud copy-Info.plist"; sourceTree = "<absolute>"; };
 		FDC67E9F1A6956530014485B /* IsRepostedLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsRepostedLabelView.h; sourceTree = "<group>"; };
 		FDC67EA01A6956530014485B /* IsRepostedLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsRepostedLabelView.m; sourceTree = "<group>"; };
 		FDD0374A1986AFDD00043BDC /* TrackCellForPlaylistItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCellForPlaylistItemView.h; sourceTree = "<group>"; };
@@ -257,6 +327,23 @@
 				FD8F6AD91959996D004D4B61 /* SoundCloudAPI.framework in Frameworks */,
 				FD7CD2B01954396C002AC765 /* Cocoa.framework in Frameworks */,
 				FD7CD2AF1954396C002AC765 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB84C051B0F3A2400B94229 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDB84C061B0F3A2400B94229 /* CoreText.framework in Frameworks */,
+				FDB84C071B0F3A2400B94229 /* CoreGraphics.framework in Frameworks */,
+				FDB84C081B0F3A2400B94229 /* Security.framework in Frameworks */,
+				FDB84C091B0F3A2400B94229 /* CoreLocation.framework in Frameworks */,
+				FDB84C0A1B0F3A2400B94229 /* OAuth2Client.framework in Frameworks */,
+				FDB84C0B1B0F3A2400B94229 /* AddressBook.framework in Frameworks */,
+				FDB84C0C1B0F3A2400B94229 /* QuartzCore.framework in Frameworks */,
+				FDB84C0D1B0F3A2400B94229 /* Cocoa.framework in Frameworks */,
+				FDB84C0E1B0F3A2400B94229 /* SoundCloudAPI.framework in Frameworks */,
+				FDB84C0F1B0F3A2400B94229 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +472,7 @@
 				FD7CD28E1954396C002AC765 /* Frameworks */,
 				FD7CD28D1954396C002AC765 /* Products */,
 				04DE8CE6C86B046313FBDC8C /* Pods */,
+				FDB84C1F1B0F3A2400B94229 /* StreamCloud copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -393,6 +481,7 @@
 			children = (
 				FD7CD28C1954396C002AC765 /* StreamCloud.app */,
 				FD7CD2AD1954396C002AC765 /* SoundcloudPlayerTests.xctest */,
+				FDB84C1E1B0F3A2400B94229 /* StreamCloud Beta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -529,6 +618,27 @@
 			productReference = FD7CD2AD1954396C002AC765 /* SoundcloudPlayerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FDB84BDB1B0F3A2400B94229 /* StreamCloud Beta */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDB84C1B1B0F3A2400B94229 /* Build configuration list for PBXNativeTarget "StreamCloud Beta" */;
+			buildPhases = (
+				FDB84BDC1B0F3A2400B94229 /* ShellScript */,
+				FDB84BDD1B0F3A2400B94229 /* Check Pods Manifest.lock */,
+				FDB84BDE1B0F3A2400B94229 /* Sources */,
+				FDB84C051B0F3A2400B94229 /* Frameworks */,
+				FDB84C101B0F3A2400B94229 /* Resources */,
+				FDB84C171B0F3A2400B94229 /* Copy Frameworks */,
+				FDB84C1A1B0F3A2400B94229 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "StreamCloud Beta";
+			productName = SoundcloudPlayer;
+			productReference = FDB84C1E1B0F3A2400B94229 /* StreamCloud Beta.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -566,6 +676,7 @@
 			targets = (
 				FD7CD28B1954396C002AC765 /* StreamCloud */,
 				FD7CD2AC1954396C002AC765 /* SoundcloudPlayerTests */,
+				FDB84BDB1B0F3A2400B94229 /* StreamCloud Beta */,
 			);
 		};
 /* End PBXProject section */
@@ -590,6 +701,19 @@
 			files = (
 				FD7CD2B81954396C002AC765 /* InfoPlist.strings in Resources */,
 				FD8F6AEA1959AC0C004D4B61 /* StatusBarPlayerViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB84C101B0F3A2400B94229 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDB84C111B0F3A2400B94229 /* SoundcloudPlayer.entitlements in Resources */,
+				FDB84C121B0F3A2400B94229 /* InfoPlist.strings in Resources */,
+				FDB84C131B0F3A2400B94229 /* Images.xcassets in Resources */,
+				FDB84C141B0F3A2400B94229 /* Credits.rtf in Resources */,
+				FDB84C151B0F3A2400B94229 /* MainMenu.xib in Resources */,
+				FDB84C161B0F3A2400B94229 /* StatusBarPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +762,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "bN=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbN=$(($bN + 1))\nbN=$(printf \"%d\" $bN)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bN\" \"$INFOPLIST_FILE\"";
+		};
+		FDB84BDC1B0F3A2400B94229 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "bN=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbN=$(($bN + 1))\nbN=$(printf \"%d\" $bN)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bN\" \"$INFOPLIST_FILE\"";
+		};
+		FDB84BDD1B0F3A2400B94229 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FDB84C1A1B0F3A2400B94229 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -717,6 +884,51 @@
 				FDD0374D1986AFDD00043BDC /* TrackCellForPlaylistItemView.m in Sources */,
 				FDE51B25195C3A7B009B1F2D /* ProgressSliderView.m in Sources */,
 				FDE51B15195C18E5009B1F2D /* MouseOverImageView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB84BDE1B0F3A2400B94229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDB84BDF1B0F3A2400B94229 /* ClickableTextField.m in Sources */,
+				FDB84BE01B0F3A2400B94229 /* IsRepostedLabelView.m in Sources */,
+				FDB84BE11B0F3A2400B94229 /* NextButtonCell.m in Sources */,
+				FDB84BE21B0F3A2400B94229 /* AppDelegate.m in Sources */,
+				FDB84BE31B0F3A2400B94229 /* MouseOverImageView.m in Sources */,
+				FDB84BE41B0F3A2400B94229 /* ClickableTableView.m in Sources */,
+				FDB84BE51B0F3A2400B94229 /* ConnectButtonCell.m in Sources */,
+				FDB84BE61B0F3A2400B94229 /* TrackCellView.m in Sources */,
+				FDB84BE71B0F3A2400B94229 /* PlayPauseOverlayView.m in Sources */,
+				FDB84BE81B0F3A2400B94229 /* WhiteBackgroundView.m in Sources */,
+				FDB84BE91B0F3A2400B94229 /* LowerShadowView.m in Sources */,
+				FDB84BEA1B0F3A2400B94229 /* SettingsViewController.m in Sources */,
+				FDB84BEB1B0F3A2400B94229 /* SoundCloudPlaylist.m in Sources */,
+				FDB84BEC1B0F3A2400B94229 /* RepeatButtonCell.m in Sources */,
+				FDB84BED1B0F3A2400B94229 /* PlayingIndicatorView.m in Sources */,
+				FDB84BEE1B0F3A2400B94229 /* ArtworkOverlayView.m in Sources */,
+				FDB84BEF1B0F3A2400B94229 /* ProgressIndicatorView.m in Sources */,
+				FDB84BF01B0F3A2400B94229 /* VolumeButtonCell.m in Sources */,
+				FDB84BF11B0F3A2400B94229 /* ProgressSliderCell.m in Sources */,
+				FDB84BF21B0F3A2400B94229 /* SeperatorView.m in Sources */,
+				FDB84BF31B0F3A2400B94229 /* SoundCloudTrack.m in Sources */,
+				FDB84BF41B0F3A2400B94229 /* SoundCloudUser.m in Sources */,
+				FDB84BF51B0F3A2400B94229 /* TrackCellForPlaylistItemView.m in Sources */,
+				FDB84BF61B0F3A2400B94229 /* ProgressSliderView.m in Sources */,
+				FDB84BF71B0F3A2400B94229 /* StreamCloudStyles.m in Sources */,
+				FDB84BF81B0F3A2400B94229 /* PreviousButtonCell.m in Sources */,
+				FDB84BF91B0F3A2400B94229 /* LoadSpeakerOverlayView.m in Sources */,
+				FDB84BFA1B0F3A2400B94229 /* SoundCloudAPIClient.m in Sources */,
+				FDB84BFB1B0F3A2400B94229 /* SharedAudioPlayer.m in Sources */,
+				FDB84BFC1B0F3A2400B94229 /* StreamCloudApplication.m in Sources */,
+				FDB84BFD1B0F3A2400B94229 /* NSImage+RoundedCorners.m in Sources */,
+				FDB84BFE1B0F3A2400B94229 /* SoundCloudItem.m in Sources */,
+				FDB84BFF1B0F3A2400B94229 /* main.m in Sources */,
+				FDB84C001B0F3A2400B94229 /* AppleMediaKeyController.m in Sources */,
+				FDB84C011B0F3A2400B94229 /* StatusBarPlayerViewController.m in Sources */,
+				FDB84C021B0F3A2400B94229 /* PlayPauseButtonCell.m in Sources */,
+				FDB84C031B0F3A2400B94229 /* ShuffleButtonCell.m in Sources */,
+				FDB84C041B0F3A2400B94229 /* UpperShadowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +1152,76 @@
 			};
 			name = Release;
 		};
+		FDB84C1C1B0F3A2400B94229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41681772719E343F52CD57ED /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon Beta";
+				CODE_SIGN_ENTITLEMENTS = SoundcloudPlayer/SoundcloudPlayer.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OAuth2Client/build/Debug",
+					"$(PROJECT_DIR)/CocoaSoundCloudAPI/build/Debug",
+					"$(PROJECT_DIR)/SoundcloudPlayer",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"IS_BETA=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				INFOPLIST_FILE = "StreamCloud copy-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "StreamCloud Beta";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FDB84C1D1B0F3A2400B94229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 394177B8647BC1C32BFD8B33 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon Beta";
+				CODE_SIGN_ENTITLEMENTS = SoundcloudPlayer/SoundcloudPlayer.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OAuth2Client/build/Debug",
+					"$(PROJECT_DIR)/CocoaSoundCloudAPI/build/Debug",
+					"$(PROJECT_DIR)/SoundcloudPlayer",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SoundcloudPlayer/SoundcloudPlayer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"IS_BETA=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				INFOPLIST_FILE = "StreamCloud copy-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "StreamCloud Beta";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -966,6 +1248,15 @@
 			buildConfigurations = (
 				FD7CD2C11954396C002AC765 /* Debug */,
 				FD7CD2C21954396C002AC765 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDB84C1B1B0F3A2400B94229 /* Build configuration list for PBXNativeTarget "StreamCloud Beta" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDB84C1C1B0F3A2400B94229 /* Debug */,
+				FDB84C1D1B0F3A2400B94229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

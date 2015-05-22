@@ -36,10 +36,16 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    
+ 
+#if IS_BETA
+    [SCSoundCloud  setClientID:@"909c2edcdbd7b312b48a04a3f1e6b40c"
+                        secret:@"bb9505cbb4c3f56e7926025e51a6371e"
+                   redirectURL:[NSURL URLWithString:@"streamcloudbeta://soundcloud/callback"]];
+#else
     [SCSoundCloud  setClientID:@"909c2edcdbd7b312b48a04a3f1e6b40c"
                         secret:@"bb9505cbb4c3f56e7926025e51a6371e"
                    redirectURL:[NSURL URLWithString:@"streamcloud://soundcloud/callback"]];
+#endif
     
     
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self

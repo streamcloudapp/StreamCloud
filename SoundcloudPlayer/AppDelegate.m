@@ -570,12 +570,12 @@ NSString *const PreviousShortcutPreferenceKey = @"PreviousShortcut";
 
 - (void)setCurrentlySelectedStream:(NSInteger)currentlySelectedStream {
     if (_currentlySelectedStream != currentlySelectedStream){
-        [[SharedAudioPlayer sharedPlayer] setSourceType:currentlySelectedStream];
         _currentlySelectedStream = currentlySelectedStream;
+        [[SharedAudioPlayer sharedPlayer] setSourceType:currentlySelectedStream];
+        [self.tableView reloadData];
         if (_currentlySelectedStream == 1 && [self sourceArrayForCurrentlySelectedStream].count <= 0) {
             [[SoundCloudAPIClient sharedClient] getInitialFavoriteSongs];
         }
-        [self.tableView reloadData];
     }
 }
 

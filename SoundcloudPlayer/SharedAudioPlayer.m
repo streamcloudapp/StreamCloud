@@ -254,7 +254,13 @@
     [self.streamItemsToShowInTableView removeAllObjects];
     [self.favoriteItemsToShowInTableView removeAllObjects];
     self.positionInPlaylist = 0;
-    self.audioPlayer = nil;
+    
+    if (self.audioPlayer != nil) {
+        
+        [self.audioPlayer removeObserver:self forKeyPath:@"status"];
+        self.audioPlayer = nil;
+    }
+
     self.shuffledItemsToPlay = nil;
     self.itemsToPlay = nil;
     self.shuffledItemsToPlay = [NSMutableArray array];

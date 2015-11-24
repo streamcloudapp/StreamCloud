@@ -43,6 +43,9 @@
         if ([[dict objectForKey:@"stream_url"] isKindOfClass:[NSString class]])
             self.streamingUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=%@&allow_redirects=False",[dict objectForKey:@"stream_url"],CLIENT_ID]];
         self.streamable = [[dict objectForKey:@"streamable"] boolValue];
+        if (self.streamable && !self.streamingUrl) {
+            self.streamingUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.soundcloud.com/tracks/%@/stream?client_id=%@",[dict objectForKey:@"id"],CLIENT_ID]];
+        }
         self.tagList = [dict objectForKey:@"tag_list"];
         if ([dict objectForKey:@"title"])
             self.title = [dict objectForKey:@"title"];

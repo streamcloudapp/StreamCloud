@@ -28,7 +28,7 @@
         if ([[dict objectForKey:@"permalink_url"] isKindOfClass:[NSString class]])
             self.permalinkUrl = [NSURL URLWithString:[dict objectForKey:@"permalink_url"]];
         self.repostsCount = [dict objectForKey:@"reposts_count"];
-        self.streamable = [[dict objectForKey:@"streamable"] boolValue];
+        self.streamable = YES;
         self.tagList = [dict objectForKey:@"tag_list"];
         self.title = [dict objectForKey:@"title"];
         self.trackCount = [dict objectForKey:@"track_count"];

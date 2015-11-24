@@ -590,6 +590,7 @@
 				FD7CD28A1954396C002AC765 /* Resources */,
 				FD7ECBC21955EDE5005828CF /* Copy Frameworks */,
 				1B410E901A2642138976E644 /* Copy Pods Resources */,
+				49F3B17B6F0F4F0B91043AC1 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -629,6 +630,7 @@
 				FDB84C101B0F3A2400B94229 /* Resources */,
 				FDB84C171B0F3A2400B94229 /* Copy Frameworks */,
 				FDB84C1A1B0F3A2400B94229 /* Copy Pods Resources */,
+				C0123EC1FACB8FED3C051D91 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -735,6 +737,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		49F3B17B6F0F4F0B91043AC1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B8CF5FDFAAB44F67A9D5FBBF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -748,6 +765,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C0123EC1FACB8FED3C051D91 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD73BAC919F65404005712AC /* ShellScript */ = {

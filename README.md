@@ -10,7 +10,6 @@ StreamCloud is a free SoundCloud app for Mac.
     $ git clone git@github.com:streamcloudapp/StreamCloud.git
     $ cd StreamCloud
     $ pod install
-    $ pod update
     $ open SoundcloudPlayer.xcworkspace
 
 ## Contributing

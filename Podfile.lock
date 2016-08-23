@@ -26,8 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.3)
-  - AXStatusItemPopup (from `https://github.com/plaetzchen/AXStatusItemPopup.git`,
-    tag `0.0.5`)
+  - AXStatusItemPopup (from `https://github.com/plaetzchen/AXStatusItemPopup.git`, tag `0.0.5`)
   - HockeySDK-Mac (~> 2.1)
   - LastFm
   - MASShortcut (~> 1.2)
@@ -50,4 +49,6 @@ SPEC CHECKSUMS:
   LastFm: 28c752f8e8646531524a123ce7f6722bbfc9d3c5
   MASShortcut: 65f5fac12bbdd3622abcb8175a633f68f553c60f
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: ea70c3b4a7078dfe6e0bcd0caebd9003a529b830
+
+COCOAPODS: 1.0.0
